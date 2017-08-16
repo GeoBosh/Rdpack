@@ -1,0 +1,24 @@
+Package: Rdpack
+Type: Package
+Title: Update and Manipulate Rd Documentation Objects
+Version: 0.4-22
+Date: 2017-08-05
+Author: Georgi N. Boshnakov
+Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
+Description: Functions for manipulation of Rd objects, including
+    function reprompt() for updating existing Rd
+    documentation for functions, methods and classes and
+    function rebib() for import of references from 'bibtex'
+    files. There is also a macro for importing 'bibtex'
+    references which an be used in Rd files and 'roxygen'
+    comments without importing this package.
+Depends:
+    R (>= 2.15.0),
+    methods,
+    tools,
+    gbRd
+Imports:
+    bibtex (>= 0.4.0)
+License: GPL (>= 2)
+LazyLoad: yes
+RoxygenNote: 5.0.1

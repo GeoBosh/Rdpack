@@ -1,0 +1,122 @@
+Changes in Version 0.4-22
+
+   - added the requirement to Import Tdpack to the help page of insert_ref().
+     (It was out of sync with the vignette.)
+
+
+
+Changes in Version 0.4-21
+
+   - Edited and amended vignette "Inserting_bibtex_references", including:
+       - additional explanation and an example,
+       - requirement to import Rdpack and a mention of travis etc.
+       - paragraph about devtools.
+
+   - changed the URL for parse_Rd.pdf in REFERENCES.bib to https.
+
+
+Changes in Version 0.4-20 (CRAN)
+
+   - cleaned up some minor CRAN issues.
+
+
+Changes in Version 0.4-19
+
+   - new facility for inserting references from BibTeX files - just put the line:
+
+        RdMacros: Rdpack
+
+    in the DESCRIPTION file of your package and the references in inst/REFERENCES.bib.
+    Then put \inserRef{key}{yourpackage} in documentation chunks to insert item
+    'key' from the bib file. This works with both manually created Rd files and
+    roxygen comments, see the documentation for details.
+
+
+Changes in Version 0.4-18 (CRAN)
+
+   - from now on, put (CRAN) next to versions published on CRAN (as above)
+
+   - a minor correction in file NEWS
+
+
+Changes in Version 0.4-17
+
+   - In file DESCRIPTION, changed reprompt and rebib to reprompt() and rebib().
+
+
+Changes in Version 0.4-16
+
+   - don't export parse_text
+
+   - corrected bug in reprompt for S4 classes - new slots were not handled correctly (see
+     slots.R for details).
+
+   - reprompt for S4 methods - if the methods documentation describes methods that do not
+     exist, print an informative message for the user. (Such methods are also printed for
+     debugging purposes but in non-user friendly form.)
+
+   - included 'methods' in imports - around R-devel (2015-07-01 r68620) not including it
+     triggers warnings)
+
+
+Changes in Version 0.4-8
+   - new  functions .whichtageq and .whichtagin; replaced most calls to toolsdotdotdotRdTags
+     with these.
+
+   - removed toolsdotdotdotRdTags
+
+Changes in Version 0.4-7
+   - removed ::: calls from code; copied some functions from `tools' to achieve this
+     (see threedots.R). Renamed the functions replacing  ::: with dotdotdot.
+
+   - export by name (not the generic export pattern); preparation for more selective export
+     of functions in the future.
+
+   - new functions: Rdo_get_argument_names, Rdo_get_item_labels
+
+Changes in Version 0.4-5
+   - dependence bibtex becomes "Imports".
+     tools and gbRd remain (for now) "Depends" since functions from them are used in some
+     examples without "require"'s.
+
+   - rebib: now outfile="" can be used to request overwriting infile.
+           (a small convenience; before the change, one could do this by
+           giving the outfile and infile the same values.)
+
+   - Bug fix: predefined.Rd contained \tabular environments with vertical bars, '|', in the
+     format specification. This is not documented in "Writing R exts" but works for LaTeX and
+     remained unnoticed by me and R CMD check. However, rendering the help page for the
+     objects documented in predefined.Rd gave an error in html and text mode.
+     Package installation failed only if html was requested at build time.
+
+   - small changes in the documentation
+
+Changes in Version 0.4-1
+   - new major feature: processing references from Bibtex files.
+     The top user level function is rebib(),  which updates
+     section "references" in an Rd file. promptPackageSexpr() has
+     been updated to use this feature. inspect_Rdbib() can be used
+     in programming.
+
+   - new auxiliary functions for work with bibentry objects.
+
+   - new convenience programming functions for Rd objects.
+
+   - some small bug fixes.
+
+   - some gaps in the documentation filled.
+
+
+Changes in Version 0.3-11
+
+   - reprompt() did not handle properly S4 replacement methods. Changed the parsing of the
+     arguments to rectify this. Some other functions also needed correction to handle this.
+
+Changes in Version 0.3-10
+
+   - Depends field in DESCRIPTION file updated to require R 2.15.0 or later.
+     (because of a few uses of paste0() in recent code.)
+
+Changes in Version 0.3-8
+
+   - first public version

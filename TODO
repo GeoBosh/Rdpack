@@ -1,0 +1,9 @@
+* pcDst.Rd gives an error, it was produced by Roxygen.
+
+* write vignettes
+
+* escape percents in strings in usage sections, e.g. usage for f(dateformat = "%Y-%m-%d"),
+  see also a related question on R-devel
+
+
+* reprompt("xxx-methods",...) to set the "doctype" field to "methods"
