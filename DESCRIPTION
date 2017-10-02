@@ -1,8 +1,8 @@
 Package: Rdpack
 Type: Package
 Title: Update and Manipulate Rd Documentation Objects
-Version: 0.4-22
-Date: 2017-08-05
+Version: 0.4-23
+Date: 2017-10-02
 Author: Georgi N. Boshnakov
 Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
 Description: Functions for manipulation of Rd objects, including
@@ -10,8 +10,8 @@ Description: Functions for manipulation of Rd objects, including
     documentation for functions, methods and classes and
     function rebib() for import of references from 'bibtex'
     files. There is also a macro for importing 'bibtex'
-    references which an be used in Rd files and 'roxygen'
-    comments without importing this package.
+    references which can be used in Rd files and 'roxygen2'
+    comments.
 Depends:
     R (>= 2.15.0),
     methods,

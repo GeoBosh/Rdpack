@@ -126,7 +126,7 @@ The first line above inserts the reference labeled \verb+Rpack:bibtex+ in Rdpack
 
 A roxygen2 documentation chunk might look like this:
 \begin{verbatim}
-#' \@references
+#' @references
 #' \insertRef{Rpack:bibtex}{Rdpack}
 #'
 #' \insertRef{R}{bibtex}

@@ -1,8 +1,18 @@
+Changes in Version 0.4-23
+
+   -
+
+
 Changes in Version 0.4-22
 
-   - added the requirement to Import Tdpack to the help page of insert_ref().
+   - Added the requirement to Import Rdpack to the help page of insert_ref().
      (It was out of sync with the vignette.)
 
+   - Updated Description in DESCRIPTION, which was also out of sync with the
+     vignette.
+
+   - Bug fix in the vignette: changed \@references to @references in the
+     roxygen2 example.
 
 
 Changes in Version 0.4-21
@@ -36,7 +46,7 @@ Changes in Version 0.4-18 (CRAN)
 
    - from now on, put (CRAN) next to versions published on CRAN (as above)
 
-   - a minor correction in file NEWS
+   - a minor correction in file NE
 
 
 Changes in Version 0.4-17
