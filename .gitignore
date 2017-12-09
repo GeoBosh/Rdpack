@@ -1,4 +1,7 @@
 countr/build/
+/Org/
+/.RData
+/.Rhistory
 
 ## Emacs
 .emacs.desktop
