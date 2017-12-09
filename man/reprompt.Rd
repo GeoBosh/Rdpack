@@ -210,7 +210,7 @@ setwd(tempdir())
 fnseq <- reprompt(seq)
 
 # let's parse the saved Rd file
-rdoseq <- parse_Rd(fnseq)
+rdoseq <- tools::parse_Rd(fnseq)
 
 # replace usage statements with wrong ones for illustration.
 dummy_usage <- char2Rdpiece(paste("seq()", "\\\\method{seq}{default}()",
@@ -220,7 +220,7 @@ rdoseq_dummy <- Rdo_replace_section(rdoseq, dummy_usage)
 Rdo_show(rdoseq_dummy)  # wrong usage
 
 reprompt(rdoseq_dummy, file = "seqA.Rd")
-Rdo_show(parse_Rd("seqA.Rd"))  # usage ok now
+Rdo_show(tools::parse_Rd("seqA.Rd"))  # usage ok now
 
 myseq <- function(from, to, x){
         if(to < 0) seq(from=from, to=length(x)+to) else seq(from, to)}
@@ -229,14 +229,14 @@ myseq <- function(from, to, x){
 rdo2 <- Rdo_modify_simple(rdoseq, "myseq()", "usage")
 
 reprompt(rdo2, file = "seqB.Rd")  # updates usage of myseq
-Rdo_show(parse_Rd("seqB.Rd"))     # and add an entry for 'x' in 'arguments'
+Rdo_show(tools::parse_Rd("seqB.Rd"))     # and add an entry for 'x' in 'arguments'
 
 
 
 
 # as for prompt() the default is to save in current dir as "seq.Rd".
 fnseq <- reprompt(seq)
-rdoseq <- parse_Rd(fnseq)   # parse fnseq to see the result.
+rdoseq <- tools::parse_Rd(fnseq)   # parse fnseq to see the result.
 Rdo_show(rdoseq)
 
 reprompt(infile = "seq.Rd", filename = "seq2.Rd")

@@ -105,4 +105,7 @@ export(
 # , toolsdotdotdotRdTags
 , update_aliases_tmp
 # , utilsdotdotdot.getHelpFile
+, viewRd
+, makeVignetteReference
+, vigbib
 )

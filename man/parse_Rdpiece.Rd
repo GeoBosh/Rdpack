@@ -72,7 +72,7 @@ u1 <- list_Rd(name = "Dummyname", alias = "dummyfun",
               Rd_class=TRUE )
 fn <- tempfile("dummyfun", fileext="Rd")
 reprompt(dummyfun, filename=fn)
-rdo <- parse_Rd(fn)
+rdo <- tools::parse_Rd(fn)
 
 # let's prepare a new item
 rd <- "\\\\item{...}{further arguments to be passed on.}"

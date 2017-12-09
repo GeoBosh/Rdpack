@@ -47,9 +47,12 @@
 
   \strong{NEW:} References are most easily inserted with the help of the
   macro \code{\\insertRef{key}{package}}. This facility works in Rd
-  files and roxygen comments and needs only an entry in the DESCRIPTION
-  file of the package, see \code{\link{insertRef}} and the vignette for
-  details and examples.
+  files and roxygen comments, see \code{\link{insertRef}} and the
+  vignette for details and examples. The function \code{\link{viewRd}}
+  renders a documentation file in a source package and displays it as
+  text or in a browser. Convenience functions
+  \code{\link{makeVignetteReference}} and \code{\link{vigbib}}
+  generate Bibtex entries for vignettes.
 
 
   \code{\link{reprompt}} produces a skeleton documentation for the
@@ -114,7 +117,7 @@
 
 
   Note that there are other, more sophisticated, approaches to keeping
-  documentation and code in synchron, for example package \verb{roxygen}
+  documentation and code in synchron, for example package \verb{roxygen2}
   (todo: give references here).
 
 
@@ -178,7 +181,13 @@ Maintainer: \Sexpr[stage=build]{pd$Maintainer}
 %  \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
   \code{\link{reprompt}},
   \code{\link{promptPackageSexpr}},
-  \code{\link{rebib}}
+  \code{\link{rebib}},
+  
+  \code{\link{viewRd}},
+  \code{\link{vigbib}},
+  \code{\link{makeVignetteReference}},
+  
+  \code{vignette("Inserting_bibtex_references", package = "Rdpack")}
 }
 \examples{
 # The examples below show typical use.

@@ -107,7 +107,7 @@ Rdo_replace_section(rdo, val, create = FALSE, replace = TRUE)
 
 
 \examples{
-# a <- parse_Rd("./man/promptUsage.Rd")
+# a <- tools::parse_Rd("./man/promptUsage.Rd")
 # char2Rdpiece("documentation", "keyword")
 
 # this changes a keyword from Rd to documentation

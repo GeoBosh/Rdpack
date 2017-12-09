@@ -2,43 +2,35 @@
  "Inserting_bibtex_references"
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-class-options
-                     '(("article" "12pt" "a4paper")))
+                     '(("jss" "nojss" "article")))
    (TeX-add-to-alist 'LaTeX-provided-package-options
-                     '(("natbib" "authoryear" "round" "longnamesfirst")))
+                     '(("fontenc" "T1") ("geometry" "left=2cm" "right=2cm" "bottom=15mm") ("natbib" "authoryear" "round" "longnamesfirst")))
    (add-to-list 'LaTeX-verbatim-environments-local "alltt")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperref")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperimage")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperbaseurl")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "nolinkurl")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
-   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "url")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "nolinkurl")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperbaseurl")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperimage")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperref")
    (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
    (TeX-run-style-hooks
     "latex2e"
-    "article"
-    "art12"
-    "a4wide"
+    "jss"
+    "jss10"
+    "fontenc"
+    "geometry"
     "graphicx"
     "color"
     "alltt"
     "natbib"
     "hyperref")
-   (TeX-add-symbols
-    '("email" 1)
-    "E"
-    "VAR"
-    "COV"
-    "p"
-    "ui"
-    "oi")
    (LaTeX-add-labels
+    "sec:setup"
+    "sec:insert-refer-docum"
+    "sec:possible-issues"
+    "sec:warning-from-r"
     "sec:devtools"
-    "sec:insert-refer-inter")
-   (LaTeX-add-environments
-    "smallexample")
-   (LaTeX-add-color-definecolors
-    "Red"
-    "Blue"
-    "hellgrau")))
+    "sec:viewing-rd-files"
+    "sec:insert-refer-inter"))
+ :latex)
 

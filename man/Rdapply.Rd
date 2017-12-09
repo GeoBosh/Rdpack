@@ -107,7 +107,7 @@ Rdo2Rdf(u1, file = fn)
 
 # the saved file contains escaped percents but they disappear in parsing:
 file.show(fn)
-Rdo_show(parse_Rd(fn))
+Rdo_show(tools::parse_Rd(fn))
 
 # if you think that sections should start on new lines,
 # the following makes the file a little more human-friendly

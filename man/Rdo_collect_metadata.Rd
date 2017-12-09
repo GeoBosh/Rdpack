@@ -42,7 +42,7 @@ Rdo_collect_metadata(rdo, sec)
 # this needs "timezones.Rd".
 
 infile <- file.path(R.home(), "src/library/base/man/timezones.Rd")
-rd <- parse_Rd(infile)
+rd <- tools::parse_Rd(infile)
 
 # The functions described here handle also "ifdef" and similar
 # directives. This contains an element windows = "TZDIR"

@@ -72,10 +72,10 @@ dummyfun <- function(x) x
 
 fn <- tempfile("dummyfun", fileext="Rd")
 reprompt(dummyfun, filename=fn)
-Rdo_show(parse_Rd(fn))
+Rdo_show(tools::parse_Rd(fn))
 
 Rdo_set_section("Georgi N. Boshnakov", "author", fn)
-Rdo_show(parse_Rd(fn))
+Rdo_show(tools::parse_Rd(fn))
 
 unlink(fn)
 }

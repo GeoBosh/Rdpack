@@ -29,7 +29,7 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib"){    
 
 
 rebib <- function(infile, outfile, ...){                     # 2013-03-29
-    rdo <- parse_Rd(infile)
+    rdo <- parse_Rd(infile)   ## 2017-11-25 TODO: argument for RdMacros!
 
     if(missing(outfile))
         outfile <- basename(infile)
@@ -197,6 +197,154 @@ insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
     wrk <- toRd(bibs[[key]]) # TODO: add styles? (doesn't seem feasible here)
     ## paste0(wrk, "\n")
 }
+
+
+## 2017-11-25 new
+## see utils:::print.help_files_with_topic()
+viewRd <- function(infile, type = "text", stages = NULL){
+    infile <- normalizePath(infile)
+
+    if(is.null(stages))
+        stages <- c("build", "install", "render")
+    else if(!is.character(stages) || !all(stages %in% c("build", "install", "render")))
+        stop('stages must be a character vector containing one or more of the strings "build", "install", and "render"')
+
+    e <- tools::loadPkgRdMacros(system.file(package = "Rdpack"))
+    Rdo <- parse_Rd(infile, macros = e)
+
+    pkgname <- basename(dirname(dirname(infile)))
+    outfile <- tempfile(fileext = paste0(".", type))
+
+    ## can't do this, the file may be deleted before the browser opens it:
+    ##        on.exit(unlink(outfile))
+    switch(type,
+           text = {
+               temp <- tools::Rd2txt(Rdo, out = outfile, package = pkgname, stages = stages)
+               file.show(temp, delete.file = TRUE) # text file is deleted
+           },
+           html = {
+               temp <- tools::Rd2HTML(Rdo, out = outfile, package = pkgname,
+                                      stages = stages)
+               browseURL(temp)
+               ## html file is not deleted
+           },
+           stop("'type' should be one of 'text' or 'html'")
+           )
+}
+
+## temporary; not exported
+vigbib <- function(package, verbose = TRUE, ..., vig = NULL){
+    if(!is.null(vig))
+        return(makeVignetteReference(package, vig, ...))
+
+    vigs <- vignette(package = package)
+    if(nrow(vigs$results) == 0){
+        if(verbose)
+            cat("No vignettes found in package ", package, "\n")
+        return(bibentry())
+    }
+    wrk <- lapply(seq_len(nrow(vigs$results)),
+                  function(x) makeVignetteReference(package = package, vig = x,
+                                                    verbose = FALSE, ...)
+                  )
+    res <- do.call("c", wrk)
+    if(verbose)
+        print(res, style = "Bibtex")
+    invisible(res)
+}
+
+
+makeVignetteReference <- function(package, vig = 1, verbose = TRUE,
+                                  title, author, type = "pdf",
+                                  bibtype = "Article", key = NULL
+                                  ){
+    publisher <- NULL # todo: turn this into an argument some day ...
+
+    if(missing(package))
+        stop("argument 'package' is missing with no default")
+
+    cranname <- "CRAN"
+    cran <- "https://CRAN.R-Project.org"
+    cranpack <- paste0(cran, "/package=", package)
+
+    ## todo: for now only cran
+    if(is.null(publisher)){
+        publisher <- cran
+        publishername <- cranname
+        publisherpack <- cranpack
+    }
+
+    desc <- packageDescription(package)
+    vigs <- vignette(package = package)
+
+    if(is.character(vig)){
+        vig <- pmatch(vig, vigs$results[ , "Item"])
+        if(length(vig) == 1  &&  !is.na(vig)){
+            wrk <- vigs$results[vig, "Title"]
+        }else
+            stop(paste0("'vig' must (partially) match one of:\n",
+                        paste0("\t", 1:nrow(vigs$results), " ", vigs$results[ , "Item"], "\n",
+                               collapse = "\n"),
+                        "Alternatively, 'vig' can be the index printed in front of the name above."))
+    }else if(1 <= vig  && vig <= nrow(vigs$results)){
+        wrk <- vigs$results[vig, "Title"]
+    }else{
+        stop("not ready yet, should return all vigs in the package.")
+    }
+
+
+    if(missing(author))
+        author <- desc$Author
+
+    title <- gsub(" \\([^)]*\\)$", "", wrk)  # drop ' (source, pdf)'
+    item <- vigs$results[vig, "Item"]
+    vigfile <- paste0(item, ".", type)
+
+    journal <- paste0("URL ", publisherpack, ".",
+                      " Vignette included in R package ", package,
+                      ", version ", desc$Version
+                      )
+
+    if(is.null(desc$Date)){ # built-in packages do not have field "year"
+        if(grepl("^Part of R", desc$License[1])){
+            ## title <- paste0(title, "(", desc$License, ")")
+            publisherpack <- cran ## do not add package=... to https in this case
+            journal <- paste0("URL ", publisherpack, ".",
+                              " Vignette included in R package ", package,
+                              " (", desc$License, ")"
+                              )
+        }
+        year <- R.version$year
+    }else
+        year <- substring(desc$Date, 1, 4)
+
+                 # stop(paste0("argument 'vig' must be a charater string or an integer\n",
+                 #            "between 1 and the number of vignettes in the package"))
+
+    if(is.null(key))
+        key <- paste0("vig", package, ":", vigs$results[vig, "Item"])
+
+    res <- bibentry(
+        key = key,
+        bibtype = bibtype,
+        title = title,
+        author = author,
+        journal = journal,
+        year = year,
+        ## note = "R package version 1.3-4",
+        publisher = publishername,
+        url = publisherpack
+    )
+
+    if(verbose){
+        print(res, style = "Bibtex")
+        cat("\n")
+    }
+    res
+}
+
+
+
 
 
 

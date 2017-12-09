@@ -57,7 +57,7 @@ fn <- tempfile("dummyfun", fileext="Rd")
 reprompt(dummyfun, filename=fn)
 
 # check that the result can be parsed and show it.
-Rdo_show(parse_Rd(fn))
+Rdo_show(tools::parse_Rd(fn))
 
 unlink(fn)
 

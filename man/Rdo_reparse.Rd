@@ -33,7 +33,7 @@ Rdo_reparse(rdo)
 dummyfun <- function(x) x
 fn <- tempfile("dummyfun", fileext="Rd")
 reprompt(dummyfun, filename=fn)
-rdo <- parse_Rd(fn)
+rdo <- tools::parse_Rd(fn)
 
 dottext <- "further arguments to be passed on."
 
