@@ -1,3 +1,8 @@
+Changes in Version 0.5-1
+
+   - an example was not restoring the working directory.
+
+
 Changes in Version 0.5-0
 
    - moved gbRd from Depends to Imports and adjusted some examples to use

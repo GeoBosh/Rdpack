@@ -32,7 +32,7 @@ package management tools that package Rdpack and its Rd macros are
 needed. The references should be put in file inst/REFERENCES.bib.
 These steps are enumerated below in somewhat more detail for convenince,
 see also the vignette
-[Inserting_bibtex_references](https://cran.r-project.org/package=Rdpack]).
+[Inserting_bibtex_references](https://cran.r-project.org/package=Rdpack).
 
 
 1. Add the following lines to  file `DESCRIPTION':

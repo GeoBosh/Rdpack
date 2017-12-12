@@ -68,6 +68,7 @@ cat(as.character(utp[[2]]))   # same
 
 
 unlink(fnseq)
+setwd(cur_wd)
 }
 %\keyword{RdoProgramming}
 \keyword{RdoUsage}
