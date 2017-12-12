@@ -75,7 +75,7 @@ works for `roxygen2' documentation, as well.
 }
 
 \Keywords{bibliographic references, Rd, \proglang{R}}
-\Plainkeywords{bibliographic references, Rd, R}
+\Plainkeywords{bibliographic references, cite, Rd, R}
 
 
 \begin{document}
@@ -107,6 +107,11 @@ CMD check'.}:
 \begin{verbatim}
     importFrom(Rdpack,reprompt)
 \end{verbatim}
+The equivalent line for `roxygen2' is 
+\begin{verbatim}
+    #' @importFrom Rdpack reprompt
+\end{verbatim}
+
 
 \paragraph*{3.} 
   Create file \verb+REFERENCES.bib+ in  subdirectory \verb+inst/+ of your package
