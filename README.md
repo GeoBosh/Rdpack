@@ -7,7 +7,7 @@ files, a macro for importing 'bibtex' references which can be used in Rd files
 and 'roxygen2' comments and other convenience functions for references.
 
 
-### Installing
+## Installing
 
 The latest stable version is on CRAN. 
 ```
@@ -20,4 +20,46 @@ You can also install the development version of `Rdpack` from Github:
 library(devtools)
 install_github("GeoBosh/Rdpack")
 ```
+
+
+## Usage
+
+### Inserting references from Bibtex files
+
+To prepare a package for importing BibTeX references it is necessary to tell the
+package management tools that package \pkg{Rdpack} and its Rd macros are
+needed. The references should be put in file \verb+inst/REFERENCES.bib+.
+These steps are enumerated below in somewhat more detail for convenince,
+see also the vignette See also vignette 
+[Inserting_bibtex_references][https://cran.r-project.org/package=Rdpack].
+
+
+1. Add the following lines to  file `DESCRIPTION':
+```
+Imports: Rdpack
+RdMacros: Rdpack
+```
+Make sure the capitalisation of RdMacros: is as shown. If the field
+'RdMacros' is already present, add 'Rdpack' to the list on that line. Similarly
+for field 'Imports'.
+
+2. Add the following line to file `NAMESPACE':
+```
+importFrom(Rdpack,reprompt)
+```
+The equivalent line for 'roxygen2' is 
+```
+#' @importFrom Rdpack reprompt
+```
+
+
+3. Create file REFERENCES.bib in  subdirectory inst/ of your package
+  and put the bibtex references in it.
+
+
+
+
+
+
+
 
