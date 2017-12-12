@@ -26,12 +26,13 @@ install_github("GeoBosh/Rdpack")
 
 ### Inserting references from Bibtex files
 
+#### Preparation 
 To prepare a package for importing BibTeX references it is necessary to tell the
-package management tools that package \pkg{Rdpack} and its Rd macros are
-needed. The references should be put in file \verb+inst/REFERENCES.bib+.
+package management tools that package Rdpack and its Rd macros are
+needed. The references should be put in file inst/REFERENCES.bib.
 These steps are enumerated below in somewhat more detail for convenince,
-see also the vignette See also vignette 
-[Inserting_bibtex_references][https://cran.r-project.org/package=Rdpack].
+see also the vignette
+[Inserting_bibtex_references](https://cran.r-project.org/package=Rdpack]).
 
 
 1. Add the following lines to  file `DESCRIPTION':
@@ -57,9 +58,43 @@ The equivalent line for 'roxygen2' is
   and put the bibtex references in it.
 
 
+#### Inserting references in package documentation
 
+Once the steps outlined in the previous section are done, references can be
+inserted in the documentation as 
+```
+\insertRef{key}{package}
+```
+where 'key' is the bibtex key of the reference and 'package' is your package.
+This works in Rd files and in roxygen documentation chunks. 
 
+Usually references are put in section 'references'. In n Rd file this might look
+something like:
+```
+\references{
+\insertRef{Rpack:bibtex}{Rdpack}
 
+\insertRef{R}{bibtex}
+}
+```
+The equivalent roxygen2 documentation chunk would be:
+```
+#' @references
+#' \insertRef{Rpack:bibtex}{Rdpack}
+#'
+#' \insertRef{R}{bibtex}
+```
 
+The first line above inserts the reference labeled 'Rpack:bibtex' in Rdpack's
+REFERENCES.bib. The second line inserts the reference labeled 'R' in file
+REFERENCES.bib from package `bibtex'.
+
+ 
+For further details see the vignette at
+[Inserting_bibtex_references](https://cran.r-project.org/package=Rdpack]),
+or open it from R:
+```
+vignette("Inserting_bibtex_references", package = "Rdpack")
+```
 
 
