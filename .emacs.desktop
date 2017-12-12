@@ -2,44 +2,56 @@
 ;; --------------------------------------------------------------------------
 ;; Desktop File for Emacs
 ;; --------------------------------------------------------------------------
-;; Created Thu Nov 30 15:12:54 2017
+;; Created Tue Dec 12 22:05:23 2017
 ;; Desktop file format version 208
 ;; Emacs version 25.2.1
 
 ;; Global section:
-(setq desktop-saved-frameset [frameset 1 (23072 8182 652549 0) (desktop . "208") "mcbssgb2@E-L07MAAT1125C" nil nil ((((font-backend uniscribe gdi) (font . "-outline-Courier New-normal-normal-normal-mono-13-*-*-*-c-*-iso8859-1") (border-width . 2) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars . right) (horizontal-scroll-bars) (foreground-color . "SystemWindowText") (background-color . "SystemWindow") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (alpha) (menu-bar-lines . 1) (tool-bar-lines . 1) (height . 48) (title) (icon-type) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 17) (scroll-bar-height . 0) (fullscreen) (display-type . color) (background-mode . light) (cursor-color . "black") (frameset--id . "B07F-F1D6-322E-CFE1") (frameset--mini t) (width . 80) (modeline . t) (minibuffer . t) (unsplittable . t) (left . 175) (top . 0) (icon-name) (visibility . t) (display . "w32") (explicit-name) (tool-bar-position . top)) ((min-height . 4) (min-width . 10) (min-height-ignore . 2) (min-width-ignore . 7) (min-height-safe . 1) (min-width-safe . 2) (min-pixel-height . 64) (min-pixel-width . 80) (min-pixel-height-ignore . 32) (min-pixel-width-ignore . 56) (min-pixel-height-safe . 16) (min-pixel-width-safe . 16)) leaf (pixel-width . 673) (pixel-height . 752) (total-width . 84) (total-height . 47) (normal-height . 1.0) (normal-width . 1.0) (buffer "*help[R](read.bib)*" (selected) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 3 t nil 0 t) (vscroll . 0) (dedicated) (point . 321) (start . 1))) (((font-backend uniscribe gdi) (font . "-outline-Courier New-normal-normal-normal-mono-13-*-*-*-c-*-iso8859-1") (border-width . 2) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars . right) (horizontal-scroll-bars . t) (foreground-color . "SystemWindowText") (background-color . "SystemWindow") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (alpha) (menu-bar-lines . 1) (tool-bar-lines . 3) (height . 60) (title) (icon-type) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 17) (scroll-bar-height . 17) (fullscreen) (display-type . color) (background-mode . light) (cursor-color . "black") (visibility . t) (frameset--id . "5510-E976-AE8B-B3D7") (frameset--mini t . t) (modeline . t) (minibuffer . t) (unsplittable) (icon-name) (display . "w32") (explicit-name) (tool-bar-position . top) (environment) (width . 193) (left + -1916) (top + -312)) ((min-height . 8) (min-width . 20) (min-height-ignore . 8) (min-width-ignore . 14) (min-height-safe . 2) (min-width-safe . 4) (min-pixel-height . 128) (min-pixel-width . 160) (min-pixel-height-ignore . 128) (min-pixel-width-ignore . 112) (min-pixel-height-safe . 32) (min-pixel-width-safe . 32)) hc (pixel-width . 1577) (pixel-height . 970) (total-width . 197) (total-height . 60) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 785) (pixel-height . 970) (total-width . 98) (total-height . 60) (normal-height . 1.0) (normal-width . 0.4996282527881041) (buffer "tmp" (selected . t) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 3 t nil 2 t) (vscroll . 0) (dedicated) (point . 1173) (start . 1))) (vc (last . t) (pixel-width . 792) (pixel-height . 970) (total-width . 99) (total-height . 60) (normal-height . 1.0) (normal-width . 0.5003717472118959) (combination-limit) (leaf (pixel-width . 792) (pixel-height . 490) (total-width . 99) (total-height . 30) (normal-height . 0.5) (normal-width . 1.0) (buffer "NEWS" (selected) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 3 t nil 2 t) (vscroll . 0) (dedicated) (point . 89) (start . 1))) (leaf (last . t) (pixel-width . 792) (pixel-height . 480) (total-width . 99) (total-height . 30) (normal-height . 0.5) (normal-width . 1.0) (buffer "NEWS" (selected) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 3 t nil 2 t) (vscroll . 0) (dedicated) (point . 89) (start . 1))))))])
+(setq desktop-saved-frameset [frameset 1 (23088 21155 19046 0) (desktop . "208") "mcbssgb2@E-L07MAAT1125C" nil nil ((((font-backend uniscribe gdi) (font . "-outline-Courier New-normal-normal-normal-mono-13-*-*-*-c-*-iso8859-1") (border-width . 2) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars . right) (horizontal-scroll-bars . t) (foreground-color . "SystemWindowText") (background-color . "SystemWindow") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (alpha) (menu-bar-lines . 1) (tool-bar-lines . 3) (height . 60) (title) (icon-type) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 17) (scroll-bar-height . 17) (fullscreen) (display-type . color) (background-mode . light) (cursor-color . "black") (visibility . t) (frameset--id . "5510-E976-AE8B-B3D7") (frameset--mini t . t) (modeline . t) (minibuffer . t) (unsplittable) (icon-name) (display . "w32") (explicit-name) (tool-bar-position . top) (environment) (width . 193) (left + -1922) (top + -314)) ((min-height . 4) (min-width . 20) (min-height-ignore . 4) (min-width-ignore . 14) (min-height-safe . 1) (min-width-safe . 4) (min-pixel-height . 64) (min-pixel-width . 160) (min-pixel-height-ignore . 64) (min-pixel-width-ignore . 112) (min-pixel-height-safe . 16) (min-pixel-width-safe . 32)) hc (pixel-width . 1577) (pixel-height . 973) (total-width . 197) (total-height . 61) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 793) (pixel-height . 973) (total-width . 99) (total-height . 61) (normal-height . 1.0) (normal-width . 0.5) (buffer "README.md" (selected . t) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 3 t nil 2 t) (vscroll . 0) (dedicated) (point . 11) (start . 1))) (leaf (last . t) (pixel-width . 784) (pixel-height . 973) (total-width . 98) (total-height . 61) (normal-height . 1.0) (normal-width . 0.5) (buffer "README.md" (selected) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 3 t nil 2 t) (vscroll . 0) (dedicated) (point . 11) (start . 1)))))])
 (setq desktop-missing-file-warning nil)
 (setq tags-file-name nil)
 (setq tags-table-list nil)
 (setq search-ring '("vigbib" "cran" "c.polynom"))
 (setq regexp-search-ring nil)
 (setq register-alist nil)
-(setq file-name-history '("~/Az/Rdevel/Rdpack/proba.Rout" "~/Az/Rdevel/bitbucket/countr_project/countr/NEWS" "~/Az/Rdevel/Rdpack/Org/tmp" "~/Az/Rdevel/Rdpack/Org/alCountr.bib" "c:/Users/mcbssgb2/Az/Rdevel/Rdpack/Org/Rpackages.bib" "c:/Users/mcbssgb2/Az/Rdevel/Rdpack/Org/proba.tex" "~/Az/Rdevel/Rdpack/R/bib.R" "~/Az/Rdevel/Rdpack/NAMESPACE" "~/Az/Rdevel/bitbucket/countr_project/countr/NAMESPACE" "c:/Users/mcbssgb2/Az/Rdevel/bitbucket/countr_project/countr/inst/REFERENCES.bib" "~/Az/Rdevel/Rdpack/proba.R" "~/Az/Rdevel/Rdpack" "c:/Users/mcbssgb2/Az/Rdevel/PolynomF/R/PolynomF.R" "~/Az/Rdevel/" "~/Az/Rdevel/Rdpack/" "c:/Users/mcbssgb2/Az/Rdevel/Rdpack/vignettes/Inserting_bibtex_references.Rnw" "~/Az/Rdevel/Rdpack/man/Rdpack-package.Rd" "~/Az/Rdevel/Rdpack/DESCRIPTION" "c:/Users/mcbssgb2/Az/Rdevel/Rdpack/man/viewRd.Rd" "~/Az/Rdevel/Rdpack/NEWS" "~/Az/Rdevel/Rdpack/NAMESPACE" "c:/Users/mcbssgb2/Az/Rdevel/fguigb/R/guiBosh.R" "~/Az/Rdevel/Rdpack/R/" "~/Az/Rdevel/Rdpack/" "~/Az/Rdevel/Rdpack/NEWS" "~/Az/Rdevel/Rdpack/" "~/MyHomes/myR/Rdevel/mcompanion/" "~/MyHomes/myR/Rdevel/Rdpack/" "~/MyHomes/myR/Rdevel/Rdpack/NEWS" "~/MyHomes/myR/Rdevel/Rdpack/" "~/Az/papers/tsbook/" "~/MyHomes/myR/Rdevel/Rdpack/DESCRIPTION" "~/Az/papers/tsbook/" "c:/Users/mcbssgb2/Az/papers/tsbook/tsbook.tex" "c:/Users/mcbssgb2/MyHomes/myR/Rdevel/Rdpack/man/rebib.Rd" "~/MyHomes/myR/Rdevel/Rdpack/man/insert_ref.Rd" "c:/Users/mcbssgb2/R/win-library/3.4/bibtex/REFERENCES.bib" "c:/Users/mcbssgb2/R/win-library/3.3/bibtex/REFERENCES.bib" "c:/Users/mcbssgb2/MyHomes/myR/Rdevel/Rdpack/inst/REFERENCES.bib" "c:/Users/mcbssgb2/MyHomes/myR/Rdevel/Rdpack/man/insert_ref.Rd" "~/MyHomes/myR/Rdevel/Rdpack/" "~/MyHomes/myR/Rdevel/pcts" "~/MyHomes/myR/Rdevel/Rdpack/" "~/MyHomes/myR/Rdevel/Rdpack/DESCRIPTION" "~/MyHomes/myR/Rdevel/StableEstim/" "~/MyHomes/myR/Rdevel/StableEstim" "~/MyHomes/myR/Rdevel/StableEstim/DESCRIPTION" "~/MyHomes/myR/Rdevel/StableEstim/LICENSE" "~/MyHomes/myR/Rdevel/StableEstim/man/" "~/MyHomes/myR/Rdevel/StableEstim/R" "~/MyHomes/myR/Rdevel/StableEstim/R/" "~/MyHomes/myR/Rdevel/StableEstim/R" "~/MyHomes/myR/Rdevel/StableEstim/" "~/MyHomes/myR/Rdevel/StableEstim/DESCRIPTION" "~/MyHomes/myR/Rdevel/StableEstim/" "~/MyHomes/myR/Rdevel/StableEstim" "~/MyHomes/myR/Rdevel/Rdpack/NEWS" "c:/Users/mcbssgb2/MyHomes/myR/Rdevel/Rdpack/.Rbuildignore" "~/MyHomes/myR/Rdevel/Rdpack/DESCRIPTION" "c:/Users/mcbssgb2/MyHomes/myR/RpathsThinkPadT540p.bat" "~/MyHomes/myR/Rdevel/Rdpack/inst/REFERENCES.bib" "~/MyHomes/myR/Rdevel/Rdpack/" "~/MyHomes/myR/Rdevel/Rdpack/NEWS" "p:/Downloads/bibtex/R/bibtex.R" "~/MyHomes/myR/Rdevel/Rdpack/DESCRIPTION" "~/MyHomes/myR/Rdevel/Rdpack/" "~/MyHomes/myR/Rdevel/Rdpack/DESCRIPTION" "~/MyHomes/myR/Rdevel/testWithMe/R/rox.R" "~/MyHomes/myR/Rdevel/testWithMe/" "/R" "~/MyHomes/myR/Rdevel/testWithMe/" "~/MyHomes/myR/Rdevel/testWithMe/man/aaa1.Rd" "~/MyHomes/myR/Rdevel/testWithMe/R/aaa.R" "~/MyHomes/myR/Rdevel/testWithMe/man/" "~/MyHomes/myR/Rdevel/testWithMe/" "c:/ProgramF/R/R-3.2.3patched/share/Rd/macros/system.Rd" "~/MyHomes/myR/Rdevel/Rdpack/man/macros/refmacros.Rd" "~/MyHomes/myR/Rdevel/Rdpack/man/macros" "c:/Users/mcbssgb2/MyHomes/myR/Rdevel/Rdpack/" "~/MyHomes/myR/Rdevel/Rdpack/" "~/Az/Scripts/" "c:/Users/mcbssgb2/Az/Scripts/CowpertwaitMetcalfe.tex" "~/Az/Scripts/brMontgomeryEtAl2015.tex" "~/Az/Scripts/" "~/Az/papers/signed/" "~/MyHomes/myR/Rdevel/sarima/" "~/Az/Teaching/Interact/y1516/" "~/MyHomes/myR/Rdevel/pcts" "~/Az/Scripts/" "~/Az/Teaching/ts/" "~/MyHomes/myR/Rdevel/RealAnalytics/" "c:/Users/mcbssgb2/Google Drive/TODO" "~/MyHomes/myR/Rdevel/pcts" "~/MyHomes/myR/Rdevel/Countr" "~/MyHomes/myR/Rdevel/dumpMath/R/dumpMath.R" "~/MyHomes/myR/Rdevel/gbutils/DESCRIPTION" "c:/Users/mcbssgb2/MyHomes/myR/Rdevel/gbutils/man/missing_arg.Rd" "~/MyHomes/myR/Rdevel/gbutils/NAMESPACE" "~/MyHomes/myR/Rdevel/gbutils/R/" "~/MyHomes/myR/Rdevel/gbutils/NEWS"))
+(setq file-name-history '("~/Az/Rdevel/Rdpack/README.md" "~/Az/Rdevel/Rdpack/proba.Rout" "~/Az/Rdevel/bitbucket/countr_project/countr/NEWS" "~/Az/Rdevel/Rdpack/Org/tmp" "~/Az/Rdevel/Rdpack/Org/alCountr.bib" "c:/Users/mcbssgb2/Az/Rdevel/Rdpack/Org/Rpackages.bib" "c:/Users/mcbssgb2/Az/Rdevel/Rdpack/Org/proba.tex" "~/Az/Rdevel/Rdpack/R/bib.R" "~/Az/Rdevel/Rdpack/NAMESPACE" "~/Az/Rdevel/bitbucket/countr_project/countr/NAMESPACE" "c:/Users/mcbssgb2/Az/Rdevel/bitbucket/countr_project/countr/inst/REFERENCES.bib" "~/Az/Rdevel/Rdpack/proba.R" "~/Az/Rdevel/Rdpack" "c:/Users/mcbssgb2/Az/Rdevel/PolynomF/R/PolynomF.R" "~/Az/Rdevel/" "~/Az/Rdevel/Rdpack/" "c:/Users/mcbssgb2/Az/Rdevel/Rdpack/vignettes/Inserting_bibtex_references.Rnw" "~/Az/Rdevel/Rdpack/man/Rdpack-package.Rd" "~/Az/Rdevel/Rdpack/DESCRIPTION" "c:/Users/mcbssgb2/Az/Rdevel/Rdpack/man/viewRd.Rd" "~/Az/Rdevel/Rdpack/NEWS" "~/Az/Rdevel/Rdpack/NAMESPACE" "c:/Users/mcbssgb2/Az/Rdevel/fguigb/R/guiBosh.R" "~/Az/Rdevel/Rdpack/R/" "~/Az/Rdevel/Rdpack/" "~/Az/Rdevel/Rdpack/NEWS" "~/Az/Rdevel/Rdpack/" "~/MyHomes/myR/Rdevel/mcompanion/" "~/MyHomes/myR/Rdevel/Rdpack/" "~/MyHomes/myR/Rdevel/Rdpack/NEWS" "~/MyHomes/myR/Rdevel/Rdpack/" "~/Az/papers/tsbook/" "~/MyHomes/myR/Rdevel/Rdpack/DESCRIPTION" "~/Az/papers/tsbook/" "c:/Users/mcbssgb2/Az/papers/tsbook/tsbook.tex" "c:/Users/mcbssgb2/MyHomes/myR/Rdevel/Rdpack/man/rebib.Rd" "~/MyHomes/myR/Rdevel/Rdpack/man/insert_ref.Rd" "c:/Users/mcbssgb2/R/win-library/3.4/bibtex/REFERENCES.bib" "c:/Users/mcbssgb2/R/win-library/3.3/bibtex/REFERENCES.bib" "c:/Users/mcbssgb2/MyHomes/myR/Rdevel/Rdpack/inst/REFERENCES.bib" "c:/Users/mcbssgb2/MyHomes/myR/Rdevel/Rdpack/man/insert_ref.Rd" "~/MyHomes/myR/Rdevel/Rdpack/" "~/MyHomes/myR/Rdevel/pcts" "~/MyHomes/myR/Rdevel/Rdpack/" "~/MyHomes/myR/Rdevel/Rdpack/DESCRIPTION" "~/MyHomes/myR/Rdevel/StableEstim/" "~/MyHomes/myR/Rdevel/StableEstim" "~/MyHomes/myR/Rdevel/StableEstim/DESCRIPTION" "~/MyHomes/myR/Rdevel/StableEstim/LICENSE" "~/MyHomes/myR/Rdevel/StableEstim/man/" "~/MyHomes/myR/Rdevel/StableEstim/R" "~/MyHomes/myR/Rdevel/StableEstim/R/" "~/MyHomes/myR/Rdevel/StableEstim/R" "~/MyHomes/myR/Rdevel/StableEstim/" "~/MyHomes/myR/Rdevel/StableEstim/DESCRIPTION" "~/MyHomes/myR/Rdevel/StableEstim/" "~/MyHomes/myR/Rdevel/StableEstim" "~/MyHomes/myR/Rdevel/Rdpack/NEWS" "c:/Users/mcbssgb2/MyHomes/myR/Rdevel/Rdpack/.Rbuildignore" "~/MyHomes/myR/Rdevel/Rdpack/DESCRIPTION" "c:/Users/mcbssgb2/MyHomes/myR/RpathsThinkPadT540p.bat" "~/MyHomes/myR/Rdevel/Rdpack/inst/REFERENCES.bib" "~/MyHomes/myR/Rdevel/Rdpack/" "~/MyHomes/myR/Rdevel/Rdpack/NEWS" "p:/Downloads/bibtex/R/bibtex.R" "~/MyHomes/myR/Rdevel/Rdpack/DESCRIPTION" "~/MyHomes/myR/Rdevel/Rdpack/" "~/MyHomes/myR/Rdevel/Rdpack/DESCRIPTION" "~/MyHomes/myR/Rdevel/testWithMe/R/rox.R" "~/MyHomes/myR/Rdevel/testWithMe/" "/R" "~/MyHomes/myR/Rdevel/testWithMe/" "~/MyHomes/myR/Rdevel/testWithMe/man/aaa1.Rd" "~/MyHomes/myR/Rdevel/testWithMe/R/aaa.R" "~/MyHomes/myR/Rdevel/testWithMe/man/" "~/MyHomes/myR/Rdevel/testWithMe/" "c:/ProgramF/R/R-3.2.3patched/share/Rd/macros/system.Rd" "~/MyHomes/myR/Rdevel/Rdpack/man/macros/refmacros.Rd" "~/MyHomes/myR/Rdevel/Rdpack/man/macros" "c:/Users/mcbssgb2/MyHomes/myR/Rdevel/Rdpack/" "~/MyHomes/myR/Rdevel/Rdpack/" "~/Az/Scripts/" "c:/Users/mcbssgb2/Az/Scripts/CowpertwaitMetcalfe.tex" "~/Az/Scripts/brMontgomeryEtAl2015.tex" "~/Az/Scripts/" "~/Az/papers/signed/" "~/MyHomes/myR/Rdevel/sarima/" "~/Az/Teaching/Interact/y1516/" "~/MyHomes/myR/Rdevel/pcts" "~/Az/Scripts/" "~/Az/Teaching/ts/" "~/MyHomes/myR/Rdevel/RealAnalytics/" "c:/Users/mcbssgb2/Google Drive/TODO" "~/MyHomes/myR/Rdevel/pcts" "~/MyHomes/myR/Rdevel/Countr" "~/MyHomes/myR/Rdevel/dumpMath/R/dumpMath.R" "~/MyHomes/myR/Rdevel/gbutils/DESCRIPTION" "c:/Users/mcbssgb2/MyHomes/myR/Rdevel/gbutils/man/missing_arg.Rd" "~/MyHomes/myR/Rdevel/gbutils/NAMESPACE" "~/MyHomes/myR/Rdevel/gbutils/R/"))
 
 ;; Buffer section -- buffers listed in same order as in buffer list:
 (desktop-create-buffer 208
-  "~/Az/Rdevel/Rdpack/Org/tmp"
-  "tmp"
-  'text-mode
-  '(auto-fill-mode hi-lock-mode TeX-PDF-mode)
-  1173
-  '(1263 nil)
+  "~/Az/Rdevel/Rdpack/README.md"
+  "README.md"
+  'markdown-mode
+  '(auto-fill-mode ess-r-package-mode hi-lock-mode TeX-PDF-mode)
+  11
+  '(11 nil)
   nil
   nil
-  nil
-  '((mark-ring (993 743 498 498 277 10 1551 1 10 277 498 743 993 1263 1173))))
+  '((tab-width . 4))
+  '((mark-ring nil)))
 
 (desktop-create-buffer 208
-  "~/Az/Rdevel/bitbucket/countr_project/countr/NEWS"
-  "NEWS"
+  "~/Az/Rdevel/Rdpack/DESCRIPTION"
+  "DESCRIPTION"
   'text-mode
   '(auto-fill-mode ess-r-package-mode hi-lock-mode TeX-PDF-mode)
-  89
-  '(1 nil)
+  741
+  '(741 nil)
   nil
   nil
   '((buffer-file-coding-system . undecided-dos))
-  '((mark-ring (109 1))))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  nil
+  "Rdpack"
+  'dired-mode
+  '(ess-r-package-mode hi-lock-mode TeX-PDF-mode)
+  330
+  '(473 nil)
+  t
+  '("~/Az/Rdevel/Rdpack/")
+  nil
+  '((mark-ring nil)))
 
 (desktop-create-buffer 208
   "~/Az/Rdevel/Rdpack/Org/alCountr.bib"
@@ -76,54 +88,6 @@
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-dos))
   '((mark-ring (1829))))
-
-(desktop-create-buffer 208
-  "~/Az/Rdevel/Rdpack/proba.R"
-  "proba.R"
-  'ess-mode
-  '(eldoc-mode ess-r-package-mode hi-lock-mode TeX-PDF-mode)
-  2
-  '(2 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-dos))
-  '((mark-ring (2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2))))
-
-(desktop-create-buffer 208
-  "~/Az/Rdevel/bitbucket/countr_project/countr/NAMESPACE"
-  "NAMESPACE"
-  'ess-mode
-  '(eldoc-mode ess-r-package-mode hi-lock-mode TeX-PDF-mode)
-  1
-  '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-dos))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  nil
-  "Rdpack"
-  'dired-mode
-  '(ess-r-package-mode hi-lock-mode TeX-PDF-mode)
-  662
-  '(nil nil)
-  t
-  '("~/Az/Rdevel/Rdpack/")
-  nil
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  nil
-  "R"
-  'dired-mode
-  '(ess-r-package-mode hi-lock-mode TeX-PDF-mode)
-  1661
-  '(1661 nil)
-  t
-  '("~/Az/Rdevel/Rdpack/R/")
-  nil
-  '((mark-ring nil)))
 
 (desktop-create-buffer 208
   "~/Az/Rdevel/00ReadMe"

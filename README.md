@@ -91,7 +91,7 @@ REFERENCES.bib from package `bibtex'.
 
  
 For further details see the vignette at
-[Inserting_bibtex_references.pdf](https://cran.r-project.org/package=Rdpack),
+[Inserting_bibtex_references](https://cran.r-project.org/package=Rdpack),
 or open it from R:
 ```
 vignette("Inserting_bibtex_references", package = "Rdpack")
