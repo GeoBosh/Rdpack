@@ -58,7 +58,7 @@ The equivalent line for 'roxygen2' is
   and put the bibtex references in it.
 
 
-#### Inserting references in package documentation
+#### Inserting the references
 
 Once the steps outlined in the previous section are done, references can be
 inserted in the documentation as 
@@ -91,7 +91,7 @@ REFERENCES.bib from package `bibtex'.
 
  
 For further details see the vignette at
-[Inserting_bibtex_references](https://cran.r-project.org/package=Rdpack]),
+[Inserting_bibtex_references.pdf](https://cran.r-project.org/package=Rdpack]),
 or open it from R:
 ```
 vignette("Inserting_bibtex_references", package = "Rdpack")
