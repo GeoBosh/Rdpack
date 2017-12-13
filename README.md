@@ -1,10 +1,10 @@
 # Rdpack
 
 Provides functions for manipulation of R documentation objects objects, including
-function reprompt() for updating existing Rd documentation for functions,
-methods and classes, function rebib() for import of references from 'bibtex'
+function `reprompt()` for updating existing Rd documentation for functions,
+methods and classes, function `rebib()` for import of references from `bibtex`
 files, a macro for importing 'bibtex' references which can be used in Rd files
-and 'roxygen2' comments and other convenience functions for references.
+and `roxygen2` comments and other convenience functions for references.
 
 
 ## Installing
@@ -24,7 +24,14 @@ install_github("GeoBosh/Rdpack")
 
 ## Usage
 
-### Inserting references from Bibtex files
+### Inserting Bibtex references
+
+The simplest way to insert Bibtex references is with the Rd macro `\insertRef`.
+Just put `\insertRef{key}{package}` in the documentation to insert item with key
+`key`  from file `REFERENCES.bib` in your package `package`. For this to work
+the `DESCRIPTION` file of the package needs to be amended, see below the full
+details. 
+
 
 #### Preparation 
 To prepare a package for importing BibTeX references it is necessary to tell the
@@ -57,18 +64,19 @@ The equivalent line for 'roxygen2' is
 3. Create file REFERENCES.bib in  subdirectory inst/ of your package
   and put the bibtex references in it.
 
+-------------
 
 #### Inserting the references
 
-Once the steps outlined in the previous section are done, references can be
+Once the steps outlined above are done, references can be
 inserted in the documentation as 
 ```
 \insertRef{key}{package}
 ```
-where 'key' is the bibtex key of the reference and 'package' is your package.
+where `key` is the bibtex key of the reference and `package` is your package.
 This works in Rd files and in roxygen documentation chunks. 
 
-Usually references are put in section 'references'. In n Rd file this might look
+Usually references are put in section `references`. In an `Rd` file this might look
 something like:
 ```
 \references{
@@ -77,7 +85,7 @@ something like:
 \insertRef{R}{bibtex}
 }
 ```
-The equivalent roxygen2 documentation chunk would be:
+The equivalent `roxygen2` documentation chunk would be:
 ```
 #' @references
 #' \insertRef{Rpack:bibtex}{Rdpack}
