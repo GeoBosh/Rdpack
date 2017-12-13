@@ -1,4 +1,4 @@
-Changes in Version 0.5-1
+Changes in Version 0.5-1 (CRAN)
 
    - an example was not restoring the working directory.
 
@@ -20,7 +20,7 @@ Changes in Version 0.4-23
    - new functions makeVignetteReference() and vigbib() generate Bibtex
      references for vignettes in a package.
 
-Changes in Version 0.4-22
+Changes in Version 0.4-22 (CRAN)
 
    - Added the requirement to Import Rdpack to the help page of insert_ref().
      (It was out of sync with the vignette.)
@@ -32,7 +32,7 @@ Changes in Version 0.4-22
      roxygen2 example.
 
 
-Changes in Version 0.4-21
+Changes in Version 0.4-21 (CRAN)
 
    - Edited and amended vignette "Inserting_bibtex_references", including:
        - additional explanation and an example,
@@ -144,6 +144,6 @@ Changes in Version 0.3-10
    - Depends field in DESCRIPTION file updated to require R 2.15.0 or later.
      (because of a few uses of paste0() in recent code.)
 
-Changes in Version 0.3-8
+Changes in Version 0.3-8 (CRAN)
 
    - first public version
