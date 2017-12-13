@@ -37,7 +37,7 @@ details.
 To prepare a package for importing BibTeX references it is necessary to tell the
 package management tools that package Rdpack and its Rd macros are
 needed. The references should be put in file inst/REFERENCES.bib.
-These steps are enumerated below in somewhat more detail for convenince,
+These steps are enumerated below in somewhat more detail, 
 see also the vignette
 [Inserting_bibtex_references](https://cran.r-project.org/package=Rdpack).
 
@@ -110,4 +110,51 @@ or open it from R:
 vignette("Inserting_bibtex_references", package = "Rdpack")
 ```
 
+---------
 
+#### Development using *devtools"
+
+The described procedure works transparently in 'roxygen2' chunks and with Hadley
+Wickham's 'devtools'.  Packages are built and installed properly with the
+`devtools' commands and the references are processed as expected.
+
+Currently (2017-08-04) if you run help commands \verb+?xxx+ for functions from
+the package you are working on and their help pages contain references, you may
+encounter some puzzling warning messages in `developer' mode, something like:
+```
+    1: In tools::parse_Rd(path) :
+      ~/mypackage/man/abcde.Rd: 67: unknown macro '\insertRef'
+```
+These warnings are harmless - the help pages are built properly and no warnings appear
+outside ``developer'' mode, e.g. in a separate R~session. See below for a way to inspect help
+pages directly from Rd files. 
+
+If you care, here is what happens.
+These warnings appear because ``devtools'' reroutes the help command to process
+the developer's Rd sources (rather than the documentation in the installed
+directory) but doesn't tell \verb+parse_Rd+ where to look for additional
+macros. These claims can be deduced entirely from the informative
+message. Indeed, (1)~the error is in processing a source Rd file in the
+development directory of the package, and (2)~the call to \texttt{\\parse\_Rd}
+specifies only the file.}.
+
+### Viewing Rd files
+
+A function, `viewRd()` to view Rd files in the source directory of a package was
+introduced in version 0.4-23 of `Rdpack`. A typical user call would look something like:
+```
+Rdpack::viewRd("./man/filename.Rd")
+```
+By default the requested help page is shown in text format. To open the page in a browser,
+set argument 'type' to "html":
+```
+    Rdpack::viewRd("./man/filename.Rd", type = "html")
+```
+
+Users of 'devtools' can use `viewRd` in place of `help()` to view Rd sources
+during development. ( Yes, your real sources are the **.R** files but
+`devtools::document()` transfers
+the roxygen2 documentation chunks to Rd files, and a few others, which are then 
+rendered by `R`'s tools.)
+
+ 
