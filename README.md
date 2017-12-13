@@ -118,7 +118,7 @@ The described procedure works transparently in 'roxygen2' chunks and with Hadley
 Wickham's 'devtools'.  Packages are built and installed properly with the
 `devtools' commands and the references are processed as expected.
 
-Currently (2017-08-04) if you run help commands \verb+?xxx+ for functions from
+Currently (2017-08-04) if you run help commands `?xxx` for functions from
 the package you are working on and their help pages contain references, you may
 encounter some puzzling warning messages in `developer' mode, something like:
 ```
