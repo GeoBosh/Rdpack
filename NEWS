@@ -1,3 +1,7 @@
+Changes in Version 0.5-2
+
+   - added the github url to DESCRIPTION.
+
 Changes in Version 0.5-1 (CRAN)
 
    - an example was not restoring the working directory.

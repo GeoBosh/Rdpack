@@ -10,6 +10,7 @@ Description: Functions for manipulation of Rd objects, including function reprom
     function rebib() for import of references from 'bibtex' files, a macro for
     importing 'bibtex' references which can be used in Rd files and 'roxygen2'
     comments and other convenience functions for references.
+URL: https://github.com/GeoBosh/Rdpack
 Depends:
     R (>= 2.15.0),
     methods
