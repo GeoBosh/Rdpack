@@ -125,18 +125,17 @@ encounter some puzzling warning messages in `developer' mode, something like:
     1: In tools::parse_Rd(path) :
       ~/mypackage/man/abcde.Rd: 67: unknown macro '\insertRef'
 ```
-These warnings are harmless - the help pages are built properly and no warnings appear
-outside ``developer'' mode, e.g. in a separate R~session. See below for a way to inspect help
-pages directly from Rd files. 
+These warnings are harmless - the help pages are built properly and no warnings
+appear outside ``developer'' mode, e.g. in a separate R~session. See below for a
+way to inspect help pages directly from Rd files.
 
-If you care, here is what happens.
-These warnings appear because ``devtools'' reroutes the help command to process
-the developer's Rd sources (rather than the documentation in the installed
-directory) but doesn't tell \verb+parse_Rd+ where to look for additional
-macros. These claims can be deduced entirely from the informative
-message. Indeed, (1)~the error is in processing a source Rd file in the
-development directory of the package, and (2)~the call to \texttt{\\parse\_Rd}
-specifies only the file.}.
+If you care, here is what happens.  These warnings appear because "devtools"
+reroutes the help command to process the developer's Rd sources (rather than the
+documentation in the installed directory) but doesn't tell `parse_Rd` where to
+look for additional macros. These claims can be deduced entirely from the
+informative message. Indeed, (1) the error is in processing a source Rd file in
+the development directory of the package, and (2) the call to `parse_Rd`
+specifies only the file.
 
 ### Viewing Rd files
 
@@ -153,8 +152,8 @@ set argument 'type' to "html":
 
 Users of 'devtools' can use `viewRd` in place of `help()` to view Rd sources
 during development. ( Yes, your real sources are the **.R** files but
-`devtools::document()` transfers
-the roxygen2 documentation chunks to Rd files, and a few others, which are then 
-rendered by `R`'s tools.)
+`devtools::document()` transfers the roxygen2 documentation chunks to Rd files,
+and a few others, which are then rendered by `R`'s tools.)
 
  
+
