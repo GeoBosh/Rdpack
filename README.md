@@ -1,9 +1,9 @@
 # Rdpack
 
-Provides functions for manipulation of R documentation objects objects, including
+Provides functions for manipulation of R documentation objects, including
 function `reprompt()` for updating existing Rd documentation for functions,
-methods and classes, function `rebib()` for import of references from `bibtex`
-files, a macro for importing 'bibtex' references which can be used in Rd files
+methods and classes; function `rebib()` for import of references from `bibtex`
+files; a macro for importing 'bibtex' references which can be used in Rd files
 and `roxygen2` comments and other convenience functions for references.
 
 
@@ -80,7 +80,7 @@ Usually references are put in section `references`. In an `Rd` file this might l
 something like:
 ```
 \references{
-\insertRef{Rpack:bibtex}{Rdpack}
+\insertRef{Rdpack:bibtex}{Rdpack}
 
 \insertRef{R}{bibtex}
 }
