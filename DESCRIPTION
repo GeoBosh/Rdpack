@@ -2,15 +2,16 @@ Package: Rdpack
 Type: Package
 Title: Update and Manipulate Rd Documentation Objects
 Version: 0.5-2
-Date: 2017-12-13
+Date: 2017-12-25
 Author: Georgi N. Boshnakov
 Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
 Description: Functions for manipulation of Rd objects, including function reprompt()
-    for updating existing Rd documentation for functions, methods and classes,
-    function rebib() for import of references from 'bibtex' files, a macro for
+    for updating existing Rd documentation for functions, methods and classes;
+    function rebib() for import of references from 'bibtex' files; a macro for
     importing 'bibtex' references which can be used in Rd files and 'roxygen2'
-    comments and other convenience functions for references.
+    comments; and other convenience functions for references.
 URL: https://github.com/GeoBosh/Rdpack
+BugReports: https://github.com/GeoBosh/Rdpack/issues
 Depends:
     R (>= 2.15.0),
     methods
