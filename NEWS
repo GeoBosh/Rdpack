@@ -2,6 +2,9 @@ Changes in Version 0.5-2
 
    - added the github url to DESCRIPTION.
 
+   - now give a more informative warning if a key is missing from REFERENCES.bib
+     (thanks to Kisung You for suggesting this).
+
 Changes in Version 0.5-1 (CRAN)
 
    - an example was not restoring the working directory.

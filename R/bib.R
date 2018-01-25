@@ -193,9 +193,29 @@ insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
     if(packageVersion("bibtex") < '0.4.0'){
         names(bibs) <- sapply(1:length(bibs), function(x) bibentry_key(bibs[[x]][[1]]))
     }
+        # 2018-01-25: was:
+        #     wrk <- toRd(bibs[[key]]) # TODO: add styles? (doesn't seem feasible here)
+        # adding a check to give user more informative message (than 'key out of bounds')
+    item <-
 
-    wrk <- toRd(bibs[[key]]) # TODO: add styles? (doesn't seem feasible here)
-    ## paste0(wrk, "\n")
+    ## Catch the warning only if length(key) == 1, since otherwise it would be better to process
+    ## the remaining keys anyway
+    item <- if(length(key) == 1){
+                tryCatch(bibs[[key]],
+                         warning = function(c) {
+                             ## tell the user the offending key.
+                             s <- paste0("possibly non-existing key: ", key)
+                             c$message <- paste0(c$message, " (", s, ")")
+                             warning(c)
+                             res <- paste0("\nIn insert_reference: ", s, "\n")
+                             return(res)
+                         })
+            }else{
+                bibs[[key]]
+            }
+
+    res <- toRd(item) # TODO: add styles? (doesn't seem feasible here)
+    res
 }
 
 
