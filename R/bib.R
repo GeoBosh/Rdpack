@@ -196,10 +196,12 @@ insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
         # 2018-01-25: was:
         #     wrk <- toRd(bibs[[key]]) # TODO: add styles? (doesn't seem feasible here)
         # adding a check to give user more informative message (than 'key out of bounds')
-    item <-
 
     ## Catch the warning only if length(key) == 1, since otherwise it would be better to process
     ## the remaining keys anyway
+    ##
+    ## TODO: on the other hand, the function is documented to work for one key,
+    ##       maybe check this? Alternatively, document that more keys are acceptable.
     item <- if(length(key) == 1){
                 tryCatch(bibs[[key]],
                          warning = function(c) {
