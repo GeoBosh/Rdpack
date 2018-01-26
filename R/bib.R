@@ -202,22 +202,52 @@ insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
     ##
     ## TODO: on the other hand, the function is documented to work for one key,
     ##       maybe check this? Alternatively, document that more keys are acceptable.
-    item <- if(length(key) == 1){
-                tryCatch(bibs[[key]],
+
+        # item <- if(length(key) == 1){
+        #             tryCatch(bibs[[key]],
+        #                      warning = function(c) {
+        #                          ## tell the user the offending key.
+        #                          s <- paste0("possibly non-existing key '", key, "'")
+        #                          c$message <- paste0(c$message, " (", s, ")")
+        #                          warning(c)
+        #                          res <- paste0("\nInserting reference '", key,
+        #                                        "' from package '", package, "' - ",
+        #                                        s, ".\n")
+        #                          return(res)
+        #                      })
+        #         }else{
+        #             bibs[[key]]
+        #         }
+
+    if(length(key) == 1){
+        item <- tryCatch(bibs[[key]],
                          warning = function(c) {
                              ## tell the user the offending key.
-                             s <- paste0("possibly non-existing key: ", key)
+                             s <- paste0("possibly non-existing key '", key, "'")
                              c$message <- paste0(c$message, " (", s, ")")
                              warning(c)
-                             res <- paste0("\nIn insert_reference: ", s, "\n")
+                             res <- paste0("\nWARNING: failed to insert reference '", key,
+                                           "' from package '", package, "' - ",
+                                           s, ".\n")
                              return(res)
                          })
-            }else{
-                bibs[[key]]
-            }
 
-    res <- toRd(item) # TODO: add styles? (doesn't seem feasible here)
-    res
+        toRd(item) # TODO: add styles? (doesn't seem feasible here)
+    }else{
+        ## key is documented to be of length one, nevertheless handle it too
+        kiki <- FALSE
+        items <- withCallingHandlers(bibs[[key]], warning = function(w) {kiki <<- TRUE})
+        txt <- toRd(items)
+
+        if(kiki){ # warning(s) in bibs[[key]]
+            s <- paste0("WARNING: failed to insert ",
+                        "one or more of the following keys in REFERENCES.bib:\n",
+                        paste(key, collapse = ", \n"), ".")
+            warning(s)
+            txt <- c(txt, s)
+        }
+        paste0(paste(txt, collapse = "\n\n"), "\n")
+    }
 }
 
 
@@ -364,9 +394,3 @@ makeVignetteReference <- function(package, vig = 1, verbose = TRUE,
     }
     res
 }
-
-
-
-
-
-

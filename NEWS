@@ -1,9 +1,16 @@
+Changes in Version 0.5-3 (CRAN)
+
+   - The warning message about a missing reference key now appears also in the
+     respective help page.
+
+
 Changes in Version 0.5-2
 
    - added the github url to DESCRIPTION.
 
    - now give a more informative warning if a key is missing from REFERENCES.bib
      (thanks to Kisung You for suggesting this).
+     
 
 Changes in Version 0.5-1 (CRAN)
 
