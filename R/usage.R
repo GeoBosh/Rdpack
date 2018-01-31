@@ -29,6 +29,10 @@ inspect_args <- function(rdo, i_usage){
 
     argnames_cur <- unique(unlist(lapply(i_usage,
                                          function(x) attr(x,"details")$cur_usage$argnames)))
+    ## 2018-01-31 in case argnames_cur is NULL,
+    ##   since sort used on NULL inside identical() gives warning.
+    if(length(argnames_cur) == 0)
+        argnames_cur <- character(0)
 
     structure(identical(sort(argnames_rdo), sort(argnames_cur)),
               details = list( rdo_argnames = argnames_rdo

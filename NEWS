@@ -6,7 +6,11 @@ Changes in Version 0.5-4
    - now reprompt() doesn't give spurious warnings about unknown Rd macros when
      the Rd file contains user defined Rd macros. These warnings were harmless
      and rare, but alarming and annoying. 
-   
+
+   - fixed a bug in inspect_args() which caused the warning
+       "In is.na(x) : is.na() applied to non-(list or vector) of type 'NULL'"
+     in reprompt(), when the signature of a function in "Usage" section was empty. 
+
 
 Changes in Version 0.5-3 (CRAN)
 
