@@ -1,3 +1,13 @@
+Changes in Version 0.5-4
+
+   - added the version of Rdpack to the abstract of the vignette.
+     This seems more informative than giving the compilation date.
+
+   - now reprompt() doesn't give spurious warnings about unknown Rd macros when
+     the Rd file contains user defined Rd macros. These warnings were harmless
+     and rare, but alarming and annoying. 
+   
+
 Changes in Version 0.5-3 (CRAN)
 
    - The warning message about a missing reference key now appears also in the

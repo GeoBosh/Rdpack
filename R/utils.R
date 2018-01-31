@@ -273,7 +273,7 @@ Rd_combo <- function(rd, f, ..., .MORE){               # todo: allow a directory
     dots <- list(...)
     flag <- missing(.MORE)
     locfun <- function(x){
-                  locwrk <- parse_Rd(x)
+                  locwrk <- permissive_parse_Rd(x)
                   locargs <- c(list(locwrk), dots)
                   locres <- try( do.call(f, locargs), silent=TRUE)
                   if(flag || inherits(locres,"try-error"))

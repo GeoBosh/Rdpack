@@ -87,7 +87,7 @@ Rdo_modify_simple <- function(rdo, text, section, ...){
 
 Rdo_empty_sections <- function(rdo, with_bs = FALSE){           # rdo is Rd object or filename
     if(is.character(rdo))
-        rdo <- parse_Rd(rdo)
+        rdo <- permissive_parse_Rd(rdo)
 
     pat <- ".*Dropping empty section[ ]+[\\](.*)$"
     wrk <- checkRd(rdo)
@@ -117,7 +117,7 @@ Rdo_replace_section <- function(rdo, val, create = FALSE, replace = TRUE){
 
 Rdo_set_section <- function(text, sec, file, ...){
     piece <- char2Rdpiece(text, sec)
-    rdo <- Rdo_replace_section(parse_Rd(file), piece, ...)
+    rdo <- Rdo_replace_section(permissive_parse_Rd(file), piece, ...)
     Rdo2Rdf(rdo, file = file)
 }
                                      # todo: this does not consider the possibility for #ifdef

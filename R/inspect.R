@@ -44,7 +44,7 @@ parse_Rdname <- function(rdo){  # 2012-10-01 todo: Rdpack-internal ste dade type
 
 inspect_Rd <- function(rdo, package = NULL){                     # rdo: Rd object or file name
     if(is.character(rdo) && length(rdo)==1)
-        rdo <- parse_Rd(rdo)
+        rdo <- permissive_parse_Rd(rdo)
 
     if(!inherits(rdo, "Rd")  && is.null(attr(rdo,"Rd_Tag")))
         return(structure(FALSE,

@@ -29,7 +29,7 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib"){    
 
 
 rebib <- function(infile, outfile, ...){                     # 2013-03-29
-    rdo <- parse_Rd(infile)   ## 2017-11-25 TODO: argument for RdMacros!
+    rdo <- permissive_parse_Rd(infile)   ## 2017-11-25 TODO: argument for RdMacros!
 
     if(missing(outfile))
         outfile <- basename(infile)
@@ -261,6 +261,7 @@ viewRd <- function(infile, type = "text", stages = NULL){
     else if(!is.character(stages) || !all(stages %in% c("build", "install", "render")))
         stop('stages must be a character vector containing one or more of the strings "build", "install", and "render"')
 
+    ## here we need to expand the Rd macros, so don't use permissive_parse_Rd()
     e <- tools::loadPkgRdMacros(system.file(package = "Rdpack"))
     Rdo <- parse_Rd(infile, macros = e)
 

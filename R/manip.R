@@ -245,7 +245,7 @@ Rdo_append_argument <- function(rdo, argname, description = NA, indent = "  ", c
                                         #          get_usage_text("../gbRd/man/Rd_title.Rd")
 get_usage_text <- function(rdo){        #    ut <- get_usage_text("../gbRd/man/Rd_fun.Rd")
     if(is.character(rdo) && length(rdo)==1)
-        rdo <- parse_Rd(rdo)
+        rdo <- permissive_parse_Rd(rdo)
                                                 # Alternatives:
     pos <- .locate_sec_content(rdo, "\\usage")  # wrk <- Rdo_section(rdo, "\\usage")
                                                 # wrk <- tools:::.Rd_get_section(rdo, "usage")
@@ -269,7 +269,7 @@ Rdo_show <- function(rdo){                                   # 2012-09-22 rename
 Rdo_reparse <- function(rdo){
     outfile <- tempfile(fileext = "Rd")
     Rdo2Rdf(rdo, file = outfile)
-    rdo <- parse_Rd(outfile)
+    rdo <- permissive_parse_Rd(outfile)
     unlink(outfile)
     rdo
 }

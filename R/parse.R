@@ -1,8 +1,22 @@
-.parse_Rdlines <- function(lines){
+## 2018-01-30 experimenting with processing of Rd macros
+##     pkgmacros <- tools::loadPkgRdMacros(system.file(package = package))
+##     rdo <- parse_Rd(infile, macros = pkgmacros)
+
+## 2018-01-30 new function
+##   as parse_Rd but intercepts warnings about unknown Rd macros
+permissive_parse_Rd <- function(file, permissive = TRUE, ...){
+    parse_Rd(file, permissive = permissive, ...)
+}
+
+## 2018-01-30 new argument 'macros'
+.parse_Rdlines <- function(lines, macros = NULL){
     tmpfile <- tempfile("Rdlines", fileext = ".Rd")
                                  # unlist is harmless if `lines' is already a character vector
     cat(unlist(lines), file = tmpfile, sep = "\n")          # todo: catch errors
-    res <- parse_Rd(tmpfile)                              # todo: catch errors
+    if(is.null(macros))
+        res <- permissive_parse_Rd(tmpfile)                              # todo: catch errors
+    else
+        res <- permissive_parse_Rd(tmpfile, macros = macros)             # todo: catch errors
     unlink(tmpfile)
     res
 }
@@ -32,7 +46,7 @@ parse_Rdpiece <- function(x, result=""){
 
     fn <- tempfile(pattern = "Rdpiece", fileext = "Rd")
     cat(as.character(maket), file=fn, sep="")    # todo: error processing
-    wrk <- parse_Rd(fn)
+    wrk <- permissive_parse_Rd(fn)
 
     unlink(fn)
 

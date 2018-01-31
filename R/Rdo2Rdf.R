@@ -47,7 +47,7 @@ Rdo2Rdf <- function(rdo, deparse = FALSE, ex_restore = FALSE, file = NULL, rcode
         class(rdo) <- "Rd"
 
     if(is.character(srcfile)){          # remember which sections have not changed
-        rdoorig <- parse_Rd(srcfile)
+        rdoorig <- permissive_parse_Rd(srcfile)
         unchanged_sec <- .rdo_equal_sections(rdo, rdoorig)
     }
 
@@ -119,7 +119,7 @@ Rdo2Rdf <- function(rdo, deparse = FALSE, ex_restore = FALSE, file = NULL, rcode
         tfn <- tempfile()
         res <- capture.output(cat(rdotxt, sep = "", collapse = ""), file = tfn)# writes to tfn
 
-        rdocur <- parse_Rd(tfn)  # to set srcref
+        rdocur <- permissive_parse_Rd(tfn)  # to set srcref
         srcrefpos <- .srcrefpos(rdocur, rdoorig, unchanged_sec)
 
         rdotxt <- rdo_text_restore(rdocur, rdoorig, srcrefpos, file=tfn)

@@ -52,6 +52,12 @@
 %\VignetteKeywords{bibtex, Rd format, Rd documentation, roxygen documentation}
 %\VignettePackage{Rdpack}
 
+<<echo=FALSE>>=
+library(Rdpack)
+pd <- packageDescription("Rdpack")
+@
+
+
 \title{Inserting references in Rd and roxygen2 documentation}
 \author{Georgi N. Boshnakov \\ University of Manchester }
 \Plainauthor{Georgi N. Boshnakov}
@@ -72,13 +78,16 @@
 Package \pkg{Rdpack} provides a straightforward way to insert BibTeX references in the
 documentation of an R package, using the RdMacros feature introduced in R~3.2.0. It
 works for `roxygen2' documentation, as well.
+
+This vignette is part of package Rdpack, version~\Sexpr{pd$Version}.
 }
 
-\Keywords{bibliographic references, Rd, \proglang{R}}
+\Keywords{bibliographic references, Rd, bibtex, \proglang{R}}
 \Plainkeywords{bibliographic references, cite, Rd, R}
 
 
 \begin{document}
+
 
 \section{Setup}
 \label{sec:setup}
@@ -107,13 +116,13 @@ CMD check'.}:
 \begin{verbatim}
     importFrom(Rdpack,reprompt)
 \end{verbatim}
-The equivalent line for `roxygen2' is 
+The equivalent line for `roxygen2' is
 \begin{verbatim}
     #' @importFrom Rdpack reprompt
 \end{verbatim}
 
 
-\paragraph*{3.} 
+\paragraph*{3.}
   Create file \verb+REFERENCES.bib+ in  subdirectory \verb+inst/+ of your package
   and put the bibtex references in it.
 
@@ -197,7 +206,7 @@ error is in processing a source Rd file in the development directory of the pack
 
 These warnings are harmless - the help pages are built properly and no warnings appear
 outside ``developer'' mode, e.g. in a separate R~session. See below for a way to inspect help
-pages directly from Rd files. 
+pages directly from Rd files.
 
 
 \subsection{Viewing Rd files}
@@ -207,17 +216,17 @@ pages directly from Rd files.
 A function, \code{viewRd}, to view Rd files in the source directory of a package was
 introduced in version 0.4-23 of \pkg{Rdpack}. A typical user call would look something like:
 \begin{verbatim}
-    Rdpack::viewRd("./man/filename.Rd")  
+    Rdpack::viewRd("./man/filename.Rd")
 \end{verbatim}
 By default the requested help page is shown in text format. To open the page in a browser,
 set argument \code{type} to \code{"html"}:
 \begin{verbatim}
-    Rdpack::viewRd("./man/filename.Rd", type = "html")  
+    Rdpack::viewRd("./man/filename.Rd", type = "html")
 \end{verbatim}
 
 Users of 'devtools' can use \code{viewRd()} in place of \code{help()} to view Rd sources\footnote{%
   Yes, your real sources are the \texttt{*.R} files but \code{devtools::document()} transfers
-  the roxygen2 documentation chunks to Rd files (and a few others), which are then 
+  the roxygen2 documentation chunks to Rd files (and a few others), which are then
   rendered by \pkg{R} tools.}.
 
 

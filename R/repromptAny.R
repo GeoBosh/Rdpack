@@ -28,7 +28,7 @@ reprompt <- function(object, infile = NULL, Rdtext = NULL, final = TRUE,
     }else if(!is.null(infile)){
         if(verbose) cat("\nParsing the Rd documentation in file", infile, "...\n")
         else cat("\n", basename(infile), ": ")
-        rdo <- parse_Rd(infile)
+        rdo <- permissive_parse_Rd(infile)
         from_infile <- TRUE
     }else{
         if(verbose) cat("Rd source not supplied, looking for installed documentation.\n")
