@@ -3,8 +3,13 @@ Type: Package
 Title: Update and Manipulate Rd Documentation Objects
 Version: 0.5-4
 Date: 2018-01-27
-Author: Georgi N. Boshnakov
-Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
+Authors@R: c( person(given = c("Georgi", "N."), 
+                     family = "Boshnakov", 
+                     role = c("aut", "cre"), 
+                     email = "georgi.boshnakov@manchester.ac.uk"), 
+	      person(given = "Duncan", 
+	             family = "Murdoch", 
+	             role = "ctb", email = "murdoch.duncan@gmail.com") )
 Description: Functions for manipulation of Rd objects, including function reprompt()
     for updating existing Rd documentation for functions, methods and classes;
     function rebib() for import of references from 'bibtex' files; a macro for
@@ -19,6 +24,9 @@ Imports:
     tools,
     bibtex (>= 0.4.0),
     gbRd
+Suggests:
+    rstudioapi,
+    rprojroot
 License: GPL (>= 2)
 LazyLoad: yes
 RoxygenNote: 5.0.1
