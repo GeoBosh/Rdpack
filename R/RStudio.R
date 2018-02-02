@@ -8,10 +8,10 @@ RStudio_reprompt <- function(verbose = TRUE) {
   sourceContext <- rstudioapi::getSourceEditorContext()
   infile <- sourceContext$path
   
-  if (grepl("[.]Rd$", infile))  # editing a help file
+  if (grepl("[.][rR]d$", infile))  # editing a help file
     reprompt(infile = infile, filename = infile, verbose = verbose)
   
-  else if (grepl("[.][rR]$", infile)) {  # editing R source
+  else if (grepl("[.][rRsSq]$", infile)) {  # editing R source
     pkgdir <- rprojroot::find_package_root_file(path = dirname(infile))
     pkg <- basename(pkgdir)
     
@@ -23,19 +23,20 @@ RStudio_reprompt <- function(verbose = TRUE) {
       stop("Select a function name")
     
     if (!exists(fnname))
-      stop("Object ", sQuote(fnname), " not found.  Run require('", 
-           dirname(pkgdir), "')?")
+      stop("Object ", sQuote(fnname), " not found.  Run 'Install and Restart'?")
+    
     existing <- help(fnname)
+    # Subset to the ones in the current package
+    existing <- existing[basename(dirname(dirname(existing))) == pkg]
+
     if (length(existing) == 1) {
-      if (basename(pkgdir) != basename(dirname(dirname(existing))))
-        stop(sQuote(fnname), " does not appear to be in package ", sQuote(pkg))
       infile <- file.path(pkgdir, "man", paste0(basename(existing), ".Rd"))
       reprompt(infile = infile, filename = infile, verbose = verbose)
     } else if (!length(existing))
       infile <- reprompt(fnname, filename = file.path(pkgdir, "man", paste0(fnname, ".Rd")),
                verbose = verbose)
     else
-      stop("Multiple matches to ", sQuote(fnname))
+      stop("Multiple matches to ", sQuote(fnname), ".  Open one help file manually.")
   } else
     stop("This tool only works on .Rd or .R files.")
   
