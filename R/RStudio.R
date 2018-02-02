@@ -14,12 +14,14 @@ RStudio_reprompt <- function(verbose = TRUE) {
   else if (grepl("[.][rR]$", infile)) {  # editing R source
     pkgdir <- rprojroot::find_package_root_file(path = dirname(infile))
     pkg <- basename(pkgdir)
+    
     if (length(sourceContext$selection) == 1) {
       fnname <- sourceContext$selection[[1]]$text
     } else
       fnname <- ""
     if (!nchar(fnname))
       stop("Select a function name")
+    
     if (!exists(fnname))
       stop("Object ", sQuote(fnname), " not found.  Run require('", 
            dirname(pkgdir), "')?")
