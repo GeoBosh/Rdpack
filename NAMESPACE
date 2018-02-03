@@ -98,6 +98,7 @@ export(
 , Rdtagapply
 , rebib
 , reprompt
+, RStudio_reprompt
 , S4formals
 # , toolsdotdotdot.Rd_drop_nodes_with_tags
 # , toolsdotdotdot.Rd_get_metadata
