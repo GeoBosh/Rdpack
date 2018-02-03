@@ -1,7 +1,6 @@
 \name{rebib}
 \alias{rebib}
 \alias{inspect_Rdbib}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{Work with bibtex references in Rd documentation}
 \description{Work with bibtex references in Rd documentation.}
 \usage{
@@ -55,7 +54,7 @@ inspect_Rdbib(rdo, force = FALSE, \dots)
   At least one space after the colon, ':', is required, spaces before
   "bibentry:" are ignored.
 
-  Then run \code{rebib()} on the file, see the exmple section for a way
+  Then run \code{rebib()} on the file, see the example section for a way
   to run \code{rebib()} on all files in one go.
 
   Each reference is inserted immediately after the comment line

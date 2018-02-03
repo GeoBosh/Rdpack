@@ -1,3 +1,17 @@
+Changes in Version 0.5-5
+
+   - Streamlined the help pagex of reprompt() and Rdpack-package. 
+
+
+Changes in Version 0.5-4.9000
+
+   - new RStudio add-in 'Reprompt', contributed by Duncan Murdoch.
+
+     If the file being edited in the code editor is an Rd file it calls
+     reprompt(). If the file is as R source file, it looks for the help page of
+     a selected object name and works on it if found, otherwise creates one.
+
+
 Changes in Version 0.5-4
 
    - added the version of Rdpack to the abstract of the vignette.
