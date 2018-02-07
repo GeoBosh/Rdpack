@@ -116,13 +116,19 @@ Rdo2Rdf <- function(rdo, deparse = FALSE, ex_restore = FALSE, file = NULL, rcode
     tfn <- tempfile()             # use a temporary file in case file and srcfile are the same
     on.exit(unlink(tfn))
     if(is.character(srcfile)){
-        tfn <- tempfile()
-        res <- capture.output(cat(rdotxt, sep = "", collapse = ""), file = tfn)# writes to tfn
+                              # 2018-02-07 removed the following, since redundant (see above):
+                              #     tfn <- tempfile()
+                              # 2018-02-07 (removed the assignment) was:
+                              #     res <- capture.output(cat(rdotxt, sep = "", collapse = ""),
+                              #                           file = tfn)# writes to tfn
+                              #     but res is re-assigned below without being used.
+                              #     Also, dropping capture.output() and moving 'file =' to cat()
+        cat(rdotxt, sep = "", collapse = "", file = tfn)
 
         rdocur <- permissive_parse_Rd(tfn)  # to set srcref
         srcrefpos <- .srcrefpos(rdocur, rdoorig, unchanged_sec)
 
-        rdotxt <- rdo_text_restore(rdocur, rdoorig, srcrefpos, file=tfn)
+        rdotxt <- rdo_text_restore(rdocur, rdoorig, srcrefpos, file = tfn)
 
         nc_ind <- Rdo_which_tag_in(rdoorig,  c("\\newcommand", "\\renewcommand"))
         if(length(nc_ind) > 0){
@@ -139,8 +145,12 @@ Rdo2Rdf <- function(rdo, deparse = FALSE, ex_restore = FALSE, file = NULL, rcode
                    NULL  # for clarity; capture.output above set it to NULL as tfn is not NULL
                }
     }else
-        # 2012-10-14 res <- capture.output(cat(rdotxt, sep = "", collapse = ""),  file = file)
-        res <- capture.output(cat(rdotxt, sep = "", collapse = "",  file = file))
+        ## 2012-10-14 res <- capture.output(cat(rdotxt, sep = "", collapse = ""),  file = file)
+        ## 2018-02-07 was:
+        ##        res <- capture.output(cat(rdotxt, sep = "", collapse = "",  file = file))
+        ##   restoring the syntax from 2012, since it works also in the case file = NULL;
+        ##
+        res <- capture.output(cat(rdotxt, sep = "", collapse = ""),  file = file)
 
     if(is.null(file))
         res
