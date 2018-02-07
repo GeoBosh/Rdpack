@@ -6,9 +6,9 @@
   appropriate. This is an extention of the promptXXX() family of functions.
 }
 \usage{
-reprompt(object, infile = NULL, Rdtext = NULL, final = TRUE,
-         type = NULL, package = NULL, methods = NULL, verbose = TRUE,
-         filename = NULL, sec_copy = TRUE, \dots)
+reprompt(object, infile = NULL, Rdtext = NULL, final = TRUE, 
+         type = NULL, package = NULL, methods = NULL, verbose = TRUE, 
+         filename = NULL, sec_copy = TRUE, edit = FALSE, \dots)
 }
 \arguments{
   \item{object}{the object whose documentation is to be updated, such as
@@ -30,11 +30,14 @@ reprompt(object, infile = NULL, Rdtext = NULL, final = TRUE,
   }
   \item{verbose}{if \code{TRUE} print messages on the screen.}
   \item{filename}{name of the file for the generated Rd content; if
-    \code{NULL}, a suitable file name is generated, if \code{FALSE} the
-    Rd text is returned, see `Details'.}
+    \code{NULL}, a suitable file name is generated, if \code{TRUE} it
+    will be set to \code{infile},   
+    if \code{FALSE} the Rd text is returned, see `Details'.}
   \item{\dots}{currently not used.}
   \item{sec_copy}{if \code{TRUE} copy Rd contents of unchanged sections
     in the result, see Details.}
+  \item{edit}{if \code{TRUE} call \code{file.edit} just before
+    returning. This argument is ignored if \code{filename} is \code{FALSE}.}
 }
 \details{
   The typical use of \code{reprompt} is with one argument, as in
@@ -149,9 +152,25 @@ reprompt(object, infile = NULL, Rdtext = NULL, final = TRUE,
   (i.e. any path information in \code{infile} is dropped). Otherwise,
   \code{filename} is obtained by appending the name tag of the Rd object
   with \code{".Rd"}. 
+
+  If \code{filename} is \code{TRUE}, it is set to \code{infile} or, if
+  \code{infile} is missing or \code{NULL}, a suitable name is generated
+  as above. This can be used to change \code{infile} in place. 
   
   If \code{filename} is \code{FALSE}, the Rd text is returned as a
   character vector and not written to a file. 
+
+  If \code{edit} is \code{TRUE}, the reprompted file is opened in an
+  editor, see also \code{\link{ereprompt}} (`e' for `edit') which is
+  like \code{reprompt} but has as default \code{edit = TRUE} and some
+  other related settings.
+
+  \code{file.edit()} is used to call the editor.  Which editor is opened
+  depends on the OS and on the user configuration. RStudio users will
+  probably prefer the 'Reprompt' add-in or the underlying function
+  \code{\link{RStudio_reprompt}}.  Emacs users would normally have set
+  up \code{emacsclient} as their editor and this is automatically done
+  by EMACS/ESS (even on Windows).
   
   If argument \code{sec_copy} is \code{TRUE} (the default),
   \code{reprompt} will, effectively, copy the contents of (some)
@@ -213,7 +232,10 @@ reprompt(object, infile = NULL, Rdtext = NULL, final = TRUE,
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
-
+\seealso{
+    \code{\link{ereprompt}} which by default calls the editor on the
+    original file
+}
 \examples{
 ## note: usage of reprompt() is simple.  the examples below are bulky
 ##       because they simulate various usage scenarios with commands,

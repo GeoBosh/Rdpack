@@ -109,4 +109,5 @@ export(
 , viewRd
 , makeVignetteReference
 , vigbib
+, ereprompt
 )

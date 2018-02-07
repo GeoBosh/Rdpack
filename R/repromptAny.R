@@ -1,6 +1,12 @@
+## 2018-02-07 new
+ereprompt <- function(..., edit = TRUE, filename = TRUE){
+    reprompt(..., filename = filename, edit = edit)
+}
+
+## 2018-02-07 new argument `edit'
 reprompt <- function(object, infile = NULL, Rdtext = NULL, final = TRUE,
-                     type=NULL, package=NULL, methods = NULL, #  for the call to promptMethods
-                        verbose = TRUE, filename = NULL, sec_copy = TRUE, ...){
+                     type = NULL, package = NULL, methods = NULL, #  for the call to promptMethods
+                     verbose = TRUE, filename = NULL, sec_copy = TRUE, edit = FALSE, ...){
     objmis <- missing(object)
     tidyflag <- from_infile <- FALSE
                                      # If 'object' is a string ending in ".Rd" and containing
@@ -8,7 +14,7 @@ reprompt <- function(object, infile = NULL, Rdtext = NULL, final = TRUE,
                                      # (somewhat dubious) convenience feature for the common
                                      # mistake of omitting the name of the "infile" argument.
     if(is.null(infile)  &&  length(object) == 1  &&  is.character(object)
-                        && grepl("/.*[.]Rd$", object) )
+                        && grepl("/.*[.][Rr]d$", object) )
         infile <- object
 
     if(!is.null(Rdtext)){                                         # process Rdtext, if present
@@ -20,7 +26,7 @@ reprompt <- function(object, infile = NULL, Rdtext = NULL, final = TRUE,
             cat("both 'infile' and 'Rdtext' are given, ignoring Rdtext\n")
     }
 
-    if(!objmis && inherits(object,"Rd")){
+    if(!objmis && inherits(object, "Rd")){
         if(verbose) cat("Processing the Rd object...\n")
         if(!is.null(infile))
             cat("ignoring 'infile' and/or 'Rdtext' since 'object' is of class 'Rd'\n")
@@ -28,6 +34,15 @@ reprompt <- function(object, infile = NULL, Rdtext = NULL, final = TRUE,
     }else if(!is.null(infile)){
         if(verbose) cat("\nParsing the Rd documentation in file", infile, "...\n")
         else cat("\n", basename(infile), ": ")
+
+        if(!file.exists(infile)){ # 2018-02-07 new
+            wrk <- try(rprojroot::find_root_file("man", basename(infile),
+                                                 criterion = rprojroot::is_r_package),
+                       silent = TRUE)
+            if(inherits(wrk, "try-error"))
+                stop("Input file ", infile, " not found")
+            else infile <- wrk
+        }
         rdo <- permissive_parse_Rd(infile)
         from_infile <- TRUE
     }else{
@@ -46,7 +61,7 @@ reprompt <- function(object, infile = NULL, Rdtext = NULL, final = TRUE,
         }
     }
 
-    if(inherits(rdo,"Rd")){                # do the main job: inspect the documentation object
+    if(inherits(rdo, "Rd")){                # do the main job: inspect the documentation object
         res <- inspect_Rd(rdo, package = package)
     }else{                                # documentation not found, try to generate fresh one
         if(verbose)
@@ -54,7 +69,7 @@ reprompt <- function(object, infile = NULL, Rdtext = NULL, final = TRUE,
 
                                                     # 2012-11-04 arg. type, package
         res <- .capture_promptAny(fnam, type = type, package = package,
-                                  final=final, methods=methods)
+                                  final = final, methods = methods)
 
         if(inherits(res,"try-error"))
             stop("unsuccessful attempt to create Rd doc. using a 'prompt' function.")
@@ -70,16 +85,26 @@ reprompt <- function(object, infile = NULL, Rdtext = NULL, final = TRUE,
                          paste(res[[ Rdo_which_tag_eq(res, "\\name") ]],
                                ".Rd", sep="")
                     else basename(infile)         # do not overwrite unless in the current dir
+    }else if(isTRUE(filename)){ # 2018-02-07 new
+        filename <- if(is.null(infile))
+                        paste(res[[ Rdo_which_tag_eq(res, "\\name") ]],
+                              ".Rd", sep="")
+                    else infile         # will overwrite
     }
                                                                         # todo: error checking
-    if(is.character(filename) || identical(filename,FALSE)){               # convert to Rdtext
+    if(is.character(filename) || identical(filename, FALSE)){              # convert to Rdtext
         res <- Rdo2Rdf(res, ex_restore = TRUE,
                        file = if(is.character(filename)) filename else NULL,
                        srcfile = if(from_infile && sec_copy) infile else NULL )
         if(is.character(filename))
             res <- invisible(filename) # return only the file name in this case
     }
-    res
+
+    if(edit && is.character(filename)){ ## 2018-02-07 new argument `edit'
+        file.edit(res) # TODO: check that it is a filename
+        res
+    }else
+        res
 }
                            # (promptMethods) todo: filename = FALSE is a useful
                            # alternative. In that case the text is returned in a named list

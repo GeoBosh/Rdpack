@@ -1,9 +1,8 @@
-* pcDst.Rd gives an error, it was produced by Roxygen.
+* vignette for reprompt/ereprompt/RStudio_reprompt
 
-* write vignettes
+* pcDst.Rd gives an error, it was produced by Roxygen.
 
 * escape percents in strings in usage sections, e.g. usage for f(dateformat = "%Y-%m-%d"),
   see also a related question on R-devel
-
 
 * reprompt("xxx-methods",...) to set the "doctype" field to "methods"

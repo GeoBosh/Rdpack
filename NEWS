@@ -1,6 +1,21 @@
 Changes in Version 0.5-5
 
-   - Streamlined the help pagex of reprompt() and Rdpack-package. 
+   - Streamlined the help page of reprompt() and Rdpack-package.
+
+   - new argument, `edit', in reprompt() opens the Rd file after updating it.
+     This feature uses file.edit() and it seems undocumented if that function is
+     guaranteed to be asynchronous (i.e. that it opens the file and the editor
+     and continues without waiting for it to return). It would not be a disaster
+     if that is not guaranteed, but it would be inconvenient, given that the
+     call is for the side effect of upda\ting the Rd file and opening it.
+
+   - new function ereprompt() (`e' for edit) - opens reprompt() with suitable
+     defaults to replace the original Rd file nd open it in an editor, otherwise
+     equivalent to reprompt().
+
+   - now if `infile' does not exist, reprompt(), and hence ereprompt(), strips
+     the directory part, finds the root of the package directory and looks for
+     the file under `man/' ( this uses package `rprojroot'). 
 
 
 Changes in Version 0.5-4.9000
