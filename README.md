@@ -1,13 +1,3 @@
-
-# Table of Contents
-
-1.  [Installing Rdpack](#org770ce64)
-2.  [Inserting Bibtex references](#orgee7af9c)
-    1.  [Preparation](#orgf61d699)
-    2.  [Inserting the references](#orgd9eaef1)
-    3.  [Development using \*devtools"](#org2c66cd3)
-3.  [Viewing Rd files](#orgdbcbd21)
-
 Rdpack provides functions for manipulation of R documentation objects, including
 function `reprompt()` for updating existing Rd documentation for functions,
 methods and classes; function `rebib()` for import of references from `bibtex`
@@ -15,7 +5,17 @@ files; a macro for importing `bibtex` references which can be used in `Rd` files
 and `roxygen2` comments; and other convenience functions for references.
 
 
-<a id="org770ce64"></a>
+# Table of Contents
+
+1.  [Installing Rdpack](#org66489cb)
+2.  [Inserting Bibtex references](#orgf70af07)
+    1.  [Preparation](#org6854755)
+    2.  [Inserting the references](#orgca95061)
+    3.  [Development using \*devtools"](#org4165132)
+3.  [Viewing Rd files](#org13f345a)
+
+
+<a id="org66489cb"></a>
 
 # Installing Rdpack
 
@@ -29,7 +29,7 @@ You can also install the development version of `Rdpack` from Github:
     install_github("GeoBosh/Rdpack")
 
 
-<a id="orgee7af9c"></a>
+<a id="orgf70af07"></a>
 
 # Inserting Bibtex references
 
@@ -40,7 +40,7 @@ the `DESCRIPTION` file of the package needs to be amended, see below the full
 details. 
 
 
-<a id="orgf61d699"></a>
+<a id="org6854755"></a>
 
 ## Preparation
 
@@ -50,30 +50,28 @@ references should be put in file `inst/REFERENCES.bib`.  These steps are
 enumerated below in somewhat more detail, see also the vignette
 [`Inserting_bibtex_references`](https://cran.r-project.org/package=Rdpack).
 
-i. Add the following lines to  file "DESCRIPTION":
+1.  Add the following lines to  file "DESCRIPTION":
+    
+        Imports: Rdpack
+        RdMacros: Rdpack
+    
+    Make sure the capitalisation of `RdMacros:` is as shown. If the field
+    `RdMacros:` is already present, add "Rdpack" to the list on that
+    line. Similarly for field "Imports".
 
-    Imports: Rdpack
-    RdMacros: Rdpack
+2.  Add the following line to file "NAMESPACE":
+    
+        importFrom(Rdpack,reprompt)
+    
+    The equivalent line for `roxygen2` is 
+    
+        #' @importFrom Rdpack reprompt
 
-Make sure the capitalisation of `RdMacros:` is as shown. If the field
-`RdMacros:` is already present, add "Rdpack" to the list on that
-line. Similarly for field "Imports".
-
-ii. Add the following line to file "NAMESPACE":
-
-    importFrom(Rdpack,reprompt)
-
-The equivalent line for `roxygen2` is 
-
-    #' @importFrom Rdpack reprompt
-
-iii. Create file `REFERENCES.bib` in subdirectory `inst/` of your package and
-   put the BibTeX references in it.
-
----
+3.  Create file `REFERENCES.bib` in subdirectory `inst/` of your package and
+    put the BibTeX references in it.
 
 
-<a id="orgd9eaef1"></a>
+<a id="orgca95061"></a>
 
 ## Inserting the references
 
@@ -117,10 +115,8 @@ or open it from `R`:
 
     vignette("Inserting_bibtex_references", package = "Rdpack")
 
----
 
-
-<a id="org2c66cd3"></a>
+<a id="org4165132"></a>
 
 ## Development using \*devtools"
 
@@ -147,7 +143,7 @@ processing a source Rd file in the development directory of the package and that
 the call to `parse_Rd` specifies only the file.
 
 
-<a id="orgdbcbd21"></a>
+<a id="org13f345a"></a>
 
 # Viewing Rd files
 

@@ -1,4 +1,4 @@
-
+#+OPTIONS: toc:nil
 
 Rdpack provides functions for manipulation of R documentation objects, including
 function =reprompt()= for updating existing Rd documentation for functions,
@@ -6,6 +6,7 @@ methods and classes; function =rebib()= for import of references from =bibtex=
 files; a macro for importing =bibtex= references which can be used in =Rd= files
 and =roxygen2= comments; and other convenience functions for references.
 
+#+TOC: headlines
 
 * Installing Rdpack
 
@@ -40,7 +41,7 @@ enumerated below in somewhat more detail, see also the vignette
 [[https://cran.r-project.org/package=Rdpack][=Inserting_bibtex_references=]].
 
 
-i. Add the following lines to  file "DESCRIPTION":
+1. Add the following lines to  file "DESCRIPTION":
    #+BEGIN_EXAMPLE
    Imports: Rdpack
    RdMacros: Rdpack
@@ -49,7 +50,7 @@ i. Add the following lines to  file "DESCRIPTION":
    =RdMacros:= is already present, add "Rdpack" to the list on that
    line. Similarly for field "Imports".
 
-ii. Add the following line to file "NAMESPACE":
+2. Add the following line to file "NAMESPACE":
    #+BEGIN_SRC R
    importFrom(Rdpack,reprompt)
    #+END_SRC
@@ -58,10 +59,10 @@ ii. Add the following line to file "NAMESPACE":
    #' @importFrom Rdpack reprompt
    #+END_SRC
 
-iii. Create file =REFERENCES.bib= in subdirectory =inst/= of your package and
+3. Create file =REFERENCES.bib= in subdirectory =inst/= of your package and
    put the BibTeX references in it.
 
--------------
+# -------------
 
 ** Inserting the references
 
@@ -107,7 +108,7 @@ or open it from =R=:
 vignette("Inserting_bibtex_references", package = "Rdpack")
 #+END_SRC
 
----------
+# ---------
 
 ** Development using *devtools"
 
