@@ -14,8 +14,14 @@ Changes in Version 0.5-5
      equivalent to reprompt().
 
    - now if `infile' does not exist, reprompt(), and hence ereprompt(), strips
-     the directory part, finds the root of the package directory and looks for
-     the file under `man/' ( this uses package `rprojroot'). 
+     the directory part, finds the root of the package directory, and looks for
+     the file under `man/' (this uses package `rprojroot').
+
+   - now README.md is generated from README.org. I changed the layout and
+     amended the information in it.
+
+   - README.* now get links to https://github.com/GeoBosh/georgisemacs
+     for an emacs function to reprompt() the Rd file at point.
 
 
 Changes in Version 0.5-4.9000
