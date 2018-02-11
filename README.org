@@ -1,13 +1,13 @@
-* Rdpack
 
-Provides functions for manipulation of R documentation objects, including
+
+Rdpack provides functions for manipulation of R documentation objects, including
 function =reprompt()= for updating existing Rd documentation for functions,
 methods and classes; function =rebib()= for import of references from =bibtex=
 files; a macro for importing =bibtex= references which can be used in =Rd= files
 and =roxygen2= comments; and other convenience functions for references.
 
 
-** Installing
+* Installing Rdpack
 
 The latest stable version is on CRAN. 
 #+BEGIN_SRC R
@@ -22,9 +22,7 @@ install_github("GeoBosh/Rdpack")
 #+END_SRC
 
 
-** Usage
-
-*** Inserting Bibtex references
+* Inserting Bibtex references
 
 The simplest way to insert Bibtex references is with the Rd macro =\insertRef=.
 Just put =\insertRef{key}{package}= in the documentation to insert item with key
@@ -33,7 +31,7 @@ the =DESCRIPTION= file of the package needs to be amended, see below the full
 details. 
 
 
-**** Preparation 
+** Preparation 
 
 To prepare a package for importing BibTeX references it is necessary to tell the
 package management tools that package Rdpack and its Rd macros are needed. The
@@ -65,7 +63,7 @@ iii. Create file =REFERENCES.bib= in subdirectory =inst/= of your package and
 
 -------------
 
-**** Inserting the references
+** Inserting the references
 
 Once the steps outlined above are done, references can be inserted in the
 documentation as
@@ -111,7 +109,7 @@ vignette("Inserting_bibtex_references", package = "Rdpack")
 
 ---------
 
-**** Development using *devtools"
+** Development using *devtools"
 
 The described procedure works transparently in =roxygen2= chunks and with Hadley
 Wickham's package =devtools=.  Packages are built and installed properly with
@@ -135,7 +133,7 @@ look for additional macros. Indeed, the message above shows that the error is in
 processing a source Rd file in the development directory of the package and that
 the call to =parse_Rd= specifies only the file.
 
-*** Viewing Rd files
+* Viewing Rd files
 
 A function, =viewRd()= to view Rd files in the source directory of a package was
 introduced in version 0.4-23 of =Rdpack=. A typical user call would look something like:
