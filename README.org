@@ -194,6 +194,8 @@ set argument 'type' to "html":
 #+BEGIN_SRC R
     Rdpack::viewRd("./man/filename.Rd", type = "html")
 #+END_SRC
+This works also in RStudio, but not if the package of the Rd file is in
+development mode (I couldn't figure out how rectify this, see also TODO file).
 
 # Export this when viewRd() works properly in developer's mode.
 #
