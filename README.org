@@ -42,28 +42,26 @@ see also the vignette
 [[https://cran.r-project.org/package=Rdpack][=Inserting_bibtex_references=]].
 
 
-1. Add the following lines to  file "DESCRIPTION":
-#+BEGIN_EXAMPLE
-Imports: Rdpack
+i. Add the following lines to  file "DESCRIPTION":
+   #+BEGIN_EXAMPLE
+   Imports: Rdpack
+   
+   RdMacros: Rdpack
+   #+END_EXAMPLE
+   Make sure the capitalisation of =RdMacros:= is as shown. If the field =RdMacros:= is
+   already present, add 'Rdpack' to the list on that line. Similarly for field 'Imports'.
 
-RdMacros: Rdpack
-#+END_EXAMPLE
-Make sure the capitalisation of =RdMacros:= is as shown. If the field
-=RdMacros:= is already present, add 'Rdpack' to the list on that line. Similarly
-for field 'Imports'.
+ii. Add the following line to file "NAMESPACE":
+   #+BEGIN_SRC R
+   importFrom(Rdpack,reprompt)
+   #+END_SRC
+   The equivalent line for 'roxygen2' is 
+   #+BEGIN_SRC R
+   #' @importFrom Rdpack reprompt
+   #+END_SRC
 
-2. Add the following line to file "NAMESPACE":
-#+BEGIN_SRC R
-importFrom(Rdpack,reprompt)
-#+END_SRC
-The equivalent line for 'roxygen2' is 
-#+BEGIN_SRC R
-#' @importFrom Rdpack reprompt
-#+END_SRC
-
-
-3. Create file REFERENCES.bib in  subdirectory inst/ of your package
-  and put the bibtex references in it.
+iii. Create file REFERENCES.bib in  subdirectory inst/ of your package
+   and put the bibtex references in it.
 
 -------------
 

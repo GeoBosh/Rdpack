@@ -1,14 +1,14 @@
 
 # Table of Contents
 
-1.  [Rdpack](#org74969a2)
-    1.  [Installing](#orgf0d2909)
-    2.  [Usage](#org50aafc7)
-        1.  [Inserting Bibtex references](#orga4bbaaa)
-        2.  [Viewing Rd files](#org9a1de60)
+1.  [Rdpack](#orgac1da91)
+    1.  [Installing](#org5163c8b)
+    2.  [Usage](#org4df69b9)
+        1.  [Inserting Bibtex references](#orgd8da381)
+        2.  [Viewing Rd files](#org3840a4f)
 
 
-<a id="org74969a2"></a>
+<a id="orgac1da91"></a>
 
 # Rdpack
 
@@ -19,7 +19,7 @@ files; a macro for importing `bibtex` references which can be used in `Rd` files
 and `roxygen2` comments; and other convenience functions for references.
 
 
-<a id="orgf0d2909"></a>
+<a id="org5163c8b"></a>
 
 ## Installing
 
@@ -33,12 +33,12 @@ You can also install the development version of `Rdpack` from Github:
     install_github("GeoBosh/Rdpack")
 
 
-<a id="org50aafc7"></a>
+<a id="org4df69b9"></a>
 
 ## Usage
 
 
-<a id="orga4bbaaa"></a>
+<a id="orgd8da381"></a>
 
 ### Inserting Bibtex references
 
@@ -57,17 +57,16 @@ details.
     see also the vignette
     [`Inserting_bibtex_references`](https://cran.r-project.org/package=Rdpack).
     
-    1.  Add the following lines to  file "DESCRIPTION":
+    i. Add the following lines to  file "DESCRIPTION":
     
         Imports: Rdpack
         
         RdMacros: Rdpack
     
-    Make sure the capitalisation of `RdMacros:` is as shown. If the field
-    `RdMacros:` is already present, add 'Rdpack' to the list on that line. Similarly
-    for field 'Imports'.
+    Make sure the capitalisation of `RdMacros:` is as shown. If the field `RdMacros:` is
+    already present, add 'Rdpack' to the list on that line. Similarly for field 'Imports'.
     
-    1.  Add the following line to file "NAMESPACE":
+    ii. Add the following line to file "NAMESPACE":
     
         importFrom(Rdpack,reprompt)
     
@@ -75,8 +74,8 @@ details.
     
         #' @importFrom Rdpack reprompt
     
-    1.  Create file REFERENCES.bib in  subdirectory inst/ of your package
-        and put the bibtex references in it.
+    iii. Create file REFERENCES.bib in  subdirectory inst/ of your package
+       and put the bibtex references in it.
     
     ---
 
@@ -150,7 +149,7 @@ details.
     specifies only the file.
 
 
-<a id="org9a1de60"></a>
+<a id="org3840a4f"></a>
 
 ### Viewing Rd files
 
