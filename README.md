@@ -1,25 +1,25 @@
 
 # Table of Contents
 
-1.  [Rdpack](#orgc8926da)
-    1.  [Installing](#orge1411cf)
-    2.  [Usage](#org443d148)
-        1.  [Inserting Bibtex references](#org0413d34)
-        2.  [Viewing Rd files](#orgfd8c0f0)
+1.  [Rdpack](#org2aaf626)
+    1.  [Installing](#orgfc6c05b)
+    2.  [Usage](#orgf4acd9c)
+        1.  [Inserting Bibtex references](#org6874b12)
+        2.  [Viewing Rd files](#orgfd8cd13)
 
 
-<a id="orgc8926da"></a>
+<a id="org2aaf626"></a>
 
 # Rdpack
 
 Provides functions for manipulation of R documentation objects, including
 function `reprompt()` for updating existing Rd documentation for functions,
 methods and classes; function `rebib()` for import of references from `bibtex`
-files; a macro for importing 'bibtex' references which can be used in Rd files
+files; a macro for importing `bibtex` references which can be used in `Rd` files
 and `roxygen2` comments; and other convenience functions for references.
 
 
-<a id="orge1411cf"></a>
+<a id="orgfc6c05b"></a>
 
 ## Installing
 
@@ -33,35 +33,32 @@ You can also install the development version of `Rdpack` from Github:
     install_github("GeoBosh/Rdpack")
 
 
-<a id="org443d148"></a>
+<a id="orgf4acd9c"></a>
 
 ## Usage
 
 
-<a id="org0413d34"></a>
+<a id="org6874b12"></a>
 
 ### Inserting Bibtex references
 
 The simplest way to insert Bibtex references is with the Rd macro `\insertRef`.
 Just put `\insertRef{key}{package}` in the documentation to insert item with key
-`key`  from file REFERENCES.bib in your package `package`. For this to work
-the DESCRIPTION file of the package needs to be amended, see below the full
+`key`  from file `REFERENCES.bib` in your package `package`. For this to work
+the "DESCRIPTION" file of the package needs to be amended, see below the full
 details. 
 
 1.  Preparation
 
     To prepare a package for importing BibTeX references it is necessary to tell the
     package management tools that package Rdpack and its Rd macros are
-    needed. The references should be put in file inst/REFERENCES.bib.
+    needed. The references should be put in file "inst/REFERENCES.bib".
     These steps are enumerated below in somewhat more detail, 
     see also the vignette
-    [Inserting<sub>bibtex</sub><sub>references</sub>](<https://cran.r-project.org/package=Rdpack>).
+    [=Inserting<sub>bibtex</sub><sub>references</sub>=](<https://cran.r-project.org/package=Rdpack>).
     
     1.  Add the following lines to  file \*DESCRIPTION':
     
-        
-        
-        #+BEGIN_SRC R
         Imports: Rdpack
         RdMacros: Rdpack
     
@@ -152,7 +149,7 @@ details.
     specifies only the file.
 
 
-<a id="orgfd8c0f0"></a>
+<a id="orgfd8cd13"></a>
 
 ### Viewing Rd files
 
