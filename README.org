@@ -39,19 +39,19 @@ package management tools that package Rdpack and its Rd macros are
 needed. The references should be put in file "inst/REFERENCES.bib".
 These steps are enumerated below in somewhat more detail, 
 see also the vignette
-[=Inserting_bibtex_references=](https://cran.r-project.org/package=Rdpack).
+[[https://cran.r-project.org/package=Rdpack][=Inserting_bibtex_references=]].
 
 
-1. Add the following lines to  file *DESCRIPTION':
+1. Add the following lines to  file "DESCRIPTION":
 #+BEGIN_SRC R
 Imports: Rdpack
 RdMacros: Rdpack
 #+END_SRC
-Make sure the capitalisation of RdMacros: is as shown. If the field
-'RdMacros' is already present, add 'Rdpack' to the list on that line. Similarly
+Make sure the capitalisation of =RdMacros:= is as shown. If the field
+=RdMacros:= is already present, add 'Rdpack' to the list on that line. Similarly
 for field 'Imports'.
 
-2. Add the following line to file =NAMESPACE':
+2. Add the following line to file "NAMESPACE":
 #+BEGIN_SRC R
 importFrom(Rdpack,reprompt)
 #+END_SRC
@@ -93,9 +93,9 @@ The equivalent =roxygen2= documentation chunk would be:
 #' \insertRef{R}{bibtex}
 #+END_SRC
 
-The first line above inserts the reference with key 'Rpack:bibtex' in Rdpack's
+The first line above inserts the reference with key "Rpack:bibtex" in Rdpack's
 REFERENCES.bib. The second line inserts the reference labeled 'R' in file
-REFERENCES.bib from package =bibtex'. 
+REFERENCES.bib from package "bibtex". 
 
 The example above demonstrates that references from other packages can be
 inserted (in this case "bibtex"), as well. This is strongly discouraged for released

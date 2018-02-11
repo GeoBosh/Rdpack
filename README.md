@@ -1,14 +1,14 @@
 
 # Table of Contents
 
-1.  [Rdpack](#org2aaf626)
-    1.  [Installing](#orgfc6c05b)
-    2.  [Usage](#orgf4acd9c)
-        1.  [Inserting Bibtex references](#org6874b12)
-        2.  [Viewing Rd files](#orgfd8cd13)
+1.  [Rdpack](#orgcc3f954)
+    1.  [Installing](#org650a5d8)
+    2.  [Usage](#org983cfc0)
+        1.  [Inserting Bibtex references](#org9be7a46)
+        2.  [Viewing Rd files](#org9bd2413)
 
 
-<a id="org2aaf626"></a>
+<a id="orgcc3f954"></a>
 
 # Rdpack
 
@@ -19,7 +19,7 @@ files; a macro for importing `bibtex` references which can be used in `Rd` files
 and `roxygen2` comments; and other convenience functions for references.
 
 
-<a id="orgfc6c05b"></a>
+<a id="org650a5d8"></a>
 
 ## Installing
 
@@ -33,12 +33,12 @@ You can also install the development version of `Rdpack` from Github:
     install_github("GeoBosh/Rdpack")
 
 
-<a id="orgf4acd9c"></a>
+<a id="org983cfc0"></a>
 
 ## Usage
 
 
-<a id="org6874b12"></a>
+<a id="org9be7a46"></a>
 
 ### Inserting Bibtex references
 
@@ -55,18 +55,18 @@ details.
     needed. The references should be put in file "inst/REFERENCES.bib".
     These steps are enumerated below in somewhat more detail, 
     see also the vignette
-    [=Inserting<sub>bibtex</sub><sub>references</sub>=](<https://cran.r-project.org/package=Rdpack>).
+    [`Inserting_bibtex_references`](https://cran.r-project.org/package=Rdpack).
     
-    1.  Add the following lines to  file \*DESCRIPTION':
+    1.  Add the following lines to  file "DESCRIPTION":
     
         Imports: Rdpack
         RdMacros: Rdpack
     
-    Make sure the capitalisation of RdMacros: is as shown. If the field
-    'RdMacros' is already present, add 'Rdpack' to the list on that line. Similarly
+    Make sure the capitalisation of `RdMacros:` is as shown. If the field
+    `RdMacros:` is already present, add 'Rdpack' to the list on that line. Similarly
     for field 'Imports'.
     
-    1.  Add the following line to file =NAMESPACE':
+    1.  Add the following line to file "NAMESPACE":
     
         importFrom(Rdpack,reprompt)
     
@@ -105,9 +105,9 @@ details.
         #'
         #' \insertRef{R}{bibtex}
     
-    The first line above inserts the reference with key 'Rpack:bibtex' in Rdpack's
+    The first line above inserts the reference with key "Rpack:bibtex" in Rdpack's
     REFERENCES.bib. The second line inserts the reference labeled 'R' in file
-    REFERENCES.bib from package =bibtex'. 
+    REFERENCES.bib from package "bibtex". 
     
     The example above demonstrates that references from other packages can be
     inserted (in this case "bibtex"), as well. This is strongly discouraged for released
@@ -149,7 +149,7 @@ details.
     specifies only the file.
 
 
-<a id="orgfd8cd13"></a>
+<a id="org9bd2413"></a>
 
 ### Viewing Rd files
 
