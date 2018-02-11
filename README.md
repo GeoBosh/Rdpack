@@ -1,14 +1,14 @@
 
 # Table of Contents
 
-1.  [Rdpack](#orgac1da91)
-    1.  [Installing](#org5163c8b)
-    2.  [Usage](#org4df69b9)
-        1.  [Inserting Bibtex references](#orgd8da381)
-        2.  [Viewing Rd files](#org3840a4f)
+1.  [Rdpack](#org300c953)
+    1.  [Installing](#org3c63330)
+    2.  [Usage](#org971138b)
+        1.  [Inserting Bibtex references](#org3de4202)
+        2.  [Viewing Rd files](#org5b902a5)
 
 
-<a id="orgac1da91"></a>
+<a id="org300c953"></a>
 
 # Rdpack
 
@@ -19,7 +19,7 @@ files; a macro for importing `bibtex` references which can be used in `Rd` files
 and `roxygen2` comments; and other convenience functions for references.
 
 
-<a id="org5163c8b"></a>
+<a id="org3c63330"></a>
 
 ## Installing
 
@@ -33,12 +33,12 @@ You can also install the development version of `Rdpack` from Github:
     install_github("GeoBosh/Rdpack")
 
 
-<a id="org4df69b9"></a>
+<a id="org971138b"></a>
 
 ## Usage
 
 
-<a id="orgd8da381"></a>
+<a id="org3de4202"></a>
 
 ### Inserting Bibtex references
 
@@ -60,7 +60,6 @@ details.
     i. Add the following lines to  file "DESCRIPTION":
     
         Imports: Rdpack
-        
         RdMacros: Rdpack
     
     Make sure the capitalisation of `RdMacros:` is as shown. If the field `RdMacros:` is
@@ -149,7 +148,7 @@ details.
     specifies only the file.
 
 
-<a id="org3840a4f"></a>
+<a id="org5b902a5"></a>
 
 ### Viewing Rd files
 

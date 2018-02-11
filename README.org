@@ -45,7 +45,6 @@ see also the vignette
 i. Add the following lines to  file "DESCRIPTION":
    #+BEGIN_EXAMPLE
    Imports: Rdpack
-   
    RdMacros: Rdpack
    #+END_EXAMPLE
    Make sure the capitalisation of =RdMacros:= is as shown. If the field =RdMacros:= is
