@@ -162,9 +162,9 @@ that have been removed.
 
 ** Reprompt and open in an editor
 
-To open the =reprompt()=-ed file, argument =edit= can be used
-(=options("editor")= needs to be set suitably for this to work).  If ~edit =
-TRUE~, then =Rdpack::reprompt()= will open the Rd file in an editor.  For more
+To open the =reprompt()=-ed file, argument =edit= can be used.  For this to
+work, =options("editor")= needs to be set suitably but it usually is.  If ~edit
+= TRUE~, then =Rdpack::reprompt()= will open the Rd file in an editor.  For more
 convenient access to this feature, use =Rdpack::ereprompt()= (edit reprompt),
 which calls =Rdpack::reprompt()= with ~edit = TRUE~ and sets the output filename
 to be the same as the input filename.

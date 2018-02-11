@@ -7,18 +7,18 @@ and `roxygen2` comments; and other convenience functions for references.
 
 # Table of Contents
 
-1.  [Installing Rdpack](#org97021cb)
-2.  [Inserting Bibtex references](#org86811a4)
-    1.  [Preparation](#org515901e)
-    2.  [Inserting the references](#org617ab53)
-    3.  [Development using \*devtools"](#org5f6583e)
-3.  [Using Rdpack::reprompt()](#orgc1e3e1f)
-    1.  [What it does](#org995152d)
-    2.  [Reprompt and open in an editor](#org8c45fcd)
-4.  [Viewing Rd files](#org74bbaf3)
+1.  [Installing Rdpack](#org58eb5c9)
+2.  [Inserting Bibtex references](#org0e11c34)
+    1.  [Preparation](#org2af7f9a)
+    2.  [Inserting the references](#org10a2c69)
+    3.  [Development using \*devtools"](#org34fda6f)
+3.  [Using Rdpack::reprompt()](#orgb9cceed)
+    1.  [What it does](#orgd23350a)
+    2.  [Reprompt and open in an editor](#orgcb06160)
+4.  [Viewing Rd files](#org0e0445a)
 
 
-<a id="org97021cb"></a>
+<a id="org58eb5c9"></a>
 
 # Installing Rdpack
 
@@ -32,7 +32,7 @@ You can also install the development version of `Rdpack` from Github:
     install_github("GeoBosh/Rdpack")
 
 
-<a id="org86811a4"></a>
+<a id="org0e11c34"></a>
 
 # Inserting Bibtex references
 
@@ -43,7 +43,7 @@ the `DESCRIPTION` file of the package needs to be amended, see below the full
 details. 
 
 
-<a id="org515901e"></a>
+<a id="org2af7f9a"></a>
 
 ## Preparation
 
@@ -74,7 +74,7 @@ enumerated below in somewhat more detail, see also the vignette
     put the BibTeX references in it.
 
 
-<a id="org617ab53"></a>
+<a id="org10a2c69"></a>
 
 ## Inserting the references
 
@@ -118,7 +118,7 @@ For further details see the vignette at
     vignette("Inserting_bibtex_references", package = "Rdpack")
 
 
-<a id="org5f6583e"></a>
+<a id="org34fda6f"></a>
 
 ## Development using \*devtools"
 
@@ -145,12 +145,12 @@ processing a source Rd file in the development directory of the package and that
 the call to `parse_Rd` specifies only the file.
 
 
-<a id="orgc1e3e1f"></a>
+<a id="orgb9cceed"></a>
 
 # Using Rdpack::reprompt()
 
 
-<a id="org995152d"></a>
+<a id="orgd23350a"></a>
 
 ## What it does
 
@@ -177,13 +177,13 @@ but it alerts the user to remove aliases, methods, and descriptions of arguments
 that have been removed. 
 
 
-<a id="org8c45fcd"></a>
+<a id="orgcb06160"></a>
 
 ## Reprompt and open in an editor
 
-To open the `reprompt()`-ed file, argument `edit` can be used
-(`options("editor")` needs to be set suitably for this to work).  If `edit =
-TRUE`, then `Rdpack::reprompt()` will open the Rd file in an editor.  For more
+To open the `reprompt()`-ed file, argument `edit` can be used.  For this to
+work, `options("editor")` needs to be set suitably but it usually is.  If `edit
+= TRUE`, then `Rdpack::reprompt()` will open the Rd file in an editor.  For more
 convenient access to this feature, use `Rdpack::ereprompt()` (edit reprompt),
 which calls `Rdpack::reprompt()` with `edit = TRUE` and sets the output filename
 to be the same as the input filename.
@@ -200,7 +200,7 @@ Elisp code), for example to be invoked on the currently edited file. Such a
 function and example key binding can be found at [georgisemacs](https://github.com/GeoBosh/georgisemacs).
 
 
-<a id="org74bbaf3"></a>
+<a id="org0e0445a"></a>
 
 # Viewing Rd files
 
