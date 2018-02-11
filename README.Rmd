@@ -1,14 +1,14 @@
 
 # Table of Contents
 
-1.  [Rdpack](#org74969a2)
-    1.  [Installing](#orgf0d2909)
-    2.  [Usage](#org50aafc7)
-        1.  [Inserting Bibtex references](#orga4bbaaa)
-        2.  [Viewing Rd files](#org9a1de60)
+1.  [Rdpack](#org68f53a1)
+    1.  [Installing](#orgcc2367c)
+    2.  [Usage](#org9277fe2)
+        1.  [Inserting Bibtex references](#org602ab22)
+        2.  [Viewing Rd files](#orge6c26e2)
 
 
-<a id="org74969a2"></a>
+<a id="org68f53a1"></a>
 
 # Rdpack
 
@@ -19,26 +19,30 @@ files; a macro for importing `bibtex` references which can be used in `Rd` files
 and `roxygen2` comments; and other convenience functions for references.
 
 
-<a id="orgf0d2909"></a>
+<a id="orgcc2367c"></a>
 
 ## Installing
 
 The latest stable version is on CRAN. 
 
-    install_packages("Rdpack")
+```{r   }
+install_packages("Rdpack") 
+```
 
 You can also install the development version of `Rdpack` from Github:
 
-    library(devtools)
-    install_github("GeoBosh/Rdpack")
+```{r   }
+library(devtools)
+install_github("GeoBosh/Rdpack") 
+```
 
 
-<a id="org50aafc7"></a>
+<a id="org9277fe2"></a>
 
 ## Usage
 
 
-<a id="orga4bbaaa"></a>
+<a id="org602ab22"></a>
 
 ### Inserting Bibtex references
 
@@ -60,7 +64,6 @@ details.
     1.  Add the following lines to  file "DESCRIPTION":
     
         Imports: Rdpack
-        
         RdMacros: Rdpack
     
     Make sure the capitalisation of `RdMacros:` is as shown. If the field
@@ -69,11 +72,15 @@ details.
     
     1.  Add the following line to file "NAMESPACE":
     
-        importFrom(Rdpack,reprompt)
+    ```{r   }
+    importFrom(Rdpack,reprompt) 
+    ```
     
     The equivalent line for 'roxygen2' is 
     
-        #' @importFrom Rdpack reprompt
+    ```{r   }
+    #' @importFrom Rdpack reprompt 
+    ```
     
     1.  Create file REFERENCES.bib in  subdirectory inst/ of your package
         and put the bibtex references in it.
@@ -85,7 +92,9 @@ details.
     Once the steps outlined above are done, references can be
     inserted in the documentation as 
     
-        \insertRef{key}{package}
+    ```{r   }
+    \insertRef{key}{package} 
+    ```
     
     where `key` is the bibtex key of the reference and `package` is your package.
     This works in Rd files and in roxygen documentation chunks. 
@@ -93,18 +102,22 @@ details.
     Usually references are put in section `references`. In an `Rd` file this might look
     something like:
     
-        \references{
-        \insertRef{Rdpack:bibtex}{Rdpack}
-        
-        \insertRef{R}{bibtex}
-        }
+    ```{r   }
+    \references{
+    \insertRef{Rdpack:bibtex}{Rdpack}
+    
+    \insertRef{R}{bibtex}
+    } 
+    ```
     
     The equivalent `roxygen2` documentation chunk would be:
     
-        #' @references
-        #' \insertRef{Rpack:bibtex}{Rdpack}
-        #'
-        #' \insertRef{R}{bibtex}
+    ```{r   }
+    #' @references
+    #' \insertRef{Rpack:bibtex}{Rdpack}
+    #'
+    #' \insertRef{R}{bibtex} 
+    ```
     
     The first line above inserts the reference with key "Rpack:bibtex" in Rdpack's
     REFERENCES.bib. The second line inserts the reference labeled 'R' in file
@@ -120,7 +133,9 @@ details.
     [Inserting<sub>bibtex</sub><sub>references</sub>](<https://cran.r-project.org/package=Rdpack>),
     or open it from R:
     
-        vignette("Inserting_bibtex_references", package = "Rdpack")
+    ```{r   }
+    vignette("Inserting_bibtex_references", package = "Rdpack") 
+    ```
     
     ---
 
@@ -134,8 +149,10 @@ details.
     the package you are working on and their help pages contain references, you may
     encounter some puzzling warning messages in =developer' mode, something like:
     
-        1: In tools::parse_Rd(path) :
-          ~/mypackage/man/abcde.Rd: 67: unknown macro '\insertRef'
+    ```{r   }
+    1: In tools::parse_Rd(path) :
+      ~/mypackage/man/abcde.Rd: 67: unknown macro '\insertRef' 
+    ```
     
     These warnings are harmless - the help pages are built properly and no warnings
     appear outside ==developer'' mode, e.g. in a separate R~session. See below for a
@@ -150,19 +167,23 @@ details.
     specifies only the file.
 
 
-<a id="org9a1de60"></a>
+<a id="orge6c26e2"></a>
 
 ### Viewing Rd files
 
 A function, `viewRd()` to view Rd files in the source directory of a package was
 introduced in version 0.4-23 of `Rdpack`. A typical user call would look something like:
 
-    Rdpack::viewRd("./man/filename.Rd")
+```{r   }
+Rdpack::viewRd("./man/filename.Rd") 
+```
 
 By default the requested help page is shown in text format. To open the page in a browser,
 set argument 'type' to "html":
 
-    Rdpack::viewRd("./man/filename.Rd", type = "html")
+```{r   }
+Rdpack::viewRd("./man/filename.Rd", type = "html") 
+```
 
 Users of 'devtools' can use `viewRd` in place of `help()` to view Rd sources
 during development. ( Yes, your real sources are the ****.R**** files but

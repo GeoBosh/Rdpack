@@ -43,10 +43,11 @@ see also the vignette
 
 
 1. Add the following lines to  file "DESCRIPTION":
-#+BEGIN_SRC R
+#+BEGIN_EXAMPLE
 Imports: Rdpack
+
 RdMacros: Rdpack
-#+END_SRC
+#+END_EXAMPLE
 Make sure the capitalisation of =RdMacros:= is as shown. If the field
 =RdMacros:= is already present, add 'Rdpack' to the list on that line. Similarly
 for field 'Imports'.
