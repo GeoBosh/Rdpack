@@ -160,6 +160,8 @@ arguments.
 but it alerts the user to remove aliases, methods, and descriptions of arguments
 that have been removed. 
 
+** Reprompt and open in an editor
+
 To open the =reprompt()=-ed file, argument =edit= can be used
 (=options("editor")= needs to be set suitably for this to work).  If ~edit =
 TRUE~, then =Rdpack::reprompt()= will open the Rd file in an editor.  For more
