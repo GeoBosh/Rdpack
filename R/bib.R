@@ -257,13 +257,16 @@ viewRd <- function(infile, type = "text", stages = NULL){
     infile <- normalizePath(infile)
 
     if(is.null(stages))
+        # stages <- c("install", "render")
         stages <- c("build", "install", "render")
+        # stages <- c("build", "render")
     else if(!is.character(stages) || !all(stages %in% c("build", "install", "render")))
         stop('stages must be a character vector containing one or more of the strings "build", "install", and "render"')
 
     ## here we need to expand the Rd macros, so don't use permissive_parse_Rd()
+    ## TODO: (BUG) e is NULL under RStudio
     e <- tools::loadPkgRdMacros(system.file(package = "Rdpack"))
-    Rdo <- parse_Rd(infile, macros = e)
+    ## Rdo <- parse_Rd(infile, macros = e)
 
     pkgname <- basename(dirname(dirname(infile)))
     outfile <- tempfile(fileext = paste0(".", type))
@@ -272,14 +275,19 @@ viewRd <- function(infile, type = "text", stages = NULL){
     ##        on.exit(unlink(outfile))
     switch(type,
            text = {
-               temp <- tools::Rd2txt(Rdo, out = outfile, package = pkgname, stages = stages)
+               temp <- tools::Rd2txt(infile, # was: Rdo,
+                                     out = outfile, package = pkgname, stages = stages
+                                     , macros = e)
                file.show(temp, delete.file = TRUE) # text file is deleted
            },
            html = {
-               temp <- tools::Rd2HTML(Rdo, out = outfile, package = pkgname,
-                                      stages = stages)
+               temp <- tools::Rd2HTML(infile, # was: Rdo,
+                                      out = outfile, package = pkgname,
+                                      stages = stages
+                                      , macros = e)
                browseURL(temp)
                ## html file is not deleted
+#browser()
            },
            stop("'type' should be one of 'text' or 'html'")
            )
