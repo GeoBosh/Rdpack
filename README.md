@@ -7,18 +7,18 @@ and `roxygen2` comments; and other convenience functions for references.
 
 # Table of Contents
 
-1.  [Installing Rdpack](#orgd7a9a1f)
-2.  [Inserting Bibtex references](#org0df5d04)
-    1.  [Preparation](#orgcb689b5)
-    2.  [Inserting the references](#org2943632)
-    3.  [Development using \*devtools"](#org991a0ef)
-3.  [Using Rdpack::reprompt()](#org43f185b)
-    1.  [What it does](#orga6246a2)
-    2.  [Reprompt and open in an editor](#orgf5a4ed4)
-4.  [Viewing Rd files](#orgb50b74b)
+1.  [Installing Rdpack](#orge21c4ad)
+2.  [Inserting Bibtex references](#org30d1ac5)
+    1.  [Preparation](#org26aa95e)
+    2.  [Inserting the references](#org5a98d98)
+    3.  [Development using \*devtools"](#org93bb5fa)
+3.  [Using Rdpack::reprompt()](#org7ba9c76)
+    1.  [What it does](#org86ade17)
+    2.  [Reprompt and open in an editor](#orgd3b6de9)
+4.  [Viewing Rd files](#orgb9fe731)
 
 
-<a id="orgd7a9a1f"></a>
+<a id="orge21c4ad"></a>
 
 # Installing Rdpack
 
@@ -32,7 +32,7 @@ You can also install the development version of `Rdpack` from Github:
     install_github("GeoBosh/Rdpack")
 
 
-<a id="org0df5d04"></a>
+<a id="org30d1ac5"></a>
 
 # Inserting Bibtex references
 
@@ -43,7 +43,7 @@ the `DESCRIPTION` file of the package needs to be amended, see below the full
 details. 
 
 
-<a id="orgcb689b5"></a>
+<a id="org26aa95e"></a>
 
 ## Preparation
 
@@ -74,7 +74,7 @@ enumerated below in somewhat more detail, see also the vignette
     put the BibTeX references in it.
 
 
-<a id="org2943632"></a>
+<a id="org5a98d98"></a>
 
 ## Inserting the references
 
@@ -118,7 +118,7 @@ For further details see the vignette at
     vignette("Inserting_bibtex_references", package = "Rdpack")
 
 
-<a id="org991a0ef"></a>
+<a id="org93bb5fa"></a>
 
 ## Development using \*devtools"
 
@@ -145,12 +145,12 @@ processing a source Rd file in the development directory of the package and that
 the call to `parse_Rd` specifies only the file.
 
 
-<a id="org43f185b"></a>
+<a id="org7ba9c76"></a>
 
 # Using Rdpack::reprompt()
 
 
-<a id="orga6246a2"></a>
+<a id="org86ade17"></a>
 
 ## What it does
 
@@ -177,7 +177,7 @@ but it alerts the user to remove aliases, methods, and descriptions of arguments
 that have been removed. 
 
 
-<a id="orgf5a4ed4"></a>
+<a id="orgd3b6de9"></a>
 
 ## Reprompt and open in an editor
 
@@ -200,7 +200,7 @@ Elisp code), for example to be invoked on the currently edited file. Such a
 function and example key binding can be found at [georgisemacs](https://github.com/GeoBosh/georgisemacs).
 
 
-<a id="orgb50b74b"></a>
+<a id="orgb9fe731"></a>
 
 # Viewing Rd files
 
@@ -215,5 +215,6 @@ set argument 'type' to "html":
     Rdpack::viewRd("./man/filename.Rd", type = "html")
 
 Users of 'devtools' can use `viewRd` in place of `help()` to view rendered Rd sources.
-This should work also in development mode.
+This should work also in development mode
+on any platform (e.g. RStudio, Emacs/ESS, Rgui).
 

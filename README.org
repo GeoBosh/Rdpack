@@ -195,7 +195,8 @@ set argument 'type' to "html":
     Rdpack::viewRd("./man/filename.Rd", type = "html")
 #+END_SRC
 Users of 'devtools' can use =viewRd= in place of =help()= to view rendered Rd sources.
-This should work also in development mode.
+This should work also in development mode
+on any platform (e.g. RStudio, Emacs/ESS, Rgui).
 # (Yes, the real roxygen2 sources are the **.R** files but
 # =devtools::document()= transfers the roxygen2 documentation chunks to Rd files,
 # and a few others, which are then rendered by =R='s tools.)
