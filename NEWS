@@ -23,6 +23,9 @@ Changes in Version 0.5-5
    - README.* now get links to https://github.com/GeoBosh/georgisemacs
      for an emacs function to reprompt() the Rd file at point.
 
+   - viewRd() now works also when the file is from a package under development
+     mode in RStudio.
+
 
 Changes in Version 0.5-4.9000
 

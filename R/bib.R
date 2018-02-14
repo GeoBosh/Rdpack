@@ -8,6 +8,8 @@ bibentry_key <- function(x){                                                    
 }
 
 get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib"){     # 2013-03-29
+#browser()
+
     fn <- if(is.null(package))
               file.path(..., bibfile)
           else
@@ -17,7 +19,24 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib"){    
         warning("More than one file found, using the first one only.")
         fn <- fn[1]
     }
-    res <- read.bib(file=fn, package=package)
+
+
+    ## 2018-02-14: adjust to work in  development mode in RStudio,
+    ##             without this adjustment read.bib can't find REFERENCES.bib
+    ##
+    ## It would probably be more robust to use rstudioapi::isAvailable()
+    ##   but then "rstudioapi" woud have to be moved from "Suggests:" to "Imports:"
+    ##
+    ## TODO: actually need to check if the package is in development mode in RStudio
+    ##
+    #### if(identical(.Platform$GUI, "RStudio")){
+    ####     ## TODO: take care for the case when bibfile contains path
+    ####     ##       and also that builtin packages are treated specially by read.bib
+    ####     bibfile_path <- system.file(bibfile, package = package)
+    ####     res <- read.bib(file = fn, file = bibfile_path)
+    #### }else
+        res <- read.bib(file = fn, package = package)
+
     ## 2016-07-26 Now do this only for versions of  bibtex < '0.4.0'.
     ##            From bibtex '0.4.0' read.bib() sets the names.
     if(packageVersion("bibtex") < '0.4.0'){
@@ -189,7 +208,25 @@ insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
 
     ## TODO: "names<-()" may change some keys since bibtex keys are not necessarilly R
     ##       syntactic names.
-    bibs <- read.bib(package = package, ...)
+    ##
+    ## 2018-02-14: adjust to work in  development mode in RStudio,
+    ##             without this adjustment read.bib can't find REFERENCES.bib
+    ##
+    ## It would probably be more robust to use rstudioapi::isAvailable()
+    ##   but then "rstudioapi" woud have to be moved from "Suggests:" to "Imports:"
+    ##
+    ## TODO: actually need to check if the package is in development mode in RStudio
+    ##
+    if(identical(.Platform$GUI, "RStudio")){
+        ## TODO: take care for the case when bibfile contains path
+        ##       and also that builtin packages are treated specially by read.bib
+        bibfile_path <- system.file("inst", "REFERENCES.bib", package = package)
+        if(!file.exists(bibfile_path))
+            bibfile_path <- system.file("REFERENCES.bib", package = package)
+        bibs <- read.bib(file = bibfile_path) # TODO: drops ...; handle at least "encoding"?
+    }else
+        bibs <- read.bib(package = package, ...)
+
     if(packageVersion("bibtex") < '0.4.0'){
         names(bibs) <- sapply(1:length(bibs), function(x) bibentry_key(bibs[[x]][[1]]))
     }
