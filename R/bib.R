@@ -21,20 +21,9 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib"){    
     }
 
 
-    ## 2018-02-14: adjust to work in  development mode in RStudio,
+    ## 2018-02-14: TODO: this also needs adjustment to work in  development mode in RStudio,
     ##             without this adjustment read.bib can't find REFERENCES.bib
-    ##
-    ## It would probably be more robust to use rstudioapi::isAvailable()
-    ##   but then "rstudioapi" woud have to be moved from "Suggests:" to "Imports:"
-    ##
-    ## TODO: actually need to check if the package is in development mode in RStudio
-    ##
-    #### if(identical(.Platform$GUI, "RStudio")){
-    ####     ## TODO: take care for the case when bibfile contains path
-    ####     ##       and also that builtin packages are treated specially by read.bib
-    ####     bibfile_path <- system.file(bibfile, package = package)
-    ####     res <- read.bib(file = fn, file = bibfile_path)
-    #### }else
+    ##             (see insert_ref())
         res <- read.bib(file = fn, package = package)
 
     ## 2016-07-26 Now do this only for versions of  bibtex < '0.4.0'.
@@ -217,15 +206,41 @@ insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
     ##
     ## TODO: actually need to check if the package is in development mode in RStudio
     ##
-    if(identical(.Platform$GUI, "RStudio")){
-        ## TODO: take care for the case when bibfile contains path
-        ##       and also that builtin packages are treated specially by read.bib
-        bibfile_path <- system.file("inst", "REFERENCES.bib", package = package)
-        if(!file.exists(bibfile_path))
-            bibfile_path <- system.file("REFERENCES.bib", package = package)
+    ## Simplitying this:
+    ##   if(identical(.Platform$GUI, "RStudio")){
+    ##       ## TODO: take care for the case when bibfile contains path
+    ##       ##       and also that builtin packages are treated specially by read.bib
+    ##       bibfile_path <- system.file("inst", "REFERENCES.bib", package = package)
+    ##       if(!file.exists(bibfile_path))
+    ##           bibfile_path <- system.file("REFERENCES.bib", package = package)
+    ##       bibs <- read.bib(file = bibfile_path) # TODO: drops ...; handle at least "encoding"?
+    ##   }else{
+    ##       ## 2018-02-14 the above change is needed also when using devtools::load_all()
+    ##       ##            outside RStudio
+    ##       bibfile_path <- system.file("inst", "REFERENCES.bib", package = package)
+    ##       if(file.exists(bibfile_path)){
+    ##           ## devtools development mode
+    ##           bibs <- read.bib(file = bibfile_path) # TODO: drops ...; handle at least "encoding"?
+    ##       }else{
+    ##           ## not in development mode - keep the old call
+    ##           bibs <- read.bib(package = package, ...)
+    ##       }
+    ##   }
+
+    ## this simplifies the above change:
+    bibfile_path <- system.file("inst", "REFERENCES.bib", package = package)
+    if(file.exists(bibfile_path)){
+        ## devtools development mode
         bibs <- read.bib(file = bibfile_path) # TODO: drops ...; handle at least "encoding"?
-    }else
+    }else{
+        ## not in development mode - keep the old call
+        ##    Strictly speaking, "REFERENCES.bib" does not exist for bult-in packages, but
+        ##    read.bib simulates it for them, see bibtex:::findBibFile().  So, if package is
+        ##    such a package we may be in development mode here, and the following call may
+        ##    fail.  BUT is this possible or even realistic scenario for such packages would
+        ##    be under developed with devtools::load_all(), etc.?
         bibs <- read.bib(package = package, ...)
+    }
 
     if(packageVersion("bibtex") < '0.4.0'){
         names(bibs) <- sapply(1:length(bibs), function(x) bibentry_key(bibs[[x]][[1]]))
