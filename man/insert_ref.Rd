@@ -106,6 +106,8 @@ insert_ref(key, package = NULL, ...)
   \insertRef{Rpack:bibtex}{Rdpack}
 
   \insertRef{R}{bibtex}
+
+  \insertRef{gueymard_critical_1993}{Rdpack}
 }
 \author{Georgi N. Boshnakov}
 \seealso{
