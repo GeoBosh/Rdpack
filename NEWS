@@ -2,6 +2,9 @@ Changes in Version 0.5-6
 
    - insert_ref() and Rd macro \insertRef should now work ok in the presence of
      percent encoded symbols in URL field of a BibTeX entry.
+     Closes issue "Unexpected END_OF_INPUT error (URL parsing?)", see
+     https://github.com/GeoBosh/Rdpack/issues/3,
+     raised by jdnewmil (https://github.com/jdnewmil).
 
 
 Changes in Version 0.5-5 (CRAN)
