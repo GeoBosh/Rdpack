@@ -287,15 +287,16 @@ insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
         ## 2018-03-01 Bug: Unexpected END_OF_INPUT error (URL parsing?) #3
         ##     I don't know why toRd() doesn't do this...
         ##
-        ## excape percents that are not preceded by backslash/
-        ##     TODO: more careful!!
-        item$url <- gsub("([^\\])%", "\\1\\\\%", item$url)
+        ## excape percents that are not preceded by backslash
+        if(!is.null(item$url))
+            item$url <- gsub("([^\\])%", "\\1\\\\%", item$url)
 
         toRd(item) # TODO: add styles? (doesn't seem feasible here)
     }else{
         ## key is documented to be of length one, nevertheless handle it too
         kiki <- FALSE
         items <- withCallingHandlers(bibs[[key]], warning = function(w) {kiki <<- TRUE})
+        ## TODO: deal with URL's as above
         txt <- toRd(items)
 
         if(kiki){ # warning(s) in bibs[[key]]
