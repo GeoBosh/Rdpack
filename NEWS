@@ -1,3 +1,13 @@
+Changes in Version 0.5-7
+
+   - get_bibentries() gets a new argument "everywhere". When is is TRUE, the
+     default, unescaped percents are escaped in all bibtex fields, otherwise the
+     replacement is done only in field "URL".
+
+   - removed several print() statements which were accidentally left in the
+     code in v. 0.5-6. 
+
+
 Changes in Version 0.5-6
 
    - insert_ref() and Rd macro \insertRef should now work ok in the presence of
@@ -5,6 +15,19 @@ Changes in Version 0.5-6
      Closes issue "Unexpected END_OF_INPUT error (URL parsing?)", see
      https://github.com/GeoBosh/Rdpack/issues/3,
      raised by jdnewmil (https://github.com/jdnewmil).
+
+   - get_bibentries() now takes care of percent encoded symbols in URLs.
+     It now returns an object from class "bibentryRd", which inherits from
+     "bibentry" but has its own print method which escapes or unescapes the
+     percent signs in URLs depending on the requested output style. This was
+     also reported by by jdnewmil in issue#3 referenced above. 
+
+   - get_bibentries() now tries to load the bib file from the development
+     directory of argument "package", in case it is in development mode under
+     "devtools". (Even though the search is with system.file(), which devtools()
+     replaces with its own version, the bib file still needs to be looked for in
+     "inst/", i.e. it is not in the root directory as is the case in installed
+     packages.)
 
 
 Changes in Version 0.5-5 (CRAN)

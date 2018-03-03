@@ -6,6 +6,7 @@ importFrom(gbRd,Rd_help2txt)
 import(bibtex)
 
 S3method(as.character,f_usage)
+S3method(print, bibentryRd)
 
 export(
   append_to_Rd_list

@@ -7,24 +7,34 @@ bibentry_key <- function(x){                                                    
     attr(unclass(x[[1]][[1]])[[1]], "key")
 }
 
-get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib"){     # 2013-03-29
-#browser()
+get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib", everywhere = TRUE){
 
-    fn <- if(is.null(package))
-              file.path(..., bibfile)
-          else
-              system.file(..., bibfile, package = package, mustWork=TRUE)
+    if(is.null(package))
+        fn <- file.path(..., bibfile)
+            # 2018-03-03 was:
+            #     else fn <- system.file(..., bibfile, package = package, mustWork=TRUE)
+    else if(file.exists(system.file("inst", bibfile, package = package)))
+        ## development mode in "devtools"
+        fn <- system.file("inst", ..., bibfile, package = package)
+    else{
+        fn <- system.file(..., bibfile, package = package)
+        if(length(fn) == 1  &&  fn == ""  &&  !is.null(package))
+            ## package "bibtex" emulates REFERENCES.bib for core R packages
+            fn <- system.file("bib", sprintf("%s.bib", package), package = "bibtex")
+    }
 
     if(length(fn) > 1){
         warning("More than one file found, using the first one only.")
         fn <- fn[1]
-    }
+    }else if(length(fn) == 1  &&  fn == "")
+        stop("Couldn't find file ", file.path(..., bibfile),
+             if(!is.null(package)) paste0(" in package ", package) )
 
 
     ## 2018-02-14: TODO: this also needs adjustment to work in  development mode in RStudio,
     ##             without this adjustment read.bib can't find REFERENCES.bib
     ##             (see insert_ref())
-        res <- read.bib(file = fn, package = package)
+    res <- read.bib(file = fn, package = package)
 
     ## 2016-07-26 Now do this only for versions of  bibtex < '0.4.0'.
     ##            From bibtex '0.4.0' read.bib() sets the names.
@@ -32,9 +42,50 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib"){    
         names(res) <- sapply(1:length(res), function(x) bibentry_key(res[[x]][[1]]))
     }
 
+    for(nam in names(res)){
+        if(!is.null(res[nam]$url))
+            res[nam]$url <- gsub("([^\\])%", "\\1\\\\%", res[nam]$url)
+
+        if(everywhere){
+            fields <- names(unclass(res[nam])[[1]])
+
+            unclassed <- unclass(res[nam])
+            flag <- FALSE
+            for(field in fields){
+                wrk <- unclass(res[nam])[[1]][[field]]
+                if(is.character(wrk) && any(grepl("([^\\])%", wrk))){
+                    flag <- TRUE
+                    unclassed[[1]][[field]] <- gsub("([^\\])%", "\\1\\\\%", wrk)
+                }
+            }
+            if(flag){
+                class(unclassed) <- class(res[nam])
+                res[nam] <- unclassed
+            }
+        }
+    }
+
+
+    ## 2018-03-03 new:
+    class(res) <- c("bibentryRd", class(res))
+
     res
 }
 
+print.bibentryRd <- function (x, style = "text", ...){
+    class(x) <- class(x)[-1]
+    ## TODO: It would be better to modify the entries and then call
+    ##       print(), rather than vice versa as now.
+    res <- capture.output(print(x, style = style, ...))
+    res <- switch(tolower(style),
+                  r        = gsub("\\\\\\\\%", "%", res),
+                  citation = ,
+                  bibtex   = gsub("\\\\%", "%", res),
+
+                  res
+                  )
+    cat(res, sep = "\n")
+}
 
 rebib <- function(infile, outfile, ...){                     # 2013-03-29
     rdo <- permissive_parse_Rd(infile)   ## 2017-11-25 TODO: argument for RdMacros!
@@ -287,7 +338,7 @@ insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
         ## 2018-03-01 Bug: Unexpected END_OF_INPUT error (URL parsing?) #3
         ##     I don't know why toRd() doesn't do this...
         ##
-        ## excape percents that are not preceded by backslash
+        ## escape percents that are not preceded by backslash
         if(!is.null(item$url))
             item$url <- gsub("([^\\])%", "\\1\\\\%", item$url)
 
