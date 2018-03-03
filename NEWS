@@ -7,6 +7,7 @@ Changes in Version 0.5-7
    - removed several print() statements which were accidentally left in the
      code in v. 0.5-6. 
 
+   - updated help page of get_bibentries() and included examples.
 
 Changes in Version 0.5-6
 

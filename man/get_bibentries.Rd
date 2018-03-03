@@ -4,7 +4,8 @@
 \title{Get all references from a Bibtex file}
 \description{Get all references from a Bibtex file.}
 \usage{
-get_bibentries(\dots, package = NULL, bibfile = "REFERENCES.bib")
+get_bibentries(\dots, package = NULL, bibfile = "REFERENCES.bib", 
+               everywhere = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -12,12 +13,15 @@ get_bibentries(\dots, package = NULL, bibfile = "REFERENCES.bib")
     character strings, see `Details'.}
   \item{package}{name of a package, a character string or NULL.}
   \item{bibfile}{name of a Bibtex file, a character string.}
+  \item{everywhere}{if FALSE, restrict percent escaring to BibTeX field
+    \code{"URL"}.} 
 }
 \details{
 
   This function parses the specified file using \code{read.bib} from
   package "bibtex" and sets its \code{names} attribute to the keys of
-  the bib elements.
+  the bib elements (\code{read.bib()} does this from \pkg{bibtex}
+  version 0.4.0 or later).
 
   \code{bibfile} should normally be the base name of the Bibtex file.
   Calling \code{get_bibentries} without any \code{\dots} arguments
@@ -32,9 +36,25 @@ get_bibentries(\dots, package = NULL, bibfile = "REFERENCES.bib")
   of the package. Again, argument "\dots" can specify subdirectory
   as in \code{\link{system.file}}.
 
+  Although the base \R packages do not have files REFERENCES.bib,
+  argument \code{package} can be set to one of them,
+  e.g. \code{"base"}. This works since package \pkg{bibtex} provides bib
+  files for the core packages.
+
+  By default, \code{get_bibentries} escapes unescaped percent signs in
+  all fields of bibtex objects. To restrict this only to field "url",
+  set argument \code{escape} to \code{FALSE}.
+
+  \code{get_bibentries} returns an object from class
+  \code{"bibentryRd"}, which inherits from bibentry. The printing method
+  for \code{"bibentryRd"} unescapes percent signs in URLs for some
+  styles where the escapes are undesirable. 
+
+  
+  
 }
 \value{
-  a bibentry object
+  a bibentryRd object inheriting from bibentry
 }
 % \references{
 % %% ~put references to the literature/web site here ~
@@ -49,8 +69,44 @@ get_bibentries(\dots, package = NULL, bibfile = "REFERENCES.bib")
 % \seealso{
 % %% ~~objects to See Also as \code{\link{help}}, ~~~
 % }
-% \examples{
-% }
+\examples{
+r <- get_bibentries(package = "Rdpack")
+r
+print(r, style = "html")
+
+b <- get_bibentries(package = "stats")
+print(b[[1]], style = "R")
+print(b[[1]], style = "citation")
+
+## here the url field contains percent encoding
+fn_url <- system.file("examples", "url_with_percents.bib", package = "Rdpack") 
+u <- get_bibentries(bibfile = fn_url)
+
+## the links produced by all of the following are valid
+## and can be put in a browser
+print(u, style = "html")
+print(u, style = "bibtex")
+print(u, style = "R")
+print(u, style = "text")
+print(u, style = "citation")
+
+## The link here contains escapes but when put in a LaTeX document
+## which uses the JSS style it generates correct clickable link,
+## (see Details section) 
+print(u, style = "latex")
+
+
+## here the journal field contains percent encoding
+fn_other <- system.file("examples", "journal_with_percents.bib", package = "Rdpack") 
+j <- get_bibentries(bibfile = fn_url)
+print(j, style = "html")
+print(j, style = "bibtex")
+print(j, style = "R")
+print(j, style = "text")
+print(j, style = "citation")
+      
+print(j, style = "latex")
+}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ bibtex }
