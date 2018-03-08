@@ -31,11 +31,9 @@ c_Rd(...)
 }
 
 \author{Georgi N. Boshnakov}
-
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-
+\seealso{
+  \code{\link{list_Rd}}
+}
 \examples{
 a1 <- char2Rdpiece("Dummyname", "name")
 a2 <- char2Rdpiece("Dummyallias1", "alias")
@@ -43,7 +41,7 @@ a3 <- char2Rdpiece("Dummy title", "title")
 a4 <- char2Rdpiece("Dummy description", "description")
 
 # The following are equivalent
-# TODO: replace Rdo_empty() below with a function from Rdpack
+# TODO: replace gbRd::Rdo_empty() below with a function from Rdpack
 #       and uncomment
 # b1 <- c_Rd(Rdo_empty(), list(a1), list(a2), list(a3), list(a4))
 # c1 <- c_Rd(Rdo_empty(), list(a1, a2, a3, a4))

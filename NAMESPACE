@@ -1,9 +1,12 @@
-import(utils)
-import(tools)
 import(methods)
 
-importFrom(gbRd,Rd_help2txt)
-import(bibtex)
+importFrom(utils, bibentry, browseURL, capture.output, file.edit,
+           getAnywhere, getS3method, head, help,
+           packageDescription, packageVersion, prompt, vignette)
+
+importFrom(tools, parse_Rd, toRd, checkRd, Rd2txt)
+importFrom(gbRd, Rd_help2txt)
+importFrom(bibtex, read.bib)
 
 S3method(as.character,f_usage)
 S3method(print, bibentryRd)

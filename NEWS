@@ -9,6 +9,8 @@ Changes in Version 0.5-7
 
    - updated help page of get_bibentries() and included examples.
 
+   - cleaned up the imports in NAMESPACE.
+
 Changes in Version 0.5-6
 
    - insert_ref() and Rd macro \insertRef should now work ok in the presence of

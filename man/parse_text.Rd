@@ -19,6 +19,11 @@ parse_text(text, ..., keep = TRUE)
   that if the setting of option "keep.source" is not as requested by
   argument \code{keep}, it is set to \code{keep} before calling
   \code{parse} and restored afterwards.
+
+  This function is no longer exported by \pkg{Rdpack} aince it is here
+  for historical reasons and to avoid unnecessary dependence on
+  \pkg{gbutils}. Use the identical copy \code{gbutils::parse_text}
+  instead.
 }
 \value{
   an expression representing the parsed text, see \code{link{parse}} for
