@@ -325,9 +325,11 @@ insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
     if(length(key) == 1){
         item <- tryCatch(bibs[[key]],
                          warning = function(c) {
-                             ## tell the user the offending key.
-                             s <- paste0("possibly non-existing key '", key, "'")
-                             c$message <- paste0(c$message, " (", s, ")")
+                             if(grepl("subscript out of bounds", c$message)){
+                                 ## tell the user the offending key.
+                                 s <- paste0("possibly non-existing key '", key, "'")
+                                 c$message <- paste0(c$message, " (", s, ")")
+                             }
                              warning(c)
                              res <- paste0("\nWARNING: failed to insert reference '", key,
                                            "' from package '", package, "' - ",
@@ -339,8 +341,8 @@ insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
         ##     I don't know why toRd() doesn't do this...
         ##
         ## escape percents that are not preceded by backslash
-        if(!is.null(item$url))
-            item$url <- gsub("([^\\])%", "\\1\\\\%", item$url)
+         if(inherits(item, "bibentry")  &&  !is.null(item$url))
+             item$url <- gsub("([^\\])%", "\\1\\\\%", item$url)
 
         toRd(item) # TODO: add styles? (doesn't seem feasible here)
     }else{
