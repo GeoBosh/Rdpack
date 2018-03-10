@@ -36,11 +36,14 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib", ever
     ##             (see insert_ref())
     res <- read.bib(file = fn, package = package)
 
-    ## 2016-07-26 Now do this only for versions of  bibtex < '0.4.0'.
-    ##            From bibtex '0.4.0' read.bib() sets the names.
-    if(packageVersion("bibtex") < '0.4.0'){
-        names(res) <- sapply(1:length(res), function(x) bibentry_key(res[[x]][[1]]))
-    }
+      # 2018-03-10 commenting out
+      #      since bibtex v. >= 0.4.0 has been required for a long time in DESCRIPTION
+      #
+      #    ## 2016-07-26 Now do this only for versions of  bibtex < '0.4.0'.
+      #    ##            From bibtex '0.4.0' read.bib() sets the names.
+      #    if(packageVersion("bibtex") < '0.4.0'){
+      #        names(res) <- sapply(1:length(res), function(x) bibentry_key(res[[x]][[1]]))
+      #    }
 
     for(nam in names(res)){
         if(!is.null(res[nam]$url))
