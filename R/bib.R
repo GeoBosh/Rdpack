@@ -293,9 +293,13 @@ insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
         bibs <- read.bib(package = package, ...)
     }
 
-    if(packageVersion("bibtex") < '0.4.0'){
-        names(bibs) <- sapply(1:length(bibs), function(x) bibentry_key(bibs[[x]][[1]]))
-    }
+      # 2018-03-10 commenting out
+      #      since bibtex v. >= 0.4.0 has been required for a long time in DESCRIPTION
+      #
+      # if(packageVersion("bibtex") < '0.4.0'){
+      #     names(bibs) <- sapply(1:length(bibs), function(x) bibentry_key(bibs[[x]][[1]]))
+      # }
+
         # 2018-01-25: was:
         #     wrk <- toRd(bibs[[key]]) # TODO: add styles? (doesn't seem feasible here)
         # adding a check to give user more informative message (than 'key out of bounds')
