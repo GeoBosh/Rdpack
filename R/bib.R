@@ -281,20 +281,23 @@ insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
     ##       }
     ##   }
 
-    ## this simplifies the above change:
-    bibfile_path <- system.file("inst", "REFERENCES.bib", package = package)
-    if(file.exists(bibfile_path)){
-        ## devtools development mode
-        bibs <- read.bib(file = bibfile_path) # TODO: drops ...; handle at least "encoding"?
-    }else{
-        ## not in development mode - keep the old call
-        ##    Strictly speaking, "REFERENCES.bib" does not exist for bult-in packages, but
-        ##    read.bib simulates it for them, see bibtex:::findBibFile().  So, if package is
-        ##    such a package we may be in development mode here, and the following call may
-        ##    fail.  BUT is this possible or even realistic scenario for such packages would
-        ##    be under developed with devtools::load_all(), etc.?
-        bibs <- read.bib(package = package, ...)
-    }
+        # 2018-10-03 now use get_bibentries() rather than call read.bib directly
+        #
+        # ## this simplifies the above change:
+        # bibfile_path <- system.file("inst", "REFERENCES.bib", package = package)
+        # if(file.exists(bibfile_path)){
+        #     ## devtools development mode
+        #     bibs <- read.bib(file = bibfile_path) # TODO: drops ...; handle at least "encoding"?
+        # }else{
+        #     ## not in development mode - keep the old call
+        #     ##    Strictly speaking, "REFERENCES.bib" does not exist for bult-in packages, but
+        #     ##    read.bib simulates it for them, see bibtex:::findBibFile().  So, if package is
+        #     ##    such a package we may be in development mode here, and the following call may
+        #     ##    fail.  BUT is this possible or even realistic scenario for such packages would
+        #     ##    be under developed with devtools::load_all(), etc.?
+        #     bibs <- read.bib(package = package, ...)
+        # }
+    bibs <- get_bibentries(package = package, ...)
 
       # 2018-03-10 commenting out
       #      since bibtex v. >= 0.4.0 has been required for a long time in DESCRIPTION
