@@ -1,6 +1,6 @@
 import(methods)
 
-importFrom(utils, bibentry, browseURL, capture.output, file.edit,
+importFrom(utils, bibentry, browseURL, capture.output, cite, file.edit,
            getAnywhere, getS3method, head, help,
            packageDescription, packageVersion, prompt, vignette)
 
@@ -114,4 +114,6 @@ export(
 , makeVignetteReference
 , vigbib
 , ereprompt
+, insert_citeOnly
+, insert_all_ref
 )

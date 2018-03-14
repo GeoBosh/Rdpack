@@ -243,9 +243,7 @@ Rdo_flatinsert <- function(rdo, val, pos, before = TRUE){                       
 
 ## TODO: auto-deduce 'package'?
 insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
-    if(is.null(package))
-        stop("argument 'package' must be provided")
-
+    if(is.null(package)) stop("argument 'package' must be provided")
     ## leave this to read.bib()
     ##     bibfile <- system.file(bibfile, package = package, mustWork = TRUE)
 
@@ -525,4 +523,122 @@ makeVignetteReference <- function(package, vig = 1, verbose = TRUE,
         cat("\n")
     }
     res
+}
+
+## 2018-03-13 new
+insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
+                            bibpunct = NULL, ...) { # bibfile = "REFERENCES.bib"
+    if(is.null(package))
+        stop("argument 'package' must be provided")
+
+    if(length(keys) > 1)
+        stop("`keys' must be a character string")
+
+    textual <- grepl(";textual$", keys)
+    if(textual)
+        keys <- gsub(";textual$", "", keys)
+
+    if(grepl("[^a-zA-Z.0-9]", package)){
+        delims <- gsub("[a-zA-Z.0-9]", "", package)
+        ch <- substr(delims, 1, 1)
+        wrk <- strsplit(package, ch, fixed = TRUE)[[1]] # note: [[1]]
+        package <- wrk[1]
+        if(length(wrk) > 1){
+            if(nchar(wrk[2]) > 1 || nchar(wrk[2]) == 1  && wrk[2] != " ")
+                before <- wrk[2]
+            if(length(wrk) > 2 && (nchar(wrk[3]) > 1 || nchar(wrk[3]) == 1  && wrk[3] != " "))
+                after <- wrk[3]
+        }
+    }
+
+    bibs <- get_bibentries(package = package, ...)
+
+    ## This wouldn't work since roxygen2 will change it to citation
+    ##    TODO: check
+    ## if(substr(keys, 1, 1) == "["){ # rmarkdown syntax (actually roxygen2?)
+    ##     keys <- substr(keys, 2, nchar(keys) - 1) # drop "[" and the closing "]"
+    ##     splitkeys <- strsplit(keys, ";", fixed = TRUE)[[1]] # note: [[1]]
+    ##
+    ##
+    ##
+    ## }
+
+    if(is.null(bibpunct))
+        text <- cite(keys, bibs, textual = textual, before = before, after = after)
+    else{
+        bibpunct0 = c("(", ")", ";", "a", "", ",")
+        if(length(bibpunct) < length(bibpunct0))
+            bibpunct <- c(bibpunct, bibpunct0[-seq_len(length(bibpunct))])
+        ind <- which(is.na(bibpunct))
+        if(length(ind) > 0)
+            bibpunct[ind] <- bibpunct0[ind]
+
+        text <- cite(keys, bibs, textual = textual, before = before, after = after,
+                     bibpunct = bibpunct)
+    }
+
+    toRd(text)
+}
+
+insert_all_ref <- function(refs){
+    if(is.null(refs) || nrow(refs) == 0)
+        ## Returning the empty string is probably preferable but 'R CMD check' does not see
+        ## that the references are empty in this case (although the help system see this and
+        ## drops the section "references". To avoid confusing the user, print some
+        ## informative text.
+        return("There are no references for Rd macro \\verb{\\insertAllCites} on this help page.")
+
+    all.keys <- list()
+    for(i in 1:nrow(refs)){
+        keys <- unlist(strsplit(refs[i, 1], ","))
+        package <- refs[i, 2]
+
+        ## TODO: these things need to be synchronised with the citation functions!!!
+        textual <- grepl(";textual$", keys)
+        if(any(textual))
+            keys <- gsub(";textual$", "", keys)
+
+        if(is.null(all.keys[[package]]))
+            all.keys[[package]] <- keys
+        else
+            all.keys[[package]] <- c(all.keys[[package]], keys)
+    }
+    bibs <- NULL
+    for(package in names(all.keys)){
+        be <- get_bibentries(package = package)
+        cur <- unique(all.keys[[package]])
+        if(all(cur != "*")){
+            # be <- be[cur]
+
+            be <- tryCatch(be[cur],
+                           warning = function(c) {
+                               if(grepl("subscript out of bounds", c$message)){
+                                   ## tell the user the offending key.
+                                   ## s <- paste("possibly non-existing key '", key, "'")
+                                   c$message <- paste0(c$message, " (", paste(cur, collapse = " "), ")")
+                               }
+                               warning(c)
+                               cat("\nWARNING:  '", cur,
+                                             "' from package '", package, "' - ",
+                                             ".\n")
+                               return(be[cur])
+                           })
+
+
+
+
+
+
+        }
+
+        if(is.null(bibs))
+            bibs <- be
+        else
+            bibs <- c(bibs, be) # TODO: duplicate keys in different packages?
+
+    }
+
+    bibs <- sort(bibs)
+    res <- sapply(bibs, function(x) toRd(x))
+    paste0(res, collapse = "\n\n")
 }

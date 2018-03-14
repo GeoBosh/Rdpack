@@ -1,6 +1,7 @@
 \name{insert_ref}
 \alias{insert_ref}
 \alias{insertRef}
+\alias{insert_citeOnly}
 \title{Insert bibtex references in Rd and roxygen2 documentation}
 \description{
 
@@ -77,7 +78,7 @@ insert_ref(key, package = NULL, ...)
 
   A roxygen2 documentation chunk might look like this:
   \preformatted{
-    #' \@references
+    #' @references
     #' \\insertRef{Rpack:bibtex}{Rdpack}
     #'
     #' \\insertRef{R}{bibtex}
@@ -98,6 +99,82 @@ insert_ref(key, package = NULL, ...)
   % \emph{no need} to depend/import/suggest package \verb{"Rdpack"}, it
   % only needs to be installed on your machine.
 
+
+  From version 0.6-1 of \pkg{Rdpack}, additional Rd macros are
+  available for citations.  They can be used in Rd and
+  roxygen2 documentation.
+
+  \code{\\insertCite{key}{package}} cites the key and records it for
+  use by \code{\\insertAllCited}, see below. \code{key} can contain
+  more keys separated by commas.
+  
+  \code{\\insertCite{key}{package}}
+
+  \insertCite{parseRd,Rpack:bibtex}{Rdpack}
+
+  \insertCite{Rpack:bibtex}{Rdpack}
+
+  The macro \code{\\insertNoCite{key}{package}} records one or more
+  references for \code{\\insertAllCited} but does not cite it. Setting
+  \code{key} to \code{*} will include all references from the
+  specified package.
+
+
+  \insertNoCite{R}{bibtex}
+
+  \insertNoCite{*}{utils}
+
+  \code{\\insertAllCited} inserts all references cited with
+  \code{\\insertCite} or \code{\\insertNoCite}. Inserting this macro
+  in the references section will keep it up to date automatically. 
+  The Rd section may look something like:
+  \preformatted{
+    \\insertAllCited
+  }
+  or in roxygen2, the references chunk might look like this:
+  \preformatted{
+    #' @references
+    #'     \\insertAllCited
+  }
+
+  \code{\\insertCiteOnly{key}{package}} is similar to
+  \code{\\insertCite} but does not include the key in the list of
+  references for \code{\\insertAllCited}.
+
+  By default the citations are parenthesised
+  \insertCite{parseRd}{Rdpack}.  To get textual citations, like
+  \insertCite{parseRd;textual}{Rdpack}, put the string \code{;textual}
+  at the end of the key. The references in the last two sentences were
+  produced with \code{\\insertCite{parseRd}{Rdpack}} and
+  \code{\\insertCite{parseRd;textual}{Rdpack}}, respectively.
+
+  Several citations can be done simultaneously, as in
+  \preformatted{
+    \insertCiteOnly{parseRd,Rpack:bibtex}{Rdpack}
+    \insertCiteOnly{parseRd,Rpack:bibtex;textual}{Rdpack}
+  }
+  Provision to add prefixes and suffixes is also envisaged but is currently under testing and  not documented. 
+  \insertCiteOnly{Rpack:bibtex}{Rdpack}
+  \insertCiteOnly{parseRd,Rpack:bibtex}{Rdpack}
+
+  \insertCiteOnly{Rpack:bibtex;textual}{Rdpack}
+
+  \insertCiteOnly{parseRd,Rpack:bibtex;textual}{Rdpack}
+
+  \insertCiteOnly{parseRd,Rpack:bibtex;textual}{Rdpack/see also}
+
+  \insertCiteOnly{parseRd,Rpack:bibtex;textual}{Rdpack/see also/Chapter 3}
+
+  \insertCiteOnly{parseRd,Rpack:bibtex;textual}{Rdpack//Chapter 3}
+
+  \insertCiteOnly{parseRd,Rpack:bibtex;textual}{Rdpack//, Chapter 3}
+
+
+  \insertCite{parseRd,Rpack:bibtex}{Rdpack}
+
+  \insertCite{Rpack:bibtex}{Rdpack}
+
+
 }
 \value{
   for \code{insert_ref}, a character string
@@ -106,6 +183,10 @@ insert_ref(key, package = NULL, ...)
   \insertRef{Rpack:bibtex}{Rdpack}
 
   \insertRef{R}{bibtex}
+
+  All:
+
+     \insertAllCited
 }
 \author{Georgi N. Boshnakov}
 \seealso{
