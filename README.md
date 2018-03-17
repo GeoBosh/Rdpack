@@ -7,23 +7,23 @@ and `roxygen2` comments; and other convenience functions for references.
 
 # Table of Contents
 
-1.  [Installing Rdpack](#orgae7733f)
-2.  [Inserting Bibtex references](#org2e4e450)
-    1.  [Preparation](#orgaf20b4b)
-    2.  [Inserting the references](#org930229a)
-    3.  [Inserting citations](#orgfe0ae36)
-    4.  [Development using \*devtools"](#org6557000)
-3.  [Using Rdpack::reprompt()](#org632e5d3)
-    1.  [What it does](#org0217085)
-    2.  [Reprompt and open in an editor](#org3c99b8d)
-4.  [Viewing Rd files](#orge67e5b8)
+1.  [Installing Rdpack](#org8feb529)
+2.  [Inserting Bibtex references](#org6d7b5a3)
+    1.  [Preparation](#org99096b0)
+    2.  [Inserting the references](#org723386d)
+    3.  [Inserting citations](#org51b2a3a)
+    4.  [Development using \*devtools"](#org82dfb72)
+3.  [Using Rdpack::reprompt()](#org8e4abe8)
+    1.  [What it does](#org9b21ecc)
+    2.  [Reprompt and open in an editor](#org5d9ac56)
+4.  [Viewing Rd files](#orgfb5fc10)
 
 
-<a id="orgae7733f"></a>
+<a id="org8feb529"></a>
 
 # Installing Rdpack
 
-The latest stable version is on CRAN. 
+The latest stable version is on [CRAN](https://cran.r-project.org/package=Rdpack). 
 
     install_packages("Rdpack")
 
@@ -33,7 +33,7 @@ You can also install the development version of `Rdpack` from Github:
     install_github("GeoBosh/Rdpack")
 
 
-<a id="org2e4e450"></a>
+<a id="org6d7b5a3"></a>
 
 # Inserting Bibtex references
 
@@ -44,7 +44,7 @@ the `DESCRIPTION` file of the package needs to be amended, see below the full
 details. 
 
 
-<a id="orgaf20b4b"></a>
+<a id="org99096b0"></a>
 
 ## Preparation
 
@@ -75,7 +75,7 @@ enumerated below in somewhat more detail, see also the vignette
     put the BibTeX references in it.
 
 
-<a id="org930229a"></a>
+<a id="org723386d"></a>
 
 ## Inserting the references
 
@@ -119,7 +119,7 @@ For further details see the vignette at
     vignette("Inserting_bibtex_references", package = "Rdpack")
 
 
-<a id="orgfe0ae36"></a>
+<a id="org51b2a3a"></a>
 
 ## Inserting citations
 
@@ -190,7 +190,7 @@ produces:
 references for `\insertAllCited`.
 
 
-<a id="org6557000"></a>
+<a id="org82dfb72"></a>
 
 ## Development using \*devtools"
 
@@ -217,12 +217,12 @@ processing a source Rd file in the development directory of the package and that
 the call to `parse_Rd` specifies only the file.
 
 
-<a id="org632e5d3"></a>
+<a id="org8e4abe8"></a>
 
 # Using Rdpack::reprompt()
 
 
-<a id="org0217085"></a>
+<a id="org9b21ecc"></a>
 
 ## What it does
 
@@ -249,7 +249,7 @@ but it alerts the user to remove aliases, methods, and descriptions of arguments
 that have been removed. 
 
 
-<a id="org3c99b8d"></a>
+<a id="org5d9ac56"></a>
 
 ## Reprompt and open in an editor
 
@@ -272,7 +272,7 @@ Elisp code), for example to be invoked on the currently edited file. Such a
 function and example key binding can be found at [georgisemacs](https://github.com/GeoBosh/georgisemacs).
 
 
-<a id="orge67e5b8"></a>
+<a id="orgfb5fc10"></a>
 
 # Viewing Rd files
 
