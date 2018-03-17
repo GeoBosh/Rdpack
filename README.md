@@ -7,19 +7,19 @@ and `roxygen2` comments; and other convenience functions for references.
 
 # Table of Contents
 
-1.  [Installing Rdpack](#org42aa8e8)
-2.  [Inserting Bibtex references](#org45c5439)
-    1.  [Preparation](#orgb421037)
-    2.  [Inserting the references](#orgf67f89c)
-    3.  [Inserting citations](#orgc682c3c)
-    4.  [Development using \*devtools"](#org034ab70)
-3.  [Using Rdpack::reprompt()](#org423006f)
-    1.  [What it does](#orgbadab95)
-    2.  [Reprompt and open in an editor](#orgb734f38)
-4.  [Viewing Rd files](#orge20c6fe)
+1.  [Installing Rdpack](#orgae7733f)
+2.  [Inserting Bibtex references](#org2e4e450)
+    1.  [Preparation](#orgaf20b4b)
+    2.  [Inserting the references](#org930229a)
+    3.  [Inserting citations](#orgfe0ae36)
+    4.  [Development using \*devtools"](#org6557000)
+3.  [Using Rdpack::reprompt()](#org632e5d3)
+    1.  [What it does](#org0217085)
+    2.  [Reprompt and open in an editor](#org3c99b8d)
+4.  [Viewing Rd files](#orge67e5b8)
 
 
-<a id="org42aa8e8"></a>
+<a id="orgae7733f"></a>
 
 # Installing Rdpack
 
@@ -33,7 +33,7 @@ You can also install the development version of `Rdpack` from Github:
     install_github("GeoBosh/Rdpack")
 
 
-<a id="org45c5439"></a>
+<a id="org2e4e450"></a>
 
 # Inserting Bibtex references
 
@@ -44,7 +44,7 @@ the `DESCRIPTION` file of the package needs to be amended, see below the full
 details. 
 
 
-<a id="orgb421037"></a>
+<a id="orgaf20b4b"></a>
 
 ## Preparation
 
@@ -75,7 +75,7 @@ enumerated below in somewhat more detail, see also the vignette
     put the BibTeX references in it.
 
 
-<a id="orgf67f89c"></a>
+<a id="org930229a"></a>
 
 ## Inserting the references
 
@@ -119,7 +119,7 @@ For further details see the vignette at
     vignette("Inserting_bibtex_references", package = "Rdpack")
 
 
-<a id="orgc682c3c"></a>
+<a id="orgfe0ae36"></a>
 
 ## Inserting citations
 
@@ -159,27 +159,21 @@ record the specified references for inclusion by `\insertAllCited`.
 in the references section will keep it up to date automatically. 
 The Rd section may look something like:
 
-\begin{verbatim}
     \insertAllCited
-\end{verbatim}
 
 or, in roxygen2, the references chunk might look like this:
 
-\begin{verbatim}
     #' @references
     #'     \insertAllCited
-\end{verbatim}
 
 To mix the citations with other text, such as \`\`see also'' and
 \`\`chapter 3'', write the list of keys as a free text, starting
 it with the symbol `@` and prefixing each key with it. 
 The `@` symbol will not appear in the output. For example, the following code
 
-\begin{verbatim}
-  \insertCite{@see also @parseRd and @Rpack:bibtex}{Rdpack}
-  \insertCite{@see also @parseRd; @Rpack:bibtex}{Rdpack}
-  \insertCite{@see also @parseRd and @Rpack:bibtex;textual}{Rdpack}
-\end{verbatim}
+    \insertCite{@see also @parseRd and @Rpack:bibtex}{Rdpack}
+    \insertCite{@see also @parseRd; @Rpack:bibtex}{Rdpack}
+    \insertCite{@see also @parseRd and @Rpack:bibtex;textual}{Rdpack}
 
 produces:
 
@@ -196,7 +190,7 @@ produces:
 references for `\insertAllCited`.
 
 
-<a id="org034ab70"></a>
+<a id="org6557000"></a>
 
 ## Development using \*devtools"
 
@@ -223,12 +217,12 @@ processing a source Rd file in the development directory of the package and that
 the call to `parse_Rd` specifies only the file.
 
 
-<a id="org423006f"></a>
+<a id="org632e5d3"></a>
 
 # Using Rdpack::reprompt()
 
 
-<a id="orgbadab95"></a>
+<a id="org0217085"></a>
 
 ## What it does
 
@@ -255,7 +249,7 @@ but it alerts the user to remove aliases, methods, and descriptions of arguments
 that have been removed. 
 
 
-<a id="orgb734f38"></a>
+<a id="org3c99b8d"></a>
 
 ## Reprompt and open in an editor
 
@@ -278,7 +272,7 @@ Elisp code), for example to be invoked on the currently edited file. Such a
 function and example key binding can be found at [georgisemacs](https://github.com/GeoBosh/georgisemacs).
 
 
-<a id="orge20c6fe"></a>
+<a id="orge67e5b8"></a>
 
 # Viewing Rd files
 

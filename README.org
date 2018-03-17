@@ -166,24 +166,24 @@ src_R[:exports results :results value raw]{insert_citeOnly("Rpack:bibtex", "Rdpa
   =\insertCite= or =\insertNoCite=. Putting this macro
   in the references section will keep it up to date automatically. 
   The Rd section may look something like:
-\begin{verbatim}
+#+BEGIN_EXAMPLE
     \insertAllCited
-\end{verbatim}
+#+END_EXAMPLE
   or, in roxygen2, the references chunk might look like this:
-\begin{verbatim}
+#+BEGIN_EXAMPLE
     #' @references
     #'     \insertAllCited
-\end{verbatim}
+#+END_EXAMPLE
 
 To mix the citations with other text, such as ``see also'' and
 ``chapter 3'', write the list of keys as a free text, starting
 it with the symbol =@= and prefixing each key with it. 
 The =@= symbol will not appear in the output. For example, the following code
-\begin{verbatim}
+#+BEGIN_EXAMPLE
   \insertCite{@see also @parseRd and @Rpack:bibtex}{Rdpack}
   \insertCite{@see also @parseRd; @Rpack:bibtex}{Rdpack}
   \insertCite{@see also @parseRd and @Rpack:bibtex;textual}{Rdpack}
-\end{verbatim}
+#+END_EXAMPLE
 produces:
 
   src_R[:exports results :results value raw]{insert_citeOnly("@see also @parseRd and @Rpack:bibtex", "Rdpack")} 
