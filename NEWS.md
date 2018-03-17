@@ -31,15 +31,15 @@
 
    - `insert_ref()` and Rd macro `\insertRef` should now work ok in the presence
      of percent encoded symbols in URL field of a BibTeX entry.  Closes issue
-     "Unexpected END_OF_INPUT error (URL parsing?)", see (Rdpack issue
-     3)[https://github.com/GeoBosh/Rdpack/issues/3], raised by
-     (jdnewmil)[https://github.com/jdnewmil].
+     "Unexpected END_OF_INPUT error (URL parsing?)", see 
+	 [Rdpack issue 3](https://github.com/GeoBosh/Rdpack/issues/3), raised by
+     [jdnewmil](https://github.com/jdnewmil).
 
    - `get_bibentries()` now takes care of percent encoded symbols in URLs.  It
      now returns an object from class "bibentryRd", which inherits from
      "bibentry" but has its own print method which escapes or unescapes the
      percent signs in URLs depending on the requested output style. This was
-     also reported by by (jdnewmil)[https://github.com/jdnewmil] in issue#3
+     also reported by by [jdnewmil](https://github.com/jdnewmil) in issue#3
      referenced above.
 
    - `get_bibentries()` now tries to load the `bib` file from the development
@@ -70,7 +70,7 @@
      amended the information in it.
 
    - README.* now get links to
-     (georgisemacs)[https://github.com/GeoBosh/georgisemacs] for an emacs
+     [georgisemacs](https://github.com/GeoBosh/georgisemacs) for an emacs
      function to `reprompt()` the Rd file at point.
 
    - `viewRd()` now works also when the file is from a package under devtools'
