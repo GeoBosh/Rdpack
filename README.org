@@ -1,3 +1,4 @@
+#+PROPERTY: header-args:R   :cache yes :session readme-r :results value :exports both
 #+OPTIONS: toc:nil
 
 Rdpack provides functions for manipulation of R documentation objects, including
@@ -11,16 +12,18 @@ and =roxygen2= comments; and other convenience functions for references.
 * Installing Rdpack
 
 The latest stable version is on CRAN. 
-#+BEGIN_SRC R
+#+BEGIN_EXAMPLE
 install_packages("Rdpack")
-#+END_SRC
+#+END_EXAMPLE
+
 
 You can also install the development version of =Rdpack= from Github:
 
-#+BEGIN_SRC R
+#+BEGIN_EXAMPLE
 library(devtools)
 install_github("GeoBosh/Rdpack")
-#+END_SRC
+#+END_EXAMPLE
+
 
 
 * Inserting Bibtex references
@@ -51,13 +54,18 @@ enumerated below in somewhat more detail, see also the vignette
    line. Similarly for field "Imports".
 
 2. Add the following line to file "NAMESPACE":
-   #+BEGIN_SRC R
+   #+BEGIN_EXAMPLE
    importFrom(Rdpack,reprompt)
-   #+END_SRC
+   #+END_EXAMPLE
+
+   #+RESULTS:
+
    The equivalent line for =roxygen2= is 
-   #+BEGIN_SRC R
+   #+BEGIN_EXAMPLE
    #' @importFrom Rdpack reprompt
-   #+END_SRC
+   #+END_EXAMPLE
+
+   #+RESULTS:
 
 3. Create file =REFERENCES.bib= in subdirectory =inst/= of your package and
    put the BibTeX references in it.
@@ -68,21 +76,27 @@ enumerated below in somewhat more detail, see also the vignette
 
 Once the steps outlined above are done, references can be inserted in the
 documentation as
-#+BEGIN_SRC R
+#+BEGIN_EXAMPLE
 \insertRef{key}{package}
-#+END_SRC
+#+END_EXAMPLE
+
+#+RESULTS:
+
 where =key= is the bibtex key of the reference and =package= is your package.
 This works in =Rd= files and in =roxygen= documentation chunks.
 
 Usually references are put in section =references=. In an =Rd= file this might look
 something like:
-#+BEGIN_SRC R
+#+BEGIN_EXAMPLE
 \references{
 \insertRef{Rdpack:bibtex}{Rdpack}
 
 \insertRef{R}{bibtex}
 }
-#+END_SRC
+#+END_EXAMPLE
+
+#+RESULTS:
+
 The equivalent =roxygen2= documentation chunk would be:
 #+BEGIN_SRC R
 #' @references
@@ -90,6 +104,8 @@ The equivalent =roxygen2= documentation chunk would be:
 #'
 #' \insertRef{R}{bibtex}
 #+END_SRC
+
+#+RESULTS[eef4a14bfdf18513f7ccc2b1068c87d294b87130]:
 
 The first line above inserts the reference with key =Rpack:bibtex= in Rdpack's
 REFERENCES.bib. The second line inserts the reference labeled =R= in file
@@ -103,11 +119,86 @@ packages to not copy the same refences to each of their own packages.
  
 For further details see the vignette at
 [[https://cran.r-project.org/package=Rdpack][=Inserting_bibtex_references=]], or open it from =R=:
-#+BEGIN_SRC R
+#+BEGIN_EXAMPLE
 vignette("Inserting_bibtex_references", package = "Rdpack")
-#+END_SRC
+#+END_EXAMPLE
+
+#+RESULTS:
 
 # ---------
+
+
+** Inserting citations
+
+  From version 0.6-1 of "Rdpack", additional Rd macros are
+  available for citations.  They can be used in both Rd and
+  roxygen2 documentation.
+
+  =\insertCite{key}{package}= cites =key= and records it for
+  use by =\insertAllCited=, see below. =key= can contain
+  more keys separated by commas.
+
+ =\insertCite{parseRd,Rpack:bibtex}{Rdpack}= produces 
+ src_R[:exports results :results value raw]{insert_citeOnly("parseRd,Rpack:bibtex", "Rdpack")}
+and 
+ =\insertCite{Rpack:bibtex}{Rdpack}=         gives
+src_R[:exports results :results value raw]{insert_citeOnly("Rpack:bibtex", "Rdpack")}
+
+
+  By default the citations are parenthesised =\insertCite{parseRd}{Rdpack}= produces
+  src_R[:exports results :results value raw]{insert_citeOnly("parseRd", "Rdpack")}.  To get textual citations, like
+  src_R[:exports results :results value raw]{insert_citeOnly("parseRd;textual", "Rdpack")}  put the string ={;textual}= at the end
+  of the key. The references in the last two sentences would be produced with
+  =\insertCite{parseRd}{Rdpack}= and =\insertCite{parseRd;textual}{Rdpack}=,
+  respectively.  This also works with several citations, e.g.
+
+  =\insertCite{parseRd,Rpack:bibtex;textual}{Rdpack}= produces:
+  src_R[:exports results :results value raw]{insert_citeOnly("parseRd,Rpack:bibtex;textual", "Rdpack")}.
+
+  The macro =\insertNoCite{key}{package}= records one or more
+  references for =\insertAllCited= but does not cite it. Setting
+  =key= to =*= will include all references from the
+  specified package. For example, 
+  =\insertNoCite{R}{bibtex}=  and  =\insertNoCite{*}{utils}=
+  record the specified references for inclusion by =\insertAllCited=. 
+
+  =\insertAllCited= inserts all references cited with
+  =\insertCite= or =\insertNoCite=. Putting this macro
+  in the references section will keep it up to date automatically. 
+  The Rd section may look something like:
+\begin{verbatim}
+    \insertAllCited
+\end{verbatim}
+  or, in roxygen2, the references chunk might look like this:
+\begin{verbatim}
+    #' @references
+    #'     \insertAllCited
+\end{verbatim}
+
+To mix the citations with other text, such as ``see also'' and
+``chapter 3'', write the list of keys as a free text, starting
+it with the symbol =@= and prefixing each key with it. 
+The =@= symbol will not appear in the output. For example, the following code
+\begin{verbatim}
+  \insertCite{@see also @parseRd and @Rpack:bibtex}{Rdpack}
+  \insertCite{@see also @parseRd; @Rpack:bibtex}{Rdpack}
+  \insertCite{@see also @parseRd and @Rpack:bibtex;textual}{Rdpack}
+\end{verbatim}
+produces:
+
+  src_R[:exports results :results value raw]{insert_citeOnly("@see also @parseRd and @Rpack:bibtex", "Rdpack")} 
+
+  src_R[:exports results :results value raw]{insert_citeOnly("@see also @parseRd; @Rpack:bibtex", "Rdpack")} 
+
+  src_R[:exports results :results value raw]{insert_citeOnly("@see also @parseRd and @Rpack:bibtex;textual", "Rdpack")}
+
+---
+
+=\insertCiteOnly{key}{package}= is as
+=\insertCite= but does not include the key in the list of
+references for =\insertAllCited=.
+
+
 
 ** Development using *devtools"
 
@@ -132,6 +223,9 @@ documentation in the installed directory) but doesn't tell =parse_Rd= where to
 look for additional macros. Indeed, the message above shows that the error is in
 processing a source Rd file in the development directory of the package and that
 the call to =parse_Rd= specifies only the file.
+
+
+
 
 * Using Rdpack::reprompt()
 
@@ -186,14 +280,20 @@ function and example key binding can be found at [[https://github.com/GeoBosh/ge
 
 A function, =viewRd()= to view Rd files in the source directory of a package was
 introduced in version 0.4-23 of =Rdpack=. A typical user call would look something like:
-#+BEGIN_SRC R
+#+BEGIN_EXAMPLE
 Rdpack::viewRd("./man/filename.Rd")
-#+END_SRC
+#+END_EXAMPLE
+
+#+RESULTS:
+
 By default the requested help page is shown in text format. To open the page in a browser,
 set argument 'type' to "html":
-#+BEGIN_SRC R
+#+BEGIN_EXAMPLE
     Rdpack::viewRd("./man/filename.Rd", type = "html")
-#+END_SRC
+#+END_EXAMPLE
+
+#+RESULTS:
+
 Users of 'devtools' can use =viewRd= in place of =help()= to view rendered Rd sources.
 This should work also in development mode
 on any platform (e.g. RStudio, Emacs/ESS, Rgui).
@@ -202,4 +302,10 @@ on any platform (e.g. RStudio, Emacs/ESS, Rgui).
 # and a few others, which are then rendered by =R='s tools.)
 
  
+
+
+
+
+
+
 

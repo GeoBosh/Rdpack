@@ -79,7 +79,7 @@ Package \pkg{Rdpack} provides a straightforward way to insert BibTeX references 
 documentation of an R package, using the RdMacros feature introduced in R~3.2.0. It
 works for `roxygen2' documentation, as well.
 
-This vignette is part of package Rdpack, version~\Sexpr{pd$Version}.
+This vignette is part of package Rdpack, version~\Sexpr{pd$Version}. %$
 }
 
 \Keywords{bibliographic references, Rd, bibtex, \proglang{R}}
@@ -166,6 +166,83 @@ A roxygen2 documentation chunk might look like this:
 % 2017-08-04 commented out,
 % The references are processed when the package is built. So, there is \emph{no need} to
 % depend/import/suggest package \verb+"Rdpack"+, it only needs to be installed on your machine.
+
+
+\section{Inserting citations}
+\label{sec:inserting-citations}
+
+  From version 0.6-1 of \pkg{Rdpack}, additional Rd macros are
+  available for citations.  They can be used in both Rd and
+  roxygen2 documentation.
+
+  \verb+\insertCite{key}{package}+ cites the key and records it for
+  use by \verb+\insertAllCited+, see below. \code{key} can contain
+  more keys separated by commas.
+
+  \begin{tabular}{l|l}
+    Documentation source & rendered \\ \hline
+     \verb+\insertCite{parseRd,Rpack:bibtex}{Rdpack}+ &
+\Sexpr{insert_citeOnly("parseRd,Rpack:bibtex", "Rdpack")}     \\
+     \verb+\insertCite{Rpack:bibtex}{Rdpack}+   & 
+            \Sexpr{insert_citeOnly("Rpack:bibtex", "Rdpack")} 
+    
+  \end{tabular}
+
+  \medskip{}
+
+  By default the citations are parenthesised \verb+\insertCite{parseRd}{Rdpack}+ produces
+  \Sexpr{insert_citeOnly("parseRd", "Rdpack")}.  To get textual citations, like
+  \Sexpr{insert_citeOnly("parseRd;textual", "Rdpack")} put the string \code{;textual} at the end
+  of the key. The references in the last two sentences would be produced with
+  \verb+\insertCite{parseRd}{Rdpack}+ and \verb+\insertCite{parseRd;textual}{Rdpack}+,
+  respectively.  This also works with several citations, e.g.
+  \verb+\insertCite{parseRd,Rpack:bibtex;textual}{Rdpack}+ produces:
+  \Sexpr{insert_citeOnly("parseRd,Rpack:bibtex;textual", "Rdpack")}.
+
+  The macro \verb+\insertNoCite{key}{package}+ records one or more
+  references for \verb+\insertAllCited+ but does not cite it. Setting
+  \verb+key+ to \verb+*+ will include all references from the
+  specified package. For example, 
+  \verb+\insertNoCite{R}{bibtex}+  and  \verb+\insertNoCite{*}{utils}+
+  record the specified references for inclusion by \verb+\insertAllCited+. 
+
+  \verb+\insertAllCited+ inserts all references cited with
+  \verb+\insertCite+ or \verb+\insertNoCite+. Putting this macro
+  in the references section will keep it up to date automatically. 
+  The Rd section may look something like:
+\begin{verbatim}
+    \insertAllCited
+\end{verbatim}
+  or, in roxygen2, the references chunk might look like this:
+\begin{verbatim}
+    #' @references
+    #'     \insertAllCited
+\end{verbatim}
+
+To mix the citations with other text, such as ``see also'' and
+``chapter 3'', write the list of keys as a free text, starting
+it with the symbol \verb+@+ and prefixing each key with it. 
+The \verb+@+ symbol will not appear in the output. For example, the following code
+\begin{verbatim}
+  \insertCite{@see also @parseRd and @Rpack:bibtex}{Rdpack}
+  \insertCite{@see also @parseRd; @Rpack:bibtex}{Rdpack}
+  \insertCite{@see also @parseRd and @Rpack:bibtex;textual}{Rdpack}
+\end{verbatim}
+produces:
+
+\begin{tabular}{l}
+  \Sexpr{insert_citeOnly("@see also @parseRd and @Rpack:bibtex", "Rdpack")} \\
+  \Sexpr{insert_citeOnly("@see also @parseRd; @Rpack:bibtex", "Rdpack")} \\
+  \Sexpr{insert_citeOnly("@see also @parseRd and @Rpack:bibtex;textual", "Rdpack")}
+\end{tabular}
+
+\bigskip{}
+
+\verb+\insertCiteOnly{key}{package}+ is as
+\verb+\insertCite+ but does not include the key in the list of
+references for \verb+\insertAllCited+.
+
+
 
 \section{Possible issues}
 \label{sec:possible-issues}

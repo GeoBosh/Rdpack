@@ -1,6 +1,6 @@
 Changes in Version 0.6-1
 
-   - - new Rd macros for citations, see below.
+   - new Rd macros for citations, see below.
 
    - new Rd macro \insertCite inserts citation(s) for one or more keys and
      records the keys for \insertAllCited (see below).

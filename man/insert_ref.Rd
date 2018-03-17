@@ -107,25 +107,33 @@ insert_ref(key, package = NULL, ...)
   \code{\\insertCite{key}{package}} cites the key and records it for
   use by \code{\\insertAllCited}, see below. \code{key} can contain
   more keys separated by commas.
-  
-  \code{\\insertCite{key}{package}}
 
-  \insertCite{parseRd,Rpack:bibtex}{Rdpack}
+  \tabular{ll}{
+     \code{\\insertCite{parseRd,Rpack:bibtex}{Rdpack}} \tab \insertCite{parseRd,Rpack:bibtex}{Rdpack}     \cr
+     \code{\\insertCite{Rpack:bibtex}{Rdpack}}   \tab \insertCite{Rpack:bibtex}{Rdpack} 
+  }
 
-  \insertCite{Rpack:bibtex}{Rdpack}
+
+  By default the citations are parenthesised
+  \insertCite{parseRd}{Rdpack}.  To get textual citations, like
+  \insertCite{parseRd;textual}{Rdpack}, put the string \code{;textual}
+  at the end of the key. The references in the last two sentences were
+  produced with \code{\\insertCite{parseRd}{Rdpack}} and
+  \code{\\insertCite{parseRd;textual}{Rdpack}}, respectively.
+  This also works with several citations, e.g.
+  \cr
+    \code{\\insertCite{parseRd,Rpack:bibtex;textual}{Rdpack}}
+  produces: \insertCite{parseRd,Rpack:bibtex;textual}{Rdpack}.
 
   The macro \code{\\insertNoCite{key}{package}} records one or more
   references for \code{\\insertAllCited} but does not cite it. Setting
   \code{key} to \code{*} will include all references from the
-  specified package.
-
-
-  \insertNoCite{R}{bibtex}
-
-  \insertNoCite{*}{utils}
+  specified package. For example, 
+  \code{\\insertNoCite{R}{bibtex}}  and  \code{\\insertNoCite{*}{utils}}
+  record the specified references for inclusion by \code{\\insertAllCited}. 
 
   \code{\\insertAllCited} inserts all references cited with
-  \code{\\insertCite} or \code{\\insertNoCite}. Inserting this macro
+  \code{\\insertCite} or \code{\\insertNoCite}. Putting this macro
   in the references section will keep it up to date automatically. 
   The Rd section may look something like:
   \preformatted{
@@ -137,42 +145,40 @@ insert_ref(key, package = NULL, ...)
     #'     \\insertAllCited
   }
 
-  \code{\\insertCiteOnly{key}{package}} is similar to
-  \code{\\insertCite} but does not include the key in the list of
-  references for \code{\\insertAllCited}.
+To mix the citations with other text, such as \sQuote{see also} and
+\sQuote{chapter 3}, write the list of keys as a free text, starting
+it with the symbol \code{@} and prefixing each key with it. 
+The \code{@} symbol will not appear in the output. For example, the following code
+\preformatted{
+  \insertCite{@see also @parseRd and @Rpack:bibtex}{Rdpack}
 
-  By default the citations are parenthesised
-  \insertCite{parseRd}{Rdpack}.  To get textual citations, like
-  \insertCite{parseRd;textual}{Rdpack}, put the string \code{;textual}
-  at the end of the key. The references in the last two sentences were
-  produced with \code{\\insertCite{parseRd}{Rdpack}} and
-  \code{\\insertCite{parseRd;textual}{Rdpack}}, respectively.
+  \insertCite{@see also @parseRd; @Rpack:bibtex}{Rdpack}
 
-  Several citations can be done simultaneously, as in
-  \preformatted{
-    \insertCiteOnly{parseRd,Rpack:bibtex}{Rdpack}
-    \insertCiteOnly{parseRd,Rpack:bibtex;textual}{Rdpack}
-  }
-  Provision to add prefixes and suffixes is also envisaged but is currently under testing and  not documented. 
-  \insertCiteOnly{Rpack:bibtex}{Rdpack}
-  \insertCiteOnly{parseRd,Rpack:bibtex}{Rdpack}
+  \insertCite{@see also @parseRd and @Rpack:bibtex;textual}{Rdpack}
+}
+produces:
 
-  \insertCiteOnly{Rpack:bibtex;textual}{Rdpack}
+\tabular{l}{
+  \insertCiteOnly{@see also @parseRd and @Rpack:bibtex}{Rdpack} \cr
+  \insertCiteOnly{@see also @parseRd; @Rpack:bibtex}{Rdpack} \cr
+  \insertCiteOnly{@see also @parseRd and @Rpack:bibtex;textual}{Rdpack}
+}
 
-  \insertCiteOnly{parseRd,Rpack:bibtex;textual}{Rdpack}
-
-  \insertCiteOnly{parseRd,Rpack:bibtex;textual}{Rdpack/see also}
-
-  \insertCiteOnly{parseRd,Rpack:bibtex;textual}{Rdpack/see also/Chapter 3}
-
-  \insertCiteOnly{parseRd,Rpack:bibtex;textual}{Rdpack//Chapter 3}
-
-  \insertCiteOnly{parseRd,Rpack:bibtex;textual}{Rdpack//, Chapter 3}
+\code{\\insertCiteOnly{key}{package}} is as
+\code{\\insertCite} but does not include the key in the list of
+references for \code{\\insertAllCited}.
 
 
-  \insertCite{parseRd,Rpack:bibtex}{Rdpack}
 
-  \insertCite{Rpack:bibtex}{Rdpack}
+
+% Provision to add prefixes and suffixes is also envisaged but is currently under testing and  not documented. 
+%   \insertCiteOnly{parseRd,Rpack:bibtex;textual}{Rdpack/see also}
+% 
+%   \insertCiteOnly{parseRd,Rpack:bibtex;textual}{Rdpack/see also/Chapter 3}
+% 
+%   \insertCiteOnly{parseRd,Rpack:bibtex;textual}{Rdpack//Chapter 3}
+% 
+%   \insertCiteOnly{parseRd,Rpack:bibtex;textual}{Rdpack//, Chapter 3}
 
 
 }

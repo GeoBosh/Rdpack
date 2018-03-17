@@ -7,18 +7,19 @@ and `roxygen2` comments; and other convenience functions for references.
 
 # Table of Contents
 
-1.  [Installing Rdpack](#orge21c4ad)
-2.  [Inserting Bibtex references](#org30d1ac5)
-    1.  [Preparation](#org26aa95e)
-    2.  [Inserting the references](#org5a98d98)
-    3.  [Development using \*devtools"](#org93bb5fa)
-3.  [Using Rdpack::reprompt()](#org7ba9c76)
-    1.  [What it does](#org86ade17)
-    2.  [Reprompt and open in an editor](#orgd3b6de9)
-4.  [Viewing Rd files](#orgb9fe731)
+1.  [Installing Rdpack](#org42aa8e8)
+2.  [Inserting Bibtex references](#org45c5439)
+    1.  [Preparation](#orgb421037)
+    2.  [Inserting the references](#orgf67f89c)
+    3.  [Inserting citations](#orgc682c3c)
+    4.  [Development using \*devtools"](#org034ab70)
+3.  [Using Rdpack::reprompt()](#org423006f)
+    1.  [What it does](#orgbadab95)
+    2.  [Reprompt and open in an editor](#orgb734f38)
+4.  [Viewing Rd files](#orge20c6fe)
 
 
-<a id="orge21c4ad"></a>
+<a id="org42aa8e8"></a>
 
 # Installing Rdpack
 
@@ -32,7 +33,7 @@ You can also install the development version of `Rdpack` from Github:
     install_github("GeoBosh/Rdpack")
 
 
-<a id="org30d1ac5"></a>
+<a id="org45c5439"></a>
 
 # Inserting Bibtex references
 
@@ -43,7 +44,7 @@ the `DESCRIPTION` file of the package needs to be amended, see below the full
 details. 
 
 
-<a id="org26aa95e"></a>
+<a id="orgb421037"></a>
 
 ## Preparation
 
@@ -74,7 +75,7 @@ enumerated below in somewhat more detail, see also the vignette
     put the BibTeX references in it.
 
 
-<a id="org5a98d98"></a>
+<a id="orgf67f89c"></a>
 
 ## Inserting the references
 
@@ -118,7 +119,84 @@ For further details see the vignette at
     vignette("Inserting_bibtex_references", package = "Rdpack")
 
 
-<a id="org93bb5fa"></a>
+<a id="orgc682c3c"></a>
+
+## Inserting citations
+
+From version 0.6-1 of "Rdpack", additional Rd macros are
+available for citations.  They can be used in both Rd and
+roxygen2 documentation.
+
+`\insertCite{key}{package}` cites `key` and records it for
+use by `\insertAllCited`, see below. `key` can contain
+more keys separated by commas.
+
+ `\insertCite{parseRd,Rpack:bibtex}{Rdpack}` produces 
+ (Murdoch 2010; Francois 2014)
+and 
+ `\insertCite{Rpack:bibtex}{Rdpack}`         gives
+(Francois 2014)
+
+By default the citations are parenthesised `\insertCite{parseRd}{Rdpack}` produces
+(Murdoch 2010).  To get textual citations, like
+Murdoch (2010)  put the string `{;textual}` at the end
+of the key. The references in the last two sentences would be produced with
+`\insertCite{parseRd}{Rdpack}` and `\insertCite{parseRd;textual}{Rdpack}`,
+respectively.  This also works with several citations, e.g.
+
+`\insertCite{parseRd,Rpack:bibtex;textual}{Rdpack}` produces:
+Murdoch (2010); Francois (2014).
+
+The macro `\insertNoCite{key}{package}` records one or more
+references for `\insertAllCited` but does not cite it. Setting
+`key` to `*` will include all references from the
+specified package. For example, 
+`\insertNoCite{R}{bibtex}`  and  `\insertNoCite{*}{utils}`
+record the specified references for inclusion by `\insertAllCited`. 
+
+`\insertAllCited` inserts all references cited with
+`\insertCite` or `\insertNoCite`. Putting this macro
+in the references section will keep it up to date automatically. 
+The Rd section may look something like:
+
+\begin{verbatim}
+    \insertAllCited
+\end{verbatim}
+
+or, in roxygen2, the references chunk might look like this:
+
+\begin{verbatim}
+    #' @references
+    #'     \insertAllCited
+\end{verbatim}
+
+To mix the citations with other text, such as \`\`see also'' and
+\`\`chapter 3'', write the list of keys as a free text, starting
+it with the symbol `@` and prefixing each key with it. 
+The `@` symbol will not appear in the output. For example, the following code
+
+\begin{verbatim}
+  \insertCite{@see also @parseRd and @Rpack:bibtex}{Rdpack}
+  \insertCite{@see also @parseRd; @Rpack:bibtex}{Rdpack}
+  \insertCite{@see also @parseRd and @Rpack:bibtex;textual}{Rdpack}
+\end{verbatim}
+
+produces:
+
+(see also Murdoch 2010 and Francois 2014) 
+
+(see also Murdoch 2010; Francois 2014) 
+
+(see also Murdoch (2010) and Francois (2014))
+
+&#x2014;
+
+`\insertCiteOnly{key}{package}` is as
+`\insertCite` but does not include the key in the list of
+references for `\insertAllCited`.
+
+
+<a id="org034ab70"></a>
 
 ## Development using \*devtools"
 
@@ -145,12 +223,12 @@ processing a source Rd file in the development directory of the package and that
 the call to `parse_Rd` specifies only the file.
 
 
-<a id="org7ba9c76"></a>
+<a id="org423006f"></a>
 
 # Using Rdpack::reprompt()
 
 
-<a id="org86ade17"></a>
+<a id="orgbadab95"></a>
 
 ## What it does
 
@@ -177,7 +255,7 @@ but it alerts the user to remove aliases, methods, and descriptions of arguments
 that have been removed. 
 
 
-<a id="orgd3b6de9"></a>
+<a id="orgb734f38"></a>
 
 ## Reprompt and open in an editor
 
@@ -200,7 +278,7 @@ Elisp code), for example to be invoked on the currently edited file. Such a
 function and example key binding can be found at [georgisemacs](https://github.com/GeoBosh/georgisemacs).
 
 
-<a id="orgb9fe731"></a>
+<a id="orge20c6fe"></a>
 
 # Viewing Rd files
 

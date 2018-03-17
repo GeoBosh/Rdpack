@@ -563,18 +563,58 @@ insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
     ##
     ## }
 
-    if(is.null(bibpunct))
-        text <- cite(keys, bibs, textual = textual, before = before, after = after)
-    else{
-        bibpunct0 = c("(", ")", ";", "a", "", ",")
-        if(length(bibpunct) < length(bibpunct0))
-            bibpunct <- c(bibpunct, bibpunct0[-seq_len(length(bibpunct))])
-        ind <- which(is.na(bibpunct))
-        if(length(ind) > 0)
-            bibpunct[ind] <- bibpunct0[ind]
+    refch <-  "@"
+    refchpat <- paste0("^[", refch, "]")
+    if(grepl(refchpat, keys)){
+        ch <- substr(keys, 1, 1)
+        keys <- substr(keys, 2, nchar(keys)) # drop refch
 
-        text <- cite(keys, bibs, textual = textual, before = before, after = after,
-                     bibpunct = bibpunct)
+        refpat <- paste0("(", refch, "[^;,[:space:]]+)")  #  "(@[^;,[:space:]]+)"
+        m <- gregexpr(refpat, keys)
+        allkeys <- regmatches(keys, m)[[1]] # note: [[1]]
+        allkeys <- gsub("@", "", allkeys)
+
+        ## for now ignore bibpunct in this case
+        if(!textual)
+            bibpunct <- c("", "", ";", "a", "", ",")
+        else{
+            bibpunct0 = c("(", ")", ";", "a", "", ",")
+            if(!is.null(bibpunct)){
+                if(length(bibpunct) < length(bibpunct0))
+                    bibpunct <- c(bibpunct, bibpunct0[-seq_len(length(bibpunct))])
+                ind <- which(is.na(bibpunct))
+                if(length(ind) > 0)
+                    bibpunct[ind] <- bibpunct0[ind]
+            }else
+                bibpunct <- bibpunct0
+        }
+            # if(length(bibpunct) < length(bibpunct0))
+            #     bibpunct <- c(bibpunct, bibpunct0[-seq_len(length(bibpunct))])
+            # ind <- which(is.na(bibpunct))
+            # if(length(ind) > 0)
+            #     bibpunct[ind] <- bibpunct0[ind]
+        refs <- sapply(allkeys,
+                       function(key)
+                           cite(key, bibs, textual = textual, bibpunct = bibpunct)
+                       )
+        ## replace keys with citations
+        text <- keys
+        regmatches(text, m) <- list(refs)
+        text <- paste0("(", text, ")")
+    }else{
+        if(is.null(bibpunct))
+            text <- cite(keys, bibs, textual = textual, before = before, after = after)
+        else{
+            bibpunct0 = c("(", ")", ";", "a", "", ",")
+            if(length(bibpunct) < length(bibpunct0))
+                bibpunct <- c(bibpunct, bibpunct0[-seq_len(length(bibpunct))])
+            ind <- which(is.na(bibpunct))
+            if(length(ind) > 0)
+                bibpunct[ind] <- bibpunct0[ind]
+
+            text <- cite(keys, bibs, textual = textual, before = before, after = after,
+                         bibpunct = bibpunct)
+        }
     }
 
     toRd(text)
@@ -590,13 +630,27 @@ insert_all_ref <- function(refs){
 
     all.keys <- list()
     for(i in 1:nrow(refs)){
-        keys <- unlist(strsplit(refs[i, 1], ","))
-        package <- refs[i, 2]
+        keys <- refs[i, 1]
 
-        ## TODO: these things need to be synchronised with the citation functions!!!
         textual <- grepl(";textual$", keys)
         if(any(textual))
-            keys <- gsub(";textual$", "", keys)
+            keys <- gsub(";textual", "", keys)
+
+        refch <-  "@"
+        refchpat <- paste0("^[", refch, "]")
+        if(grepl(refchpat, keys)){
+            ch <- substr(keys, 1, 1)
+            keys <- substr(keys, 2, nchar(keys)) # drop refch
+
+            refpat <- paste0("(", refch, "[^;,[:space:]]+)")  #  "(@[^;,[:space:]]+)"
+            m <- gregexpr(refpat, keys)
+            keys <- regmatches(keys, m)[[1]] # note: [[1]]
+            keys <- gsub("@", "", keys)
+        }else{
+             keys <- unlist(strsplit(keys, ","))
+        }
+
+        package <- refs[i, 2]
 
         if(is.null(all.keys[[package]]))
             all.keys[[package]] <- keys
