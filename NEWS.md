@@ -1,18 +1,22 @@
-Changes in Version 0.6-1
+# Changes in Version 0.6-1
 
-   - new Rd macros for citations, see below.
+- new Rd macros for citations
 
-   - new Rd macro \insertCite inserts citation(s) for one or more keys and
-     records the keys for \insertAllCited (see below).
+   - `\insertCite` inserts citation(s) for one or more keys and records the keys for
+     `\insertAllCited` (see below).
 	   
-   - new Rd macro \insertCiteOnly is similar to \insertCite but does not record
-     the keys.
+   - `\insertCiteOnly` is similar to `\insertCite` but does not record the keys.
      
-   - \insertNoCite records the keys but does not produce a citation.
+   - `\insertNoCite` records the keys but does not produce a citation.
 
-   - \insertAllCited prints a bibliography including all references recorded by
-     \insertAllCited and \insertNoCite.
+   - `\insertAllCited` prints a bibliography including all references recorded by
+     `\insertAllCited` and `\insertNoCite`.
 
+- new entries in this file will use markdown syntax.
+
+# Older versions of Rdpack 
+
+This file was in plain text (not markdown)
 
 Changes in Version 0.5-7
 
