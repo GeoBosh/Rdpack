@@ -17,7 +17,7 @@ install_packages("Rdpack")
 #+END_EXAMPLE
 
 
-You can also install the [[https://cran.r-project.org/package=Rdpack][development version]] of =Rdpack= from Github:
+You can also install the [[https://github.com/GeoBosh/Rdpack][development version]] of =Rdpack= from Github:
 #+BEGIN_EXAMPLE
 library(devtools)
 install_github("GeoBosh/Rdpack")
