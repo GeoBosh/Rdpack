@@ -11,14 +11,13 @@ and =roxygen2= comments; and other convenience functions for references.
 
 * Installing Rdpack
 
-The latest stable version is on [[https://cran.r-project.org/package=Rdpack][CRAN]]. 
+The [[https://cran.r-project.org/package=Rdpack][latest stable version]] is on CRAN. 
 #+BEGIN_EXAMPLE
 install_packages("Rdpack")
 #+END_EXAMPLE
 
 
-You can also install the development version of =Rdpack= from Github:
-
+You can also install the [[https://cran.r-project.org/package=Rdpack][development version]] of =Rdpack= from Github:
 #+BEGIN_EXAMPLE
 library(devtools)
 install_github("GeoBosh/Rdpack")

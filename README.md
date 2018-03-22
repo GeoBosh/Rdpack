@@ -7,33 +7,33 @@ and `roxygen2` comments; and other convenience functions for references.
 
 # Table of Contents
 
-1.  [Installing Rdpack](#org8feb529)
-2.  [Inserting Bibtex references](#org6d7b5a3)
-    1.  [Preparation](#org99096b0)
-    2.  [Inserting the references](#org723386d)
-    3.  [Inserting citations](#org51b2a3a)
-    4.  [Development using \*devtools"](#org82dfb72)
-3.  [Using Rdpack::reprompt()](#org8e4abe8)
-    1.  [What it does](#org9b21ecc)
-    2.  [Reprompt and open in an editor](#org5d9ac56)
-4.  [Viewing Rd files](#orgfb5fc10)
+1.  [Installing Rdpack](#org4c3bb38)
+2.  [Inserting Bibtex references](#orgc3a1dfc)
+    1.  [Preparation](#org08a4d4b)
+    2.  [Inserting the references](#orgb2292d3)
+    3.  [Inserting citations](#org85fc540)
+    4.  [Development using \*devtools"](#orga7363b0)
+3.  [Using Rdpack::reprompt()](#org2260229)
+    1.  [What it does](#org555e873)
+    2.  [Reprompt and open in an editor](#orgea1ec51)
+4.  [Viewing Rd files](#org3899e3a)
 
 
-<a id="org8feb529"></a>
+<a id="org4c3bb38"></a>
 
 # Installing Rdpack
 
-The latest stable version is on [CRAN](https://cran.r-project.org/package=Rdpack). 
+The [latest stable version](https://cran.r-project.org/package=Rdpack) is on CRAN. 
 
     install_packages("Rdpack")
 
-You can also install the development version of `Rdpack` from Github:
+You can also install the [development version](https://cran.r-project.org/package=Rdpack) of `Rdpack` from Github:
 
     library(devtools)
     install_github("GeoBosh/Rdpack")
 
 
-<a id="org6d7b5a3"></a>
+<a id="orgc3a1dfc"></a>
 
 # Inserting Bibtex references
 
@@ -44,7 +44,7 @@ the `DESCRIPTION` file of the package needs to be amended, see below the full
 details. 
 
 
-<a id="org99096b0"></a>
+<a id="org08a4d4b"></a>
 
 ## Preparation
 
@@ -75,7 +75,7 @@ enumerated below in somewhat more detail, see also the vignette
     put the BibTeX references in it.
 
 
-<a id="org723386d"></a>
+<a id="orgb2292d3"></a>
 
 ## Inserting the references
 
@@ -119,7 +119,7 @@ For further details see the vignette at
     vignette("Inserting_bibtex_references", package = "Rdpack")
 
 
-<a id="org51b2a3a"></a>
+<a id="org85fc540"></a>
 
 ## Inserting citations
 
@@ -190,7 +190,7 @@ produces:
 references for `\insertAllCited`.
 
 
-<a id="org82dfb72"></a>
+<a id="orga7363b0"></a>
 
 ## Development using \*devtools"
 
@@ -217,12 +217,12 @@ processing a source Rd file in the development directory of the package and that
 the call to `parse_Rd` specifies only the file.
 
 
-<a id="org8e4abe8"></a>
+<a id="org2260229"></a>
 
 # Using Rdpack::reprompt()
 
 
-<a id="org9b21ecc"></a>
+<a id="org555e873"></a>
 
 ## What it does
 
@@ -249,7 +249,7 @@ but it alerts the user to remove aliases, methods, and descriptions of arguments
 that have been removed. 
 
 
-<a id="org5d9ac56"></a>
+<a id="orgea1ec51"></a>
 
 ## Reprompt and open in an editor
 
@@ -272,7 +272,7 @@ Elisp code), for example to be invoked on the currently edited file. Such a
 function and example key binding can be found at [georgisemacs](https://github.com/GeoBosh/georgisemacs).
 
 
-<a id="orgfb5fc10"></a>
+<a id="org3899e3a"></a>
 
 # Viewing Rd files
 
