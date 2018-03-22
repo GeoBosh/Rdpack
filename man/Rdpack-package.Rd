@@ -85,23 +85,37 @@
   above, the version and other stuff that can be determined
   automatically) is kept automatically up to date.
   
-  Another set of functions is for management of bibliographic
-  references.
+  Another set of functions is for management of bibliographic references
+  in Rd files.  The old approach based on function \code{\link{rebib}}
+  is fully functional, see below, but the recommended way to insert
+  references and citations is based on the Rd macros.
 
-  The recommended way to insert references is based on the Rd macro 
-  \code{\\insertRef}. The older approach based on function
-  \code{\link{rebib}} is also fully functional, see below. 
+  The provided Rd macros are fully portable and, in particular, work in
+  Rd files and roxygen2 comments, see \code{\link{insertRef}} and the
+  vignette for details and examples.
 
-  References are most easily inserted with the help of the macro
-  \code{\\insertRef{key}{package}}.  The Bibtex source for the
-  references is file "REFERENCES.bib" located in the root of the package
-  installation directory.  This facility is fully portable and, in
-  particular, works in Rd files and roxygen comments, see
-  \code{\link{insertRef}} and the vignette for details and examples. The
-  function \code{\link{viewRd}} renders a documentation file in a source
-  package and displays it as text or in a browser. Convenience functions
-  \code{\link{makeVignetteReference}} and \code{\link{vigbib}} generate
-  Bibtex entries for vignettes.
+  The Bibtex source for the references and citations produced by the Rd
+  macros is file "REFERENCES.bib", which should be located in the root
+  of the package installation directory.
+
+  The Rd macro \code{\\insertRef} takes two arguments: a BibTeX key and
+  the name of a package. Thus, \code{\\insertRef{key}{package}} inserts
+  the reference whose key is \code{key} from "REFERENCES.bib" of the
+  specified package (almost always the one being documented).
+
+  With Rdpack version 0.6-1 or later, citations can be done with Rd
+  macro \code{\\insertCite}, which inserts citation(s) for one or more
+  BibTeX keys and records the keys.  \code{\\insertCiteOnly} is similar
+  to \code{\\insertCite} but does not record the
+  keys. \code{\\insertNoCite} records the keys but does not produce
+  citations. \code{\\insertAllCited} creates a bibliography including
+  all references recorded by \code{\\insertAllCited} and
+  \code{\\insertNoCite}.
+
+  The function \code{\link{viewRd}} renders a documentation file in a
+  source package and displays it as text or in a browser. Convenience
+  functions \code{\link{makeVignetteReference}} and \code{\link{vigbib}}
+  generate Bibtex entries for vignettes.
 
   
   In the alternative approach, the function \code{\link{rebib}} updates
@@ -134,7 +148,7 @@
   \code{\link{list_Rd}} is similar to \code{\link{c_Rd}} but provides
   additional features for convenient assembling of Rd objects.
 
-  \code{\link{parse_Rdpiece}} is technical function for parsing pieces
+  \code{\link{parse_Rdpiece}} is a technical function for parsing pieces
   of Rd source text but it has an argument to return formatted help text
   which may be useful when one wishes to show it to the user.
 

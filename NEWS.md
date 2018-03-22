@@ -14,6 +14,8 @@
 
 - new entries in this file will use markdown syntax.
 
+- updaties to the documentation.
+
 # Changes in Version 0.5-7
 
    - `get_bibentries()` gets a new argument "everywhere". When is is TRUE, the

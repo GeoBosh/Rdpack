@@ -44,7 +44,7 @@ get_sig_text(rdo, package = NULL)
 \note{
   todo: It would be better to call promptMethods() to get the signatures
   but in version R-2.13.x I had trouble with argument `where' (could not
-  figure out how to use it to restrict to funtions from a package; also,
+  figure out how to use it to restrict to functions from a package; also,
   promptMethods() seemed to call the deprecated function
   getMethods()). Check how these things stand in current versions of \R,
   there may be no problem any more (checked, in 2.14-0 it is the same).

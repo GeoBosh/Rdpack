@@ -53,7 +53,8 @@ inspect_Rdclass(rdo)
   given for arguments in the "\verb{\arguments}" section that are not
   present in at least one usage entry. \code{inspect_Rdfun} understands
   the syntax for S3 methods and S4 methods used in "usage" sections, as
-  well.
+  well. The S4 methods may also be in a section as produced by
+  \code{promptMethods}. 
 
   \code{inspect_Rdmethods} checks and updates documentation of an S4
   generic function.

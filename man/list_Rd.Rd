@@ -21,11 +21,12 @@ list_Rd(..., Rd_tag = NULL, Rd_class = FALSE)
   tagged by previous processing. Character string arguments are
   converted to the appropriate Rd pieces.
 
-  Argument \code{...} may contain a mixtue of character vactors and Rd
+  Argument \code{...} may contain a mixture of character vactors and Rd
   pieces.
 }
 \value{
-  an Rd object or list with \verb{Rd_tag} attribute, as specified by the arguments.
+  an Rd object or list with \verb{Rd_tag} attribute, as specified by the
+  arguments.
 }
 
 \author{Georgi N. Boshnakov}

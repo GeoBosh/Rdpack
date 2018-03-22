@@ -22,8 +22,8 @@ rdo_top_tags
   \code{Rdo_piece_types} is a character vector giving the types of
   various (all possible?)  Rd macros.
 
-  These need to be updated if the specifications of the Rd format are
-  updated.
+  \strong{NOOTE:} These objects are hard coded and need to be updated if
+  the specifications of the Rd format are updated.
 
   todo: write functions that go through existing Rd documentation to
   discover missing or wrong items.

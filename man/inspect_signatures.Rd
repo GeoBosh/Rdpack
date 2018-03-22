@@ -31,8 +31,8 @@ inspect_signatures(rdo, package = NULL, sec = "Methods")
 
 \details{
 
-  Signatures in documentation of classes and methods are stored somewhat
-  differently. \code{inspect_signatures} inspects signatures in
+  Signatures in documentation of S4 classes and methods are stored
+  somewhat differently. \code{inspect_signatures} inspects signatures in
   documentation of methods of a function.  \code{inspect_clmethods}
   inspects signatures in documentation of a class.
 
@@ -45,7 +45,8 @@ inspect_signatures(rdo, package = NULL, sec = "Methods")
 
   If \code{rdo} documents methods that do not exist, a message inviting
   the user to remove them manually is printed but the offending entries
-  remain the object.
+  remain in the object.
+  At the time of writing, \verb{R CMD check} does not warn about this.
 
 }
 
