@@ -105,8 +105,6 @@ The equivalent =roxygen2= documentation chunk would be:
 #' \insertRef{R}{bibtex}
 #+END_SRC
 
-#+RESULTS[eef4a14bfdf18513f7ccc2b1068c87d294b87130]:
-
 The first line above inserts the reference with key =Rpack:bibtex= in Rdpack's
 REFERENCES.bib. The second line inserts the reference labeled =R= in file
 REFERENCES.bib from package =bibtex=. 
@@ -118,13 +116,11 @@ is when the other package is also yours - this allows authors of multiple
 packages to not copy the same refences to each of their own packages.
  
 For further details see the vignette 
-[[https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_bibtex_references.pdf][=Inserting_bibtex_references (development version)=]],
-[[https://cran.r-project.org/package=Rdpack][=Inserting_bibtex_references (on CRAN)=]], or open it sfrom =R=:
+[[https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_bibtex_references.pdf][=Inserting_bibtex_references (development version on github)=]]
+or open it from =R=:
 #+BEGIN_EXAMPLE
 vignette("Inserting_bibtex_references", package = "Rdpack")
 #+END_EXAMPLE
-
-#+RESULTS:
 
 # ---------
 
