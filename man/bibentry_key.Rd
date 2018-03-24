@@ -9,16 +9,22 @@ bibentry_key(x)
   \item{x}{a single bibentry element.}
 }
 \details{
+
+  2018-03-24: This function is deprecated (and not used in the package
+  for a long time).
+  
   This is a convenience function to get the "key" attribute of a
   reference represented by a bibentry element.
 
   There should be a better way to do this, I must be missing something
-  here.
+  here. (2018-03-24: indeed: \code{unlist(x$key)} or \code{x[[1]]$key},
+  was this available back then?)
 }
 \value{
   a character string
 }
 \author{Georgi N. Boshnakov}
 
-\keyword{ bibtex }
+\keyword{bibtex}
 \keyword{programming}
+\keyword{internal}
