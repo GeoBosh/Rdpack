@@ -71,7 +71,8 @@ enumerated below in somewhat more detail, see also the vignette
 
 # -------------
 
-** Inserting the references
+
+** Inserting references
 
 Once the steps outlined above are done, references can be inserted in the
 documentation as
@@ -116,8 +117,9 @@ released versions but is convenient during development. One relatively safe use
 is when the other package is also yours - this allows authors of multiple
 packages to not copy the same refences to each of their own packages.
  
-For further details see the vignette at
-[[https://cran.r-project.org/package=Rdpack][=Inserting_bibtex_references=]], or open it from =R=:
+For further details see the vignette 
+[[https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_bibtex_references.pdf][=Inserting_bibtex_references (development version)=]],
+[[https://cran.r-project.org/package=Rdpack][=Inserting_bibtex_references (on CRAN)=]], or open it sfrom =R=:
 #+BEGIN_EXAMPLE
 vignette("Inserting_bibtex_references", package = "Rdpack")
 #+END_EXAMPLE

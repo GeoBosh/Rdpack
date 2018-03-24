@@ -11,23 +11,27 @@
 ##
 ## not used anymore
 bibentry_key <- function(x){                                                     # 2013-03-29
-    .Deprecated(x[[1]]$key or "unlist(x$key)")
+    .Deprecated("x[[1]]$key or unlist(x$key)")
     attr(unclass(x[[1]][[1]])[[1]], "key")
 }
 
-get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib", everywhere = TRUE){
+get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib", url_only = FALSE){
 
-    if(is.null(package))
+    if(is.null(package)){
         fn <- file.path(..., bibfile)
-            # 2018-03-03 was:
-            #     else fn <- system.file(..., bibfile, package = package, mustWork=TRUE)
-    else if(file.exists(system.file("inst", bibfile, package = package)))
-        ## development mode in "devtools"
-        fn <- system.file("inst", ..., bibfile, package = package)
-    else{
-        fn <- system.file(..., bibfile, package = package)
-        if(length(fn) == 1  &&  fn == ""  &&  !is.null(package))
-            ## package "bibtex" emulates REFERENCES.bib for core R packages
+        ## check for existence of fn (and length(fn) == 1)? (but see below)
+    }else{
+        ## first check for development mode in "devtools"
+        ## TODO: currently finds it only if the current working directory
+        ##       is in the root of the package
+        fn <- if(file.exists(system.file("inst", ..., bibfile, package = package)))
+                  system.file("inst", ..., bibfile, package = package)
+              else
+                  system.file(..., bibfile, package = package)
+        
+        if(length(fn) == 1  &&  fn == "")
+            ## if system.file() didn't find the bib file, check if file package.bib is
+            ## provided by package "bibtex" (it is for core R packages, such as "base")
             fn <- system.file("bib", sprintf("%s.bib", package), package = "bibtex")
     }
 
@@ -38,26 +42,26 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib", ever
         stop("Couldn't find file ", file.path(..., bibfile),
              if(!is.null(package)) paste0(" in package ", package) )
 
+    res <- read.bib(file = fn)
 
-    ## 2018-02-14: TODO: this also needs adjustment to work in  development mode in RStudio,
-    ##             without this adjustment read.bib can't find REFERENCES.bib
-    ##             (see insert_ref())
-    res <- read.bib(file = fn, package = package)
-
-      # 2018-03-10 commenting out
-      #      since bibtex v. >= 0.4.0 has been required for a long time in DESCRIPTION
-      #
-      #    ## 2016-07-26 Now do this only for versions of  bibtex < '0.4.0'.
-      #    ##            From bibtex '0.4.0' read.bib() sets the names.
-      #    if(packageVersion("bibtex") < '0.4.0'){
-      #        names(res) <- sapply(1:length(res), function(x) bibentry_key(res[[x]][[1]]))
-      #    }
+         # 2018-03-10 commenting out
+         #      since bibtex v. >= 0.4.0 has been required for a long time in DESCRIPTION
+         #
+         #    ## 2016-07-26 Now do this only for versions of  bibtex < '0.4.0'.
+         #    ##            From bibtex '0.4.0' read.bib() sets the names.
+         #    if(packageVersion("bibtex") < '0.4.0'){
+         #        names(res) <- sapply(1:length(res), function(x) bibentry_key(res[[x]][[1]]))
+         #    }
 
     for(nam in names(res)){
+        ## unconditionaly recode %'s in filed URL
         if(!is.null(res[nam]$url))
             res[nam]$url <- gsub("([^\\])%", "\\1\\\\%", res[nam]$url)
 
-        if(everywhere){
+        if(url_only){  # process also other fields
+            ## TODO: currently all unescaped $'s in all fields are recoded;
+            ##       Maybe do it more selectively, e.g. only for %'s inside \url{},
+            ##       or matching something like http(s):// 
             fields <- names(unclass(res[nam])[[1]])
 
             unclassed <- unclass(res[nam])
@@ -75,7 +79,6 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib", ever
             }
         }
     }
-
 
     ## 2018-03-03 new:
     class(res) <- c("bibentryRd", class(res))
@@ -113,7 +116,6 @@ rebib <- function(infile, outfile, ...){                     # 2013-03-29
     rdo
 }
 
-
 inspect_Rdbib <- function(rdo, force = FALSE, ...){               # 2013-03-29
                    # 2013-12-08 was: pos <- Rdo_locate_predefined_section(rdo, "\\references")
     pos <- Rdo_which_tag_eq(rdo, "\\references")
@@ -122,7 +124,7 @@ inspect_Rdbib <- function(rdo, force = FALSE, ...){               # 2013-03-29
         stop(paste("Found", length(pos), "sections `references'.\n",
                    "There should be only one."
                    ))
-    else if(length(pos) == 0)  # no section "refeences".
+    else if(length(pos) == 0)  # no section "references".
         return(rdo)
 
     bibs <- get_bibentries(...)
@@ -246,97 +248,12 @@ Rdo_flatinsert <- function(rdo, val, pos, before = TRUE){                       
     res
 }
 
-
-## additions on 2016-07-24 and later (all code to the end of this file)
-
 ## TODO: auto-deduce 'package'?
 insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
-    if(is.null(package)) stop("argument 'package' must be provided")
-    ## leave this to read.bib()
-    ##     bibfile <- system.file(bibfile, package = package, mustWork = TRUE)
+    if(is.null(package)) 
+        stop("argument 'package' must be provided")
 
-    ## TODO: "names<-()" may change some keys since bibtex keys are not necessarilly R
-    ##       syntactic names.
-    ##
-    ## 2018-02-14: adjust to work in  development mode in RStudio,
-    ##             without this adjustment read.bib can't find REFERENCES.bib
-    ##
-    ## It would probably be more robust to use rstudioapi::isAvailable()
-    ##   but then "rstudioapi" woud have to be moved from "Suggests:" to "Imports:"
-    ##
-    ## TODO: actually need to check if the package is in development mode in RStudio
-    ##
-    ## Simplitying this:
-    ##   if(identical(.Platform$GUI, "RStudio")){
-    ##       ## TODO: take care for the case when bibfile contains path
-    ##       ##       and also that builtin packages are treated specially by read.bib
-    ##       bibfile_path <- system.file("inst", "REFERENCES.bib", package = package)
-    ##       if(!file.exists(bibfile_path))
-    ##           bibfile_path <- system.file("REFERENCES.bib", package = package)
-    ##       bibs <- read.bib(file = bibfile_path) # TODO: drops ...; handle at least "encoding"?
-    ##   }else{
-    ##       ## 2018-02-14 the above change is needed also when using devtools::load_all()
-    ##       ##            outside RStudio
-    ##       bibfile_path <- system.file("inst", "REFERENCES.bib", package = package)
-    ##       if(file.exists(bibfile_path)){
-    ##           ## devtools development mode
-    ##           bibs <- read.bib(file = bibfile_path) # TODO: drops ...; handle at least "encoding"?
-    ##       }else{
-    ##           ## not in development mode - keep the old call
-    ##           bibs <- read.bib(package = package, ...)
-    ##       }
-    ##   }
-
-        # 2018-10-03 now use get_bibentries() rather than call read.bib directly
-        #
-        # ## this simplifies the above change:
-        # bibfile_path <- system.file("inst", "REFERENCES.bib", package = package)
-        # if(file.exists(bibfile_path)){
-        #     ## devtools development mode
-        #     bibs <- read.bib(file = bibfile_path) # TODO: drops ...; handle at least "encoding"?
-        # }else{
-        #     ## not in development mode - keep the old call
-        #     ##    Strictly speaking, "REFERENCES.bib" does not exist for bult-in packages, but
-        #     ##    read.bib simulates it for them, see bibtex:::findBibFile().  So, if package is
-        #     ##    such a package we may be in development mode here, and the following call may
-        #     ##    fail.  BUT is this possible or even realistic scenario for such packages would
-        #     ##    be under developed with devtools::load_all(), etc.?
-        #     bibs <- read.bib(package = package, ...)
-        # }
     bibs <- get_bibentries(package = package, ...)
-
-      # 2018-03-10 commenting out
-      #      since bibtex v. >= 0.4.0 has been required for a long time in DESCRIPTION
-      #
-      # if(packageVersion("bibtex") < '0.4.0'){
-      #     names(bibs) <- sapply(1:length(bibs), function(x) bibentry_key(bibs[[x]][[1]]))
-      # }
-
-        # 2018-01-25: was:
-        #     wrk <- toRd(bibs[[key]]) # TODO: add styles? (doesn't seem feasible here)
-        # adding a check to give user more informative message (than 'key out of bounds')
-
-    ## Catch the warning only if length(key) == 1, since otherwise it would be better to process
-    ## the remaining keys anyway
-    ##
-    ## TODO: on the other hand, the function is documented to work for one key,
-    ##       maybe check this? Alternatively, document that more keys are acceptable.
-
-        # item <- if(length(key) == 1){
-        #             tryCatch(bibs[[key]],
-        #                      warning = function(c) {
-        #                          ## tell the user the offending key.
-        #                          s <- paste0("possibly non-existing key '", key, "'")
-        #                          c$message <- paste0(c$message, " (", s, ")")
-        #                          warning(c)
-        #                          res <- paste0("\nInserting reference '", key,
-        #                                        "' from package '", package, "' - ",
-        #                                        s, ".\n")
-        #                          return(res)
-        #                      })
-        #         }else{
-        #             bibs[[key]]
-        #         }
 
     if(length(key) == 1){
         item <- tryCatch(bibs[[key]],
@@ -353,12 +270,15 @@ insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
                              return(res)
                          })
 
-        ## 2018-03-01 Bug: Unexpected END_OF_INPUT error (URL parsing?) #3
-        ##     I don't know why toRd() doesn't do this...
-        ##
-        ## escape percents that are not preceded by backslash
-         if(inherits(item, "bibentry")  &&  !is.null(item$url))
-             item$url <- gsub("([^\\])%", "\\1\\\\%", item$url)
+            #     # 2018-03-01 Bug: Unexpected END_OF_INPUT error (URL parsing?) #3
+            #     #     I don't know why toRd() doesn't do this...
+            #     #
+            #     # escape percents that are not preceded by backslash
+            #     #  (the `if' is because in case of error above, item will be simply a string)
+            #
+            # Commenting out since get_bibentries() does it.
+            #     if(inherits(item, "bibentry")  &&  !is.null(item$url))
+            #         item$url <- gsub("([^\\])%", "\\1\\\\%", item$url)
 
         toRd(item) # TODO: add styles? (doesn't seem feasible here)
     }else{
@@ -378,7 +298,6 @@ insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
         paste0(paste(txt, collapse = "\n\n"), "\n")
     }
 }
-
 
 ## 2017-11-25 new
 ## see utils:::print.help_files_with_topic()
@@ -442,7 +361,6 @@ vigbib <- function(package, verbose = TRUE, ..., vig = NULL){
         print(res, style = "Bibtex")
     invisible(res)
 }
-
 
 makeVignetteReference <- function(package, vig = 1, verbose = TRUE,
                                   title, author, type = "pdf",
@@ -603,7 +521,8 @@ insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
             #     bibpunct[ind] <- bibpunct0[ind]
         refs <- sapply(allkeys,
                        function(key)
-                           cite(key, bibs, textual = textual, bibpunct = bibpunct)
+                           safe_cite(key, bibs, textual = textual, bibpunct = bibpunct,
+                                     from.package = package)
                        )
         ## replace keys with citations
         text <- keys
@@ -611,7 +530,8 @@ insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
         text <- paste0("(", text, ")")
     }else{
         if(is.null(bibpunct))
-            text <- cite(keys, bibs, textual = textual, before = before, after = after)
+            text <- safe_cite(keys, bibs, textual = textual, before = before, after = after
+                              , from.package = package)
         else{
             bibpunct0 = c("(", ")", ";", "a", "", ",")
             if(length(bibpunct) < length(bibpunct0))
@@ -620,12 +540,28 @@ insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
             if(length(ind) > 0)
                 bibpunct[ind] <- bibpunct0[ind]
 
-            text <- cite(keys, bibs, textual = textual, before = before, after = after,
-                         bibpunct = bibpunct)
+            text <- safe_cite(keys, bibs, textual = textual, before = before, after = after,
+                         bibpunct = bibpunct, from.package = package)
         }
     }
 
     toRd(text)
+}
+
+safe_cite <- function(keys, bib, ..., from.package = NULL){
+    wrk.keys <- unlist(strsplit(keys, ","))
+    if(!all(wrk.keys %in% names(bib))){
+        ok <- wrk.keys %in% names(bib)
+        miss.keys <- wrk.keys[!ok]
+        warning("possibly non-existing key(s)", 
+                if(!is.null(from.package))
+                    paste0(" in bib file from package '", from.package, "'"),
+                ":\n    ", paste(miss.keys, sep = ", "), "\n")
+
+        keys <- wrk.keys[ok]
+    }
+
+    cite(keys = keys, bib = bib, ...)
 }
 
 insert_all_ref <- function(refs){
@@ -670,8 +606,6 @@ insert_all_ref <- function(refs){
         be <- get_bibentries(package = package)
         cur <- unique(all.keys[[package]])
         if(all(cur != "*")){
-            # be <- be[cur]
-
             be <- tryCatch(be[cur],
                            warning = function(c) {
                                if(grepl("subscript out of bounds", c$message)){
@@ -681,23 +615,16 @@ insert_all_ref <- function(refs){
                                }
                                warning(c)
                                cat("\nWARNING:  '", cur,
-                                             "' from package '", package, "' - ",
-                                             ".\n")
+                                   "' from package '", package, "' - ",
+                                   ".\n")
                                return(be[cur])
                            })
-
-
-
-
-
-
         }
 
         if(is.null(bibs))
             bibs <- be
         else
             bibs <- c(bibs, be) # TODO: duplicate keys in different packages?
-
     }
 
     bibs <- sort(bibs)

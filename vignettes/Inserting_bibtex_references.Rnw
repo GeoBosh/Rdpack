@@ -126,6 +126,7 @@ The equivalent line for `roxygen2' is
   Create file \verb+REFERENCES.bib+ in  subdirectory \verb+inst/+ of your package
   and put the bibtex references in it.
 
+  
 \section{Inserting references in package documentation}
 \label{sec:insert-refer-docum}
 
@@ -146,8 +147,8 @@ See also the help pages \verb+?Rdpack::insertRef+ and \verb+?Rdpack::Rdpack-pack
 example, the help page \verb+?Rdpack::insertRef+ contains the following lines in section
 ``References'' of the Rd file:
 \begin{verbatim}
-\insertRef{Rpack:bibtex}{Rdpack}
-\insertRef{R}{bibtex}
+    \insertRef{Rpack:bibtex}{Rdpack}
+    \insertRef{R}{bibtex}
 \end{verbatim}
 The first line above inserts the reference labeled \verb+Rpack:bibtex+ in Rdpack's
 \verb+REFERENCES.bib+. The second line inserts the reference labeled \verb+R+ in file
@@ -155,10 +156,10 @@ The first line above inserts the reference labeled \verb+Rpack:bibtex+ in Rdpack
 
 A roxygen2 documentation chunk might look like this:
 \begin{verbatim}
-#' @references
-#' \insertRef{Rpack:bibtex}{Rdpack}
-#'
-#' \insertRef{R}{bibtex}
+    #' @references
+    #' \insertRef{Rpack:bibtex}{Rdpack}
+    #'
+    #' \insertRef{R}{bibtex}
 \end{verbatim}
 
 
@@ -171,66 +172,67 @@ A roxygen2 documentation chunk might look like this:
 \section{Inserting citations}
 \label{sec:inserting-citations}
 
-  From version 0.6-1 of \pkg{Rdpack}, additional Rd macros are
-  available for citations.  They can be used in both Rd and
-  roxygen2 documentation.
+From version 0.7 of \pkg{Rdpack}\footnote{Actually, they were introduced in the development
+  version 0.6-1, but 0.7 is the first version with them released on CRAN.}, additional Rd
+macros are available for citations.  They can be used in both Rd and roxygen2 documentation.
+If you are using these, it will be prudent to require at least this version of Rdpack in
+the ``Imports:'' directive in file DESCRIPTION: \verb+Rdpack (>= 0.7)+.
 
-  \verb+\insertCite{key}{package}+ cites the key and records it for
-  use by \verb+\insertAllCited+, see below. \code{key} can contain
-  more keys separated by commas.
+\subsection{Macros fof citations}
+\label{sec:macros-citations}
 
-  \begin{tabular}{l|l}
-    Documentation source & rendered \\ \hline
-     \verb+\insertCite{parseRd,Rpack:bibtex}{Rdpack}+ &
-\Sexpr{insert_citeOnly("parseRd,Rpack:bibtex", "Rdpack")}     \\
-     \verb+\insertCite{Rpack:bibtex}{Rdpack}+   & 
-            \Sexpr{insert_citeOnly("Rpack:bibtex", "Rdpack")} 
-    
-  \end{tabular}
+\verb+\insertCite{key}{package}+ cites the key and records it for use by
+\verb+\insertAllCited{}+, see below. \code{key} can contain more keys separated by commas.
+Here are some examples (on the left is
+the code in the documentation chunk, on the right the rendered citation):
 
-  \medskip{}
+\begin{center}
+\begin{tabular}{l|l}
+  Documentation source & rendered \\ \hline
+  \verb+\insertCite{parseRd}{Rdpack}+ &  
+            \Sexpr{insert_citeOnly("parseRd", "Rdpack")}     \\
+  \verb+\insertCite{Rpack:bibtex}{Rdpack}+   & 
+            \Sexpr{insert_citeOnly("Rpack:bibtex", "Rdpack")} \\
+  \verb+\insertCite{parseRd,Rpack:bibtex}{Rdpack}+ &
+            \Sexpr{insert_citeOnly("parseRd,Rpack:bibtex", "Rdpack")} 
+\end{tabular}
+\end{center}
 
-  By default the citations are parenthesised \verb+\insertCite{parseRd}{Rdpack}+ produces
-  \Sexpr{insert_citeOnly("parseRd", "Rdpack")}.  To get textual citations, like
-  \Sexpr{insert_citeOnly("parseRd;textual", "Rdpack")} put the string \code{;textual} at the end
-  of the key. The references in the last two sentences would be produced with
-  \verb+\insertCite{parseRd}{Rdpack}+ and \verb+\insertCite{parseRd;textual}{Rdpack}+,
-  respectively.  This also works with several citations, e.g.
-  \verb+\insertCite{parseRd,Rpack:bibtex;textual}{Rdpack}+ produces:
-  \Sexpr{insert_citeOnly("parseRd,Rpack:bibtex;textual", "Rdpack")}.
+By default the citations are parenthesised \verb+\insertCite{parseRd}{Rdpack}+ produces
+\Sexpr{insert_citeOnly("parseRd", "Rdpack")}, as in the examples above.  To get textual
+citations, like \Sexpr{insert_citeOnly("parseRd;textual", "Rdpack")} put the string
+\code{;textual} at the end of the key. Here are the examples from the table above, rendered
+as textual citations:
+\begin{center}
+\begin{tabular}{l|l}
+  Documentation source & rendered \\ \hline
+  \verb+\insertCite{parseRd;textual}{Rdpack}+ &  
+            \Sexpr{insert_citeOnly("parseRd;textual", "Rdpack")}     \\
+  \verb+\insertCite{Rpack:bibtex;textual}{Rdpack}+   & 
+            \Sexpr{insert_citeOnly("Rpack:bibtex;textual", "Rdpack")} \\
+  \verb+\insertCite{parseRd,Rpack:bibtex;textual}{Rdpack}+ &
+            \Sexpr{insert_citeOnly("parseRd,Rpack:bibtex;textual", "Rdpack")} 
+\end{tabular}
+\end{center}
+The last line in the tale demonstrates that this also works with several citations.
 
-  The macro \verb+\insertNoCite{key}{package}+ records one or more
-  references for \verb+\insertAllCited+ but does not cite it. Setting
-  \verb+key+ to \verb+*+ will include all references from the
-  specified package. For example, 
-  \verb+\insertNoCite{R}{bibtex}+  and  \verb+\insertNoCite{*}{utils}+
-  record the specified references for inclusion by \verb+\insertAllCited+. 
 
-  \verb+\insertAllCited+ inserts all references cited with
-  \verb+\insertCite+ or \verb+\insertNoCite+. Putting this macro
-  in the references section will keep it up to date automatically. 
-  The Rd section may look something like:
-\begin{verbatim}
-    \insertAllCited
-\end{verbatim}
-  or, in roxygen2, the references chunk might look like this:
-\begin{verbatim}
-    #' @references
-    #'     \insertAllCited
-\end{verbatim}
+The macro \verb+\insertNoCite{key}{package}+ records one or more references for
+\verb+\insertAllCited+ but does not cite it. Setting \verb+key+ to \verb+*+ will record all
+references from the specified package. For example, \verb+\insertNoCite{R}{bibtex}+ records
+the reference whose key is \verb+R+, while \verb+\insertNoCite{*}{utils}+ records all
+references from package ``utils'' for inclusion by \verb+\insertAllCited+.
 
-To mix the citations with other text, such as ``see also'' and
-``chapter 3'', write the list of keys as a free text, starting
-it with the symbol \verb+@+ and prefixing each key with it. 
-The \verb+@+ symbol will not appear in the output. For example, the following code
+To mix the citations with other text, such as ``see also'' and ``chapter 3'', write the list
+of keys as a free text, starting it with the symbol \verb+@+ and prefixing each key with it.
+The \verb+@+ symbol will not appear in the output. For example, the following code:
 \begin{verbatim}
   \insertCite{@see also @parseRd and @Rpack:bibtex}{Rdpack}
   \insertCite{@see also @parseRd; @Rpack:bibtex}{Rdpack}
   \insertCite{@see also @parseRd and @Rpack:bibtex;textual}{Rdpack}
 \end{verbatim}
 produces:
-
-\begin{tabular}{l}
+\begin{tabular}[t]{l}
   \Sexpr{insert_citeOnly("@see also @parseRd and @Rpack:bibtex", "Rdpack")} \\
   \Sexpr{insert_citeOnly("@see also @parseRd; @Rpack:bibtex", "Rdpack")} \\
   \Sexpr{insert_citeOnly("@see also @parseRd and @Rpack:bibtex;textual", "Rdpack")}
@@ -238,9 +240,25 @@ produces:
 
 \bigskip{}
 
-\verb+\insertCiteOnly{key}{package}+ is as
-\verb+\insertCite+ but does not include the key in the list of
-references for \verb+\insertAllCited+.
+\verb+\insertCiteOnly{key}{package}+ is as \verb+\insertCite+ but does not record the key 
+for the list of references assembled by \verb+\insertAllCited+.
+
+\subsection{Automatically generating lists of references}
+\label{sec:autom-gener-list}
+
+The macro \verb+\insertAllCited{}+ can be used to insert all references cited with
+\verb+\insertCite+ or \verb+\insertNoCite+. A natural place to put this macro is the
+references section.  The Rd section may look something like:
+\begin{verbatim}
+    \references{
+        \insertAllCited{}
+    }
+\end{verbatim}
+The analogous documentation chunk in roxygen2 might look like this:
+\begin{verbatim}
+    #' @references
+    #'     \insertAllCited{}
+\end{verbatim}
 
 
 
@@ -307,22 +325,22 @@ Users of 'devtools' can use \code{viewRd()} in place of \code{help()} to view Rd
   rendered by \pkg{R} tools.}.
 
 
-\section{Inserting references interactively}
-\label{sec:insert-refer-inter}
-
-It is possible to use the underlying R function to insert references interactively.
-For example,
-<<>>=
-library(Rdpack)
-cat(insert_ref("R", package = "bibtex"), sep ="\n")
-@
-
-I would put the (commented out) command on top of the above reference as a reminder where it
-came from:
-\begin{verbatim}
-% insert_ref("R", package = "bibtex"), sep ="\n")
-\end{verbatim}
-
-For a different approach, see the documentation of function \verb+{Rdpack::rebib()}+.
+% \section{Inserting references interactively}
+% \label{sec:insert-refer-inter}
+% 
+% It is possible to use the underlying R function to insert references interactively.
+% For example,
+% <<>>=
+% library(Rdpack)
+% cat(insert_ref("R", package = "bibtex"), sep ="\n")
+% @
+% 
+% I would put the (commented out) command on top of the above reference as a reminder where it
+% came from:
+% \begin{verbatim}
+% % insert_ref("R", package = "bibtex"), sep ="\n")
+% \end{verbatim}
+% 
+% For a different approach, see the documentation of function \verb+{Rdpack::rebib()}+.
 
 \end{document}

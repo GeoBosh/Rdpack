@@ -7,19 +7,19 @@ and `roxygen2` comments; and other convenience functions for references.
 
 # Table of Contents
 
-1.  [Installing Rdpack](#org044e7df)
-2.  [Inserting Bibtex references](#org1df9f9f)
-    1.  [Preparation](#orgc3e1de5)
-    2.  [Inserting the references](#orgd42df53)
-    3.  [Inserting citations](#orgb1750e7)
-    4.  [Development using \*devtools"](#orgb087ada)
-3.  [Using Rdpack::reprompt()](#org7131c39)
-    1.  [What it does](#orgcfdddc4)
-    2.  [Reprompt and open in an editor](#org4a1a33b)
-4.  [Viewing Rd files](#orgedea138)
+1.  [Installing Rdpack](#org4c5dd80)
+2.  [Inserting Bibtex references](#org50b9c7e)
+    1.  [Preparation](#org270d8c6)
+    2.  [Inserting references](#org3d9fc19)
+    3.  [Inserting citations](#org6a72eb9)
+    4.  [Development using \*devtools"](#org62afbb7)
+3.  [Using Rdpack::reprompt()](#org2cfbd57)
+    1.  [What it does](#orgb0a257f)
+    2.  [Reprompt and open in an editor](#org34deb53)
+4.  [Viewing Rd files](#org1019b66)
 
 
-<a id="org044e7df"></a>
+<a id="org4c5dd80"></a>
 
 # Installing Rdpack
 
@@ -33,7 +33,7 @@ You can also install the [development version](https://github.com/GeoBosh/Rdpack
     install_github("GeoBosh/Rdpack")
 
 
-<a id="org1df9f9f"></a>
+<a id="org50b9c7e"></a>
 
 # Inserting Bibtex references
 
@@ -44,7 +44,7 @@ the `DESCRIPTION` file of the package needs to be amended, see below the full
 details. 
 
 
-<a id="orgc3e1de5"></a>
+<a id="org270d8c6"></a>
 
 ## Preparation
 
@@ -75,9 +75,9 @@ enumerated below in somewhat more detail, see also the vignette
     put the BibTeX references in it.
 
 
-<a id="orgd42df53"></a>
+<a id="org3d9fc19"></a>
 
-## Inserting the references
+## Inserting references
 
 Once the steps outlined above are done, references can be inserted in the
 documentation as
@@ -113,13 +113,14 @@ released versions but is convenient during development. One relatively safe use
 is when the other package is also yours - this allows authors of multiple
 packages to not copy the same refences to each of their own packages.
 
-For further details see the vignette at
-[`Inserting_bibtex_references`](https://cran.r-project.org/package=Rdpack), or open it from `R`:
+For further details see the vignette 
+[`Inserting_bibtex_references (development version)`](https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_bibtex_references.pdf),
+[`Inserting_bibtex_references (on CRAN)`](https://cran.r-project.org/package=Rdpack), or open it sfrom `R`:
 
     vignette("Inserting_bibtex_references", package = "Rdpack")
 
 
-<a id="orgb1750e7"></a>
+<a id="org6a72eb9"></a>
 
 ## Inserting citations
 
@@ -190,7 +191,7 @@ produces:
 references for `\insertAllCited`.
 
 
-<a id="orgb087ada"></a>
+<a id="org62afbb7"></a>
 
 ## Development using \*devtools"
 
@@ -217,12 +218,12 @@ processing a source Rd file in the development directory of the package and that
 the call to `parse_Rd` specifies only the file.
 
 
-<a id="org7131c39"></a>
+<a id="org2cfbd57"></a>
 
 # Using Rdpack::reprompt()
 
 
-<a id="orgcfdddc4"></a>
+<a id="orgb0a257f"></a>
 
 ## What it does
 
@@ -249,7 +250,7 @@ but it alerts the user to remove aliases, methods, and descriptions of arguments
 that have been removed. 
 
 
-<a id="org4a1a33b"></a>
+<a id="org34deb53"></a>
 
 ## Reprompt and open in an editor
 
@@ -272,7 +273,7 @@ Elisp code), for example to be invoked on the currently edited file. Such a
 function and example key binding can be found at [georgisemacs](https://github.com/GeoBosh/georgisemacs).
 
 
-<a id="orgedea138"></a>
+<a id="org1019b66"></a>
 
 # Viewing Rd files
 
