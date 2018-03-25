@@ -453,12 +453,28 @@ makeVignetteReference <- function(package, vig = 1, verbose = TRUE,
 
 ## 2018-03-13 new
 insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
-                            bibpunct = NULL, ...) { # bibfile = "REFERENCES.bib"
+                            bibpunct = NULL, ..., 
+       cached_env = NULL, cite_only = FALSE, dont_cite = FALSE) { # bibfile = "REFERENCES.bib"
+
+    if(!is.null(cached_env)){
+        if(is.null(cached_env$refsmat))
+            cached_env$refsmat <- matrix(character(0), nrow = 0, ncol = 2)
+        if(is.null(cached_env$allbibs))
+            cached_env$allbibs <- list()
+    }
+
     if(is.null(package))
         stop("argument 'package' must be provided")
 
     if(length(keys) > 1)
         stop("`keys' must be a character string")
+
+    if(!cite_only)
+        cached_env$refsmat <- rbind(cached_env$refsmat, c(keys, package))
+
+    if(dont_cite)
+        return(character(0))
+
 
     textual <- grepl(";textual$", keys)
     if(textual)
@@ -477,76 +493,87 @@ insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
         }
     }
 
-    bibs <- get_bibentries(package = package, ...)
 
-    ## This wouldn't work since roxygen2 will change it to citation
-    ##    TODO: check
-    ## if(substr(keys, 1, 1) == "["){ # rmarkdown syntax (actually roxygen2?)
-    ##     keys <- substr(keys, 2, nchar(keys) - 1) # drop "[" and the closing "]"
-    ##     splitkeys <- strsplit(keys, ";", fixed = TRUE)[[1]] # note: [[1]]
-    ##
-    ##
-    ##
-    ## }
-
-    refch <-  "@"
-    refchpat <- paste0("^[", refch, "]")
-    if(grepl(refchpat, keys)){
-        ch <- substr(keys, 1, 1)
-        keys <- substr(keys, 2, nchar(keys)) # drop refch
-
-        refpat <- paste0("(", refch, "[^;,[:space:]]+)")  #  "(@[^;,[:space:]]+)"
-        m <- gregexpr(refpat, keys)
-        allkeys <- regmatches(keys, m)[[1]] # note: [[1]]
-        allkeys <- gsub("@", "", allkeys)
-
-        ## for now ignore bibpunct in this case
-        if(!textual)
-            bibpunct <- c("", "", ";", "a", "", ",")
-        else{
-            bibpunct0 = c("(", ")", ";", "a", "", ",")
-            if(!is.null(bibpunct)){
-                if(length(bibpunct) < length(bibpunct0))
-                    bibpunct <- c(bibpunct, bibpunct0[-seq_len(length(bibpunct))])
-                ind <- which(is.na(bibpunct))
-                if(length(ind) > 0)
-                    bibpunct[ind] <- bibpunct0[ind]
-            }else
-                bibpunct <- bibpunct0
-        }
-            # if(length(bibpunct) < length(bibpunct0))
-            #     bibpunct <- c(bibpunct, bibpunct0[-seq_len(length(bibpunct))])
-            # ind <- which(is.na(bibpunct))
-            # if(length(ind) > 0)
-            #     bibpunct[ind] <- bibpunct0[ind]
-        refs <- sapply(allkeys,
-                       function(key)
-                           safe_cite(key, bibs, textual = textual, bibpunct = bibpunct,
-                                     from.package = package)
-                       )
-        ## replace keys with citations
-        text <- keys
-        regmatches(text, m) <- list(refs)
-        text <- paste0("(", text, ")")
-    }else{
-        if(is.null(bibpunct))
-            text <- safe_cite(keys, bibs, textual = textual, before = before, after = after
-                              , from.package = package)
-        else{
-            bibpunct0 = c("(", ")", ";", "a", "", ",")
-            if(length(bibpunct) < length(bibpunct0))
-                bibpunct <- c(bibpunct, bibpunct0[-seq_len(length(bibpunct))])
-            ind <- which(is.na(bibpunct))
-            if(length(ind) > 0)
-                bibpunct[ind] <- bibpunct0[ind]
-
-            text <- safe_cite(keys, bibs, textual = textual, before = before, after = after,
-                         bibpunct = bibpunct, from.package = package)
+    if(is.null(cached_env))
+        bibs <- get_bibentries(package = package, ...)
+    else{
+        bibs <- cached_env$allbibs[[package]]
+        if(is.null(bibs)){
+            bibs <- get_bibentries(package = package, ...)
+            cached_env$allbibs[[package]] <- bibs
         }
     }
 
-    toRd(text)
-}
+
+
+       ## This wouldn't work since roxygen2 will change it to citation
+       ##    TODO: check
+       ## if(substr(keys, 1, 1) == "["){ # rmarkdown syntax (actually roxygen2?)
+       ##     keys <- substr(keys, 2, nchar(keys) - 1) # drop "[" and the closing "]"
+       ##     splitkeys <- strsplit(keys, ";", fixed = TRUE)[[1]] # note: [[1]]
+       ##
+       ##
+       ##
+       ## }
+
+       refch <-  "@"
+       refchpat <- paste0("^[", refch, "]")
+       if(grepl(refchpat, keys)){
+           ch <- substr(keys, 1, 1)
+           keys <- substr(keys, 2, nchar(keys)) # drop refch
+
+           refpat <- paste0("(", refch, "[^;,[:space:]]+)")  #  "(@[^;,[:space:]]+)"
+           m <- gregexpr(refpat, keys)
+           allkeys <- regmatches(keys, m)[[1]] # note: [[1]]
+           allkeys <- gsub("@", "", allkeys)
+
+           ## for now ignore bibpunct in this case
+           if(!textual)
+               bibpunct <- c("", "", ";", "a", "", ",")
+           else{
+               bibpunct0 = c("(", ")", ";", "a", "", ",")
+               if(!is.null(bibpunct)){
+                   if(length(bibpunct) < length(bibpunct0))
+                       bibpunct <- c(bibpunct, bibpunct0[-seq_len(length(bibpunct))])
+                   ind <- which(is.na(bibpunct))
+                   if(length(ind) > 0)
+                       bibpunct[ind] <- bibpunct0[ind]
+               }else
+                   bibpunct <- bibpunct0
+           }
+                                        # if(length(bibpunct) < length(bibpunct0))
+                                        #     bibpunct <- c(bibpunct, bibpunct0[-seq_len(length(bibpunct))])
+                                        # ind <- which(is.na(bibpunct))
+                                        # if(length(ind) > 0)
+                                        #     bibpunct[ind] <- bibpunct0[ind]
+           refs <- sapply(allkeys,
+                          function(key)
+                              safe_cite(key, bibs, textual = textual, bibpunct = bibpunct,
+                                        from.package = package)
+                          )
+           ## replace keys with citations
+           text <- keys
+           regmatches(text, m) <- list(refs)
+           text <- paste0("(", text, ")")
+       }else{
+           if(is.null(bibpunct))
+               text <- safe_cite(keys, bibs, textual = textual, before = before, after = after
+                               , from.package = package)
+           else{
+               bibpunct0 = c("(", ")", ";", "a", "", ",")
+               if(length(bibpunct) < length(bibpunct0))
+                   bibpunct <- c(bibpunct, bibpunct0[-seq_len(length(bibpunct))])
+               ind <- which(is.na(bibpunct))
+               if(length(ind) > 0)
+                   bibpunct[ind] <- bibpunct0[ind]
+
+               text <- safe_cite(keys, bibs, textual = textual, before = before, after = after,
+                                 bibpunct = bibpunct, from.package = package)
+           }
+       }
+
+       toRd(text)
+    }
 
 safe_cite <- function(keys, bib, ..., from.package = NULL){
     wrk.keys <- unlist(strsplit(keys, ","))
@@ -565,7 +592,17 @@ safe_cite <- function(keys, bib, ..., from.package = NULL){
 }
 
 insert_all_ref <- function(refs){
-    if(is.null(refs) || nrow(refs) == 0)
+    if(is.environment(refs)){
+        refsmat <- refs$refsmat
+        allbibs <- refs$allbibs
+        if(is.null(allbibs))
+            allbibs <- list()
+    }else{
+        refsmat <- refs
+        allbibs <- list()
+    }
+
+    if(is.null(refs) || is.null(refsmat) || nrow(refsmat) == 0)
         ## Returning the empty string is probably preferable but 'R CMD check' does not see
         ## that the references are empty in this case (although the help system see this and
         ## drops the section "references". To avoid confusing the user, print some
@@ -573,8 +610,8 @@ insert_all_ref <- function(refs){
         return("There are no references for Rd macro \\verb{\\insertAllCites} on this help page.")
 
     all.keys <- list()
-    for(i in 1:nrow(refs)){
-        keys <- refs[i, 1]
+    for(i in 1:nrow(refsmat)){
+        keys <- refsmat[i, 1]
 
         textual <- grepl(";textual$", keys)
         if(any(textual))
@@ -594,7 +631,7 @@ insert_all_ref <- function(refs){
              keys <- unlist(strsplit(keys, ","))
         }
 
-        package <- refs[i, 2]
+        package <- refsmat[i, 2]
 
         if(is.null(all.keys[[package]]))
             all.keys[[package]] <- keys
@@ -603,7 +640,10 @@ insert_all_ref <- function(refs){
     }
     bibs <- NULL
     for(package in names(all.keys)){
-        be <- get_bibentries(package = package)
+        be <- allbibs[[package]]
+        if(is.null(be))
+            be <- get_bibentries(package = package)
+        
         cur <- unique(all.keys[[package]])
         if(all(cur != "*")){
             be <- tryCatch(be[cur],

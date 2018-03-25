@@ -113,7 +113,6 @@ insert_ref(key, package = NULL, ...)
      \code{\\insertCite{Rpack:bibtex}{Rdpack}}   \tab \insertCite{Rpack:bibtex}{Rdpack} 
   }
 
-
   By default the citations are parenthesised
   \insertCite{parseRd}{Rdpack}.  To get textual citations, like
   \insertCite{parseRd;textual}{Rdpack}, put the string \code{;textual}

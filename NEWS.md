@@ -1,4 +1,17 @@
-# Changes in Version 0.6-1
+# Changes in Version 0.7-0
+
+- consolidated the changes introduced since the previous CRAN release of Rdpack
+  (it was 0.5-5) in preparation for the next release.  Users of the new macros
+  for citation can use `Rdpack (>=0.7)` in the `Imports:` field of file
+  "DESCRIPTION" to ensure that they are available.
+  
+- improvement to handling of errors and warnings during processing of the
+  references and citations. In particular, such errors should produce only
+  warnings during `R CMD build` (in most cases) and not prevent the package from
+  being built and installed.
+
+
+# Changes in Version 0.6-x
 
 - new Rd macros for citations
 
@@ -14,7 +27,8 @@
 
 - new entries in this file will use markdown syntax.
 
-- updaties to the documentation.
+- updates to the documentation.
+
 
 # Changes in Version 0.5-7
 
@@ -28,6 +42,7 @@
    - updated help page of `get_bibentries()` and included examples.
 
    - cleaned up the imports in NAMESPACE.
+
 
 # Changes in Version 0.5-6
 
