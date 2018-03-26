@@ -15,19 +15,64 @@ bibentry_key <- function(x){                                                    
     attr(unclass(x[[1]][[1]])[[1]], "key")
 }
 
-get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib", url_only = FALSE){
+## maybe add to package `gbutils'?
+##
+## if `wd' is a subdirectory of `string' return the path upto and including `string',
+##     otherwise return NULL.
+## If not NULL, it is guaranteed that basename(wd) == string
+## NOTE: currently doesn't expand `./', etc..
+in_subdirectory <- function(string, wd = getwd()){
+    if(grepl(string, wd)){
+        packpat <- paste0(string, "$")
+        while(!grepl(packpat, wd)){
+            wd <- dirname(wd)
+            if(!grepl(string, wd))
+                return(NULL)
+        }
+        if(basename(wd) == string)
+            wd
+        else
+            ## the found directory has `string' as a suffix, eg. xxxRdpack, not Rdpack
+            NULL
+    }else
+        NULL
+}
+
+get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib", 
+                           url_only = FALSE, stop_on_error = TRUE){
 
     if(is.null(package)){
         fn <- file.path(..., bibfile)
         ## check for existence of fn (and length(fn) == 1)? (but see below)
     }else{
         ## first check for development mode in "devtools"
-        ## TODO: currently finds it only if the current working directory
-        ##       is in the root of the package
-        fn <- if(file.exists(system.file("inst", ..., bibfile, package = package)))
-                  system.file("inst", ..., bibfile, package = package)
-              else
-                  system.file(..., bibfile, package = package)
+
+        ## if the current directory is under `package', first look for the file there
+        devdir <- in_subdirectory(package)
+        if(is.null(devdir))
+            fn <- ""
+        else{
+            ## if in development dir of `package', get it from there
+            fn <- file.path(devdir, "inst", ..., bibfile)
+            if(length(fn) > 1){
+                warning("More than one file found, using the first one only.")
+                fn <- fn[1]
+            }
+            if(!file.exists(fn))
+                fn <- ""
+        }
+
+        if(fn == "") 
+            ## if the above didn't succeed, try system.file(). In principle, this should work
+            ##     also in development mode under devtools, at least for REFERENCES.bib,
+            ##     but currently devtools' system.file() doesn't handle it.
+            fn <- system.file(..., bibfile, package = package)
+        
+        if(fn == "") 
+            ## if the above didn't succeed try system.file() with subdir "inst".
+            ##    This is really for the case when system.file() is the one from devtools,
+            ##    see the note above. TODO: check if this is the case?
+            fn <- system.file("inst", ..., bibfile, package = package)
         
         if(length(fn) == 1  &&  fn == "")
             ## if system.file() didn't find the bib file, check if file package.bib is
@@ -38,9 +83,20 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib", url_
     if(length(fn) > 1){
         warning("More than one file found, using the first one only.")
         fn <- fn[1]
-    }else if(length(fn) == 1  &&  fn == "")
-        stop("Couldn't find file ", file.path(..., bibfile),
-             if(!is.null(package)) paste0(" in package ", package) )
+    }else if(length(fn) == 1  &&  fn == ""){
+        msg <- paste0("Couldn't find file ", file.path(..., bibfile),
+                      if(!is.null(package)) paste0(" in package `", package, "'"))
+        if(stop_on_error)
+            stop(msg)
+        else{
+            warning(msg)
+            ## return an empty bibentryRd object
+            res <- bibentry()
+            class(res) <- c("bibentryRd", class(res))
+            return(res)
+        }
+            
+    }
 
     res <- read.bib(file = fn)
 
@@ -253,9 +309,25 @@ insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
     if(is.null(package)) 
         stop("argument 'package' must be provided")
 
-    bibs <- get_bibentries(package = package, ...)
+    bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
 
-    if(length(key) == 1){
+    if(length(bibs) == 0){
+        note <- paste0("\"Failed to insert reference with key = ", key, 
+                       " from package = '", package, "'.",
+                       " Possible cause --- missing REFERENCES.bib in package '",
+                       package, "' or '", package, "' not installed.\""
+                       )
+        note <- paste0("\\Sexpr[results=rd,stage=install]{{warning(", note, ");", note, "}} ")
+        item <- bibentry(
+            bibtype = "Misc",
+            title = "Not avalable",
+            author = person("A", "Adummy"),
+            year = format(Sys.time(), "%Y"),
+            note = note,
+            key = key
+        )
+        toRd(item)
+    }else if(length(key) == 1){
         item <- tryCatch(bibs[[key]],
                          warning = function(c) {
                              if(grepl("subscript out of bounds", c$message)){
@@ -264,10 +336,22 @@ insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
                                  c$message <- paste0(c$message, " (", s, ")")
                              }
                              warning(c)
-                             res <- paste0("\nWARNING: failed to insert reference '", key,
-                                           "' from package '", package, "' - ",
-                                           s, ".\n")
-                             return(res)
+                                 # res <- paste0("\nWARNING: failed to insert reference '", key,
+                                 #               "' from package '", package, "' - ",
+                                 #               s, ".\n")
+                                 # return(res)
+                             ## setup a dummy entry
+                             bibentry(
+                                 bibtype = "Misc",
+                                 title = "Not avalable",
+                                 author = person("A", "Adummy"),
+                                 year = format(Sys.time(), "%Y"),
+                                 note = paste0("Failed to insert reference with key = ", key, 
+                                               " from package = '", package, "'.",
+                                               " Possible cause --- missing or misspelled key."
+                                               ),
+                                 key = key
+                             )
                          })
 
             #     # 2018-03-01 Bug: Unexpected END_OF_INPUT error (URL parsing?) #3
@@ -494,12 +578,12 @@ insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
     }
 
 
-    if(is.null(cached_env))
-        bibs <- get_bibentries(package = package, ...)
-    else{
+    if(is.null(cached_env)){
+        bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
+    }else{
         bibs <- cached_env$allbibs[[package]]
         if(is.null(bibs)){
-            bibs <- get_bibentries(package = package, ...)
+            bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
             cached_env$allbibs[[package]] <- bibs
         }
     }
@@ -516,64 +600,64 @@ insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
        ##
        ## }
 
-       refch <-  "@"
-       refchpat <- paste0("^[", refch, "]")
-       if(grepl(refchpat, keys)){
-           ch <- substr(keys, 1, 1)
-           keys <- substr(keys, 2, nchar(keys)) # drop refch
+    refch <-  "@"
+    refchpat <- paste0("^[", refch, "]")
+    if(grepl(refchpat, keys)){
+        ch <- substr(keys, 1, 1)
+        keys <- substr(keys, 2, nchar(keys)) # drop refch
 
-           refpat <- paste0("(", refch, "[^;,[:space:]]+)")  #  "(@[^;,[:space:]]+)"
-           m <- gregexpr(refpat, keys)
-           allkeys <- regmatches(keys, m)[[1]] # note: [[1]]
-           allkeys <- gsub("@", "", allkeys)
+        refpat <- paste0("(", refch, "[^;,[:space:]]+)")  #  "(@[^;,[:space:]]+)"
+        m <- gregexpr(refpat, keys)
+        allkeys <- regmatches(keys, m)[[1]] # note: [[1]]
+        allkeys <- gsub("@", "", allkeys)
 
-           ## for now ignore bibpunct in this case
-           if(!textual)
-               bibpunct <- c("", "", ";", "a", "", ",")
-           else{
-               bibpunct0 = c("(", ")", ";", "a", "", ",")
-               if(!is.null(bibpunct)){
-                   if(length(bibpunct) < length(bibpunct0))
-                       bibpunct <- c(bibpunct, bibpunct0[-seq_len(length(bibpunct))])
-                   ind <- which(is.na(bibpunct))
-                   if(length(ind) > 0)
-                       bibpunct[ind] <- bibpunct0[ind]
-               }else
-                   bibpunct <- bibpunct0
-           }
+        ## for now ignore bibpunct in this case
+        if(!textual)
+            bibpunct <- c("", "", ";", "a", "", ",")
+        else{
+            bibpunct0 = c("(", ")", ";", "a", "", ",")
+            if(!is.null(bibpunct)){
+                if(length(bibpunct) < length(bibpunct0))
+                    bibpunct <- c(bibpunct, bibpunct0[-seq_len(length(bibpunct))])
+                ind <- which(is.na(bibpunct))
+                if(length(ind) > 0)
+                    bibpunct[ind] <- bibpunct0[ind]
+            }else
+                bibpunct <- bibpunct0
+        }
                                         # if(length(bibpunct) < length(bibpunct0))
                                         #     bibpunct <- c(bibpunct, bibpunct0[-seq_len(length(bibpunct))])
                                         # ind <- which(is.na(bibpunct))
                                         # if(length(ind) > 0)
                                         #     bibpunct[ind] <- bibpunct0[ind]
-           refs <- sapply(allkeys,
-                          function(key)
-                              safe_cite(key, bibs, textual = textual, bibpunct = bibpunct,
-                                        from.package = package)
-                          )
-           ## replace keys with citations
-           text <- keys
-           regmatches(text, m) <- list(refs)
-           text <- paste0("(", text, ")")
-       }else{
-           if(is.null(bibpunct))
-               text <- safe_cite(keys, bibs, textual = textual, before = before, after = after
-                               , from.package = package)
-           else{
-               bibpunct0 = c("(", ")", ";", "a", "", ",")
-               if(length(bibpunct) < length(bibpunct0))
-                   bibpunct <- c(bibpunct, bibpunct0[-seq_len(length(bibpunct))])
-               ind <- which(is.na(bibpunct))
-               if(length(ind) > 0)
-                   bibpunct[ind] <- bibpunct0[ind]
+        refs <- sapply(allkeys,
+                       function(key)
+                           safe_cite(key, bibs, textual = textual, bibpunct = bibpunct,
+                                     from.package = package)
+                       )
+        ## replace keys with citations
+        text <- keys
+        regmatches(text, m) <- list(refs)
+        text <- paste0("(", text, ")")
+    }else{
+        if(is.null(bibpunct))
+            text <- safe_cite(keys, bibs, textual = textual, before = before, after = after
+                            , from.package = package)
+        else{
+            bibpunct0 = c("(", ")", ";", "a", "", ",")
+            if(length(bibpunct) < length(bibpunct0))
+                bibpunct <- c(bibpunct, bibpunct0[-seq_len(length(bibpunct))])
+            ind <- which(is.na(bibpunct))
+            if(length(ind) > 0)
+                bibpunct[ind] <- bibpunct0[ind]
 
-               text <- safe_cite(keys, bibs, textual = textual, before = before, after = after,
-                                 bibpunct = bibpunct, from.package = package)
-           }
-       }
-
-       toRd(text)
+            text <- safe_cite(keys, bibs, textual = textual, before = before, after = after,
+                              bibpunct = bibpunct, from.package = package)
+        }
     }
+    
+    toRd(text)
+}
 
 safe_cite <- function(keys, bib, ..., from.package = NULL){
     wrk.keys <- unlist(strsplit(keys, ","))
@@ -640,24 +724,54 @@ insert_all_ref <- function(refs){
     }
     bibs <- NULL
     for(package in names(all.keys)){
+        cur <- unique(all.keys[[package]])
+
         be <- allbibs[[package]]
         if(is.null(be))
-            be <- get_bibentries(package = package)
+            be <- get_bibentries(package = package, stop_on_error = FALSE)
         
-        cur <- unique(all.keys[[package]])
-        if(all(cur != "*")){
+        if(length(be) == 0){
+            be <- bibentry(
+                bibtype = "Misc",
+                title = "Not avalable",
+                author = person("A", "Adummy"),
+                year = format(Sys.time(), "%Y"),
+                note = paste0("Failed to insert reference with keys = \n    ",
+                              paste0(cur, collapse = " "), "\n",
+                              "from package = '", package, "'.",
+                              " Possible cause --- missing REFERENCES.bib in package '",
+                              package, "' or '", package, "' not installed."
+                              ),
+                key = paste0(cur, collapse = ":")
+            )
+        }else if(all(cur != "*")){
             be <- tryCatch(be[cur],
                            warning = function(c) {
                                if(grepl("subscript out of bounds", c$message)){
-                                   ## tell the user the offending key.
-                                   ## s <- paste("possibly non-existing key '", key, "'")
-                                   c$message <- paste0(c$message, " (", paste(cur, collapse = " "), ")")
+                                   ## tell the user the offending keys.
+                                   c$message <- paste0(c$message, " (",
+                                                       paste(cur, collapse = " "),
+                                                       "' from package '", package, "'", ")"
+                                                       )
                                }
                                warning(c)
-                               cat("\nWARNING:  '", cur,
-                                   "' from package '", package, "' - ",
-                                   ".\n")
-                               return(be[cur])
+                               ## setup a dummy entry
+                               dummy <- bibentry(
+                                   bibtype = "Misc",
+                                   title = paste0("Some keys from package ", package,
+                                                  " are not avalable"), 
+                                   author = person("A", "Adummy"),
+                                   year = format(Sys.time(), "%Y"),
+                                   note = paste0("Failed to insert reference with keys:\n    ",
+                                                 paste0(cur, collapse = ", "), "\n",
+                                                 "from package = '", package, "'.",
+                                                 " Possible cause --- missing REFERENCES.bib in package '",
+                                                 package, "' or '", package, "' not installed."
+                                                 ),
+                                   key = paste0(cur, collapse = ":")
+                               )
+
+                               c(be[cur], dummy)
                            })
         }
 

@@ -5,11 +5,14 @@
   for citation can use `Rdpack (>=0.7)` in the `Imports:` field of file
   "DESCRIPTION" to ensure that they are available.
   
-- improvement to handling of errors and warnings during processing of the
-  references and citations. In particular, such errors should produce only
-  warnings during `R CMD build` (in most cases) and not prevent the package from
-  being built and installed.
+- comprehensive overhaul of handling of errors and warnings during processing of
+  references and citations. In particular, such errors should (in most cases)
+  produce only warnings during `R CMD build` and `R CMD INSTALL`, and not
+  prevent the package from being built and installed.
 
+- Unresolved BibTeX keys produce warnings during building and installation of
+  the package, but not errors. Dummy entries are inserted in the documentation
+  explaining what was amiss (currently with 'author' A Adummy). 
 
 # Changes in Version 0.6-x
 

@@ -2,7 +2,7 @@ import(methods)
 
 importFrom(utils, bibentry, browseURL, capture.output, cite, file.edit,
            getAnywhere, getS3method, head, help,
-           packageDescription, packageVersion, prompt, vignette)
+           packageDescription, packageVersion, person, prompt, vignette)
 
 importFrom(tools, parse_Rd, toRd, checkRd, Rd2txt)
 importFrom(gbRd, Rd_help2txt)

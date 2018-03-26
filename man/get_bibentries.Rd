@@ -5,7 +5,7 @@
 \description{Get all references from a Bibtex file.}
 \usage{
 get_bibentries(\dots, package = NULL, bibfile = "REFERENCES.bib", 
-               url_only = FALSE)
+               url_only = FALSE, stop_on_error = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -13,8 +13,12 @@ get_bibentries(\dots, package = NULL, bibfile = "REFERENCES.bib",
     character strings, see `Details'.}
   \item{package}{name of a package, a character string or NULL.}
   \item{bibfile}{name of a Bibtex file, a character string.}
-  \item{url_only}{if TRUE, restrict percent escaring to BibTeX field
-    \code{"URL"}.} 
+  \item{url_only}{
+    if TRUE, restrict percent escaping to BibTeX field \code{"URL"}.} 
+  \item{stop_on_error}{
+    if \code{TRUE} stop on error, otherwise issue a warning and return
+    an empty \code{bibentryRd} object.
+  }
 }
 \details{
 
