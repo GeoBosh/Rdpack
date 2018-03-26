@@ -1,4 +1,4 @@
-# Changes in Version 0.7-0
+# Changes in Version 0.7-0 (CRAN)
 
 - consolidated the changes introduced since the previous CRAN release of Rdpack
   (it was 0.5-5) in preparation for the next release.  Users of the new macros
