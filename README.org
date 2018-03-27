@@ -168,12 +168,12 @@ src_R[:exports results :results value raw]{insert_citeOnly("Rpack:bibtex", "Rdpa
   in the references section will keep it up to date automatically. 
   The Rd section may look something like:
 #+BEGIN_EXAMPLE
-    \insertAllCited
+    \insertAllCited{}
 #+END_EXAMPLE
   or, in roxygen2, the references chunk might look like this:
 #+BEGIN_EXAMPLE
     #' @references
-    #'     \insertAllCited
+    #'     \insertAllCited{}
 #+END_EXAMPLE
 
 To mix the citations with other text, such as ``see also'' and
