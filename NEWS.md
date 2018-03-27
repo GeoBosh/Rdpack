@@ -14,6 +14,7 @@
   the package, but not errors. Dummy entries are inserted in the documentation
   explaining what was amiss (currently with 'author' A Adummy). 
 
+
 # Changes in Version 0.6-x
 
 - new Rd macros for citations
@@ -26,7 +27,7 @@
    - `\insertNoCite` records the keys but does not produce a citation.
 
    - `\insertAllCited` prints a bibliography including all references recorded
-     by `\insertAllCited` and `\insertNoCite`.
+     by `\insertCite` and `\insertNoCite`.
 
 - new entries in this file will use markdown syntax.
 
