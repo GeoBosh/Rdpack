@@ -214,7 +214,7 @@ as textual citations:
             \Sexpr{insert_citeOnly("parseRd,Rpack:bibtex;textual", "Rdpack")} 
 \end{tabular}
 \end{center}
-The last line in the tale demonstrates that this also works with several citations.
+The last line in the table demonstrates that this also works with several citations.
 
 
 The macro \verb+\insertNoCite{key}{package}+ records one or more references for
