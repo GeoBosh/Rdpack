@@ -143,11 +143,13 @@ src_R[:exports results :results value raw]{insert_citeOnly("Rpack:bibtex", "Rdpa
 
 
   By default the citations are parenthesised =\insertCite{parseRd}{Rdpack}= produces
-  src_R[:exports results :results value raw]{insert_citeOnly("parseRd", "Rdpack")}.  To get textual citations, like
-  src_R[:exports results :results value raw]{insert_citeOnly("parseRd;textual", "Rdpack")}  put the string ={;textual}= at the end
-  of the key. The references in the last two sentences would be produced with
-  =\insertCite{parseRd}{Rdpack}= and =\insertCite{parseRd;textual}{Rdpack}=,
-  respectively.  This also works with several citations, e.g.
+  src_R[:exports results :results value raw]{insert_citeOnly("parseRd", "Rdpack")}.  To get
+  textual citations, like 
+  src_R[:exports results :results value raw]{insert_citeOnly("parseRd;textual", "Rdpack")} 
+  put the string =;textual= at the end of the key. The references in the last two sentences
+  would be produced with =\insertCite{parseRd}{Rdpack}= and
+  =\insertCite{parseRd;textual}{Rdpack}=, respectively.  This also works with several
+  citations, e.g.
 
   =\insertCite{parseRd,Rpack:bibtex;textual}{Rdpack}= produces:
   src_R[:exports results :results value raw]{insert_citeOnly("parseRd,Rpack:bibtex;textual", "Rdpack")}.

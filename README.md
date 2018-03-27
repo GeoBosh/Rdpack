@@ -7,19 +7,19 @@ and `roxygen2` comments; and other convenience functions for references.
 
 # Table of Contents
 
-1.  [Installing Rdpack](#orgea0117c)
-2.  [Inserting Bibtex references](#org16f4315)
-    1.  [Preparation](#orgd4837bd)
-    2.  [Inserting references](#orge79d380)
-    3.  [Inserting citations](#org245c345)
-    4.  [Development using \*devtools"](#org42749b2)
-3.  [Using Rdpack::reprompt()](#orga838b1e)
-    1.  [What it does](#org0ba5a94)
-    2.  [Reprompt and open in an editor](#orgecf1962)
-4.  [Viewing Rd files](#orgdd02fd3)
+1.  [Installing Rdpack](#org677ff8a)
+2.  [Inserting Bibtex references](#org54d05f6)
+    1.  [Preparation](#org6a78a9d)
+    2.  [Inserting references](#orgbbec1ca)
+    3.  [Inserting citations](#org9220ad3)
+    4.  [Development using \*devtools"](#org13d0acf)
+3.  [Using Rdpack::reprompt()](#org3cc79f8)
+    1.  [What it does](#org7b342e5)
+    2.  [Reprompt and open in an editor](#org8249d8b)
+4.  [Viewing Rd files](#orgafaa1df)
 
 
-<a id="orgea0117c"></a>
+<a id="org677ff8a"></a>
 
 # Installing Rdpack
 
@@ -33,7 +33,7 @@ You can also install the [development version](https://github.com/GeoBosh/Rdpack
     install_github("GeoBosh/Rdpack")
 
 
-<a id="org16f4315"></a>
+<a id="org54d05f6"></a>
 
 # Inserting Bibtex references
 
@@ -44,7 +44,7 @@ the `DESCRIPTION` file of the package needs to be amended, see below the full
 details. 
 
 
-<a id="orgd4837bd"></a>
+<a id="org6a78a9d"></a>
 
 ## Preparation
 
@@ -75,7 +75,7 @@ enumerated below in somewhat more detail, see also the vignette
     put the BibTeX references in it.
 
 
-<a id="orge79d380"></a>
+<a id="orgbbec1ca"></a>
 
 ## Inserting references
 
@@ -120,7 +120,7 @@ or open it from `R`:
     vignette("Inserting_bibtex_references", package = "Rdpack")
 
 
-<a id="org245c345"></a>
+<a id="org9220ad3"></a>
 
 ## Inserting citations
 
@@ -139,11 +139,13 @@ and
 (Francois 2014)
 
 By default the citations are parenthesised `\insertCite{parseRd}{Rdpack}` produces
-(Murdoch 2010).  To get textual citations, like
-Murdoch (2010)  put the string `{;textual}` at the end
-of the key. The references in the last two sentences would be produced with
-`\insertCite{parseRd}{Rdpack}` and `\insertCite{parseRd;textual}{Rdpack}`,
-respectively.  This also works with several citations, e.g.
+(Murdoch 2010).  To get
+textual citations, like 
+Murdoch (2010) 
+put the string `;textual` at the end of the key. The references in the last two sentences
+would be produced with `\insertCite{parseRd}{Rdpack}` and
+`\insertCite{parseRd;textual}{Rdpack}`, respectively.  This also works with several
+citations, e.g.
 
 `\insertCite{parseRd,Rpack:bibtex;textual}{Rdpack}` produces:
 Murdoch (2010); Francois (2014).
@@ -191,7 +193,7 @@ produces:
 references for `\insertAllCited`.
 
 
-<a id="org42749b2"></a>
+<a id="org13d0acf"></a>
 
 ## Development using \*devtools"
 
@@ -218,12 +220,12 @@ processing a source Rd file in the development directory of the package and that
 the call to `parse_Rd` specifies only the file.
 
 
-<a id="orga838b1e"></a>
+<a id="org3cc79f8"></a>
 
 # Using Rdpack::reprompt()
 
 
-<a id="org0ba5a94"></a>
+<a id="org7b342e5"></a>
 
 ## What it does
 
@@ -250,7 +252,7 @@ but it alerts the user to remove aliases, methods, and descriptions of arguments
 that have been removed. 
 
 
-<a id="orgecf1962"></a>
+<a id="org8249d8b"></a>
 
 ## Reprompt and open in an editor
 
@@ -273,7 +275,7 @@ Elisp code), for example to be invoked on the currently edited file. Such a
 function and example key binding can be found at [georgisemacs](https://github.com/GeoBosh/georgisemacs).
 
 
-<a id="orgdd02fd3"></a>
+<a id="orgafaa1df"></a>
 
 # Viewing Rd files
 
