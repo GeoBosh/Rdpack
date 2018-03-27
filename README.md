@@ -7,19 +7,19 @@ and `roxygen2` comments; and other convenience functions for references.
 
 # Table of Contents
 
-1.  [Installing Rdpack](#org677ff8a)
-2.  [Inserting Bibtex references](#org54d05f6)
-    1.  [Preparation](#org6a78a9d)
-    2.  [Inserting references](#orgbbec1ca)
-    3.  [Inserting citations](#org9220ad3)
-    4.  [Development using \*devtools"](#org13d0acf)
-3.  [Using Rdpack::reprompt()](#org3cc79f8)
-    1.  [What it does](#org7b342e5)
-    2.  [Reprompt and open in an editor](#org8249d8b)
-4.  [Viewing Rd files](#orgafaa1df)
+1.  [Installing Rdpack](#orgbee2590)
+2.  [Inserting Bibtex references](#org985ea69)
+    1.  [Preparation](#org21c5500)
+    2.  [Inserting references](#org10018a0)
+    3.  [Inserting citations](#org54ceedc)
+    4.  [Development using \*devtools"](#orged5d53e)
+3.  [Using Rdpack::reprompt()](#org5a9a6af)
+    1.  [What it does](#org407731c)
+    2.  [Reprompt and open in an editor](#org9d933f2)
+4.  [Viewing Rd files](#org7873299)
 
 
-<a id="org677ff8a"></a>
+<a id="orgbee2590"></a>
 
 # Installing Rdpack
 
@@ -33,7 +33,7 @@ You can also install the [development version](https://github.com/GeoBosh/Rdpack
     install_github("GeoBosh/Rdpack")
 
 
-<a id="org54d05f6"></a>
+<a id="org985ea69"></a>
 
 # Inserting Bibtex references
 
@@ -44,7 +44,7 @@ the `DESCRIPTION` file of the package needs to be amended, see below the full
 details. 
 
 
-<a id="org6a78a9d"></a>
+<a id="org21c5500"></a>
 
 ## Preparation
 
@@ -75,7 +75,7 @@ enumerated below in somewhat more detail, see also the vignette
     put the BibTeX references in it.
 
 
-<a id="orgbbec1ca"></a>
+<a id="org10018a0"></a>
 
 ## Inserting references
 
@@ -114,13 +114,16 @@ is when the other package is also yours - this allows authors of multiple
 packages to not copy the same refences to each of their own packages.
 
 For further details see the vignette 
-[`Inserting_bibtex_references (development version on github)`](https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_bibtex_references.pdf)
-or open it from `R`:
+[`Inserting_bibtex_references`](https://cran.r-project.org/package=Rdpack)
+or open the the from `R`:
 
     vignette("Inserting_bibtex_references", package = "Rdpack")
 
+(The latest version of the vignette is at
+[`Inserting_bibtex_references (development version on github)`](https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_bibtex_references.pdf).)
 
-<a id="org9220ad3"></a>
+
+<a id="org54ceedc"></a>
 
 ## Inserting citations
 
@@ -132,23 +135,22 @@ roxygen2 documentation.
 use by `\insertAllCited`, see below. `key` can contain
 more keys separated by commas.
 
- `\insertCite{parseRd,Rpack:bibtex}{Rdpack}` produces 
- (Murdoch 2010; Francois 2014)
+`\insertCite{parseRd,Rpack:bibtex}{Rdpack}` produces 
+
 and 
  `\insertCite{Rpack:bibtex}{Rdpack}`         gives
-(Francois 2014)
 
 By default the citations are parenthesised `\insertCite{parseRd}{Rdpack}` produces
-(Murdoch 2010).  To get
+.  To get
 textual citations, like 
-Murdoch (2010) 
+
 put the string `;textual` at the end of the key. The references in the last two sentences
 would be produced with `\insertCite{parseRd}{Rdpack}` and
 `\insertCite{parseRd;textual}{Rdpack}`, respectively.  This also works with several
 citations, e.g.
 
 `\insertCite{parseRd,Rpack:bibtex;textual}{Rdpack}` produces:
-Murdoch (2010); Francois (2014).
+.
 
 The macro `\insertNoCite{key}{package}` records one or more
 references for `\insertAllCited` but does not cite it. Setting
@@ -180,12 +182,6 @@ The `@` symbol will not appear in the output. For example, the following code
 
 produces:
 
-(see also Murdoch 2010 and Francois 2014) 
-
-(see also Murdoch 2010; Francois 2014) 
-
-(see also Murdoch (2010) and Francois (2014))
-
 &#x2014;
 
 `\insertCiteOnly{key}{package}` is as
@@ -193,7 +189,7 @@ produces:
 references for `\insertAllCited`.
 
 
-<a id="org13d0acf"></a>
+<a id="orged5d53e"></a>
 
 ## Development using \*devtools"
 
@@ -220,12 +216,12 @@ processing a source Rd file in the development directory of the package and that
 the call to `parse_Rd` specifies only the file.
 
 
-<a id="org3cc79f8"></a>
+<a id="org5a9a6af"></a>
 
 # Using Rdpack::reprompt()
 
 
-<a id="org7b342e5"></a>
+<a id="org407731c"></a>
 
 ## What it does
 
@@ -252,7 +248,7 @@ but it alerts the user to remove aliases, methods, and descriptions of arguments
 that have been removed. 
 
 
-<a id="org8249d8b"></a>
+<a id="org9d933f2"></a>
 
 ## Reprompt and open in an editor
 
@@ -275,7 +271,7 @@ Elisp code), for example to be invoked on the currently edited file. Such a
 function and example key binding can be found at [georgisemacs](https://github.com/GeoBosh/georgisemacs).
 
 
-<a id="orgafaa1df"></a>
+<a id="org7873299"></a>
 
 # Viewing Rd files
 

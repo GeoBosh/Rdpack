@@ -116,11 +116,13 @@ is when the other package is also yours - this allows authors of multiple
 packages to not copy the same refences to each of their own packages.
  
 For further details see the vignette 
-[[https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_bibtex_references.pdf][=Inserting_bibtex_references (development version on github)=]]
-or open it from =R=:
+[[https://cran.r-project.org/package=Rdpack][=Inserting_bibtex_references=]]
+or open the the from =R=:
 #+BEGIN_EXAMPLE
 vignette("Inserting_bibtex_references", package = "Rdpack")
 #+END_EXAMPLE
+(The latest version of the vignette is at
+[[https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_bibtex_references.pdf][=Inserting_bibtex_references (development version on github)=]].)
 
 # ---------
 
