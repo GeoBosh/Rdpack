@@ -7,19 +7,19 @@ and `roxygen2` comments; and other convenience functions for references.
 
 # Table of Contents
 
-1.  [Installing Rdpack](#orgbee2590)
-2.  [Inserting Bibtex references](#org985ea69)
-    1.  [Preparation](#org21c5500)
-    2.  [Inserting references](#org10018a0)
-    3.  [Inserting citations](#org54ceedc)
-    4.  [Development using \*devtools"](#orged5d53e)
-3.  [Using Rdpack::reprompt()](#org5a9a6af)
-    1.  [What it does](#org407731c)
-    2.  [Reprompt and open in an editor](#org9d933f2)
-4.  [Viewing Rd files](#org7873299)
+1.  [Installing Rdpack](#org9594c75)
+2.  [Inserting Bibtex references](#orgba7dca2)
+    1.  [Preparation](#org0e9f19e)
+    2.  [Inserting references](#orgc555645)
+    3.  [Inserting citations](#org179c35a)
+    4.  [Development using \*devtools"](#orgc575aa4)
+3.  [Using Rdpack::reprompt()](#org24a6d7e)
+    1.  [What it does](#org978e847)
+    2.  [Reprompt and open in an editor](#org61b6024)
+4.  [Viewing Rd files](#org7c66ea3)
 
 
-<a id="orgbee2590"></a>
+<a id="org9594c75"></a>
 
 # Installing Rdpack
 
@@ -33,7 +33,7 @@ You can also install the [development version](https://github.com/GeoBosh/Rdpack
     install_github("GeoBosh/Rdpack")
 
 
-<a id="org985ea69"></a>
+<a id="orgba7dca2"></a>
 
 # Inserting Bibtex references
 
@@ -44,7 +44,7 @@ the `DESCRIPTION` file of the package needs to be amended, see below the full
 details. 
 
 
-<a id="org21c5500"></a>
+<a id="org0e9f19e"></a>
 
 ## Preparation
 
@@ -75,7 +75,7 @@ enumerated below in somewhat more detail, see also the vignette
     put the BibTeX references in it.
 
 
-<a id="org10018a0"></a>
+<a id="orgc555645"></a>
 
 ## Inserting references
 
@@ -123,7 +123,7 @@ or open the the from `R`:
 [`Inserting_bibtex_references (development version on github)`](https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_bibtex_references.pdf).)
 
 
-<a id="org54ceedc"></a>
+<a id="org179c35a"></a>
 
 ## Inserting citations
 
@@ -135,22 +135,23 @@ roxygen2 documentation.
 use by `\insertAllCited`, see below. `key` can contain
 more keys separated by commas.
 
-`\insertCite{parseRd,Rpack:bibtex}{Rdpack}` produces 
-
+ `\insertCite{parseRd,Rpack:bibtex}{Rdpack}` produces 
+ (Murdoch 2010; Francois 2014)
 and 
  `\insertCite{Rpack:bibtex}{Rdpack}`         gives
+(Francois 2014)
 
 By default the citations are parenthesised `\insertCite{parseRd}{Rdpack}` produces
-.  To get
+(Murdoch 2010).  To get
 textual citations, like 
-
+Murdoch (2010) 
 put the string `;textual` at the end of the key. The references in the last two sentences
 would be produced with `\insertCite{parseRd}{Rdpack}` and
 `\insertCite{parseRd;textual}{Rdpack}`, respectively.  This also works with several
 citations, e.g.
 
 `\insertCite{parseRd,Rpack:bibtex;textual}{Rdpack}` produces:
-.
+Murdoch (2010); Francois (2014).
 
 The macro `\insertNoCite{key}{package}` records one or more
 references for `\insertAllCited` but does not cite it. Setting
@@ -182,6 +183,12 @@ The `@` symbol will not appear in the output. For example, the following code
 
 produces:
 
+(see also Murdoch 2010 and Francois 2014) 
+
+(see also Murdoch 2010; Francois 2014) 
+
+(see also Murdoch (2010) and Francois (2014))
+
 &#x2014;
 
 `\insertCiteOnly{key}{package}` is as
@@ -189,7 +196,7 @@ produces:
 references for `\insertAllCited`.
 
 
-<a id="orged5d53e"></a>
+<a id="orgc575aa4"></a>
 
 ## Development using \*devtools"
 
@@ -216,12 +223,12 @@ processing a source Rd file in the development directory of the package and that
 the call to `parse_Rd` specifies only the file.
 
 
-<a id="org5a9a6af"></a>
+<a id="org24a6d7e"></a>
 
 # Using Rdpack::reprompt()
 
 
-<a id="org407731c"></a>
+<a id="org978e847"></a>
 
 ## What it does
 
@@ -248,7 +255,7 @@ but it alerts the user to remove aliases, methods, and descriptions of arguments
 that have been removed. 
 
 
-<a id="org9d933f2"></a>
+<a id="org61b6024"></a>
 
 ## Reprompt and open in an editor
 
@@ -271,7 +278,7 @@ Elisp code), for example to be invoked on the currently edited file. Such a
 function and example key binding can be found at [georgisemacs](https://github.com/GeoBosh/georgisemacs).
 
 
-<a id="org7873299"></a>
+<a id="org7c66ea3"></a>
 
 # Viewing Rd files
 
