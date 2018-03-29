@@ -1,3 +1,13 @@
+# Changes in Version 0.7-1
+
+- improvements to handling of free form citations in textual mode:
+
+  - (bugfix) now the whole citation is not parenthesised in textual mode,
+  
+  - the handling for textual mode was incomplete in that additional text after
+    the citation was not put inside the parentheses along with the year.
+	
+
 # Changes in Version 0.7-0 (CRAN)
 
 - consolidated the changes introduced since the previous CRAN release of Rdpack

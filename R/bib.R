@@ -38,7 +38,7 @@ in_subdirectory <- function(string, wd = getwd()){
         NULL
 }
 
-get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib", 
+get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib",
                            url_only = FALSE, stop_on_error = TRUE){
 
     if(is.null(package)){
@@ -62,18 +62,18 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib",
                 fn <- ""
         }
 
-        if(fn == "") 
+        if(fn == "")
             ## if the above didn't succeed, try system.file(). In principle, this should work
             ##     also in development mode under devtools, at least for REFERENCES.bib,
             ##     but currently devtools' system.file() doesn't handle it.
             fn <- system.file(..., bibfile, package = package)
-        
-        if(fn == "") 
+
+        if(fn == "")
             ## if the above didn't succeed try system.file() with subdir "inst".
             ##    This is really for the case when system.file() is the one from devtools,
             ##    see the note above. TODO: check if this is the case?
             fn <- system.file("inst", ..., bibfile, package = package)
-        
+
         if(length(fn) == 1  &&  fn == "")
             ## if system.file() didn't find the bib file, check if file package.bib is
             ## provided by package "bibtex" (it is for core R packages, such as "base")
@@ -95,7 +95,7 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib",
             class(res) <- c("bibentryRd", class(res))
             return(res)
         }
-            
+
     }
 
     res <- read.bib(file = fn)
@@ -117,7 +117,7 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib",
         if(url_only){  # process also other fields
             ## TODO: currently all unescaped $'s in all fields are recoded;
             ##       Maybe do it more selectively, e.g. only for %'s inside \url{},
-            ##       or matching something like http(s):// 
+            ##       or matching something like http(s)://
             fields <- names(unclass(res[nam])[[1]])
 
             unclassed <- unclass(res[nam])
@@ -306,13 +306,13 @@ Rdo_flatinsert <- function(rdo, val, pos, before = TRUE){                       
 
 ## TODO: auto-deduce 'package'?
 insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
-    if(is.null(package)) 
+    if(is.null(package))
         stop("argument 'package' must be provided")
 
     bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
 
     if(length(bibs) == 0){
-        note <- paste0("\"Failed to insert reference with key = ", key, 
+        note <- paste0("\"Failed to insert reference with key = ", key,
                        " from package = '", package, "'.",
                        " Possible cause --- missing REFERENCES.bib in package '",
                        package, "' or '", package, "' not installed.\""
@@ -346,7 +346,7 @@ insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
                                  title = "Not avalable",
                                  author = person("A", "Adummy"),
                                  year = format(Sys.time(), "%Y"),
-                                 note = paste0("Failed to insert reference with key = ", key, 
+                                 note = paste0("Failed to insert reference with key = ", key,
                                                " from package = '", package, "'.",
                                                " Possible cause --- missing or misspelled key."
                                                ),
@@ -537,7 +537,7 @@ makeVignetteReference <- function(package, vig = 1, verbose = TRUE,
 
 ## 2018-03-13 new
 insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
-                            bibpunct = NULL, ..., 
+                            bibpunct = NULL, ...,
        cached_env = NULL, cite_only = FALSE, dont_cite = FALSE) { # bibfile = "REFERENCES.bib"
 
     if(!is.null(cached_env)){
@@ -603,18 +603,39 @@ insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
     refch <-  "@"
     refchpat <- paste0("^[", refch, "]")
     if(grepl(refchpat, keys)){
-        ch <- substr(keys, 1, 1)
+        ch <- substr(keys, 1, 1) # 'ch' is not used currently
         keys <- substr(keys, 2, nchar(keys)) # drop refch
+        ## TODO: check if there are still @'s at this point
 
-        refpat <- paste0("(", refch, "[^;,[:space:]]+)")  #  "(@[^;,[:space:]]+)"
+        refpat <- paste0("(", refch, "[^;,()[:space:]]+)")  #  "(@[^;,[:space:]]+)"
+        if(textual){
+            wrkkeys <- strsplit(keys, "@")[[1]] # note [[1]] !!!
+
+            ## the last key is special, since there is none after it
+            nk <- length(wrkkeys)
+            wrkkeys[nk] <- if(grepl("[;,]$", wrkkeys[nk]))
+                               sub("([;,])$", ")\\1", wrkkeys[nk])
+                           else
+                               paste0(wrkkeys[nk], ")")
+
+            ## the 2nd element contains the first key even if the string starts with '@'
+            ##    (if that is the case the first string is "")
+            if(nk > 2){
+                for(i in 2:(nk - 1)){
+                    wrkkeys[i] <- if(grepl("([;,][^;,]*)$", wrkkeys[i]))
+                                      sub("([;,][^;,]*)$", ")\\1" , wrkkeys[i])
+                                  else
+                                      sub("^([^;,()[:space:]]+)", "\\1)" , wrkkeys[i])
+                }
+            }
+            keys <- paste0(wrkkeys, collapse = refch)
+        }
+
         m <- gregexpr(refpat, keys)
         allkeys <- regmatches(keys, m)[[1]] # note: [[1]]
-        allkeys <- gsub("@", "", allkeys)
+        allkeys <- gsub(refch, "", allkeys)
 
-        ## for now ignore bibpunct in this case
-        if(!textual)
-            bibpunct <- c("", "", ";", "a", "", ",")
-        else{
+        if(textual){
             bibpunct0 = c("(", ")", ";", "a", "", ",")
             if(!is.null(bibpunct)){
                 if(length(bibpunct) < length(bibpunct0))
@@ -624,21 +645,27 @@ insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
                     bibpunct[ind] <- bibpunct0[ind]
             }else
                 bibpunct <- bibpunct0
+        }else{
+            ## for now ignore bibpunct in this case
+            bibpunct <- c("", "", ";", "a", "", ",")
         }
-                                        # if(length(bibpunct) < length(bibpunct0))
-                                        #     bibpunct <- c(bibpunct, bibpunct0[-seq_len(length(bibpunct))])
-                                        # ind <- which(is.na(bibpunct))
-                                        # if(length(ind) > 0)
-                                        #     bibpunct[ind] <- bibpunct0[ind]
+
         refs <- sapply(allkeys,
                        function(key)
                            safe_cite(key, bibs, textual = textual, bibpunct = bibpunct,
                                      from.package = package)
                        )
+        if(textual){
+            ## drop ")" - strong assumption that that is the last char
+            refs <- sapply(refs, function(s) substr(s, 1, nchar(s) - 1))
+        }
+
         ## replace keys with citations
         text <- keys
         regmatches(text, m) <- list(refs)
-        text <- paste0("(", text, ")")
+
+        if(!textual) # 2018-03-28 don't put patentheses in textual mode
+            text <- paste0("(", text, ")")
     }else{
         if(is.null(bibpunct))
             text <- safe_cite(keys, bibs, textual = textual, before = before, after = after
@@ -655,7 +682,7 @@ insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
                               bibpunct = bibpunct, from.package = package)
         }
     }
-    
+
     toRd(text)
 }
 
@@ -664,7 +691,7 @@ safe_cite <- function(keys, bib, ..., from.package = NULL){
     if(!all(wrk.keys %in% names(bib))){
         ok <- wrk.keys %in% names(bib)
         miss.keys <- wrk.keys[!ok]
-        warning("possibly non-existing key(s)", 
+        warning("possibly non-existing key(s)",
                 if(!is.null(from.package))
                     paste0(" in bib file from package '", from.package, "'"),
                 ":\n    ", paste(miss.keys, sep = ", "), "\n")
@@ -729,7 +756,7 @@ insert_all_ref <- function(refs){
         be <- allbibs[[package]]
         if(is.null(be))
             be <- get_bibentries(package = package, stop_on_error = FALSE)
-        
+
         if(length(be) == 0){
             be <- bibentry(
                 bibtype = "Misc",
@@ -759,7 +786,7 @@ insert_all_ref <- function(refs){
                                dummy <- bibentry(
                                    bibtype = "Misc",
                                    title = paste0("Some keys from package ", package,
-                                                  " are not avalable"), 
+                                                  " are not avalable"),
                                    author = person("A", "Adummy"),
                                    year = format(Sys.time(), "%Y"),
                                    note = paste0("Failed to insert reference with keys:\n    ",
