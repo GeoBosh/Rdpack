@@ -7,19 +7,19 @@ and `roxygen2` comments; and other convenience functions for references.
 
 # Table of Contents
 
-1.  [Installing Rdpack](#org547832d)
-2.  [Inserting Bibtex references](#org1f58daa)
-    1.  [Preparation](#org9e7c651)
-    2.  [Inserting references](#orgbbd2fb4)
-    3.  [Inserting citations](#org99fa804)
-    4.  [Development using \*devtools"](#orgdadb35c)
-3.  [Using Rdpack::reprompt()](#orge7c021d)
-    1.  [What it does](#orgde4393a)
-    2.  [Reprompt and open in an editor](#org6a84b75)
-4.  [Viewing Rd files](#org718bf7a)
+1.  [Installing Rdpack](#org7af50be)
+2.  [Inserting Bibtex references](#org802a0f7)
+    1.  [Preparation](#orga52a9ab)
+    2.  [Inserting references](#orgd584c5e)
+    3.  [Inserting citations](#org256f90b)
+    4.  [Development using \*devtools"](#org18a2062)
+3.  [Using Rdpack::reprompt()](#org0d8f9d1)
+    1.  [What it does](#orga73b37e)
+    2.  [Reprompt and open in an editor](#org8c64a24)
+4.  [Viewing Rd files](#orgf7d7c71)
 
 
-<a id="org547832d"></a>
+<a id="org7af50be"></a>
 
 # Installing Rdpack
 
@@ -33,7 +33,7 @@ You can also install the [development version](https://github.com/GeoBosh/Rdpack
     install_github("GeoBosh/Rdpack")
 
 
-<a id="org1f58daa"></a>
+<a id="org802a0f7"></a>
 
 # Inserting Bibtex references
 
@@ -44,7 +44,7 @@ the `DESCRIPTION` file of the package needs to be amended, see below the full
 details. 
 
 
-<a id="org9e7c651"></a>
+<a id="orga52a9ab"></a>
 
 ## Preparation
 
@@ -75,7 +75,7 @@ enumerated below in somewhat more detail, see also the vignette
     put the BibTeX references in it.
 
 
-<a id="orgbbd2fb4"></a>
+<a id="orgd584c5e"></a>
 
 ## Inserting references
 
@@ -123,7 +123,7 @@ or open the the from `R`:
 [`Inserting_bibtex_references (development version on github)`](https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_bibtex_references.pdf).)
 
 
-<a id="org99fa804"></a>
+<a id="org256f90b"></a>
 
 ## Inserting citations
 
@@ -187,7 +187,7 @@ produces:
 
 (see also Murdoch 2010; Francois 2014) 
 
-(see also Murdoch (2010) and Francois (2014))
+see also Murdoch (2010) and Francois (2014)
 
 &#x2014;
 
@@ -196,7 +196,7 @@ produces:
 references for `\insertAllCited`.
 
 
-<a id="orgdadb35c"></a>
+<a id="org18a2062"></a>
 
 ## Development using \*devtools"
 
@@ -223,12 +223,12 @@ processing a source Rd file in the development directory of the package and that
 the call to `parse_Rd` specifies only the file.
 
 
-<a id="orge7c021d"></a>
+<a id="org0d8f9d1"></a>
 
 # Using Rdpack::reprompt()
 
 
-<a id="orgde4393a"></a>
+<a id="orga73b37e"></a>
 
 ## What it does
 
@@ -255,7 +255,7 @@ but it alerts the user to remove aliases, methods, and descriptions of arguments
 that have been removed. 
 
 
-<a id="org6a84b75"></a>
+<a id="org8c64a24"></a>
 
 ## Reprompt and open in an editor
 
@@ -278,7 +278,7 @@ Elisp code), for example to be invoked on the currently edited file. Such a
 function and example key binding can be found at [georgisemacs](https://github.com/GeoBosh/georgisemacs).
 
 
-<a id="org718bf7a"></a>
+<a id="orgf7d7c71"></a>
 
 # Viewing Rd files
 
