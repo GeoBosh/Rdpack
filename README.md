@@ -7,19 +7,21 @@ and many functions for manipulation of references and Rd files.
 
 # Table of Contents
 
-1.  [Installing Rdpack](#orge8906ef)
-2.  [Inserting Bibtex references](#orgfea8d9f)
-    1.  [Preparation](#org905dcf7)
-    2.  [Inserting references](#orga6bedba)
-    3.  [Inserting citations](#org9ae9919)
-    4.  [Troubleshooting](#orge1a9ce3)
-3.  [Viewing Rd files](#orga7389b8)
-4.  [Using Rdpack::reprompt()](#org1b28c8c)
-    1.  [What it does](#org1b50b83)
-    2.  [Reprompt and open in an editor](#org99c89a9)
+1.  [Installing Rdpack](#org2f5688c)
+2.  [Inserting Bibtex references](#orgface3da)
+    1.  [Preparation](#org9fc0689)
+    2.  [Inserting references](#org3ea0eff)
+    3.  [Inserting citations](#orgc7840c9)
+    4.  [Troubleshooting](#org56eb685)
+        1.  [A puzzling message in devtools development mode](#orge245e3c)
+        2.  [Typical errors](#org3345091)
+3.  [Viewing Rd files](#org6c99f7d)
+4.  [Using Rdpack::reprompt()](#orgf3cb1de)
+    1.  [What it does](#org2143fe3)
+    2.  [Reprompt and open in an editor](#orga2c5860)
 
 
-<a id="orge8906ef"></a>
+<a id="org2f5688c"></a>
 
 # Installing Rdpack
 
@@ -33,7 +35,7 @@ You can also install the [development version](https://github.com/GeoBosh/Rdpack
     install_github("GeoBosh/Rdpack")
 
 
-<a id="orgfea8d9f"></a>
+<a id="orgface3da"></a>
 
 # Inserting Bibtex references
 
@@ -44,7 +46,7 @@ the `DESCRIPTION` file of the package needs to be amended, see below the full
 details. 
 
 
-<a id="org905dcf7"></a>
+<a id="org9fc0689"></a>
 
 ## Preparation
 
@@ -75,7 +77,7 @@ enumerated below in somewhat more detail, see also the vignette
     put the BibTeX references in it.
 
 
-<a id="orga6bedba"></a>
+<a id="org3ea0eff"></a>
 
 ## Inserting references
 
@@ -123,7 +125,7 @@ or open the the from `R`:
 [`Inserting_bibtex_references (development version on github)`](https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_bibtex_references.pdf).)
 
 
-<a id="org9ae9919"></a>
+<a id="orgc7840c9"></a>
 
 ## Inserting citations
 
@@ -196,9 +198,14 @@ see also Murdoch (2010) and Francois (2014)
 references for `\insertAllCited`.
 
 
-<a id="orge1a9ce3"></a>
+<a id="org56eb685"></a>
 
 ## Troubleshooting
+
+
+<a id="orge245e3c"></a>
+
+### A puzzling message in devtools development mode
 
 The described procedure works transparently in `roxygen2` chunks and with Hadley
 Wickham's package `devtools`.  Packages are built and installed properly with
@@ -211,13 +218,39 @@ references, you may encounter some puzzling warning messages, something like:
     1: In tools::parse_Rd(path) :
       ~/mypackage/man/abcde.Rd: 67: unknown macro '\insertRef'
 
-These warnings are harmless - the help pages are built properly and no warnings
-appear outside *developer's mode*, e.g. in a separate R
+These warnings are harmless and can be ignored &#x2014; the help pages are built
+properly and no warnings appear outside *developer's mode*, e.g. in a separate R
 session<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. Even better, use the function `viewRd()` described
 below to view the required help file.
 
 
-<a id="orga7389b8"></a>
+<a id="org3345091"></a>
+
+### Typical errors
+
+The functions underlying the processing of references and citations intercept
+errors, such as missing BibTeX labels or badly formed items in REFERENCES.bib,
+and issue informative warnings during the building and installation of the
+package, so that the developer is alerted but the package can still be built and
+installed. In these cases the functions usually insert a suitable text in the
+documentation, as well. If you encounter a situation contradicting this
+description, it is probably a bug (but check for the typical errors listed
+below).
+
+A non-decipherable error message is probably caused by one of the following 
+typical errors:
+
+-   misspelled `RdMacros:` field in file DESCRIPTION. The safest way to avoid this
+    is to copy it from the DESCRIPTION file of a working package.
+
+-   omitted second argument of a reference or citation macro. Most of these macros
+    have the package name as a second argument.
+
+These errors appear during parsing of the Rd files, before the control is passed
+to the `Rdpack`'s macros. 
+
+
+<a id="org6c99f7d"></a>
 
 # Viewing Rd files
 
@@ -239,12 +272,12 @@ sources in development mode. This should work also in development mode on any
 platform (e.g. RStudio, Emacs/ESS, Rgui).
 
 
-<a id="org1b28c8c"></a>
+<a id="orgf3cb1de"></a>
 
 # Using Rdpack::reprompt()
 
 
-<a id="org1b50b83"></a>
+<a id="org2143fe3"></a>
 
 ## What it does
 
@@ -271,7 +304,7 @@ but it alerts the user to remove aliases, methods, and descriptions of arguments
 that have been removed. 
 
 
-<a id="org99c89a9"></a>
+<a id="orga2c5860"></a>
 
 ## Reprompt and open in an editor
 

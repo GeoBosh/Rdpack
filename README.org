@@ -203,6 +203,7 @@ references for =\insertAllCited=.
 
 ** Troubleshooting
 
+*** A puzzling message in devtools development mode
 The described procedure works transparently in =roxygen2= chunks and with Hadley
 Wickham's package =devtools=.  Packages are built and installed properly with
 the =devtools= commands and the references are processed as expected.
@@ -214,8 +215,8 @@ references, you may encounter some puzzling warning messages, something like:
     1: In tools::parse_Rd(path) :
       ~/mypackage/man/abcde.Rd: 67: unknown macro '\insertRef'
 #+END_EXAMPLE
-These warnings are harmless - the help pages are built properly and no warnings
-appear outside /developer's mode/, e.g. in a separate R
+These warnings are harmless and can be ignored --- the help pages are built
+properly and no warnings appear outside /developer's mode/, e.g. in a separate R
 session[fn:whathappens]. Even better, use the function =viewRd()= described
 below to view the required help file.
 
@@ -226,6 +227,29 @@ tell =parse_Rd= where to look for additional macros. Indeed, the message above
 shows that the error is in processing a source Rd file in the development
 directory of the package and that the call to =parse_Rd= specifies only the
 file.
+
+*** Typical errors
+
+The functions underlying the processing of references and citations intercept
+errors, such as missing BibTeX labels or badly formed items in REFERENCES.bib,
+and issue informative warnings during the building and installation of the
+package, so that the developer is alerted but the package can still be built and
+installed. In these cases the functions usually insert a suitable text in the
+documentation, as well. If you encounter a situation contradicting this
+description, it is probably a bug (but check for the typical errors listed
+below).
+
+A non-decipherable error message is probably caused by one of the following 
+typical errors:
+
+- misspelled =RdMacros:= field in file DESCRIPTION. The safest way to avoid this
+  is to copy it from the DESCRIPTION file of a working package.
+
+- omitted second argument of a reference or citation macro. Most of these macros
+  have the package name as a second argument.
+
+These errors appear during parsing of the Rd files, before the control is passed
+to the =Rdpack='s macros. 
 
 
 
