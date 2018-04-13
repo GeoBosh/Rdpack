@@ -7,21 +7,21 @@ and many functions for manipulation of references and Rd files.
 
 # Table of Contents
 
-1.  [Installing Rdpack](#orgb463c85)
-2.  [Inserting Bibtex references](#orgcc4b138)
-    1.  [Preparation](#org3072921)
-    2.  [Inserting references](#orgd26f34e)
-    3.  [Inserting citations](#org2e87f30)
-    4.  [Troubleshooting](#org9cdb0b9)
-        1.  [A puzzling message in devtools development mode](#orgfb9e65d)
-        2.  [Typical errors](#org84c57eb)
-3.  [Viewing Rd files](#org17a264d)
-4.  [Using Rdpack::reprompt()](#org804b0a3)
-    1.  [What it does](#orge14db2e)
-    2.  [Reprompt and open in an editor](#org1c6d139)
+1.  [Installing Rdpack](#org78e3809)
+2.  [Inserting Bibtex references](#orga68c9d5)
+    1.  [Preparation](#orgcf73a16)
+    2.  [Inserting references](#orgb4fb2e1)
+    3.  [Inserting citations](#orge97222c)
+    4.  [Troubleshooting](#org1fc5ce1)
+        1.  [A puzzling message in devtools development mode](#org52508f0)
+        2.  [Typical errors](#org0d57253)
+3.  [Viewing Rd files](#orgbea2751)
+4.  [Using Rdpack::reprompt()](#orgb567cd8)
+    1.  [What it does](#org9717ce7)
+    2.  [Reprompt and open in an editor](#orgf1f9276)
 
 
-<a id="orgb463c85"></a>
+<a id="org78e3809"></a>
 
 # Installing Rdpack
 
@@ -35,7 +35,7 @@ You can also install the [development version](https://github.com/GeoBosh/Rdpack
     install_github("GeoBosh/Rdpack")
 
 
-<a id="orgcc4b138"></a>
+<a id="orga68c9d5"></a>
 
 # Inserting Bibtex references
 
@@ -46,7 +46,7 @@ the `DESCRIPTION` file of the package needs to be amended, see below the full
 details. 
 
 
-<a id="org3072921"></a>
+<a id="orgcf73a16"></a>
 
 ## Preparation
 
@@ -77,7 +77,7 @@ enumerated below in somewhat more detail, see also the vignette
     put the BibTeX references in it.
 
 
-<a id="orgd26f34e"></a>
+<a id="orgb4fb2e1"></a>
 
 ## Inserting references
 
@@ -125,7 +125,7 @@ or open the the from `R`:
 [`Inserting_bibtex_references (development version on github)`](https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_bibtex_references.pdf).)
 
 
-<a id="org2e87f30"></a>
+<a id="orge97222c"></a>
 
 ## Inserting citations
 
@@ -198,12 +198,12 @@ see also Murdoch (2010) and Francois (2014)
 references for `\insertAllCited`.
 
 
-<a id="org9cdb0b9"></a>
+<a id="org1fc5ce1"></a>
 
 ## Troubleshooting
 
 
-<a id="orgfb9e65d"></a>
+<a id="org52508f0"></a>
 
 ### A puzzling message in devtools development mode
 
@@ -224,7 +224,7 @@ session<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. Even better,
 below to view the required help file.
 
 
-<a id="org84c57eb"></a>
+<a id="org0d57253"></a>
 
 ### Typical errors
 
@@ -250,7 +250,7 @@ These errors occur during parsing of the Rd files, before the control is passed
 to the `Rdpack`'s macros. 
 
 
-<a id="org17a264d"></a>
+<a id="orgbea2751"></a>
 
 # Viewing Rd files
 
@@ -272,12 +272,12 @@ sources in development mode. This should work also in development mode on any
 platform (e.g. RStudio, Emacs/ESS, Rgui).
 
 
-<a id="org804b0a3"></a>
+<a id="orgb567cd8"></a>
 
 # Using Rdpack::reprompt()
 
 
-<a id="orge14db2e"></a>
+<a id="org9717ce7"></a>
 
 ## What it does
 
@@ -304,7 +304,7 @@ but it alerts the user to remove aliases, methods, and descriptions of arguments
 that have been removed. 
 
 
-<a id="org1c6d139"></a>
+<a id="orgf1f9276"></a>
 
 ## Reprompt and open in an editor
 

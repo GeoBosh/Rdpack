@@ -1,11 +1,16 @@
 #+PROPERTY: header-args:R   :cache yes :session readme-r :results value :exports both
 #+OPTIONS: toc:nil
+#+TITLE: Inserting references in Rd and roxygen2 documentation
 
 Rdpack provides functions for manipulation of R documentation objects, including
 functions =reprompt()= and =ereprompt()= for updating existing Rd documentation
 for functions, methods and classes; Rd macros for citations and import of
 references from =bibtex= files for use in =Rd= files and =roxygen2= comments;
 and many functions for manipulation of references and Rd files.
+
+#+BEGIN_SRC R :results value silent :exports none
+library(Rdpack)
+#+END_SRC
 
 #+TOC: headlines
 
@@ -79,9 +84,6 @@ documentation as
 #+BEGIN_EXAMPLE
 \insertRef{key}{package}
 #+END_EXAMPLE
-
-#+RESULTS:
-
 where =key= is the bibtex key of the reference and =package= is your package.
 This works in =Rd= files and in =roxygen= documentation chunks.
 
@@ -94,9 +96,6 @@ something like:
 \insertRef{R}{bibtex}
 }
 #+END_EXAMPLE
-
-#+RESULTS:
-
 The equivalent =roxygen2= documentation chunk would be:
 #+BEGIN_SRC R
 #' @references
