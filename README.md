@@ -1,25 +1,25 @@
 Rdpack provides functions for manipulation of R documentation objects, including
-function `reprompt()` for updating existing Rd documentation for functions,
-methods and classes; function `rebib()` for import of references from `bibtex`
-files; a macro for importing `bibtex` references which can be used in `Rd` files
-and `roxygen2` comments; and other convenience functions for references.
+functions `reprompt()` and `ereprompt()` for updating existing Rd documentation
+for functions, methods and classes; Rd macros for citations and import of
+references from `bibtex` files for use in `Rd` files and `roxygen2` comments;
+and many functions for manipulation of references and Rd files.
 
 
 # Table of Contents
 
-1.  [Installing Rdpack](#org7af50be)
-2.  [Inserting Bibtex references](#org802a0f7)
-    1.  [Preparation](#orga52a9ab)
-    2.  [Inserting references](#orgd584c5e)
-    3.  [Inserting citations](#org256f90b)
-    4.  [Development using \*devtools"](#org18a2062)
-3.  [Using Rdpack::reprompt()](#org0d8f9d1)
-    1.  [What it does](#orga73b37e)
-    2.  [Reprompt and open in an editor](#org8c64a24)
-4.  [Viewing Rd files](#orgf7d7c71)
+1.  [Installing Rdpack](#orge8906ef)
+2.  [Inserting Bibtex references](#orgfea8d9f)
+    1.  [Preparation](#org905dcf7)
+    2.  [Inserting references](#orga6bedba)
+    3.  [Inserting citations](#org9ae9919)
+    4.  [Troubleshooting](#orge1a9ce3)
+3.  [Viewing Rd files](#orga7389b8)
+4.  [Using Rdpack::reprompt()](#org1b28c8c)
+    1.  [What it does](#org1b50b83)
+    2.  [Reprompt and open in an editor](#org99c89a9)
 
 
-<a id="org7af50be"></a>
+<a id="orge8906ef"></a>
 
 # Installing Rdpack
 
@@ -33,7 +33,7 @@ You can also install the [development version](https://github.com/GeoBosh/Rdpack
     install_github("GeoBosh/Rdpack")
 
 
-<a id="org802a0f7"></a>
+<a id="orgfea8d9f"></a>
 
 # Inserting Bibtex references
 
@@ -44,7 +44,7 @@ the `DESCRIPTION` file of the package needs to be amended, see below the full
 details. 
 
 
-<a id="orga52a9ab"></a>
+<a id="org905dcf7"></a>
 
 ## Preparation
 
@@ -75,7 +75,7 @@ enumerated below in somewhat more detail, see also the vignette
     put the BibTeX references in it.
 
 
-<a id="orgd584c5e"></a>
+<a id="orga6bedba"></a>
 
 ## Inserting references
 
@@ -123,7 +123,7 @@ or open the the from `R`:
 [`Inserting_bibtex_references (development version on github)`](https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_bibtex_references.pdf).)
 
 
-<a id="org256f90b"></a>
+<a id="org9ae9919"></a>
 
 ## Inserting citations
 
@@ -196,9 +196,9 @@ see also Murdoch (2010) and Francois (2014)
 references for `\insertAllCited`.
 
 
-<a id="org18a2062"></a>
+<a id="orge1a9ce3"></a>
 
-## Development using \*devtools"
+## Troubleshooting
 
 The described procedure works transparently in `roxygen2` chunks and with Hadley
 Wickham's package `devtools`.  Packages are built and installed properly with
@@ -212,23 +212,39 @@ references, you may encounter some puzzling warning messages, something like:
       ~/mypackage/man/abcde.Rd: 67: unknown macro '\insertRef'
 
 These warnings are harmless - the help pages are built properly and no warnings
-appear outside *developer's mode*, e.g. in a separate R~session. See below for a
-way to inspect help pages directly from Rd files.
-
-If you care, here is what happens.  These warnings appear because `devtools`
-reroutes the help command to process the developer's Rd sources (rather than the
-documentation in the installed directory) but doesn't tell `parse_Rd` where to
-look for additional macros. Indeed, the message above shows that the error is in
-processing a source Rd file in the development directory of the package and that
-the call to `parse_Rd` specifies only the file.
+appear outside *developer's mode*, e.g. in a separate R
+session<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. Even better, use the function `viewRd()` described
+below to view the required help file.
 
 
-<a id="org0d8f9d1"></a>
+<a id="orga7389b8"></a>
+
+# Viewing Rd files
+
+A function, `viewRd()`, to view Rd files in the source directory of a package
+was introduced in version 0.4-23 of `Rdpack`. A typical user call would look
+something like:
+
+    Rdpack::viewRd("./man/filename.Rd")
+
+By default the requested help page is shown in text format. To open the page in
+a browser, set argument 'type' to "html":
+
+    Rdpack::viewRd("./man/filename.Rd", type = "html")
+
+`viewRd()` renders references and citations correctly, since it understands Rd macros.
+
+Users of 'devtools' can use `viewRd` in place of `help()` to view rendered Rd
+sources in development mode. This should work also in development mode on any
+platform (e.g. RStudio, Emacs/ESS, Rgui).
+
+
+<a id="org1b28c8c"></a>
 
 # Using Rdpack::reprompt()
 
 
-<a id="orga73b37e"></a>
+<a id="org1b50b83"></a>
 
 ## What it does
 
@@ -255,7 +271,7 @@ but it alerts the user to remove aliases, methods, and descriptions of arguments
 that have been removed. 
 
 
-<a id="org8c64a24"></a>
+<a id="org99c89a9"></a>
 
 ## Reprompt and open in an editor
 
@@ -278,21 +294,12 @@ Elisp code), for example to be invoked on the currently edited file. Such a
 function and example key binding can be found at [georgisemacs](https://github.com/GeoBosh/georgisemacs).
 
 
-<a id="orgf7d7c71"></a>
+# Footnotes
 
-# Viewing Rd files
-
-A function, `viewRd()` to view Rd files in the source directory of a package was
-introduced in version 0.4-23 of `Rdpack`. A typical user call would look something like:
-
-    Rdpack::viewRd("./man/filename.Rd")
-
-By default the requested help page is shown in text format. To open the page in a browser,
-set argument 'type' to "html":
-
-    Rdpack::viewRd("./man/filename.Rd", type = "html")
-
-Users of 'devtools' can use `viewRd` in place of `help()` to view rendered Rd sources.
-This should work also in development mode
-on any platform (e.g. RStudio, Emacs/ESS, Rgui).
-
+<sup><a id="fn.1" href="#fnr.1">1</a></sup> If you care, here is what happens.  These warnings appear
+because `devtools` reroutes the help command to process the developer's Rd
+sources (rather than the documentation in the installed directory) but doesn't
+tell `parse_Rd` where to look for additional macros. Indeed, the message above
+shows that the error is in processing a source Rd file in the development
+directory of the package and that the call to `parse_Rd` specifies only the
+file.
