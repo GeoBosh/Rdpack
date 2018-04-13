@@ -248,7 +248,7 @@ typical errors:
 - omitted second argument of a reference or citation macro. Most of these macros
   have the package name as a second argument.
 
-These errors appear during parsing of the Rd files, before the control is passed
+These errors occur during parsing of the Rd files, before the control is passed
 to the =Rdpack='s macros. 
 
 
