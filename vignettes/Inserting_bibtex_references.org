@@ -1,0 +1,332 @@
+#+PROPERTY: header-args:R  :cache yes :session ravel01-r :results value :exports both
+#+OPTIONS: toc:nil
+#+LaTeX_CLASS: Rvignette
+#+LaTeX_CLASS_OPTIONS: [a4paper,twoside,11pt,nojss,article]
+#+TITLE: Inserting references in Rd and roxygen2 documentation
+#+AUTHOR: Georgi N. Boshnakov
+#+MACRO: keywords bibliographic references, Rd, bibtex, citations, R
+#+MACRO: Rpackage Rdpack
+#+KEYWORDS: bibliographic references, Rd, bibtex, citations, R
+#+LATEX_HEADER: % \usepackage{Sweave}
+#+LATEX_HEADER: \author{Georgi N. Boshnakov}
+#+LATEX_HEADER: \Plainauthor{Georgi N. Boshnakov}
+#+LATEX_HEADER: \Address{
+#+LATEX_HEADER:   Georgi N. Boshnakov\\
+#+LATEX_HEADER:   School of Mathematics\\
+#+LATEX_HEADER:   The University of Manchester\\
+#+LATEX_HEADER:   Oxford Road, Manchester M13 9PL, UK\\
+#+LATEX_HEADER:   URL: \url{http://www.maths.manchester.ac.uk/~gb/}
+#+LATEX_HEADER: }
+#+LATEX_HEADER: <<echo=FALSE>>=
+#+LATEX_HEADER: library(Rdpack)
+#+LATEX_HEADER: pd <- packageDescription("Rdpack")
+#+LATEX_HEADER: @
+#+LATEX_HEADER: \Abstract{
+#+LATEX_HEADER: Package \pkg{Rdpack} provides a straightforward way to insert BibTeX references in the
+#+LATEX_HEADER: documentation of an R package, using the RdMacros feature introduced in R~3.2.0. It
+#+LATEX_HEADER: works for `roxygen2' documentation, as well.
+#+LATEX_HEADER: \par
+#+LATEX_HEADER: This vignette is part of package Rdpack, version~\Sexpr{pd$Version}.
+#+LATEX_HEADER: }
+#+LATEX_HEADER: 
+#+LATEX_HEADER: \Keywords{bibliographic references, Rd, bibtex, citations, \proglang{R}}
+#+LATEX_HEADER: \Plainkeywords{bibliographic references, Rd, bibtex, citations, R}
+
+@@latex:%@@\SweaveOpts{engine=R,eps=FALSE}
+
+@@latex:%@@\VignetteIndexEntry{{{{title}}}}
+@@latex:%@@\VignetteDepends{{{{Rpackage}}}}
+@@latex:%@@\VignetteKeywords{{{{keywords}}}}
+@@latex:%@@\VignettePackage{{{{Rpackage}}}}
+
+
+#+BEGIN_SRC R :results value silent :exports none
+library(Rdpack)
+pd <- packageDescription("Rdpack")
+#+END_SRC
+
+
+* Setup 
+
+To prepare a package for importing BibTeX references it is necessary to tell the
+package management tools that package \pkg{Rdpack} and its Rd macros are
+needed. The references should be put in file =inst/REFERENCES.bib=.
+These steps are enumerated below in somewhat more detail for convenince:
+
+1. Add the following lines to  file `DESCRIPTION':
+   #+BEGIN_EXAMPLE
+   Imports: Rdpack
+   RdMacros: Rdpack
+   #+END_EXAMPLE
+   Make sure the capitalisation of =RdMacros= is as shown. If the field 'RdMacros' is already
+   present, add `Rdpack' to the list on that line. Similarly for field 'Imports'.
+
+2. Add the following line to file `NAMESPACE'[fn:2]:
+   #+BEGIN_EXAMPLE
+   importFrom(Rdpack,reprompt)
+   #+END_EXAMPLE
+   The equivalent line for `roxygen2' is
+   #+BEGIN_EXAMPLE
+   #' @importFrom Rdpack reprompt
+   #+END_EXAMPLE
+
+3. Create file =REFERENCES.bib= in subdirectory =inst/= of your package and put
+   the bibtex references in it.
+
+
+# [fn:1] Currently `R CMD check' doesn't complain if you don't import `Rdpack',
+# as long as `Rdpack' is installed on the system (yours, CRAN, win-builder,
+# etc.). However, services like `appveyor' or `travis-ci' do raise
+# errors. Thanks to Clemens Schmid and Tim Riffe for allerting me about this.
+
+[fn:2] Any function for package \pkg{Rdpack} will do. This is to avoid getting a
+warning from 'R CMD check'.
+
+  
+* Inserting references in package documentation 
+
+Once the steps outlined in the previous section are done, references can be
+inserted in the documentation as ~\insertRef{key}{package}~,
+where =key= is the bibtex key of the reference and =package= is your package.
+This works in Rd files and in roxygen documentation chunks.
+
+In fact, argument 'package' can be any installed R package[fn:3],
+not necessarily the current
+one. This means that you don't need to copy references from other packages to your
+="REFERENCES.bib"= file.  This works for packages that have ="REFERENCES.bib"= in
+their installation directory and for the default packages.
+See also the help pages ~?Rdpack::insertRef~ and ~?Rdpack::Rdpack-package~.  For
+example, the help page ~?Rdpack::insertRef~ contains the following lines in section
+``References'' of the Rd file:
+#+BEGIN_EXAMPLE
+    \insertRef{Rpack:bibtex}{Rdpack}
+    \insertRef{R}{bibtex}
+#+END_EXAMPLE
+The first line above inserts the reference labeled =Rpack:bibtex= in Rdpack's
+=REFERENCES.bib=. The second line inserts the reference labeled =R= in file
+=REFERENCES.bib= in package `bibtex'.
+
+A roxygen2 documentation chunk might look like this:
+#+BEGIN_EXAMPLE
+    #' @references
+    #' \insertRef{Rpack:bibtex}{Rdpack}
+    #'
+    #' \insertRef{R}{bibtex}
+#+END_EXAMPLE
+
+
+# %\paragraph*{Note:}
+# % 2017-08-04 commented out,
+# % The references are processed when the package is built. So, there is \emph{no need} to
+# % depend/import/suggest package ="Rdpack"=, it only needs to be installed on your machine.
+
+[fn:3] There is of course the risk that the referenced entry may be removed from
+  the other package. So this is probably only useful for one's own
+  packages. Also, the other package would better be one of the packages
+  mentioned in DESCRIPTION.}
+
+
+
+* Inserting citations 
+
+From version 0.7 of \pkg{Rdpack}, additional Rd macros are available for
+citations[fn:4].  They can be used in both Rd and roxygen2 documentation.  If you are
+using these, it will be prudent to require at least this version of Rdpack in
+the ``Imports:'' directive in file DESCRIPTION: ~Rdpack (>= 0.7)~.
+
+[fn:4] Actually, they were introduced in the development version 0.6-1, but 0.7
+  is the first version with them released on CRAN.
+
+** Macros fof citations 
+\label{sec:macros-citations}
+
+~\insertCite{key}{package}~ cites the key and records it for use by
+~\insertAllCited{}~, see below. \code{key} can contain more keys separated by commas.
+Here are some examples (on the left is
+the code in the documentation chunk, on the right the rendered citation):
+
+    # \begin{center}
+    # \begin{tabular}{l|l}
+    #   Documentation source & rendered \\ \hline
+    #   =\insertCite{parseRd}{Rdpack}= &  
+    #             \Sexpr{insert_citeOnly("parseRd", "Rdpack")}     \\
+    #   =\insertCite{Rpack:bibtex}{Rdpack}=   & 
+    #             \Sexpr{insert_citeOnly("Rpack:bibtex", "Rdpack")} \\
+    #   =\insertCite{parseRd,Rpack:bibtex}{Rdpack}= &
+    #             \Sexpr{insert_citeOnly("parseRd,Rpack:bibtex", "Rdpack")} 
+    # \end{tabular}
+    # \end{center}
+    # 
+    # By default the citations are parenthesised =\insertCite{parseRd}{Rdpack}= produces
+    # \Sexpr{insert_citeOnly("parseRd", "Rdpack")}, as in the examples above.  To get textual
+    # citations, like \Sexpr{insert_citeOnly("parseRd;textual", "Rdpack")} put the string
+    # \code{;textual} at the end of the key. Here are the examples from the table above, rendered
+    # as textual citations:
+    # \begin{center}
+    # \begin{tabular}{l|l}
+    #   Documentation source & rendered \\ \hline
+    #   =\insertCite{parseRd;textual}{Rdpack}= &  
+    #             \Sexpr{insert_citeOnly("parseRd;textual", "Rdpack")}     \\
+    #   =\insertCite{Rpack:bibtex;textual}{Rdpack}=   & 
+    #             \Sexpr{insert_citeOnly("Rpack:bibtex;textual", "Rdpack")} \\
+    #   =\insertCite{parseRd,Rpack:bibtex;textual}{Rdpack}= &
+    #             \Sexpr{insert_citeOnly("parseRd,Rpack:bibtex;textual", "Rdpack")} 
+    # \end{tabular}
+    # \end{center}
+
+#+name: R-inscite
+#+BEGIN_SRC R :var x="", textual=0 :results value silent :exports none
+insert_citeOnly(if(textual == 0) x else paste0(x, ";textual"), "Rdpack")
+#+END_SRC
+
+
+| Documentation source                        | rendered                      |
+|---------------------------------------------+-------------------------------|
+| ~\insertCite{parseRd}{Rdpack}~              | (Murdoch 2010)                |
+| ~\insertCite{Rpack:bibtex}{Rdpack}~         | (Francois 2014)               |
+| ~\insertCite{parseRd,Rpack:bibtex}{Rdpack}~ | (Murdoch 2010; Francois 2014) |
+#+TBLFM: @2$2='(org-sbe "R-inscite" (x "\"parseRd\""))::@3$2='(org-sbe "R-inscite" (x "\"Rpack:bibtex\""))::@4$2='(org-sbe "R-inscite" (x "\"parseRd,Rpack:bibtex\""))
+
+By default the citations are parenthesised =\insertCite{parseRd}{Rdpack}= produces
+src_R{insert_citeOnly("parseRd", "Rdpack")}, 
+as in the examples above.  To get textual
+citations, like 
+src_R{insert_citeOnly("parseRd;textual", "Rdpack")}, 
+put the string
+=;textual= at the end of the key. Here are the examples from the table above, rendered
+as textual citations:
+
+| Documentation source                                |                                 |
+|-----------------------------------------------------+---------------------------------|
+| ~\insertCite{parseRd;textual}{Rdpack}~              | Murdoch (2010)                  |
+| ~\insertCite{Rpack:bibtex;textual}{Rdpack}~         | Francois (2014)                 |
+| ~\insertCite{parseRd,Rpack:bibtex;textual}{Rdpack}~ | Murdoch (2010); Francois (2014) |
+#+TBLFM: @2$2='(org-sbe "R-inscite" (x "\"parseRd\"") (textual 1))::@3$2='(org-sbe "R-inscite" (x "\"Rpack:bibtex\"") (textual 1))::@4$2='(org-sbe "R-inscite" (x "\"parseRd,Rpack:bibtex\"") (textual 1))
+
+The last line in the table demonstrates that this also works with several citations.
+
+
+The macro ~\insertNoCite{key}{package}~ records one or more references for
+~\insertAllCited~ but does not cite it. Setting =key= to =*= will record all
+references from the specified package. For example, ~\insertNoCite{R}{bibtex}~ records
+the reference whose key is =R=, while ~\insertNoCite{*}{utils}~ records all
+references from package ``utils'' for inclusion by ~\insertAllCited~.
+
+To mix the citations with other text, such as ``see also'' and ``chapter 3'', write the list
+of keys as a free text, starting it with the symbol =@= and prefixing each key with it.
+The =@= symbol will not appear in the output. For example, the following code:
+#+BEGIN_EXAMPLE
+  \insertCite{@see also @parseRd and @Rpack:bibtex}{Rdpack}
+  \insertCite{@see also @parseRd; @Rpack:bibtex}{Rdpack}
+  \insertCite{@see also @parseRd and @Rpack:bibtex;textual}{Rdpack}
+#+END_EXAMPLE
+produces:
+
+\qquad
+#+ATTR_LATEX: :center nil
+| \Sexpr{insert_citeOnly("@see also @parseRd and @Rpack:bibtex", "Rdpack")}         |
+| \Sexpr{insert_citeOnly("@see also @parseRd; @Rpack:bibtex", "Rdpack")}            |
+| \Sexpr{insert_citeOnly("@see also @parseRd and @Rpack:bibtex;textual", "Rdpack")} |
+    
+
+~\insertCiteOnly{key}{package}~ is as ~\insertCite~ but does not record the key 
+for the list of references assembled by ~\insertAllCited~.
+
+** Automatically generating lists of references 
+
+The macro ~\insertAllCited{}~ can be used to insert all references cited with
+~\insertCite~ or ~\insertNoCite~. A natural place to put this macro is the
+references section.  The Rd section may look something like:
+#+BEGIN_EXAMPLE
+    \references{
+        \insertAllCited{}
+    }
+#+END_EXAMPLE
+The analogous documentation chunk in roxygen2 might look like this:
+#+BEGIN_EXAMPLE
+    #' @references
+    #'     \insertAllCited{}
+#+END_EXAMPLE
+
+
+
+* Possible issues 
+
+** Warning from 'R CMD build' 
+
+If 'R CMD build' or =devtools::build()= gives a warning along the lines of:
+#+BEGIN_EXAMPLE
+    Warning: C:/temp/RtmpqWQqji/.../XXX.Rd:52: unknown macro '\insertRef'
+#+END_EXAMPLE
+then check the syntax in file DESCRIPTION --- the most common cause of this is misspelling
+=RdMacros:=.  Make sure in particular that `M' is uppercase.
+
+
+** Development using `devtools' 
+
+The described procedure works transparently in `roxygen2' chunks and with Hadley Wickham's
+`devtools'.  Packages are built and installed properly with the `devtools' commands and the
+references are processed as expected.
+
+Currently (2017-08-04) if you run help commands ~?xxx~ for functions from the package
+you are working on and their help pages contain references, you may encounter some puzzling
+warning messages in `developer' mode, something like:
+#+BEGIN_EXAMPLE
+    1: In tools::parse_Rd(path) :
+      ~/mypackage/man/abcde.Rd: 67: unknown macro '\insertRef'
+#+END_EXAMPLE
+These warnings are again about unknown macros but the reason is completely different:
+they pop up because ``devtools'' reroutes the
+help command to process the developer's Rd sources
+(rather than the documentation in the
+installed directory) but doesn't tell =parse_Rd= where to look for additional macros[fn:5].
+
+These warnings are harmless - the help pages are built properly and no warnings appear
+outside ``developer'' mode, e.g. in a separate R~session. You may also consider using the
+function ~viewRd()~, discussed below, for viewing Rd files.
+
+[fn:5] The claims in this sentence can be deduced entirely from the informative
+    message. Indeed, (1)~the error is in processing a source Rd file in the
+    development directory of the package, and (2)~the call to
+    =\parse_Rd= specifies only the file.
+
+
+** Viewing Rd files 
+
+
+A function, \code{viewRd}, to view Rd files in the source directory of a package was
+introduced in version 0.4-23 of \pkg{Rdpack}. A typical user call would look something like:
+#+BEGIN_EXAMPLE
+    Rdpack::viewRd("./man/filename.Rd")
+#+END_EXAMPLE
+By default the requested help page is shown in text format. To open the page in a browser,
+set argument \code{type} to \code{"html"}:
+#+BEGIN_EXAMPLE
+    Rdpack::viewRd("./man/filename.Rd", type = "html")
+#+END_EXAMPLE
+
+Users of 'devtools' can use \code{viewRd()} in place of \code{help()} to view Rd sources[fn:6].
+
+[fn:6] Yes, your real sources are the \texttt{*.R} files but
+  \code{devtools::document()} transfers the roxygen2 documentation chunks to Rd
+  files (and a few others), which are then rendered by \pkg{R} tools.
+
+
+# % * Inserting references interactively 
+# % \label{sec:insert-refer-inter}
+# % 
+# % It is possible to use the underlying R function to insert references interactively.
+# % For example,
+# % <<>>=
+# % library(Rdpack)
+# % cat(insert_ref("R", package = "bibtex"), sep ="\n")
+# % @
+# % 
+# % I would put the (commented out) command on top of the above reference as a reminder where it
+# % came from:
+# % #+BEGIN_EXAMPLE
+# % % insert_ref("R", package = "bibtex"), sep ="\n")
+# % #+END_EXAMPLE
+# % 
+# % For a different approach, see the documentation of function ={Rdpack::rebib()}=.
+

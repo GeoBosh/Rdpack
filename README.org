@@ -140,13 +140,13 @@ vignette("Inserting_bibtex_references", package = "Rdpack")
  src_R[:exports results :results value raw]{insert_citeOnly("parseRd,Rpack:bibtex", "Rdpack")}
 and 
  =\insertCite{Rpack:bibtex}{Rdpack}=         gives
-src_R[:exports results :results value raw]{insert_citeOnly("Rpack:bibtex", "Rdpack")}
+src_R[:exports results :results value raw]{insert_citeOnly("Rpack:bibtex", "Rdpack")}.
 
 
-  By default the citations are parenthesised =\insertCite{parseRd}{Rdpack}= produces
+  By default the citations are parenthesised: =\insertCite{parseRd}{Rdpack}= produces
   src_R[:exports results :results value raw]{insert_citeOnly("parseRd", "Rdpack")}.  To get
   textual citations, like 
-  src_R[:exports results :results value raw]{insert_citeOnly("parseRd;textual", "Rdpack")} 
+  src_R[:exports results :results value raw]{insert_citeOnly("parseRd;textual", "Rdpack")}, 
   put the string =;textual= at the end of the key. The references in the last two sentences
   would be produced with =\insertCite{parseRd}{Rdpack}= and
   =\insertCite{parseRd;textual}{Rdpack}=, respectively.  This also works with several
