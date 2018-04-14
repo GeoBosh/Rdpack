@@ -6,7 +6,8 @@
   
   - the handling for textual mode was incomplete in that additional text after
     the citation was not put inside the parentheses along with the year.
-	
+
+- updates to the documentation.
 
 # Changes in Version 0.7-0 (CRAN)
 
