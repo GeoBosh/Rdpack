@@ -22,39 +22,39 @@ Rdo_collect_metadata(rdo, sec)
   the alias is wrapped in a \verb{#ifdef} directive with the
   corresponding first argument.
 
-  \code{Rdo_collect_metadata} is a generalisation of the above which
-  collect the metadata from sections \code{sec}, where \code{sec} is the
-  name of a section without the leading backslash.
+  \code{Rdo_collect_metadata} is a generalisation of the above. It
+  collects the metadata from section(s) \code{sec}, where \code{sec} is
+  the name of a section without the leading backslash.
 
-  \code{sec} is assumed to be a section containing a single word,
-  such as "keyword", "alias", "name".
+  \code{sec} is assumed to be a section containing a single word, such
+  as "keyword", "alias", "name".
 
 }
 \value{
-  a named character vector, as described in details.
+  a named character vector, as described in Details.
 }
 \author{Georgi N. Boshnakov}
 \seealso{
   \code{tools:::.Rd_get_metadata}
 }
 \examples{
-\dontrun{
-# this needs "timezones.Rd".
+## this example originally (circa 2012) was:
+##     infile <- file.path(R.home(), "src/library/base/man/timezones.Rd")
+## but the OS conditional alias in that file has been removed.
+## So, create an artificial example:
+infile <- system.file("examples", "tz.Rd", package = "Rdpack")
 
-infile <- file.path(R.home(), "src/library/base/man/timezones.Rd")
+## file.show(infile)
 rd <- tools::parse_Rd(infile)
 
-# The functions described here handle also "ifdef" and similar
-# directives. This contains an element windows = "TZDIR"
+## The functions described here handle "ifdef" and similar directives.
+## This detects OS specific aliases (windows = "onlywin" and unix = "onlyunix"):
 Rdo_collect_aliases(rd)
 
-# In contrast, the following do  not find "TZDIR"
+## In contrast, the following do not find "onlywin" and "onlyunix":
 sapply(rd[which(tools:::RdTags(rd)=="\\alias")], as.character)
 tools:::.Rd_get_metadata(rd, "alias")
 }
-}
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
 \keyword{Rd}
 
 
