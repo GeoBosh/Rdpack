@@ -9,9 +9,12 @@
 \alias{onlyunix}
 #endif
 \title{Example in Rdpack}
-\description{Dummy description}
+\description{Dummy description.
+  Second sentence.
+}
 \usage{dummyfun(x)}
 \details{Dummy details.
+More dummy details.  
 #ifdef unix
   These are on unix.
 #endif
