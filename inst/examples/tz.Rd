@@ -15,6 +15,9 @@
 #ifdef unix
   These are on unix.
 #endif
+#ifdef windows
+  These are on windows.
+#endif
 }
 \examples{
 dummyfun(1)

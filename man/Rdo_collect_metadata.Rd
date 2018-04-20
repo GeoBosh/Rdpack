@@ -1,15 +1,13 @@
 \name{Rdo_collect_metadata}
 \alias{Rdo_collect_aliases}
 \alias{Rdo_collect_metadata}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{Collect aliases or other metadata from an Rd object}
-\description{Collect aliases  or other metadata from an Rd object}
+\description{Collect aliases or other metadata from an Rd object.}
 \usage{
 Rdo_collect_aliases(rdo)
 
 Rdo_collect_metadata(rdo, sec)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{rdo}{an Rd object}
   \item{sec}{the kind of metadata to collect, a character string, such
@@ -50,10 +48,14 @@ rd <- tools::parse_Rd(infile)
 ## The functions described here handle "ifdef" and similar directives.
 ## This detects OS specific aliases (windows = "onlywin" and unix = "onlyunix"):
 Rdo_collect_aliases(rd)
+Rdo_collect_metadata(rd, "alias") # same
 
 ## In contrast, the following do not find "onlywin" and "onlyunix":
 sapply(rd[which(tools:::RdTags(rd)=="\\alias")], as.character)
 tools:::.Rd_get_metadata(rd, "alias")
+
+Rdo_collect_metadata(rd, "name")
+Rdo_collect_metadata(rd, "keyword")
 }
 \keyword{Rd}
 
