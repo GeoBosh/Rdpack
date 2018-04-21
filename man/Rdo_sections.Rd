@@ -76,17 +76,17 @@ length(sections)
 sapply(sections, function(x) x$title)
 
 ## The names of builtin sections include the backslash
-Rdo_locate_core_section(rd, "\\title")
+Rdo_locate_core_section(rd, "\\\\title")
 
 ## Locate a user defined secion
 Rdo_locate_core_section(rd, "Further information")
 
 ## The names of builtin sections include the backslash
-Rdo_locate_core_section(rd, "\\details")
+Rdo_locate_core_section(rd, "\\\\details")
 
 ## All appearances of the requested section are returned
-Rdo_locate_core_section(rd, "\\alias")
-Rdo_locate_core_section(rd, "\\keyword")
+Rdo_locate_core_section(rd, "\\\\alias")
+Rdo_locate_core_section(rd, "\\\\keyword")
 
 }
 \keyword{Rd}
