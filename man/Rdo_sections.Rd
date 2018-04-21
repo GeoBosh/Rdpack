@@ -1,7 +1,6 @@
 \name{Rdo_sections}
 \alias{Rdo_sections}
 \alias{Rdo_locate_core_section}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{Locate the sections in Rd objects}
 \description{Locate the Rd sections in an Rd object and return a list of
   their positions and names.}
@@ -10,17 +9,16 @@ Rdo_sections(rdo)
 
 Rdo_locate_core_section(rdo, sec)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{rdo}{an Rd object.}
-  \item{sec}{the name of a section, a character string.}
+  \item{sec}{the name of a section, a character string. For builtin
+    sections the leading backslash should be included.}
 }
 \details{
 
-  \code{Rdo_sections} locates all sections allowed at the top level in
-  an Rd object. This includes the predefined sections and the user
-  defined sections. Sections wrapped in \verb{#ifdef} directives are
-  also found.
+  \code{Rdo_sections} locates all sections at the top level in an Rd
+  object. This includes the predefined sections and the user defined
+  sections. Sections wrapped in \verb{#ifdef} directives are also found.
 
   \code{Rdo_sections} returns a list with one entry for each section in
   \code{rdo}. This entry is a list with components \code{"pos"} and
@@ -40,13 +38,12 @@ Rdo_locate_core_section(rdo, sec)
   Note that for consistency \code{Rdo_locate_core_section} does not
   attempt to simplify the result in the common case when there is only
   one instance of the requested section---it is put in a list of length
-  one. \strong{todo:} maybe create a convenience function for this case
-  or (better) introduce an argument to request dropping the outer list?
+  one. 
 
 }
 \value{
   A list giving the positions and titles of the sections in \code{rdo}
-  as described in 'Details'. The format isessentially that of
+  as described in 'Details'. The format is essentially that of
   \code{\link{Rdo_locate}}, the difference being that field  "value"
   from that function is renamed to "title" here.
 
@@ -57,14 +54,41 @@ Rdo_locate_core_section(rdo, sec)
 }
 \author{Georgi N. Boshnakov}
 \note{
-  I wrote \code{Rdo_sections} after most of the core functionality was
-  tested. Currently this function is underused---it can replace
-  a number of internal functions,
+  
+  I wrote \code{Rdo_sections} and \code{Rdo_locate_core_section} after
+  most of the core functionality was tested. Currently these functions
+  are underused---they can replace a number of internal and exported
+  functions.
+
 }
 \seealso{
   \code{\link{Rdo_locate}}
 }
+\examples{
+infile <- system.file("examples", "tz.Rd", package = "Rdpack")
+rd <- tools::parse_Rd(infile)
 
+## Locate all top level sections in rd
+sections <- Rdo_sections(rd)
+## How many sections there are in rd?
+length(sections)
+## What are their titles?
+sapply(sections, function(x) x$title)
+
+## The names of builtin sections include the backslash
+Rdo_locate_core_section(rd, "\\title")
+
+## Locate a user defined secion
+Rdo_locate_core_section(rd, "Further information")
+
+## The names of builtin sections include the backslash
+Rdo_locate_core_section(rd, "\\details")
+
+## All appearances of the requested section are returned
+Rdo_locate_core_section(rd, "\\alias")
+Rdo_locate_core_section(rd, "\\keyword")
+
+}
 \keyword{Rd}
 
 

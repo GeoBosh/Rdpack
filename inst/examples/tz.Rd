@@ -33,6 +33,9 @@
   \item{res}{result, a number}
   \item{convergence}{numeric code indicating convergence.}
 }
+\section{Further information}{
+This is a user defined section.
+}
 \examples{
 dummyfun(1)
 #ifdef windows

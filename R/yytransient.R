@@ -118,5 +118,6 @@ Rdo_locate_core_section <- function(rdo, sec){                       # 2013-12-0
     if(length(indx)==0)
         list()
     else
-        secall[[indx]]
+        ## 2018-04-21 was: secall[[indx]]
+        secall[indx]
 }
