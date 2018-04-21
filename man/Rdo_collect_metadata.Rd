@@ -1,4 +1,4 @@
-\name{Rdo_collect_metadata}
+\name{Rdo_collect_aliases}
 \alias{Rdo_collect_aliases}
 \alias{Rdo_collect_metadata}
 \title{Collect aliases or other metadata from an Rd object}
@@ -23,9 +23,10 @@ Rdo_collect_metadata(rdo, sec)
   \code{Rdo_collect_metadata} is a generalisation of the above. It
   collects the metadata from section(s) \code{sec}, where \code{sec} is
   the name of a section without the leading backslash.
-
   \code{sec} is assumed to be a section containing a single word, such
   as "keyword", "alias", "name".
+
+  Currently \code{Rdo_collect_metadata} is not exported.
 
 }
 \value{
@@ -48,16 +49,13 @@ rd <- tools::parse_Rd(infile)
 ## The functions described here handle "ifdef" and similar directives.
 ## This detects OS specific aliases (windows = "onlywin" and unix = "onlyunix"):
 Rdo_collect_aliases(rd)
-Rdo_collect_metadata(rd, "alias") # same
+Rdpack:::Rdo_collect_metadata(rd, "alias") # same
 
 ## In contrast, the following do not find "onlywin" and "onlyunix":
 sapply(rd[which(tools:::RdTags(rd)=="\\alias")], as.character)
 tools:::.Rd_get_metadata(rd, "alias")
 
-Rdo_collect_metadata(rd, "name")
-Rdo_collect_metadata(rd, "keyword")
+Rdpack:::Rdo_collect_metadata(rd, "name")
+Rdpack:::Rdo_collect_metadata(rd, "keyword")
 }
 \keyword{Rd}
-
-
-

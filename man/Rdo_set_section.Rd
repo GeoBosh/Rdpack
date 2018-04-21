@@ -39,7 +39,7 @@ Rdo_set_section(text, sec, file, \dots)
   somewhat different layout.)
 
   By default \code{Rdo_set_section} does not create the section if it
-  does not exist since this may not be desirable for some Rd files.  The
+  does not exist, since this may not be desirable for some Rd files.  The
   "..."  arguments can be used to change this, they are passed on to
   \code{\link{Rdo_modify}}, see its documentation for details.
 
@@ -54,26 +54,22 @@ Rdo_set_section(text, sec, file, \dots)
 
 \author{Georgi N. Boshnakov}
 
-
-\note{
-
-  This is probably the only function in the package that changes an Rd
-  file in-place.
-
-}
-
 %% ~Make other sections like Warning with \section{Warning }{....} ~
-
-
-
-
+\seealso{
+  \code{\link{Rdo_modify}}
+}
 \examples{
 dummyfun <- function(x) x
 
-fn <- tempfile("dummyfun", fileext="Rd")
-reprompt(dummyfun, filename=fn)
+fn <- tempfile("dummyfun", fileext = "Rd")
+reprompt(dummyfun, filename = fn)
 Rdo_show(tools::parse_Rd(fn))
 
+## set the author section, create it if necessary.
+Rdo_set_section("A.A. Author", "author", fn, create = TRUE)
+Rdo_show(tools::parse_Rd(fn))
+
+## replace the author section
 Rdo_set_section("Georgi N. Boshnakov", "author", fn)
 Rdo_show(tools::parse_Rd(fn))
 
