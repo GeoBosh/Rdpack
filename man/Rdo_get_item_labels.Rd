@@ -1,7 +1,7 @@
 \name{Rdo_get_item_labels}
 \alias{Rdo_get_item_labels}
 \title{Get the labels of items in an Rd object}
-\description{Get the labels of items in an Rd object}
+\description{Get the labels of items in an Rd object.}
 \usage{
 Rdo_get_item_labels(rdo)
 }
@@ -11,8 +11,8 @@ Rdo_get_item_labels(rdo)
 \details{
 
   \code{Rdo_get_item_labels(rdo)} gives the labels of all
-  \code{"\item"}'s in \code{rdo}. \code{rdo} is often a section or other
-  Rd object fragment, see the examples.
+  \code{"\item"}s in \code{rdo}. Argument \code{rdo} is often a section
+  or other Rd object fragment, see the examples.
   
 }
 \value{
