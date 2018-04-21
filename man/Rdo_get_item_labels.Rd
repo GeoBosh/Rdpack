@@ -18,19 +18,7 @@ Rdo_get_item_labels(rdo)
 \value{
   a character vector
 }
-% \references{
-% %% ~put references to the literature/web site here ~
-% }
 \author{Georgi N. Boshnakov}
-% \note{
-% %%  ~~further notes~~
-% }
-%
-% %% ~Make other sections like Warning with \section{Warning }{....} ~
-%
-% \seealso{
-% %% ~~objects to See Also as \code{\link{help}}, ~~~
-% }
 \examples{
 infile <- system.file("examples", "tz.Rd", package = "Rdpack")
 rd <- tools::parse_Rd(infile)
@@ -49,4 +37,4 @@ pos.val <- Rdo_locate_core_section(rd, "\\value")
 ## There are no other items in 'rd', so this gives TRUE:
 all.equal(items, c(args, vals)) # TRUE
 }
-\keyword{ ~kwd1 }
+\keyword{RdoProgramming}
