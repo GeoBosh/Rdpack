@@ -9,6 +9,9 @@
 
 - updates to the documentation.
 
+- fix a bug in `Rdo_locate_core_section()`.
+
+
 # Changes in Version 0.7-0 (CRAN)
 
 - consolidated the changes introduced since the previous CRAN release of Rdpack
