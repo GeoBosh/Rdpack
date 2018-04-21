@@ -12,15 +12,26 @@
 \description{Dummy description.
   Second sentence.
 }
-\usage{dummyfun(x)}
+\usage{dummyfun(x, y, type, flag = FALSE)}
+\arguments{
+  \item{x}{Description of \code{x}}
+  \item{y}{Description of \code{y}}
+  \item{type}{Description of \code{type}}
+  \item{flag}{Description of \code{flag}}
+}
 \details{Dummy details.
-More dummy details.  
+  More dummy details.
+
 #ifdef unix
   These are on unix.
 #endif
 #ifdef windows
   These are on windows.
 #endif
+}
+\value{A list with the following components:
+  \item{res}{result, a number}
+  \item{convergence}{numeric code indicating convergence.}
 }
 \examples{
 dummyfun(1)
@@ -36,3 +47,5 @@ dummyfun(1)
 }
 \keyword{kw1}
 \keyword{kw2}
+
+
