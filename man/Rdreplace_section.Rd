@@ -30,9 +30,9 @@ Rdreplace_section(text, sec, pattern, path = "./man", exclude = NULL, ...)
   It calls \code{\link{Rdo_set_section}} to do the work.
 }
 \value{
-  A vector giving the full names of the processed Rd files but the function
-  is used for the side effect of mpdofying them as described in section
-  Details.
+  A vector giving the full names of the processed Rd files, but the
+  function is used for the side effect of modifying them as described in
+  section Details.
 }
 % \references{
 % %% ~put references to the literature/web site here ~

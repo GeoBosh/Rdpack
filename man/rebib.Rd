@@ -37,8 +37,10 @@ inspect_Rdbib(rdo, force = FALSE, \dots)
   of the installation directory of package \code{package}, see
   \code{\link{get_bibentries}} for details.
 
-  The following scheme is used by package Rdpack for incorporation of
-  bibliographic references from BibTeX files.
+  The following scheme can be used for incorporation of bibliographic
+  references from BibTeX files. Note however, that usually it is more
+  convenient to use the approach based on Rd macros like
+  \code{\\insertRef}, see \code{\link{insert_ref}} and the vignette(s).
 
   The Bibtex key for each reference is put in a comment line in the
   references section, as in
@@ -108,9 +110,10 @@ inspect_Rdbib(rdo, force = FALSE, \dots)
 %
 % %% ~Make other sections like Warning with \section{Warning }{....} ~
 %
-% \seealso{
-% %% ~~objects to See Also as \code{\link{help}}, ~~~
-% }
+\seealso{
+  \code{\link{insert_ref}} and the vignette(s) for the recommended way
+  to import BibTeX references and citations.
+}
 \examples{
 \dontrun{
 # update references in all Rd files in the package's 'man' directory

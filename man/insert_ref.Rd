@@ -185,13 +185,19 @@ references for \code{\\insertAllCited}.
   for \code{insert_ref}, a character string
 }
 \references{
+
+  The following references are obtained with \code{\\insertRef} for each reference:
+
   \insertRef{Rpack:bibtex}{Rdpack}
 
   \insertRef{R}{bibtex}
 
-  All:
+    ---- 
 
-     \insertAllCited
+  The following references are obtained with a single \code{\\insertAllCited{}},
+  as described in section Description:
+
+     \insertAllCited{}
 }
 \author{Georgi N. Boshnakov}
 \seealso{
