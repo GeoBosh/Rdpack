@@ -49,6 +49,7 @@ for(nam in rdnames) try(reprompt(nam))
 for(nam in rdnames) try(reprompt(nam, sec_copy=FALSE))
 
 }
+}
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 
