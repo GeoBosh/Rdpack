@@ -35,14 +35,6 @@ Rd_combo(rd, f, ..., .MORE)
 }
 
 
-
-
-
-
-
-
-
-
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 
@@ -51,10 +43,11 @@ Rd_combo(rd, f, ..., .MORE)
 \examples{
 \dontrun{
 rdnames <- dir(path = "./man", pattern=".*[.]Rd$", full.names=TRUE)
+
 Rd_combo(rdnames, reprompt)
 for(nam in rdnames) try(reprompt(nam))
 for(nam in rdnames) try(reprompt(nam, sec_copy=FALSE))
-}
+
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the

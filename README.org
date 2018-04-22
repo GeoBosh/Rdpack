@@ -16,7 +16,7 @@ library(Rdpack)
 
 * Installing Rdpack
 
-The [[https://cran.r-project.org/package=Rdpack][latest stable version]] is on CRAN. 
+Install the  [[https://cran.r-project.org/package=Rdpack][latest stable version]] from CRAN:
 #+BEGIN_EXAMPLE
 install_packages("Rdpack")
 #+END_EXAMPLE
