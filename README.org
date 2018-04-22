@@ -235,8 +235,8 @@ and issue informative warnings during the building and installation of the
 package, so that the developer is alerted but the package can still be built and
 installed. In these cases the functions usually insert a suitable text in the
 documentation, as well. If you encounter a situation contradicting this
-description, it is probably a bug (but check for the typical errors listed
-below).
+description, it is probably a bug --- please report it (but check first for the
+typical errors listed below).
 
 A non-decipherable error message is probably caused by one of the following 
 typical errors:
