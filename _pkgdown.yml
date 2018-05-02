@@ -13,7 +13,7 @@ reference:
   - insert_all_ref
   - bibentry_key
   - get_bibentries
-#  - makeVignetteReference
+  - makeVignetteReference
   - rebib
 - title: Create Rd objects
   desc:  Create Rd objects
@@ -28,7 +28,6 @@ reference:
   - Rdreplace_section
   - Rd_combo
   - update_aliases_tmp
-#  - starts_with("Rd_remove")   # Rd_remove_srcref
 - title: Rdo
   desc:  Process parsed Rd objects
   contents:
@@ -64,8 +63,8 @@ reference:
   - Rdo_which
   - Rdo2Rdf
   - S4formals
-#  - Rdpack-package
-###  - starts_with("zz")
+  - Rdpack-package
+#  - starts_with("zz")
 #  - zzasym_compare
 #  - zzbsdup
 #  - zzcapture_promptany
