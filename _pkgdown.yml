@@ -1,0 +1,71 @@
+reference:
+- title: Update documentation files
+  desc:  Update documentation files
+  contents:
+  - reprompt
+  - ereprompt
+  - RStudio_reprompt
+  - viewRd
+  - promptPackageSexpr
+- title: Bibliographic references and citations
+  contents:
+  - insert_ref
+  - insert_all_ref
+  - bibentry_key
+  - get_bibentries
+#  - makeVignetteReference
+  - rebib
+- title: Create Rd objects
+  desc:  Create Rd objects
+  contents:
+  - c_Rd
+  - list_Rd
+  - char2Rdpiece
+- title: Modify Rd objects
+  desc:  Modify Rd objects
+  contents:
+  - append_to_Rd_list
+  - Rdreplace_section
+  - Rd_combo
+  - update_aliases_tmp
+#  - starts_with("Rd_remove")   # Rd_remove_srcref
+- title: Rdo
+  desc:  Process parsed Rd objects
+  contents:
+  - starts_with("Rdo_")
+- title: Parse Rd textual representation of Rd and pieces of thereof
+  desc: Parse Rd textual representation of Rd and pieces of thereof
+  contents:
+  - parse_Rdname
+  - parse_Rdpiece
+  - parse_Rdtext
+  - parse_text
+  - parse_usage_text
+  - parse_pairlist
+- title: Get content from Rd objects and inspect it
+  desc: Get and inspect parts of Rd objects
+  contents: 
+  - inspect_args
+  - inspect_Rd
+  - inspect_signatures
+  - inspect_slots
+  - inspect_usage
+- title: Other
+  contents:
+  - compare_usage1
+  - deparse_usage
+  - format_funusage
+  - get_sig_text
+  - get_usage_text
+  - predefined
+  - promptUsage
+  - Rdapply
+  - rdo_text_restore
+  - Rdo_which
+  - Rdo2Rdf
+  - S4formals
+#  - Rdpack-package
+###  - starts_with("zz")
+#  - zzasym_compare
+#  - zzbsdup
+#  - zzcapture_promptany
