@@ -185,7 +185,49 @@
 #&gt; [1] "\\section"</div><div class='input'>
 
 
-</div></pre>
+    </div></pre>
+
+
+<pre class="r"><code># add a keyword section
+char2Rdpiece(&quot;graphics&quot;,&quot;keyword&quot;)</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;graphics&quot;
+## attr(,&quot;Rd_tag&quot;)
+## [1] &quot;TEXT&quot;
+## 
+## attr(,&quot;Rd_tag&quot;)
+## [1] &quot;\\keyword&quot;</code></pre>
+<pre class="r"><code># an element suitable to be put in a &quot;usage&quot; section
+char2Rdpiece(&quot;log(x, base = exp(1))&quot;, &quot;usage&quot;)</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;log(x, base = exp(1))&quot;
+## attr(,&quot;Rd_tag&quot;)
+## [1] &quot;RCODE&quot;
+## 
+## attr(,&quot;Rd_tag&quot;)
+## [1] &quot;\\usage&quot;</code></pre>
+<pre class="r"><code>#
+char2Rdpiece(&quot;Give more examples for this function.&quot;, &quot;Todo&quot;, force.sec = TRUE)</code></pre>
+<pre><code>## [[1]]
+## [[1]][[1]]
+## [1] &quot;Todo&quot;
+## attr(,&quot;Rd_tag&quot;)
+## [1] &quot;TEXT&quot;
+## 
+## 
+## [[2]]
+## [[2]][[1]]
+## [1] &quot;Give more examples for this function.&quot;
+## attr(,&quot;Rd_tag&quot;)
+## [1] &quot;TEXT&quot;
+## 
+## 
+## attr(,&quot;Rd_tag&quot;)
+## [1] &quot;\\section&quot;</code></pre>
+
+
+
+    
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
