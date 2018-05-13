@@ -73,7 +73,7 @@ get_bibentries(\dots, package = NULL, bibfile = "REFERENCES.bib",
   a bibentryRd object inheriting from bibentry
 }
 \references{
-  \insertAllCited
+  \insertAllCited{}
 }
 \author{Georgi N. Boshnakov}
 % \note{

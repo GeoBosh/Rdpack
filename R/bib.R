@@ -809,18 +809,57 @@ insert_all_ref <- function(refs, style = ""){
     }
 
     bibs <- sort(bibs)
-    if(style = "")
-        res <- sapply(bibs, function(x) toRd(x))
-    else{
-        res <- sapply(bibs, function(x) toRd(x, .bibstyle = "JSSLongNames"))
+
+    pkgs <- names(all.keys)
+          # \Sexpr[stage=build,results=hide]{requireNamespace("cvar")}
+    if(length(pkgs) > 0){
+        if(!isNamespaceLoaded("cvar") && !requireNamespace("cvar") )
+            sty <- NULL
+        else{
+            pkg <- pkgs[1] ## TODO: for now should do
+            sty <- Rdpack_bibstyles(pkg)
+        }
+    }else
+        sty <- NULL
+    
+    if(!is.null(sty))
+        res <- sapply(bibs, function(x) tools:::toRd.bibentry(x, style = "JSSLongNames"))
+    else {
+        if(style == "")
+            res <- sapply(bibs, function(x) tools:::toRd.bibentry(x))
+        else{
+            res <- sapply(bibs, function(x) tools:::toRd.bibentry(x, style = "JSSLongNames"))
+        }
     }
+
+    if(interactive())
+        browser()
+
+# Rdpack_bibstyles
+
     paste0(res, collapse = "\n\n")
 }
 
 ## ls(environment(bibstyle)$styles$JSS)
-bibstyle("JSSLongNames", .init = TRUE, .default = FALSE,
-         shortName = function(person) {
-             paste(paste(tools:::cleanupLatex(person$given), collapse=" "),
-                   tools:::cleanupLatex(person$family), sep = " ")
-         }
-         )
+.onLoad <- function(lib, pkg){
+    tools::bibstyle("JSSLongNames", .init = TRUE, .default = FALSE,
+        shortName = function(person) {
+            paste(paste(tools:::cleanupLatex(person$given), collapse=" "),
+                  tools:::cleanupLatex(person$family), sep = " ")
+        }
+        )
+    invisible(NULL)
+}
+
+Rdpack_bibstyles <- local({
+    styles <- list()
+    function(package, authors){
+        if((n <- nargs()) > 1){
+            styles[[package]] <<- authors
+            
+        }else if(n == 1)
+            styles[[package]]
+        else
+            styles
+    }
+})

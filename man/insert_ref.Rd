@@ -198,10 +198,6 @@ references for \code{\\insertAllCited}.
   as described in section Description:
 
      \insertAllCited{}
-
-
-     \insertAllCited{LongNames}
-
 }
 \author{Georgi N. Boshnakov}
 \seealso{

@@ -4,7 +4,7 @@ importFrom(utils, bibentry, browseURL, capture.output, cite, file.edit,
            getAnywhere, getS3method, head, help,
            packageDescription, packageVersion, person, prompt, vignette)
 
-importFrom(tools, parse_Rd, toRd, checkRd, Rd2txt)
+importFrom(tools, parse_Rd, toRd, checkRd, Rd2txt, bibstyle)
 importFrom(gbRd, Rd_help2txt)
 importFrom(bibtex, read.bib)
 
@@ -116,4 +116,5 @@ export(
 , ereprompt
 , insert_citeOnly
 , insert_all_ref
+, Rdpack_bibstyles
 )

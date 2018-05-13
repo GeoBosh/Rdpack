@@ -34,7 +34,7 @@ insert_all_ref(refs)
   file 
 }
 \references{
-  \insertAllCited
+  \insertAllCited{}
 }
 \author{Georgi N. Boshnakov}
 % \note{
