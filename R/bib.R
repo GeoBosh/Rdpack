@@ -823,12 +823,12 @@ insert_all_ref <- function(refs, style = ""){
         sty <- NULL
     
     if(!is.null(sty))
-        res <- sapply(bibs, function(x) tools:::toRd.bibentry(x, style = "JSSLongNames"))
+        res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSLongNames"))
     else {
         if(style == "")
-            res <- sapply(bibs, function(x) tools:::toRd.bibentry(x))
+            res <- sapply(bibs, function(x) tools::toRd(x))
         else{
-            res <- sapply(bibs, function(x) tools:::toRd.bibentry(x, style = "JSSLongNames"))
+            res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSLongNames"))
         }
     }
 
