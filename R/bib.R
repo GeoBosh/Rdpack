@@ -813,10 +813,10 @@ insert_all_ref <- function(refs, style = ""){
     pkgs <- names(all.keys)
           # \Sexpr[stage=build,results=hide]{requireNamespace("cvar")}
     if(length(pkgs) > 0){
-        if(!isNamespaceLoaded("cvar") && !requireNamespace("cvar") )
+        pkg <- pkgs[1] ## TODO: for now should do
+        if(!isNamespaceLoaded(pkg) && !requireNamespace(pkg) )
             sty <- NULL
         else{
-            pkg <- pkgs[1] ## TODO: for now should do
             sty <- Rdpack_bibstyles(pkg)
         }
     }else
@@ -840,12 +840,24 @@ insert_all_ref <- function(refs, style = ""){
     paste0(res, collapse = "\n\n")
 }
 
+# Clean up LaTeX accents and braces
+#     this is a copy of unexported  tools:::cleanupLatex by Duncan Murdoch.
+cleanupLatex <- function(x) {
+    if (!length(x)) return(x)
+    latex <- tryCatch(parseLatex(x), error = function(e)e)
+    if (inherits(latex, "error")) {
+    	x
+    } else {
+    	deparseLatex(latexToUtf8(latex), dropBraces=TRUE)
+    }
+}
+
 ## ls(environment(bibstyle)$styles$JSS)
 .onLoad <- function(lib, pkg){
     tools::bibstyle("JSSLongNames", .init = TRUE, .default = FALSE,
         shortName = function(person) {
-            paste(paste(tools:::cleanupLatex(person$given), collapse=" "),
-                  tools:::cleanupLatex(person$family), sep = " ")
+            paste(paste(cleanupLatex(person$given), collapse=" "),
+                  cleanupLatex(person$family), sep = " ")
         }
         )
     invisible(NULL)
