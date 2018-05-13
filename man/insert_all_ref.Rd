@@ -3,13 +3,14 @@
 \title{Insert references cited in packages}
 \description{Insert references cited in packages. }
 \usage{
-insert_all_ref(refs)
+insert_all_ref(refs, style = "")
 }
 \arguments{
   \item{refs}{
     a matrix specifying key-package pairs of the references to insert,
     see Details.
   }
+  \item{style}{a bibstyle, see Details.}
 }
 \details{
 
