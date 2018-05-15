@@ -326,7 +326,7 @@ insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
             note = note,
             key = key
         )
-        toRd(item)
+        .toRd_styled(item, package)
     }else if(length(key) == 1){
         item <- tryCatch(bibs[[key]],
                          warning = function(c) {
@@ -364,13 +364,13 @@ insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
             #     if(inherits(item, "bibentry")  &&  !is.null(item$url))
             #         item$url <- gsub("([^\\])%", "\\1\\\\%", item$url)
 
-        toRd(item) # TODO: add styles? (doesn't seem feasible here)
+        .toRd_styled(item, package) # TODO: add styles? (doesn't seem feasible here)
     }else{
         ## key is documented to be of length one, nevertheless handle it too
         kiki <- FALSE
         items <- withCallingHandlers(bibs[[key]], warning = function(w) {kiki <<- TRUE})
         ## TODO: deal with URL's as above
-        txt <- toRd(items)
+        txt <- .toRd_styled(items, package)
 
         if(kiki){ # warning(s) in bibs[[key]]
             s <- paste0("WARNING: failed to insert ",
@@ -832,11 +832,6 @@ insert_all_ref <- function(refs, style = ""){
         }
     }
 
-    if(interactive())
-        browser()
-
-# Rdpack_bibstyles
-
     paste0(res, collapse = "\n\n")
 }
 
@@ -860,6 +855,8 @@ cleanupLatex <- function(x) {
                   cleanupLatex(person$family), sep = " ")
         }
         )
+
+    Rdpack_bibstyles(package = pkg, authors = "LongNames")
     invisible(NULL)
 }
 
@@ -875,3 +872,22 @@ Rdpack_bibstyles <- local({
             styles
     }
 })
+
+.toRd_styled <- function(bibs, package, style = ""){
+    if(!isNamespaceLoaded(package) && !requireNamespace(package) )
+        sty <- NULL
+    else{
+        sty <- Rdpack_bibstyles(package)
+    }
+    
+    if(!is.null(sty))
+        res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSLongNames"))
+    else {
+        if(style == "")
+            res <- sapply(bibs, function(x) tools::toRd(x))
+        else{
+            res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSLongNames"))
+        }
+    }
+    res
+}
