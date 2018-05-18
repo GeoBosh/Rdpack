@@ -1,3 +1,11 @@
+# Changes in Version 0.8-0
+
+- \insertRef and \insertAllCited macros support bibstyles for formatting
+  references (feature requested by Jamie Halliday). Currently only long author
+  names are supported but complete support for styles can be added trivially if
+  requested. 
+
+
 # Changes in Version 0.7-1
 
 - improvements to handling of free form citations in textual mode:
