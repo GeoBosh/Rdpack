@@ -5,10 +5,11 @@
 \title{Insert bibtex references in Rd and roxygen2 documentation}
 \description{
 
-  Package Rdpack provides an Rd macro for inserting references from
-  bibtex files into R documentation.  Function insert_ref() is the
-  workhorse behind this mechanism. The description given in this page
-  should be sufficient, for more details see the vignette.
+  Package Rdpack provides Rd macros for inserting references and
+  citations from bibtex files into R documentation.  Function
+  insert_ref() is the workhorse behind this mechanism. The description
+  given in this page should be sufficient, for more details see the
+  vignette.
 
 }
 \usage{
@@ -24,36 +25,13 @@ insert_ref(key, package = NULL, ...)
   it to Rd format and returns a single string with embedded newline
   characters. It is the workhorse in the provided mechanism but most
   users do not even need to know about \code{insert_ref}.
-
-  The documentation of a package using the mechanism provided here
-  relies on the Rd macro \verb{\\insertRef} and needs to be prepared as
-  follows: 
-  % To prepare a package to use this mechanism, the following preparation
-  % steps need to be done:
-  \enumerate{
-    \item{
-      File `DESCRIPTION' should contain the following line: \cr
-
-      \verb{RdMacros: Rdpack} \cr
-      
-      (If there is already a line starting with 'RdMacros:', Rdpack
-      should be added to the list on that line.)
-    }
-
-    \item{
-      `Rdpack' should be added to the list of imports in file
-      `DESCRIPTION'. 
-    }
-    
-    \item{
-      The BibTeX references should be put in file
-      \code{"REFERENCES.bib"} in subdirectory \code{"inst/"} of the 
-      package.
-    }
-
-  }
   
-  References are inserted in documentation using the syntax
+  The documentation of a package using the mechanism provided here
+  relies on the Rd macro \verb{\\insertRef}.  The description below
+  assumes that \pkg{Rdpack} has been added to file DESCRIPTION, as
+  described in \code{\link{Rdpack-package}} and the vignettes.
+  
+  References can be inserted in documentation using the syntax
   \verb{\\insertRef{key}{package}}, where \verb{key} is the bibtex key
   of the reference and \verb{package} is an R package containing file
   \code{"REFERENCES.bib"} from which the reference should be taken.
@@ -85,20 +63,13 @@ insert_ref(key, package = NULL, ...)
   }
 
   The first reference has label \verb{Rpack:bibtex} and is taken from
-  file \code{"REFERENCES.bib"} in package `Rdpack'. The second reference
-  is from the file with the same name in package \verb{"bibtex"}.
+  file \code{"REFERENCES.bib"} in package \pkg{Rdpack}. The second reference
+  is from the file with the same name in package \pkg{bibtex}.
   
   For more details see vignette:
   \code{vignette("Inserting_bibtex_references", package = "Rdpack")}
 
-
   The references are processed when the package is built.
-  % 2017-08-09 commenting out:
-  %
-  % So, there is
-  % \emph{no need} to depend/import/suggest package \verb{"Rdpack"}, it
-  % only needs to be installed on your machine.
-
 
   From version 0.6-1 of \pkg{Rdpack}, additional Rd macros are
   available for citations.  They can be used in Rd and
@@ -185,8 +156,9 @@ references for \code{\\insertAllCited}.
   for \code{insert_ref}, a character string
 }
 \references{
-
-  The following references are obtained with \code{\\insertRef} for each reference:
+  For illustrative purposes there are two sets of citation below
+  The first set of references is obtained with \code{\\insertRef} for
+  each reference: 
 
   \insertRef{Rpack:bibtex}{Rdpack}
 
@@ -194,8 +166,7 @@ references for \code{\\insertAllCited}.
 
     ---- 
 
-  The following references are obtained with a single \code{\\insertAllCited{}},
-  as described in section Description:
+  The following references are obtained with a single \code{\\insertAllCited{}}:
 
      \insertAllCited{}
 }
@@ -209,4 +180,5 @@ references for \code{\\insertAllCited}.
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
+\keyword{documentation}
 \keyword{Rd}

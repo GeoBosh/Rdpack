@@ -16,20 +16,30 @@ Rdo_piece_types
 rdo_top_tags
 }
 \details{
-  \code{Rdo_predefined_sections} is a character vector of types of the
-  top level sections of an Rd object.
 
-  \code{Rdo_piece_types} is a character vector giving the types of
-  various (all possible?)  Rd macros.
+  The Rd syntax defines several tables
+  \insertCite{parseRd}{Rdpack}. \pkg{Rdpack} stores them in the
+  variables described here.
+  
+  \code{Rdo_predefined_sections} is a named character vector of types of the
+  top level sections of an Rd object. 
 
-  \strong{NOOTE:} These objects are hard coded and need to be updated if
+  \code{Rdo_piece_types} is a named character vector giving the types of
+  the core (all possible?)  Rd macros.
+
+  \strong{NOTE:} These objects are hard coded and need to be updated if
   the specifications of the Rd format are updated.
 
   todo: write functions that go through existing Rd documentation to
   discover missing or wrong items.
 }
 \value{
-  The format of \code{Rdo_predefined_sections} is:
+  
+  for \code{Rdo_predefined_sections}, the name-value pairs are given in
+  the following table. For example,
+  \code{Rdo_predefined_sections["examples"]} is
+  \Sexpr[stage=build,results=rd]{Rdo_predefined_sections["examples"]}.
+  
   \Sexpr[stage=build,results=rd]{require(Rdpack);
     paste(
     "\\\\if{latex}{",
@@ -51,7 +61,7 @@ rdo_top_tags
 
 	  )}
 
-  The format of \code{Rdo_piece_types} is:
+  for \code{Rdo_piece_types}, the name-value pairs are:
 
   \Sexpr[stage=build,results=rd]{
     paste(
@@ -74,12 +84,18 @@ rdo_top_tags
 
 	)}
 
-  The value of \code{rdo_top_tags} is:
+  for \code{rdo_top_tags}, the values are:
 
   \Sexpr[stage=build,results=rd]{
     paste("\\\\tabular{lllll}{",
-     paste(sub("^[\\\\]|#", "", rdo_top_tags), c(rep("\\\\tab ",4),"\\\\cr"),
-           sep="", collapse="\n"),
+    paste(sub("^[#]", "\\\\\\\\verb{#}", sub("^([\\\\])", "{\\\\\\\\\\\\1}", rdo_top_tags)),
+          c(rep("\\\\tab ",4),"\\\\cr"),
+          sep="", collapse="\n"),
           "}")}
+
+  Note that most, but not all,  are prefixed with backaslash.
+}
+\references{
+  \insertAllCited{}
 }
 \keyword{Rd}

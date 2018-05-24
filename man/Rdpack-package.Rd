@@ -22,13 +22,14 @@
    Built:    \tab \Sexpr[stage=build]{pd$Built}\cr
    }
 
-   Index:
+% 2018-05-24 commentring out   
+%    Index:
+% 
+%   \Sexpr[stage=build,results=rd]{paste("\\\\preformatted{", paste(if(!is.null(lb$info[[2]])) lb$info[[2]] else "No entries",collapse="\\n"), "}", sep="")}
 
-  \Sexpr[stage=build,results=rd]{paste("\\\\preformatted{", paste(if(!is.null(lb$info[[2]])) lb$info[[2]] else "No entries",collapse="\\n"), "}", sep="")}
 
-
-  Package \code{Rdpack} may help authors of \R packages to keep their
-  documentation up to date during development.  Although base R and
+  Package \code{Rdpack} provides a number of functions for maintenance
+  of documentation in \R packages.  Although base \R and
   package \code{methods} have functions for creation of skeleton
   documentation, if a function gets a new argument or a generic gets a
   new method, then updating existing documentation is somewhat
@@ -36,11 +37,18 @@
   Rd documentation that can be dealt with automatically and leave manual
   changes untouched. For example, usage sections for functions are
   updated and if there are undescribed arguments, additional items are
-  put in the `arguments' section.
+  put in the `arguments' section. 
+  
+  A set of functions and macros support inclusion of references and
+  citations from BibTeX files in \R documentation (Rd and
+  roxygen2). These tools use only facilities provided by base \R and
+  package \pkg{bibtex} \insertCite{Rpack:bibtex}{Rdpack}.
 
+  \subsection{Creating and updating Rd files}{
   The main function provided by this package is \code{\link{reprompt}}.
   There is also a function \code{\link{promptPackageSexpr}} for creating
-  initial skeleton for overall package description such as this help page.
+  initial skeleton for overall package description such as this help
+  page.
 
   \code{\link{reprompt}} produces a skeleton documentation for the
   requested object, similarly to functions like \code{prompt},
@@ -62,19 +70,33 @@
   the Rd object or file, and writes the updated Rd file in the current
   working directory, see \code{\link{reprompt}} for details.
 
+  \code{\link{ereprompt}} updates the Rd documentation in a file,
+  overwrites it and opens it in an editor. It calls \code{reprompt} to
+  do the actual job but has different defaults. Which editor is opened,
+  is system dependent, see the \code{\link[utils]{edit}} and
+  \code{\link{ereprompt}} for futher details. 
+  
   Users who work on Rd files in RStudio can use add-in \dQuote{Reprompt}
   to invoke \code{reprompt} conveniently on an Rd file or on a selected
   object in an \R source code file, see
   \code{\link{RStudio_reprompt}}. This add-in was contributed by Duncan
   Murdoch.
 
+  Users of Emacs/ESS have various options, depending on their workflow.
+  One approach is to define a key to call \code{\link{ereprompt}} on the
+  file being edited, see
+  \href{https://github.com/GeoBosh/georgisemacs}{georgisemacs} for an
+  example setup. 
+
+  
 
   \code{\link{promptPackageSexpr}} creates a skeleton for a
   package overview in file \verb{name-package.Rd}. Then the file can be
   edited as needed. This function needs to be called only once for a
   package since automatic generation of information in
   \verb{name-package.Rd} is achieved with Sexpr's at build time, not
-  with verbatim strings as \code{promptPackage} does.
+  with verbatim strings (\code{promptPackage} used to insert verbatim
+  strings but in recent versions of \R it also uses macros.).
 
   For example, the source of this help page is file
   `Rdpack-package.Rd'. It was initially produced using
@@ -84,11 +106,14 @@
   The factual information at the beginning of this help topic (the index
   above, the version and other stuff that can be determined
   automatically) is kept automatically up to date.
+}
+
+\subsection{References and Citations}{
   
   Another set of functions is for management of bibliographic references
   in Rd files.  The old approach based on function \code{\link{rebib}}
   is fully functional, see below, but the recommended way to insert
-  references and citations is based on the Rd macros.
+  references and citations is based on Rd macros.
 
   The provided Rd macros are fully portable and, in particular, work in
   Rd files and roxygen2 comments, see \code{\link{insertRef}} and the
@@ -96,14 +121,48 @@
 
   The Bibtex source for the references and citations produced by the Rd
   macros is file "REFERENCES.bib", which should be located in the root
-  of the package installation directory.
+  of the package installation directory. \pkg{Rdpack} needs also to be
+  mentioned in two places in file `DESCRIPTION'. These one-off
+  preparation steps are enumerated below:
+
+  \enumerate{
+    \item{
+      Put  the following line in file `DESCRIPTION': \cr
+
+      \verb{RdMacros: Rdpack} \cr
+      
+      (If there is already a line starting with 'RdMacros:', add
+      \pkg{Rdpack} to the list on that line.)
+    }
+
+    \item{
+      Add \pkg{Rdpack} to the list of imports (\verb{Imports:}
+      field) in file `DESCRIPTION'.
+    }
+
+    \item{
+      Add the following line to file `NAMESPACE' \cr
+    
+      \verb{importFrom(Rdpack,reprompt)}
+
+      Alternatively, if \pkg{devtools} is managing your NAMESPACE file,
+      the equivalent \pkg{roxygen2} line is \cr
+      
+      \verb{#' @importFrom Rdpack reprompt}
+    }
+    \item{
+      Create file \code{"REFERENCES.bib"} in subdirectory
+      \code{"inst/"} of the package and put the BibTeX references in
+      file
+    }
+  }
 
   The Rd macro \code{\\insertRef} takes two arguments: a BibTeX key and
   the name of a package. Thus, \code{\\insertRef{key}{package}} inserts
   the reference whose key is \code{key} from "REFERENCES.bib" of the
   specified package (almost always the one being documented).
 
-  With Rdpack version 0.6-1 or later, citations can be done with Rd
+  With \pkg{Rdpack (>= 0.6-1)}, citations can be done with Rd
   macro \code{\\insertCite}, which inserts citation(s) for one or more
   BibTeX keys and records the keys.  \code{\\insertCiteOnly} is similar
   to \code{\\insertCite} but does not record the
@@ -112,11 +171,35 @@
   all references recorded by \code{\\insertAllCited} and
   \code{\\insertNoCite}.
 
-  The function \code{\link{viewRd}} renders a documentation file in a
-  source package and displays it as text or in a browser. Convenience
-  functions \code{\link{makeVignetteReference}} and \code{\link{vigbib}}
-  generate Bibtex entries for vignettes.
+  Bibliography styles for lists of references are supported from
+  \pkg{Rdpack (>= 0.8)}. Currently the only alternative offered is to
+  use long names (Georgi N. Boshnakov) in place of the default style
+  (Boshnakov GN). More comprehensive alternatives can be included if
+  needed or requested.
 
+  Convenience functions \code{\link{makeVignetteReference}} and
+  \code{\link{vigbib}} generate Bibtex entries for vignettes.
+
+}
+
+\subsection{Previewing documentation pages}{
+
+  It is convenient during development to be able to view the
+  rendered version of the document page being edited. 
+  The function \code{\link{viewRd}} renders a documentation file in a
+  source package and displays it as text or in a browser. It renders
+  references properly in any workflow, including \pkg{devtools} development
+  mode \insertCite{Rdevtools}{Rdpack} in Emacs/ESS, Rstudio, Rgui.
+  This function is a good candidate to be assigned to a key in editors
+  which support this.
+  
+  I created this function (in 2017) since the functions provided by
+  \pkg{devtools} and Emacs/ESS are giving errors when processing pages
+  containing Rd macros.
+  
+}
+
+\subsection{Static Management of References}{
   
   In the alternative approach, the function \code{\link{rebib}} updates
   the bibliographic references in an Rd file. Rdpack uses a simple
@@ -137,7 +220,8 @@
   \code{rebib} with \code{force = TRUE} to get this effect. There is
   also a facility to include all references from the Bibtex file, see
   the documentation of \code{\link{rebib}} for details.
-
+  
+}
 
   Other functions that may be useful are \code{Rdo2Rdf}, \code{Rdapply}
   and \code{Rd_combo}. Here is also brief information about some more
@@ -164,15 +248,9 @@
 
 Maintainer: \Sexpr[stage=build]{pd$Maintainer}
 }
-\references{
-  \insertRef{Rpack:bibtex}{Rdpack}
-
-  \insertRef{parseRd}{Rdpack}
-
-}
 \note{
   All processing is done on the parsed Rd objects, i.e. objects of class
-  "Rd" or pieces of such objects.
+  "Rd" or pieces of such objects \insertCite{parseRd}{Rdpack}.
 
   The following terminology is used (todo: probably not yet
   consistently) throughout the documentation.
@@ -188,6 +266,7 @@ Maintainer: \Sexpr[stage=build]{pd$Maintainer}
 \keyword{ package }
 \seealso{
 %  \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
+  \code{\link{ereprompt}},
   \code{\link{reprompt}},
   \code{\link{promptPackageSexpr}},
   \code{\link{rebib}},
@@ -240,4 +319,7 @@ promptPackageSexpr("mypackage")
 ## update the references in "mypackage-package.Rd"
 rebib(infile="path/to/mypackage/man/mypackage-package.Rd", force=TRUE)
 }
+}
+\references{
+  \insertAllCited{}
 }

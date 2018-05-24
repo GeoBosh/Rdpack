@@ -20,10 +20,10 @@ parse_text(text, ..., keep = TRUE)
   argument \code{keep}, it is set to \code{keep} before calling
   \code{parse} and restored afterwards.
 
-  This function is no longer exported by \pkg{Rdpack} aince it is here
+  This function is no longer exported by \pkg{Rdpack} since it is here
   for historical reasons and to avoid unnecessary dependence on
-  \pkg{gbutils}. Use the identical copy \code{gbutils::parse_text}
-  instead.
+  \pkg{gbutils}. Use the equivalent \code{gbutils::parse_text} instead.
+  
 }
 \value{
   an expression representing the parsed text, see \code{link{parse}} for
@@ -43,8 +43,10 @@ parse_text(text, ..., keep = TRUE)
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-  \code{\link{parse}}
+  \code{\link{parse}},
+  \code{\link[gbutils]{parse_text}}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{programming}
+\keyword{internal}

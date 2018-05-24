@@ -1,9 +1,14 @@
 # Changes in Version 0.8-0
 
-- \insertRef and \insertAllCited macros support bibstyles for formatting
-  references (feature requested by Jamie Halliday). Currently only long author
-  names are supported but complete support for styles can be added trivially if
-  requested. 
+- \insertRef and \insertAllCited macros now support `bibstyles` for formatting
+  references (feature requested by Jamie Halliday, issue#5). Use `Rdpack (>=
+  0.8)` in `Imports:` to use this feature. Currently only long
+  author names are supported but complete support for styles can be added
+  trivially if requested. 
+  
+- updates to the documentation, in particular the bulk of Rdpack-package.Rd was
+  from 2011!
+
 
 
 # Changes in Version 0.7-1

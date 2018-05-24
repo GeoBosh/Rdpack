@@ -13,7 +13,7 @@ Rdo_remove_srcref(rdo)
 \details{
   \code{srcref} attrbutes (set by \code{parse_Rd}) may be getting in the
   way during manipulation of Rd objects, such as comparisons, addition
-  and replacement of elements. This function removes traverses he
+  and replacement of elements. This function traverses the
   argument and removes the \code{srcref} attribute from all of its elements.
 }
 \value{

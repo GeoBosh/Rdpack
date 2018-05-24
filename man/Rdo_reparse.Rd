@@ -18,7 +18,7 @@ Rdo_reparse(rdo)
 
   Also, the functions in this package do not attend to attribute
   "srcref" (and do not use it) and reparsing takes care of this.
-  (todo: check if athere is a problem if the tempfile disappears.)
+  (todo: check if there is a problem if the tempfile disappears.)
 }
 
 
