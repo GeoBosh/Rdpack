@@ -7,22 +7,22 @@ and many functions for manipulation of references and Rd files.
 
 # Table of Contents
 
-1.  [Installing Rdpack](#org0e9ee8e)
-2.  [Inserting Bibtex references](#org3de160a)
-    1.  [Preparation](#orgb23df9d)
-    2.  [Inserting references](#org7c400eb)
-    3.  [Inserting citations](#org471a7c9)
-    4.  [Changing the style of references](#orgdfce77f)
-    5.  [Troubleshooting](#org3ff8d87)
-        1.  [A puzzling message in devtools development mode](#orgb66ae3f)
-        2.  [Typical errors](#orge2063cb)
-3.  [Viewing Rd files](#orgcda9b98)
-4.  [Using Rdpack::reprompt()](#org6761720)
-    1.  [What it does](#orgf16dd95)
-    2.  [Reprompt and open in an editor](#org5f79a2c)
+1.  [Installing Rdpack](#org8d2a209)
+2.  [Inserting Bibtex references](#org480a26b)
+    1.  [Preparation](#orgeaa3a8d)
+    2.  [Inserting references](#org873f83e)
+    3.  [Inserting citations](#org31fda88)
+    4.  [Changing the style of references](#org2a718c9)
+    5.  [Troubleshooting](#orgd3b5f65)
+        1.  [A puzzling message in devtools development mode](#orga76481d)
+        2.  [Typical errors](#org6082922)
+3.  [Viewing Rd files](#org6b89043)
+4.  [Using Rdpack::reprompt()](#orgc1a2dc4)
+    1.  [What it does](#org3bfd2de)
+    2.  [Reprompt and open in an editor](#orgcea3ac4)
 
 
-<a id="org0e9ee8e"></a>
+<a id="org8d2a209"></a>
 
 # Installing Rdpack
 
@@ -36,7 +36,7 @@ You can also install the [development version](https://github.com/GeoBosh/Rdpack
     install_github("GeoBosh/Rdpack")
 
 
-<a id="org3de160a"></a>
+<a id="org480a26b"></a>
 
 # Inserting Bibtex references
 
@@ -47,7 +47,7 @@ the `DESCRIPTION` file of the package needs to be amended, see below the full
 details. 
 
 
-<a id="orgb23df9d"></a>
+<a id="orgeaa3a8d"></a>
 
 ## Preparation
 
@@ -78,7 +78,7 @@ enumerated below in somewhat more detail, see also the vignette
     put the BibTeX references in it.
 
 
-<a id="org7c400eb"></a>
+<a id="org873f83e"></a>
 
 ## Inserting references
 
@@ -126,7 +126,7 @@ or open the the from `R`:
 [`Inserting_bibtex_references (development version on github)`](https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_bibtex_references.pdf).)
 
 
-<a id="org471a7c9"></a>
+<a id="org31fda88"></a>
 
 ## Inserting citations
 
@@ -199,7 +199,7 @@ see also Murdoch (2010) and Francois (2014)
 references for `\insertAllCited`.
 
 
-<a id="orgdfce77f"></a>
+<a id="org2a718c9"></a>
 
 ## Changing the style of references
 
@@ -208,7 +208,7 @@ Bibliography styles for lists of references are supported from <span class="unde
 N. Boshnakov) in place of the default style (Boshnakov GN). More comprehensive
 alternatives can be included if needed or requested.
 
-To cause all list of references produced by `\\insertAllCited` in a package to appear with
+To cause all list of references produced by `\insertAllCited` in a package to appear with
 full names, add `.onLoad()` function to your package. If you don't have `.onLoad()`, just
 copy the following definition: 
 
@@ -224,12 +224,12 @@ After installling/reloading your package the lists of references should appear
 with long author names. "Rdpack" itself now uses this style.
 
 
-<a id="org3ff8d87"></a>
+<a id="orgd3b5f65"></a>
 
 ## Troubleshooting
 
 
-<a id="orgb66ae3f"></a>
+<a id="orga76481d"></a>
 
 ### A puzzling message in devtools development mode
 
@@ -250,7 +250,7 @@ session<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. Even better,
 below to view the required help file.
 
 
-<a id="orge2063cb"></a>
+<a id="org6082922"></a>
 
 ### Typical errors
 
@@ -276,7 +276,7 @@ These errors occur during parsing of the Rd files, before the control is passed
 to the `Rdpack`'s macros. 
 
 
-<a id="orgcda9b98"></a>
+<a id="org6b89043"></a>
 
 # Viewing Rd files
 
@@ -298,12 +298,12 @@ sources in development mode. This should work also in development mode on any
 platform (e.g. RStudio, Emacs/ESS, Rgui).
 
 
-<a id="org6761720"></a>
+<a id="orgc1a2dc4"></a>
 
 # Using Rdpack::reprompt()
 
 
-<a id="orgf16dd95"></a>
+<a id="org3bfd2de"></a>
 
 ## What it does
 
@@ -330,7 +330,7 @@ but it alerts the user to remove aliases, methods, and descriptions of arguments
 that have been removed. 
 
 
-<a id="org5f79a2c"></a>
+<a id="orgcea3ac4"></a>
 
 ## Reprompt and open in an editor
 

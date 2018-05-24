@@ -207,7 +207,7 @@ Bibliography styles for lists of references are supported from _Rdpack (>=
 N. Boshnakov) in place of the default style (Boshnakov GN). More comprehensive
 alternatives can be included if needed or requested.
 
-To cause all list of references produced by ~\\insertAllCited~ in a package to appear with
+To cause all list of references produced by ~\insertAllCited~ in a package to appear with
 full names, add ~.onLoad()~ function to your package. If you don't have ~.onLoad()~, just
 copy the following definition: 
 #+BEGIN_SRC R
