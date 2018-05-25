@@ -1,10 +1,16 @@
-# Changes in Version 0.8-0
+# Changes in Version 0.8-1
 
-- \insertRef and \insertAllCited macros now support `bibstyles` for formatting
-  references (feature requested by Jamie Halliday, issue#5). Use `Rdpack (>=
-  0.8)` in `Imports:` to use this feature. Currently only long
+- in this file, added backticks to `\insertRef` and `\insertAllCited` (see
+  below) - in the rendered `News` on CRAN the backslashed words had disappeared.
+
+
+# Changes in Version 0.8-0 (CRAN)
+
+- `\insertRef` and `\insertAllCited` macros now support `bibstyles` for
+  formatting references (feature requested by Jamie Halliday, issue#5). Use
+  `Rdpack (>= 0.8)` in `Imports:` to use this feature. Currently only long
   author names are supported but complete support for styles can be added
-  trivially if requested. 
+  trivially if requested.
   
 - updates to the documentation, in particular the bulk of Rdpack-package.Rd was
   from 2011!
