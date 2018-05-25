@@ -118,4 +118,5 @@ export(
 , insert_citeOnly
 , insert_all_ref
 , Rdpack_bibstyles
+, run_examples
 )
