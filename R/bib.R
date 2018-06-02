@@ -364,7 +364,7 @@ insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
             #     if(inherits(item, "bibentry")  &&  !is.null(item$url))
             #         item$url <- gsub("([^\\])%", "\\1\\\\%", item$url)
 
-if(interactive()) browser()
+## if(interactive()) browser()
 
         .toRd_styled(item, package) # TODO: add styles? (doesn't seem feasible here)
     }else{
