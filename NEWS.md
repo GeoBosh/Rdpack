@@ -1,3 +1,9 @@
+# Changes in Version 0.8-2
+
+- Now in text citations use "et al." when there are three or more authors. 
+  (Issue#6 reported by Timothy P. Bilton)
+  
+
 # Changes in Version 0.8-1
 
 - in this file, added backticks to `\insertRef` and `\insertAllCited` (see

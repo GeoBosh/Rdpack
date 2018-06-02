@@ -364,6 +364,8 @@ insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
             #     if(inherits(item, "bibentry")  &&  !is.null(item$url))
             #         item$url <- gsub("([^\\])%", "\\1\\\\%", item$url)
 
+if(interactive()) browser()
+
         .toRd_styled(item, package) # TODO: add styles? (doesn't seem feasible here)
     }else{
         ## key is documented to be of length one, nevertheless handle it too
@@ -699,7 +701,8 @@ safe_cite <- function(keys, bib, ..., from.package = NULL){
         keys <- wrk.keys[ok]
     }
 
-    cite(keys = keys, bib = bib, ...)
+        # 2018-06-02 was: cite(keys = keys, bib = bib, ...)
+    cite(keys = keys, bib = bib, longnamesfirst = FALSE, ...)
 }
 
 insert_all_ref <- function(refs, style = ""){
@@ -812,25 +815,33 @@ insert_all_ref <- function(refs, style = ""){
 
     pkgs <- names(all.keys)
           # \Sexpr[stage=build,results=hide]{requireNamespace("cvar")}
-    if(length(pkgs) > 0){
-        pkg <- pkgs[1] ## TODO: for now should do
-        if(!isNamespaceLoaded(pkg) && !requireNamespace(pkg) )
-            sty <- NULL
-        else{
-            sty <- Rdpack_bibstyles(pkg)
-        }
-    }else
-        sty <- NULL
+ 
+    ## 2016-06-02 was:    
+    ##     if(length(pkgs) > 0){
+    ##         pkg <- pkgs[1] ## TODO: for now should do
+    ##         if(!isNamespaceLoaded(pkg) && !requireNamespace(pkg) )
+    ##             sty <- NULL
+    ##         else{
+    ##             sty <- Rdpack_bibstyles(pkg)
+    ##         }
+    ##     }else
+    ##         sty <- NULL
+    ##     
+    ##     if(!is.null(sty))
+    ##         res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSLongNames"))
+    ##     else {
+    ##         if(style == "")
+    ##             res <- sapply(bibs, function(x) tools::toRd(x))
+    ##         else{
+    ##             res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSLongNames"))
+    ##         }
+    ##     }
     
-    if(!is.null(sty))
-        res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSLongNames"))
-    else {
-        if(style == "")
-            res <- sapply(bibs, function(x) tools::toRd(x))
-        else{
-            res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSLongNames"))
-        }
-    }
+    pkg <- if(length(pkgs) > 0)  ## TODO: for now should do
+               pkgs[1]
+           else character(0)
+
+    res <- .toRd_styled(bibs, pkg)
 
     paste0(res, collapse = "\n\n")
 }
@@ -874,15 +885,16 @@ Rdpack_bibstyles <- local({
 })
 
 .toRd_styled <- function(bibs, package, style = ""){
-    if(!isNamespaceLoaded(package) && !requireNamespace(package) )
+    if(length(package) == 0)
         sty <- NULL
-    else{
+    else if(!isNamespaceLoaded(package) && !requireNamespace(package) )
+        sty <- NULL
+    else
         sty <- Rdpack_bibstyles(package)
-    }
     
     if(!is.null(sty))
         res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSLongNames"))
-    else {
+    else { # check style
         if(style == "")
             res <- sapply(bibs, function(x) tools::toRd(x))
         else{
