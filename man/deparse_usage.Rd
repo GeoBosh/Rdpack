@@ -2,7 +2,6 @@
 \alias{deparse_usage}
 \alias{deparse_usage1}
 \alias{as.character.f_usage}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{Convert f_usage objects to text appropriate for usage sections in
   Rd files
 }
@@ -16,10 +15,10 @@ deparse_usage1(x, width = 72)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{an object from class \code{f_usage}}
-  \item{width}{maximal width of text on a line}
+  \item{x}{an object from class \code{f_usage}.}
+  \item{width}{maximal width of text on a line.}
   \item{...}{ignored; this argument is present for consistency with the
-    generic \code{as.character}}
+    generic \code{as.character}.}
 }
 \details{
   \code{deparse_usage1} is internal function. For users
@@ -46,26 +45,24 @@ deparse_usage1(x, width = 72)
 cur_wd <- getwd()
 setwd(tempdir())
 
-# as for prompt() the default to save in current dir as "seq.Rd".
+## as for prompt() the default to save in current dir as "seq.Rd".
 fnseq <- reprompt(seq)
 
-# let's parse the saved Rd file
+## let's parse the saved Rd file
 rdoseq <- tools::parse_Rd(fnseq)
 
 # the usage of 'seq' has several entries, parse them all
-
 ut <- get_usage_text(rdoseq)
-cat(ut,"\n")
+cat(ut, "\n")
 
 utp <- parse_usage_text(ut)
 
-# format some of them
+## format some of them
 as.character(utp[[1]])
 deparse_usage1(utp[[1]])  # same
 
 cat(deparse_usage1(utp[[2]]))
 cat(as.character(utp[[2]]))   # same
-
 
 unlink(fnseq)
 setwd(cur_wd)

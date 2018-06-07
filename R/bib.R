@@ -364,9 +364,14 @@ insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
             #     if(inherits(item, "bibentry")  &&  !is.null(item$url))
             #         item$url <- gsub("([^\\])%", "\\1\\\\%", item$url)
 
-## if(interactive()) browser()
+if(interactive()) browser()
 
-        .toRd_styled(item, package) # TODO: add styles? (doesn't seem feasible here)
+            # wrk <- .toRd_styled(item, package) # TODO: add styles? (doesn't seem feasible here)
+            # fn <- tempfile()
+            # cat(wrk, file = fn)
+            # res <- permissive_parse_Rd(fn) ## tools::parse_Rd(fn)
+            # tools::toRd(res)
+        .toRd_styled(item, package) 
     }else{
         ## key is documented to be of length one, nevertheless handle it too
         kiki <- FALSE

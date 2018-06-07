@@ -14,7 +14,7 @@ insert_all_ref(refs, style = "")
 }
 \details{
 
-  \code{insert_all_ref} is the work horse behind several Rd macros for
+  \code{insert_all_ref} is the workhorse behind several Rd macros for
   inclusion of references in Rd documentation.
 
   Argument \code{refs} is a two-column character matrix.  The first
