@@ -1,6 +1,30 @@
+# Changes in Version 0.8-3
+
+- new macro `\printExample` for inclusion of example computations in narrative sections, such
+  as `Details`. The code is evaluated and printed similarly to `R` sessions but the code is
+  not prefixed and the output is prefixed with comment symbols, eg.
+  ```
+  2+2
+  ##: 4
+  ```
+
+- new experimental macro `\runExamples` for use as top level section in an Rd file as a
+  replacement of section `\examples`. `\runExamples{code}` evaluates the code and creates
+  section `\examples` containing the code and the results (similarly to `\printExample`).
+  So, `\runExamples{2 + 2}` produces 
+  ```
+  \examples{
+  2 + 2
+  ##: 4
+  }
+  ```
+  The generated section `examples` is processed by R's documentation tools (almost) as if it
+  was there from the outset. 
+  
+
 # Changes in Version 0.8-2
 
-- Now in text citations use "et al." when there are three or more authors. 
+- Now text citations use "et al." when there are three or more authors. 
   (Issue#6 reported by Timothy P. Bilton)
   
 

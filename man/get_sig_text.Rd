@@ -12,6 +12,13 @@
 \description{
   Produce the textual form of the  signatures of available methods for
   an S4 generic function.
+
+  Here we find all methods for \code{show()} defined in package
+  \code{"methods"} and print the first few of them: 
+  \printExample{fn <- help("show-methods", package = "methods"); rdo <- utils:::.getHelpFile(fn); head(get_sig_text(rdo))}
+
+
+  
 }
 
 \usage{
