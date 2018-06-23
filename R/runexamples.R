@@ -177,3 +177,30 @@ run_examples <- function(excontent,     # package = NULL, lib.loc = NULL, charac
 
 
 ## Rdpack:::run_examples(quote({cvar::VaR(qnorm, x = c(0.01, 0.05), dist.type = "qf"); 2*3;  2 + 2; a <- 2 - 2; b <- 2/3 }))
+
+
+insert_fig <- function(file, package, code, insert = TRUE){
+  dirs <- c("./man/", file.path(".", package, "man"))
+  w <- sapply(dirs, dir.exists)
+  dcur <- dirs[w]
+  figpath <- file.path(dcur, "figures")
+  if(!dir.exists(figpath))
+      dir.create(figpath)
+  png(file.path(figpath, file))
+  ## plot(cars)
+  force(code)
+  dev.off()
+
+  if(insert)
+      paste0("\\figure{", file, "}")
+  else
+      file
+}
+
+
+
+
+
+
+
+

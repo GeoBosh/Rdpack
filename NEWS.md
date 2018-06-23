@@ -20,6 +20,12 @@
   ```
   The generated section `examples` is processed by R's documentation tools (almost) as if it
   was there from the outset. 
+
+- new experimental macro `\insertFig` to create a figure with `R` code and include it in the
+  documentation. The related macro `\makeFig` just creates a graphics file, which can be
+  included with the standard Rd command `\figure`. 
+  
+- new vignette gives a brief description of the new macros.
   
 
 # Changes in Version 0.8-2

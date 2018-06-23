@@ -1,0 +1,116 @@
+% Created 2018-06-23 Sat 19:48
+% Intended LaTeX compiler: pdflatex
+\documentclass[a4paper,twoside,11pt,nojss,article]{jss}
+	       \usepackage[T1]{fontenc}
+	       \usepackage[left=2cm,right=2cm,bottom=15mm]{geometry}
+	       \usepackage{graphicx,color,alltt}
+	       \usepackage[authoryear,round,longnamesfirst]{natbib}
+	       \usepackage{hyperref}
+                              % \usepackage{Sweave}
+\author{Georgi N. Boshnakov}
+\Plainauthor{Georgi N. Boshnakov}
+\Address{
+Georgi N. Boshnakov\\
+School of Mathematics\\
+The University of Manchester\\
+Oxford Road, Manchester M13 9PL, UK\\
+URL: \url{http://www.maths.manchester.ac.uk/~gb/}
+}
+<<echo=FALSE>>=
+library(Rdpack)
+pd <- packageDescription("Rdpack")
+@
+\Abstract{
+Package \pkg{Rdpack} provides Rd macros for inserting evaluated examples
+and programmatically created figures. These macros are convenience wrappers
+around the native capabilities provided by the Rd parser. The macros work
+in Rd files and roxygen2 comments.
+\par
+This vignette is part of package Rdpack, version~\Sexpr{pd$Version}.
+}
+\Keywords{examples, graphics, figures, Rd, R}
+\Plainkeywords{examples, graphics, figures, Rd, R}
+\author{Georgi N. Boshnakov}
+\date{\today}
+\title{Inserting figures and evaluated examples}
+\hypersetup{
+ pdfauthor={Georgi N. Boshnakov},
+ pdftitle={Inserting figures and evaluated examples},
+ pdfkeywords={examples, graphics, figures, Rd, R},
+ pdfsubject={},
+ pdfcreator={Emacs 25.3.1 (Org mode 9.1.6)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+%\SweaveOpts{engine=R,eps=FALSE}
+
+%\VignetteIndexEntry{Inserting figures and evaluated examples}
+%\VignetteDepends{Rdpack}
+%\VignetteKeywords{examples, graphics, figures, Rd, R}
+%\VignettePackage{Rdpack}
+
+
+\section{Evaluated examples}
+\label{sec:org8b2fa1a}
+
+The standard Rd macro \texttt{\textbackslash{}Sexpr} caters for a number of possibilities to evaluate R code and
+insert the results and the code in the documentation. The Rd macro \texttt{\textbackslash{}printExample} provided by package
+\pkg{Rdpack} builds on it to print a snippet of R code and the results of its evaluation, similarly to
+console output but the code is not prefixed and the results are prefixed with comment
+symbols. For example
+\begin{verbatim}
+    \printExample{2+2; a <- 2*3; a}
+\end{verbatim}
+gives
+\begin{verbatim}
+    2 + 2
+    ##: 4
+    a <- 2 * 3
+    a
+    ##: 6
+\end{verbatim}
+The argument of \texttt{\textbackslash{}printExample} must be on a single line with released versions of R\footnote{This limitation has been lifted in R-devel starting from June 2018 but obviously this
+is currently of little help for production packages.}. 
+
+\section{Creating and including graphs}
+\label{sec:org63c8f01}
+
+Figures can be inserted with the help of the standard Rd markup command \texttt{\textbackslash{}figure}. 
+The Rd macro \texttt{\textbackslash{}insertFig} provided by package \pkg{Rdpack} takes a snipped of R code,
+evaluates it and inserts the plot produced by it (using \texttt{\textbackslash{}figure}).  \texttt{\textbackslash{}insertFig} takes three
+arguments: a filename, the package name and the code to evaluate to produce the figure. 
+For example,
+\begin{verbatim}
+    \insertFig{cars.png}{mypackage}{x <- cars$speed; y <- cars$dist; plot(x,y)}
+\end{verbatim}
+will evaluate the code, save the graph in file \texttt{"man/figures/cars.png"} subdirectory of
+package \texttt{"mypackage"}, and include the figure using \texttt{\textbackslash{}figure}. 
+Subdirectory \texttt{"figures"} is created if it doesn't exist. 
+Currently the graphs are saved in \texttt{"png"} format only.
+The code should be on a single line for the reasons explained in the discussion of
+\texttt{\textbackslash{}printExample}. 
+
+The sister macro \texttt{\textbackslash{}makeFig} creates the graph in exactly the same way as \texttt{\textbackslash{}insertFig} but
+does not insert it. This can be done with a separate \texttt{\textbackslash{}figure} command. This can be used if
+additional options are desired for different output formats, see the description of \texttt{\textbackslash{}figure} in
+"Writing R extensions". 
+
+\subsection{A technical note}
+\label{sec:org10600a7}
+
+The above description should just work.  This note is for users who wonder about
+technicalities.
+
+The R documentation can be built in many ways and as a result the directory
+\texttt{"man/figures/"} does not necessarily refer to the developers source package. 
+Indeed, when a package is built, R works on a modified and cleaned-up temporary copy of the source
+directory, so the figures are created in that copy and then included in the package tarball. 
+Similarly during the package check. On the other hand, \texttt{R CMD Rd2pdf} and some other tools
+and R functions work directly on the source tree of the package and they will create the
+figures there.  
+
+The net effect is that a package tarball always contains freshly generated up-to-date
+graphs. Developers who never generate the documentation by other means may not even have the
+directory \texttt{man/figures}.
+\end{document}

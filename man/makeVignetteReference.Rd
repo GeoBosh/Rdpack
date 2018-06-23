@@ -96,7 +96,7 @@ vigbib("Rdpack")
 makeVignetteReference("Rdpack", vig = 1)
 makeVignetteReference("Rdpack", vig = "Inserting_bibtex_references")
 ## the first few characters of the name suffice:
-makeVignetteReference("Rdpack", vig = "Insert")
+makeVignetteReference("Rdpack", vig = "Inserting_bib")
 
 ## this gives an error but also prints the available vignettes:
 ## makeVignetteReference("Matrix", vig = "NoSuchVignette")
