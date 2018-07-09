@@ -888,7 +888,7 @@ cleanupLatex <- function(x) {
     ##     
     ##     )
 
-    Rdpack:::set_Rdpack_bibstyle("JSSLongNames")
+    set_Rdpack_bibstyle("JSSLongNames")
     
     Rdpack_bibstyles(package = pkg, authors = "LongNames")
     invisible(NULL)
