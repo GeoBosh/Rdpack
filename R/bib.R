@@ -870,15 +870,55 @@ cleanupLatex <- function(x) {
 
 ## ls(environment(bibstyle)$styles$JSS)
 .onLoad <- function(lib, pkg){
-    tools::bibstyle("JSSLongNames", .init = TRUE, .default = FALSE,
-        shortName = function(person) {
-            paste(paste(cleanupLatex(person$given), collapse=" "),
-                  cleanupLatex(person$family), sep = " ")
-        }
-        )
+    ## tools::bibstyle("JSSLongNames", .init = TRUE, .default = FALSE,
+    ##     shortName = function(person) {
+    ##         paste(paste(cleanupLatex(person$given), collapse=" "),
+    ##               cleanupLatex(person$family), sep = " ")
+    ##     },
+    ## 
+    ##     cleanupLatex = function(x) {
+    ##         if (!length(x)) return(x)
+    ##         latex <- tryCatch(tools::parseLatex(x), error = function(e)e)
+    ##         if (inherits(latex, "error")) {
+    ##             x
+    ##         } else {
+    ##             Rdpack:::deparseLatexToRd(latexToUtf8(latex), dropBraces=TRUE)
+    ##         }
+    ##     }
+    ##     
+    ##     )
 
+    Rdpack:::set_Rdpack_bibstyle("JSSLongNames")
+    
     Rdpack_bibstyles(package = pkg, authors = "LongNames")
     invisible(NULL)
+}
+
+deparseLatexToRd = function(x, dropBraces = FALSE)
+{
+    result <- character()
+    lastTag <- "TEXT"
+    for (i in seq_along(x)) {
+        a <- x[[i]]
+        tag <- attr(a, "latex_tag")
+        if (is.null(tag)) tag <- "NULL"
+        switch(tag,
+        VERB = ,
+        TEXT = ,
+        MACRO = ,
+        COMMENT = result <- c(result, a),
+        BLOCK = result <- c(result, if (dropBraces && lastTag == "TEXT") Recall(a) else c("{", Recall(a), "}")),
+        ENVIRONMENT = result <- c(result,
+        	"\\begin{", a[[1L]], "}",
+        	Recall(a[[2L]]),
+        	"\\end{", a[[1L]], "}"),
+        ## MATH = result <- c(result, "$", Recall(a), "$"),
+        MATH = result <- c(result, "\\eqn{", Recall(a), "}"),
+        NULL = stop("Internal error, no tag", domain = NA)
+        )
+        lastTag <- tag
+    }
+    paste(result, collapse="")
 }
 
 Rdpack_bibstyles <- local({
@@ -905,11 +945,64 @@ Rdpack_bibstyles <- local({
     if(!is.null(sty))
         res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSLongNames"))
     else { # check style
-        if(style == "")
-            res <- sapply(bibs, function(x) tools::toRd(x))
-        else{
+        if(style == ""){
+            if(!("JSSRd" %in% tools::getBibstyle(all = TRUE)))
+                ## bibstyle_JSSRd()
+                set_Rdpack_bibstyle("JSSRd")
+            res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSRd"))
+        }else{
             res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSLongNames"))
         }
     }
     res
+}
+
+## bibstyle_JSSRd <- function(){
+##     tools::bibstyle("JSSRd", .init = TRUE, .default = FALSE,
+##                     cleanupLatex = function(x) {
+##                         if (!length(x)) return(x)
+##                         latex <- tryCatch(tools::parseLatex(x), error = function(e)e)
+##                         if (inherits(latex, "error")) {
+##                             x
+##                         } else {
+##                             deparseLatexToRd(latexToUtf8(latex), dropBraces=TRUE)
+##                         }
+##                     }
+##                     
+##                     )
+## }
+
+set_Rdpack_bibstyle <- function(bibstyle = "JSSRd"){
+    switch(bibstyle,
+    "JSSRd" = tools::bibstyle("JSSRd", .init = TRUE, .default = FALSE,
+                    cleanupLatex = function(x) {
+                        if (!length(x)) return(x)
+                        latex <- tryCatch(tools::parseLatex(x), error = function(e)e)
+                        if (inherits(latex, "error")) {
+                            x
+                        } else {
+                            deparseLatexToRd(latexToUtf8(latex), dropBraces=TRUE)
+                        }
+                    }
+                    ),
+
+    "JSSLongNames" = tools::bibstyle("JSSLongNames", .init = TRUE, .default = FALSE,
+                    cleanupLatex = function(x) {
+                        if (!length(x)) return(x)
+                        latex <- tryCatch(tools::parseLatex(x), error = function(e)e)
+                        if (inherits(latex, "error")) {
+                            x
+                        } else {
+                            deparseLatexToRd(latexToUtf8(latex), dropBraces=TRUE)
+                        }
+                    },
+                    
+                    shortName = function(person) {
+                        paste(paste(cleanupLatex(person$given), collapse=" "),
+                              cleanupLatex(person$family), sep = " ")
+                    }
+                    ),
+    ## default
+    stop("Unknown bibstyle ", bibstyle)
+    )
 }

@@ -1,3 +1,9 @@
+# Changes in Version 0.8-4
+
+- now simple mathematics in BibTeX entries is rendered natively, no need to replace dollars
+  with `\eqn{}`.
+
+
 # Changes in Version 0.8-3
 
 - new macro `\printExample` for inclusion of example computations in narrative sections, such

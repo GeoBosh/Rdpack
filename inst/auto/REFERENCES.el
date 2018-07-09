@@ -4,6 +4,7 @@
    (LaTeX-add-bibitems
     "Rpack:bibtex"
     "parseRd"
-    "Rdevtools"))
+    "Rdevtools"
+    "dummyArticle"))
  :bibtex)
 

@@ -291,6 +291,24 @@ function ~viewRd()~, discussed below, for viewing Rd files.
     =\parse_Rd= specifies only the file.
 
 
+** Latex markup in BibTeX entries
+
+In principle, BibTeX entries may contain arbitrary Latex markup, while the Rd format
+supports only a subset. As a consequence, some BibTeX entries may need some editing when
+included in REFERENCES.bib[fn:6]. Only do this for entries that do not render properly or
+cause errors, since most of the time this should not be necessary.
+
+If mathematics doesn't render properly replace the Latex dollar syntax with Rd's ~\eqn~,
+e.g. ~$x^2$~ with ~\eqn{x^2}~. This should not be needed for versions of Rdpack
+0.8-4 or later. 
+
+Some Latex macros may have to be removed or replaced with suitable Rd markup. Again,
+do this only if they cause problems, since some are supported, e.g. ~\doi~.
+
+
+[fn:6] Thanks to Michael Dewey for suggesting the discussion of this.
+
+
 ** Viewing Rd files 
 
 

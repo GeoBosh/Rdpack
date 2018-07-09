@@ -120,6 +120,7 @@ export(
 , insert_citeOnly
 , insert_all_ref
 , Rdpack_bibstyles
+, set_Rdpack_bibstyle
 # , run_examples - commenting out until completed
 # , insert_fig - commenting out until completed
 )

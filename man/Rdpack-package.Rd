@@ -321,5 +321,11 @@ rebib(infile="path/to/mypackage/man/mypackage-package.Rd", force=TRUE)
 }
 }
 \references{
+
+  \strong{Note:} Reference \insertCite{dummyArticle;textual}{Rdpack}
+  does not exist. It is a test that simple math in BibTeX entries works.
+
+  ---
+  
   \insertAllCited{}
 }
