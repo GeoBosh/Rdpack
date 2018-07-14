@@ -30,7 +30,7 @@ install_github("GeoBosh/Rdpack")
 
 
 
-* Inserting Bibtex references
+* Inserting Bibtex references and citations
 
 The simplest way to insert Bibtex references is with the Rd macro =\insertRef=.
 Just put =\insertRef{key}{package}= in the documentation to insert item with key
@@ -358,3 +358,39 @@ Elisp code), for example to be invoked on the currently edited file. Such a
 function and example key binding can be found at [[https://github.com/GeoBosh/georgisemacs][georgisemacs]].
 
 
+
+
+* Inserting evaluated examples
+
+There is a macro that takes a chunk of R code, evaluates it, and includes both the code and
+the results in the rendered documentation. The layout is similar to that in the R console but
+the code is not prefixed with anything and the output is prefixed with comment symbols.
+For example,
+#+BEGIN_EXAMPLE
+    \printExample{2+2; a <- 2*3; a}
+#+END_EXAMPLE 
+gives
+#+BEGIN_EXAMPLE
+    2 + 2
+    ##: 4
+    a <- 2 * 3
+    a
+    ##: 6
+#+END_EXAMPLE
+See vignette [[https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf][Inserting_figures_and_evaluated_examples]] for more details.
+
+
+* Inserting figures/graphs/plots
+
+Figures can be inserted with the help of the standard Rd markup command ~\figure~. 
+The Rd macro ~\insertFig~ provided by package \pkg{Rdpack} takes a snipped of R code,
+evaluates it and inserts the plot produced by it (using ~\figure~).  ~\insertFig~ takes three
+arguments: a filename, the package name and the code to evaluate to produce the figure. 
+For example,
+#+BEGIN_EXAMPLE
+    \insertFig{cars.png}{mypackage}{x <- cars$speed; y <- cars$dist; plot(x,y)}
+#+END_EXAMPLE
+will evaluate the code, save the graph in file ~"man/figures/cars.png"~ subdirectory of
+package ~"mypackage"~, and include the figure using ~\figure~. 
+
+See vignette [[https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf][Inserting_figures_and_evaluated_examples]] for more details.
