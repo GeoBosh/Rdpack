@@ -377,7 +377,7 @@ gives
     a
     ##: 6
 #+END_EXAMPLE
-See vignette [[https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf][Inserting_figures_and_evaluated_examples]] for more details.
+See vignette [[https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf][=Inserting_figures_and_evaluated_examples=]] for more details.
 
 
 * Inserting figures/graphs/plots
@@ -393,4 +393,4 @@ For example,
 will evaluate the code, save the graph in file ~"man/figures/cars.png"~ subdirectory of
 package ~"mypackage"~, and include the figure using ~\figure~. 
 
-See vignette [[https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf][Inserting_figures_and_evaluated_examples]] for more details.
+See vignette [[https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf][=Inserting_figures_and_evaluated_examples=]] for more details.
