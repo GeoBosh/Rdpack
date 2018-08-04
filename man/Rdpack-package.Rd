@@ -44,6 +44,12 @@
   roxygen2). These tools use only facilities provided by base \R and
   package \pkg{bibtex} \insertCite{Rpack:bibtex}{Rdpack}.
 
+  There are also convenience  macros for inclusion of evaluated examples
+  and graphs, which hide some of the hassle of doing this directly with
+  the underlying \verb{\Sexpr}'s.
+
+  The subsections below give additional details, see also the vignettes.
+
   \subsection{Creating and updating Rd files}{
   The main function provided by this package is \code{\link{reprompt}}.
   There is also a function \code{\link{promptPackageSexpr}} for creating
@@ -146,9 +152,10 @@
       \verb{importFrom(Rdpack,reprompt)}
 
       Alternatively, if \pkg{devtools} is managing your NAMESPACE file,
-      the equivalent \pkg{roxygen2} line is \cr
+      the equivalent \pkg{roxygen2} line is: \cr 
       
-      \verb{#' @importFrom Rdpack reprompt}
+      \verb{#' @importFrom Rdpack reprompt} \cr
+      
     }
     \item{
       Create file \code{"REFERENCES.bib"} in subdirectory
@@ -221,6 +228,84 @@
   also a facility to include all references from the Bibtex file, see
   the documentation of \code{\link{rebib}} for details.
   
+}
+
+\subsection{Inserting evaluated examples}{
+
+Sometimes the documentation of an object becomes more clear if accompanied by snippets of R
+code and their results. 
+The standard Rd macro \verb{\Sexpr} caters for a number of possibilities to evaluate \R code and
+insert the results and the code in the documentation. 
+The Rd macro \verb{\printExample} provided by package
+\pkg{Rdpack} builds on it to print a snippet of \R code and the results of its evaluation, similarly to
+console output but the code is not prefixed and the results are prefixed with comment
+symbols.
+For example, \verb{\printExample{2+2; a <- 2*3; a}} produces the
+following in the rendered documentation:
+
+\printExample{2+2; a <- 2*3; a}  
+
+The argument of \verb{\printExample} must be on a single line with released versions of R. 
+(This limitation has been lifted in R-devel starting from June 2018 but obviously this
+is currently of little help for production packages.)
+
+\verb{\printExample} is typically placed in section Details of an object's documentation.
+
+The experimental macro \verb{\runExamples} can be used as a replacement
+of section \verb{Examples}.
+For example, if the following code is put at the top level in an Rd file (i.e. not in a
+section):
+\preformatted{
+    \runExamples{2+2; a <- 2*3; a}
+}
+then it will be evaluated and replaced by a normal section examples:
+\preformatted{
+    \examples{
+    2 + 2
+    ##: 4
+    a <- 2 * 3
+    a
+    ##: 6
+    }
+}
+This generated examples section is processed by the standard \R tools (almost) as if it was
+there from the outset. In particular, the examples are run by the R's quality control tools
+and tangled along with examples in other documentation files.
+ 
+The macro \verb{\runExamples} is fully working but is marked as
+experimental, since currently \verb{R CMD check} gives a warning about
+unknown \verb{\Sexpr} section at top level.  According to the
+specification of the Rd format, \insertCite{@see @parseRd, p. 4;textual}{Rdpack}
+\verb{\Sexpr} at top level is legal but  I need to check with the CRAN
+team or R devel if such expressions produced by user macros are excluded
+on purpose.
+
+}
+
+\subsection{Creating and including graphs}{
+
+Figures can be inserted with the help of the standard Rd markup command
+\verb{\figure}.  The Rd macro \verb{\insertFig} provided by package
+\pkg{Rdpack} takes a snipped of \R code, evaluates it and inserts the
+plot produced by it (using \verb{\figure}).  \verb{\insertFig} takes
+three arguments: a filename, the package name and the code to evaluate
+to produce the figure.  For example,
+\preformatted{
+    \insertFig{cars.png}{mypackage}{x <- cars$speed; y <- cars$dist; plot(x,y)}
+}
+will evaluate the code, save the graph in file \code{"man/figures/cars.png"} subdirectory of
+package \code{"mypackage"}, and include the figure using \verb{\figure}. 
+Subdirectory \code{"figures"} is created if it doesn't exist. 
+Currently the graphs are saved in \code{"png"} format only.
+The code should be on a single line for the reasons explained in the discussion of
+\verb{\printExample}. 
+
+The sister macro \verb{\makeFig} creates the graph in exactly the same
+way as \verb{\insertFig} but does not insert it. This can be done with a
+separate \verb{\figure} command. This can be used if additional options are
+desired for different output formats, see the description of \verb{\figure}
+in "Writing R extensions".
+
 }
 
   Other functions that may be useful are \code{Rdo2Rdf}, \code{Rdapply}

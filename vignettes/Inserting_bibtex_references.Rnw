@@ -1,4 +1,4 @@
-% Created 2018-07-09 Mon 19:37
+% Created 2018-08-04 Sat 22:54
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper,twoside,11pt,nojss,article]{jss}
 	       \usepackage[T1]{fontenc}
@@ -49,9 +49,8 @@ This vignette is part of package Rdpack, version~\Sexpr{pd$Version}.
 %\VignetteKeywords{bibliographic references, Rd, bibtex, citations, R}
 %\VignettePackage{Rdpack}
 
-
 \section{Setup}
-\label{sec:org24a2aaa}
+\label{sec:org288fce5}
 
 To prepare a package for importing BibTeX references it is necessary to tell the
 package management tools that package \pkg{Rdpack} and its Rd macros are
@@ -83,7 +82,7 @@ the bibtex references in it.
 
 
 \section{Inserting references in package documentation}
-\label{sec:org56ad953}
+\label{sec:orgb2db2dc}
 
 Once the steps outlined in the previous section are done, references can be
 inserted in the documentation as \texttt{\textbackslash{}insertRef\{key\}\{package\}},
@@ -120,20 +119,23 @@ A roxygen2 documentation chunk might look like this:
 
 
 \section{Inserting citations}
-\label{sec:org88aa5b4}
+\label{sec:orgb12f392}
 
 From version 0.7 of \pkg{Rdpack}, additional Rd macros are available for
-citations\footnote{Actually, they were introduced in the development version 0.6-1, but 0.7
+citations\footnote{They were introduced in the development version 0.6-1, but 0.7
 is the first version with them released on CRAN.}.  They can be used in both Rd and roxygen2 documentation.  If you are
 using these, it will be prudent to require at least this version of Rdpack in
 the ``Imports:'' directive in file DESCRIPTION: \texttt{Rdpack (>= 0.7)}.
 
 \subsection{Macros fof citations}
-\label{sec:org94c9357}
+\label{sec:orgff243e0}
 \label{sec:macros-citations}
 
 \texttt{\textbackslash{}insertCite\{key\}\{package\}} cites the key and records it for use by
-\texttt{\textbackslash{}insertAllCited\{\}}, see below. \code{key} can contain more keys separated by commas.
+\texttt{\textbackslash{}insertAllCited\{\}}, see below. The style of the citations is author-year. 
+The ''et al'' convention is used when there are  more than two authors\footnote{This feature was introduced in Rdpack 0.8-2.}. 
+
+\code{key} can contain more keys separated by commas.
 Here are some examples (on the left is
 the code in the documentation chunk, on the right the rendered citation):
 
@@ -168,7 +170,6 @@ Documentation source & \\
 
 The last line in the table demonstrates that this also works with several citations.
 
-
 The macro \texttt{\textbackslash{}insertNoCite\{key\}\{package\}} records one or more references for
 \texttt{\textbackslash{}insertAllCited} but does not cite it. Setting \texttt{key} to \texttt{*} will record all
 references from the specified package. For example, \texttt{\textbackslash{}insertNoCite\{R\}\{bibtex\}} records
@@ -197,7 +198,7 @@ produces:
 for the list of references assembled by \texttt{\textbackslash{}insertAllCited}.
 
 \subsection{Automatically generating lists of references}
-\label{sec:org81dd806}
+\label{sec:org2098c9b}
 
 The macro \texttt{\textbackslash{}insertAllCited\{\}} can be used to insert all references cited with
 \texttt{\textbackslash{}insertCite} or \texttt{\textbackslash{}insertNoCite}. A natural place to put this macro is the
@@ -216,10 +217,10 @@ The analogous documentation chunk in roxygen2 might look like this:
 
 
 \section{Possible issues}
-\label{sec:org4952be3}
+\label{sec:orgc23fd8d}
 
 \subsection{Warning from 'R CMD build'}
-\label{sec:orgf964b45}
+\label{sec:org23ed409}
 
 If 'R CMD build' or \texttt{devtools::build()} gives a warning along the lines of:
 \begin{verbatim}
@@ -230,7 +231,7 @@ then check the syntax in file DESCRIPTION --- the most common cause of this is m
 
 
 \subsection{Development using `devtools'}
-\label{sec:orgdef8ac3}
+\label{sec:org07ff283}
 
 The described procedure works transparently in `roxygen2' chunks and with Hadley Wickham's
 `devtools'.  Packages are built and installed properly with the `devtools' commands and the
@@ -258,11 +259,11 @@ function \texttt{viewRd()}, discussed below, for viewing Rd files.
 
 
 \subsection{Latex markup in BibTeX entries}
-\label{sec:orga07f96e}
+\label{sec:org6b16cbc}
 
 In principle, BibTeX entries may contain arbitrary Latex markup, while the Rd format
 supports only a subset. As a consequence, some BibTeX entries may need some editing when
-included in REFERENCES.bib\footnote{Thanks to Michael Dewey for suggesting the discussion of this.\label{orgc49c0a2}}. Only do this for entries that do not render properly or
+included in REFERENCES.bib\footnote{Thanks to Michael Dewey for suggesting the discussion of this.\label{org50e22be}}. Only do this for entries that do not render properly or
 cause errors, since most of the time this should not be necessary.
 
 If mathematics doesn't render properly replace the Latex dollar syntax with Rd's \texttt{\textbackslash{}eqn},
@@ -272,9 +273,12 @@ e.g. \texttt{\$x\textasciicircum{}2\$} with \texttt{\textbackslash{}eqn\{x\texta
 Some Latex macros may have to be removed or replaced with suitable Rd markup. Again,
 do this only if they cause problems, since some are supported, e.g. \texttt{\textbackslash{}doi}.
 
+See also the overview help page, \code{help("Rdpack-package")}, of \pkg{Rdpack}. 
+Among other things, it contains some dummy references which illustrate the above.
+
 
 \subsection{Viewing Rd files}
-\label{sec:org18f6614}
+\label{sec:orge2b9228}
 
 
 A function, \code{viewRd}, to view Rd files in the source directory of a package was
@@ -288,5 +292,5 @@ set argument \code{type} to \code{"html"}:
     Rdpack::viewRd("./man/filename.Rd", type = "html")
 \end{verbatim}
 
-Users of 'devtools' can use \code{viewRd()} in place of \code{help()} to view Rd sources\textsuperscript{\ref{orgc49c0a2}}.
+Users of 'devtools' can use \code{viewRd()} in place of \code{help()} to view Rd sources\textsuperscript{\ref{org50e22be}}.
 \end{document}

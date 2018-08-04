@@ -22,10 +22,10 @@
 #+LATEX_HEADER: pd <- packageDescription("Rdpack")
 #+LATEX_HEADER: @
 #+LATEX_HEADER: \Abstract{
-#+LATEX_HEADER: Package \pkg{Rdpack} provides Rd macros for inserting evaluated examples
-#+LATEX_HEADER: and programmatically created figures. These macros are convenience wrappers
-#+LATEX_HEADER: around the native capabilities provided by the Rd parser. The macros work 
-#+LATEX_HEADER: in Rd files and roxygen2 comments.
+#+LATEX_HEADER: This vignette discusses Rd macros provided by package \pkg{Rdpack} for
+#+LATEX_HEADER: inserting evaluated examples and programmatically created figures. These
+#+LATEX_HEADER: macros are convenience wrappers around the native capabilities provided
+#+LATEX_HEADER: by the Rd parser. The macros work in Rd files and roxygen2 comments.
 #+LATEX_HEADER: \par
 #+LATEX_HEADER: This vignette is part of package Rdpack, version~\Sexpr{pd$Version}.
 #+LATEX_HEADER: }
@@ -49,11 +49,15 @@ pd <- packageDescription("Rdpack")
 
 * Evaluated examples
 
+Sometimes the documentation of an object becomes more clear if accompanied by snippets of R
+code and their results. 
 The standard Rd macro ~\Sexpr~ caters for a number of possibilities to evaluate R code and
-insert the results and the code in the documentation. The Rd macro ~\printExample~ provided by package
+insert the results and the code in the documentation. 
+The Rd macro ~\printExample~ provided by package
 \pkg{Rdpack} builds on it to print a snippet of R code and the results of its evaluation, similarly to
 console output but the code is not prefixed and the results are prefixed with comment
-symbols. For example
+symbols.
+For example
 #+BEGIN_EXAMPLE
     \printExample{2+2; a <- 2*3; a}
 #+END_EXAMPLE 
@@ -66,6 +70,8 @@ gives
     ##: 6
 #+END_EXAMPLE
 The argument of ~\printExample~ must be on a single line with released versions of R[fn:1]. 
+
+~\printExample~ is typically placed in section Details of an object's documentation.
 
 [fn:1] This limitation has been lifted in R-devel starting from June 2018 but obviously this
 is currently of little help for production packages.
@@ -136,4 +142,5 @@ figures there.
 
 The net effect is that a package tarball always contains freshly generated up-to-date
 graphs. Developers who never generate the documentation by other means may not even have the
-directory ~man/figures~.
+directory ~man/figures~ in the source tree of their package (but it will be present in the
+package tarball).

@@ -1,4 +1,5 @@
 ^docs/
+^vignettes/.RData
 ^_pkgdown.yml$
 ^revdep$
 ^README.org

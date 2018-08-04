@@ -1,4 +1,4 @@
-% Created 2018-07-14 Sat 11:06
+% Created 2018-08-04 Sat 21:26
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper,twoside,11pt,nojss,article]{jss}
 	       \usepackage[T1]{fontenc}
@@ -21,10 +21,10 @@ library(Rdpack)
 pd <- packageDescription("Rdpack")
 @
 \Abstract{
-Package \pkg{Rdpack} provides Rd macros for inserting evaluated examples
-and programmatically created figures. These macros are convenience wrappers
-around the native capabilities provided by the Rd parser. The macros work
-in Rd files and roxygen2 comments.
+This vignette discusses Rd macros provided by package \pkg{Rdpack} for
+inserting evaluated examples and programmatically created figures. These
+macros are convenience wrappers around the native capabilities provided
+by the Rd parser. The macros work in Rd files and roxygen2 comments.
 \par
 This vignette is part of package Rdpack, version~\Sexpr{pd$Version}.
 }
@@ -52,13 +52,17 @@ This vignette is part of package Rdpack, version~\Sexpr{pd$Version}.
 
 
 \section{Evaluated examples}
-\label{sec:org572339a}
+\label{sec:orgf333d2b}
 
+Sometimes the documentation of an object becomes more clear if accompanied by snippets of R
+code and their results. 
 The standard Rd macro \texttt{\textbackslash{}Sexpr} caters for a number of possibilities to evaluate R code and
-insert the results and the code in the documentation. The Rd macro \texttt{\textbackslash{}printExample} provided by package
+insert the results and the code in the documentation. 
+The Rd macro \texttt{\textbackslash{}printExample} provided by package
 \pkg{Rdpack} builds on it to print a snippet of R code and the results of its evaluation, similarly to
 console output but the code is not prefixed and the results are prefixed with comment
-symbols. For example
+symbols.
+For example
 \begin{verbatim}
     \printExample{2+2; a <- 2*3; a}
 \end{verbatim}
@@ -73,8 +77,10 @@ gives
 The argument of \texttt{\textbackslash{}printExample} must be on a single line with released versions of R\footnote{This limitation has been lifted in R-devel starting from June 2018 but obviously this
 is currently of little help for production packages.}. 
 
+\texttt{\textbackslash{}printExample} is typically placed in section Details of an object's documentation.
+
 \subsection{Experimental feature}
-\label{sec:org79f0062}
+\label{sec:org8fb81af}
 
 The experimental macro \texttt{\textbackslash{}runExamples} can be used as a replacement of section \texttt{examples}.
 For example, if the following code is put at the top level in an Rd file (i.e. not in a
@@ -102,7 +108,7 @@ are legal.  I need to check with the CRAN team or R devel if such expressions pr
 user macros are excluded on purpose.}.
 
 \section{Creating and including graphs}
-\label{sec:org503a319}
+\label{sec:org9ccf567}
 
 Figures can be inserted with the help of the standard Rd markup command \texttt{\textbackslash{}figure}. 
 The Rd macro \texttt{\textbackslash{}insertFig} provided by package \pkg{Rdpack} takes a snipped of R code,
@@ -125,7 +131,7 @@ additional options are desired for different output formats, see the description
 "Writing R extensions". 
 
 \subsection{A technical note}
-\label{sec:orgb42a4d2}
+\label{sec:orgfebd2ea}
 
 The above description should just work.  This note is for users who wonder about
 technicalities.
@@ -140,5 +146,6 @@ figures there.
 
 The net effect is that a package tarball always contains freshly generated up-to-date
 graphs. Developers who never generate the documentation by other means may not even have the
-directory \texttt{man/figures}.
+directory \texttt{man/figures} in the source tree of their package (but it will be present in the
+package tarball).
 \end{document}

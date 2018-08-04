@@ -1,3 +1,8 @@
+# Changes in Version 0.9-0 (CRAN)
+
+- some brush-up of the documentation for the changes since version 0.8-0 of the package.
+
+
 # Changes in Version 0.8-4
 
 - now simple mathematics in BibTeX entries is rendered natively, no need to replace dollars
