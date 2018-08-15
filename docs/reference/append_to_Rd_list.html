@@ -22,9 +22,11 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -35,6 +37,7 @@
 <meta property="og:description" content="Add content to the element of an Rd object or fragment at a given
   position." />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -61,7 +64,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rdpack</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.7.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.9.1</span>
       </span>
     </div>
 
@@ -149,8 +152,7 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>rdoseq</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>utils</span><span class='kw ns'>:::</span><span class='fu'>.getHelpFile</span>(<span class='fu'>help</span>(<span class='st'>"seq"</span>))
-<span class='no'>iusage</span> <span class='kw'>&lt;-</span> <span class='fu'>which</span>(<span class='kw pkg'>tools</span><span class='kw ns'>:::</span><span class='fu'>RdTags</span>(<span class='no'>rdoseq</span>) <span class='kw'>==</span> <span class='st'>"\\usage"</span>)
+    <pre class="examples"><div class='input'><span class='no'>rdoseq</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>utils</span><span class='kw ns'>:::</span><span class='fu'>.getHelpFile</span>(<span class='fu'>help</span>(<span class='st'>"seq"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/c_Rd.Rd:29: unknown macro '\insertCite'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/c_Rd.Rd:42: unknown macro '\insertAllCited'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/get_bibentries.Rd:26: unknown macro '\insertCite'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/get_bibentries.Rd:76: unknown macro '\insertAllCited'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/get_sig_text.Rd:18: unknown macro '\printExample'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/insert_all_ref.Rd:38: unknown macro '\insertAllCited'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/insert_ref.Rd:83: unknown macro '\insertCite'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/insert_ref.Rd:84: unknown macro '\insertCite'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/insert_ref.Rd:88: unknown macro '\insertCite'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/insert_ref.Rd:89: unknown macro '\insertCite'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/insert_ref.Rd:96: unknown macro '\insertCite'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/insert_ref.Rd:132: unknown macro '\insertCiteOnly'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/insert_ref.Rd:133: unknown macro '\insertCiteOnly'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/insert_ref.Rd:134: unknown macro '\insertCiteOnly'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/insert_ref.Rd:163: unknown macro '\insertRef'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/insert_ref.Rd:165: unknown macro '\insertRef'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/insert_ref.Rd:171: unknown macro '\insertAllCited'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/predefined.Rd:21: unknown macro '\insertCite'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/predefined.Rd:99: unknown macro '\insertAllCited'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/Rdpack-package.Rd:45: unknown macro '\insertCite'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/Rdpack-package.Rd:199: unknown macro '\insertCite'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/Rdpack-package.Rd:246: unknown macro '\printExample'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/Rdpack-package.Rd:278: unknown macro '\insertCite'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/Rdpack-package.Rd:338: unknown macro '\insertCite'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/Rdpack-package.Rd:410: unknown macro '\insertCite'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: c:\Users\mcbssgb2\Az\Rdevel\Rdpack/man/Rdpack-package.Rd:415: unknown macro '\insertAllCited'</span></div><div class='input'><span class='no'>iusage</span> <span class='kw'>&lt;-</span> <span class='fu'>which</span>(<span class='kw pkg'>tools</span><span class='kw ns'>:::</span><span class='fu'>RdTags</span>(<span class='no'>rdoseq</span>) <span class='kw'>==</span> <span class='st'>"\\usage"</span>)
 
 <span class='co'>## append a new line after the last usage line</span>
 <span class='no'>rdoseq2</span> <span class='kw'>&lt;-</span> <span class='fu'>append_to_Rd_list</span>(<span class='no'>rdoseq</span>, <span class='fu'>list</span>(<span class='fu'><a href='Rdo_tag.html'>Rdo_newline</a></span>()), <span class='no'>iusage</span>)

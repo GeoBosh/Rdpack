@@ -12,3 +12,5 @@
 ^TechnicalDoc
 ^sav[0-9]*[.]Rhistory
 ^NAMESPACEsav$
+^_pkgdown\.yml$
+^docs$

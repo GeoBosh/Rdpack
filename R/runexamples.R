@@ -19,7 +19,11 @@ run_examples <- function(excontent,     # package = NULL, lib.loc = NULL, charac
                          run.donttest = FALSE,     # in utils::example() it is:  interactive()
                          Rdsection = "examples"
                          ){
-
+    ## set the environment where source() evaluates the code;
+    ## 2018-08-13 todo: it is not clear if this is the best choice;
+    ##     maybe could pass an environment from the macro \printExample, similarly
+    ##     to the citation macros (but first need to check if the cause is the choice
+    ##     made here:
     if(missing(local))
         local <- parent.frame()
 
