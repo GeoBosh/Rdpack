@@ -12,7 +12,9 @@
 %\newcommand{\runExamples}{\Sexpr[results=rd,stage=build]{deparse({#1})}}
 \newcommand{\runExamples}{\Sexpr[results=rd,stage=build]{Rdpack:::run_examples(quote({#1}))}}
 %\newcommand{\printExample}{\Sexpr[results=rd,stage=build]{Rdpack:::run_examples(quote({#1}), Rdsection = "\\\\\\\\preformatted")}}
-\newcommand{\printExample}{\Sexpr[results=rd,stage=build]{Rdpack:::run_examples(quote({#1}), Rdsection = "preformatted")}}
+
+\newcommand{\printExample}{\Sexpr[results=rd,stage=build]{.Rdpack.e <- environment();Rdpack:::run_examples(quote({#1}), local = .Rdpack.e, Rdsection = "preformatted")}}
+%\newcommand{\printExample}{\Sexpr[results=rd,stage=build]{Rdpack:::run_examples(quote({#1}), local = parent.frame(), Rdsection = "preformatted")}}
 
 % insert reference #1 - filename, #2 - package
 \newcommand{\insertFig}{\Sexpr[results=rd,stage=build]{Rdpack:::insert_fig("#1","#2", { #3 })}}

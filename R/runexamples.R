@@ -17,7 +17,8 @@ run_examples <- function(excontent,     # package = NULL, lib.loc = NULL, charac
                          continue.echo = prompt.echo,
                          run.dontrun = FALSE,
                          run.donttest = FALSE,     # in utils::example() it is:  interactive()
-                         Rdsection = "examples"
+                         Rdsection = "examples",
+                         escape = TRUE
                          ){
     ## set the environment where source() evaluates the code;
     ## 2018-08-13 todo: it is not clear if this is the best choice;
@@ -131,6 +132,9 @@ run_examples <- function(excontent,     # package = NULL, lib.loc = NULL, charac
     wrk <- gsub("^## *$", "", wrk)
 
     res <- paste0(paste0(wrk, collapse = "\n"), "\n")
+
+    if(escape)  # 2018-08-25
+        res <- .bspercent(res)
 
     ## TODO: prefix with spaces to indent from surrounding text?
     if(is.character(Rdsection)){

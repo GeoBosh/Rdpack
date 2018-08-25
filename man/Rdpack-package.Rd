@@ -249,7 +249,9 @@ The argument of \verb{\printExample} must be on a single line with released vers
 (This limitation has been lifted in R-devel starting from June 2018 but obviously this
 is currently of little help for production packages.)
 
-\verb{\printExample} is typically placed in section Details of an object's documentation.
+\verb{\printExample} is typically placed in section Details of an
+object's documentation, see section Details of \code{\link{get_usage}}
+for anumber of examples produced mostly with \verb{\printExample}.
 
 The experimental macro \verb{\runExamples} can be used as a replacement
 of section \verb{Examples}.
@@ -311,6 +313,11 @@ in "Writing R extensions".
   Other functions that may be useful are \code{Rdo2Rdf}, \code{Rdapply}
   and \code{Rd_combo}. Here is also brief information about some more
   technical functions that may be helpful in certain circumstances.
+
+  \code{\link{get_usage}} generates usage text for functions and
+  methods. The functions can be located in environments or other
+  objects. This may be useful for description of function elements of
+  compound objects. 
 
   \code{\link{c_Rd}} concatenates Rd pieces, character strings and lists
   to create a larger Rd piece or a complete Rd object.
