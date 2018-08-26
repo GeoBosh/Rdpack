@@ -7,6 +7,7 @@ insert_all_ref(refs, style = "")
 }
 \arguments{
   \item{refs}{
+    % TODO: is this description up-to-date? 
     a matrix specifying key-package pairs of the references to insert,
     see Details.
   }
@@ -35,6 +36,12 @@ insert_all_ref(refs, style = "")
   file 
 }
 \references{
+  Currently there are no citations. Nevethelese, I have put
+  \verb{\insertAllCited{}} just after this paragraph to show the message
+  that it prints when there are no citations. This seems better than
+  printing nothing but it may be argued also that there should be a
+  warning as well.
+  
   \insertAllCited{}
 }
 \author{Georgi N. Boshnakov}

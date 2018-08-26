@@ -59,7 +59,7 @@ promptUsage(\dots, usage)
   argument \code{S3class} can be used to get the standard Rd markup for
   S3 methods.
   \printExample{cat( get_usage(summary.lm, "summary", S3class = "lm") )}
-  (Note that the \verb{\method} can only be used in Usage sections.)
+  (Note that \verb{\method} can only be used in Usage sections.)
   
   When \code{object} is an anonymous function, argument \code{name} is compulsory.
   For example,
@@ -108,7 +108,7 @@ promptUsage(\dots, usage)
 }
 \value{
   a character string or an object of S3 class "\verb{f_usage}",
-  see \code{\link{pairlist2f_usage}} for its format.
+  see \code{\link{pairlist2f_usage1}} for its format.
 }
 
 \author{Georgi N. Boshnakov}

@@ -363,6 +363,8 @@ Maintainer: \Sexpr[stage=build]{pd$Maintainer}
   \code{\link{promptPackageSexpr}},
   \code{\link{rebib}},
   
+  \code{\link{get_usage}},
+  
   \code{\link{viewRd}},
   \code{\link{vigbib}},
   \code{\link{makeVignetteReference}},

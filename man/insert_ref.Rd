@@ -172,11 +172,11 @@ references for \code{\\insertAllCited}.
 }
 \author{Georgi N. Boshnakov}
 \seealso{
-  \code{\link{rebib}}
+  \code{\link{Rdpack-package}} for overview,
+  the vignettes
 }
 \examples{
   cat(insert_ref("R", package = "bibtex"), sep ="\n")
-
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

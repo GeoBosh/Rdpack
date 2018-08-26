@@ -11,7 +11,8 @@ importFrom(grDevices, dev.off, png)
 importFrom(gbRd, Rd_help2txt)
 importFrom(bibtex, read.bib)
 
-S3method(as.character,f_usage)
+S3method(as.character, f_usage)
+S3method(print, f_usage)
 S3method(print, bibentryRd)
 
 export(

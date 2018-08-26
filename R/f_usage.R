@@ -21,6 +21,27 @@ pairlist2f_usage1 <- function(x, name, S3class = "", S4sig = "", infix = FALSE, 
                 parse_pairlist(x)), class="f_usage")
 }
 
+print.f_usage <- function(x, ...){
+    tab <- max(nchar(names(x)))
+    for(nam in names(x)){
+        if(is.null(nam))
+            next
+        if(nam != "defaults")
+            cat(nam, strrep(" ", tab - nchar(nam)), "=", x[[nam]], "\n")
+        else{
+            defnams <- names(x$defaults)
+            for(i in seq_along(defnams)){
+                if(i == 1)
+                    cat(nam, strrep(" ", tab - nchar(nam[i])), ":", defnams[i], "=", x$defaults[i], "\n")
+                else
+                    cat(strrep(" ", tab + 3), defnams[i] , "=", x$defaults[i], "\n")
+
+            }
+        }
+    }
+    cat("\n")
+}
+
 format_funusage <- function(x, name = "", width = 72, realname){
     res <- paste(name,  "(", paste(x, collapse = ", "),  ")", sep="")
 

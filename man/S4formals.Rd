@@ -15,10 +15,10 @@ S4formals(fun, \dots)
   If \code{fun} is not of class \code{methodDefinition}, it calls
   \code{getMethods}, passing on all arguments.
 
-  Typically, \code{fun} is the name of as generic function and the
+  Typically, \code{fun} is the name of a generic function and the
   second argument is the signature of the method as a character
   vector. Alternatively, \code{fun} may be the method itself (e.g. obtained
-  previously from \code{getMethod}) and in that case the \verb{\dots}
+  previously from \code{getMethod}) and in that case the \verb{"\dots"}
   arguments are ignored. See \code{\link{getMethod}} for full details
   and other acceptable arguments.
 
@@ -28,7 +28,7 @@ S4formals(fun, \dots)
 }
 \note{
   Arguments of a method after those used for dispatch may be different from
-  the arguments of the generic. The latter  may simply have a \verb{\dots}
+  the arguments of the generic. The latter  may simply have a \verb{"\dots"}
   argument there.
 
   todo: there should be a similar function in the "methods" package, or
@@ -38,11 +38,11 @@ S4formals(fun, \dots)
   Georgi N. Boshnakov
 }
 \examples{
-require(stats4)
-S4formals("plot",c(x="profile.mle", y="missing"))
+require(stats4) # makes plot() S4 generic
 
-m1 <- getMethod("plot",c(x="profile.mle", y="missing"))
+S4formals("plot", c(x = "profile.mle", y = "missing"))
+
+m1 <- getMethod("plot", c(x = "profile.mle", y = "missing"))
 S4formals(m1)
-
 }
 \keyword{methods}

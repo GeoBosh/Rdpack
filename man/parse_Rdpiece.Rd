@@ -41,7 +41,9 @@ parse_Rdpiece(x, result = "")
 
   \code{parse_Rdpiece} by default returns the parsed Rd piece. However,
   if \code{result="text"}, then the text is formatted as the help system
-  would do it when presenting help pages in text format.
+  would do when presenting help pages in text format.
+
+  \strong{TODO:} add an argument for macros?
 
 }
 
