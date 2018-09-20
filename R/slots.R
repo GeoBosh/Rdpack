@@ -1,6 +1,12 @@
 inspect_slots <- function(rdo, final=TRUE){
     fullname <- .get.name_content(rdo)$name     # name of the class with '-class' suffix
     cur <- .capture_promptAny(fullname, final=final)
+
+    ## 2018-08-27 - non-exiting class (TDO: check if it could be something else here
+    if(inherits(cur, "try-error")){
+        return(cur)
+    }
+
     curnames <- .get_top_labels(cur, "Slots")   # current slots
 
     rdonames <- .get_top_labels(rdo, "Slots")   # slots in rdo

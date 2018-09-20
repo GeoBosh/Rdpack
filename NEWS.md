@@ -10,6 +10,13 @@
   needed for text that is to be included in an Rd file. It can be turned off by
   setting the new argument `escape` to `FALSE`.
 
+* now `reprompt()` gives a more informative error message if an Rd file
+  describes a non-existent S4 class. This is not captured by `R`s tools. It can
+  happen during development if a class is removed.
+
+* now reports printed by `reprompt()` about methods documented in Usage
+  sections, but no longer existing, are more readable. This is due to a the new
+  print method for (the mostly internal) class "f_usage".
 
 # Rdpack 0.9-0 (CRAN)
 

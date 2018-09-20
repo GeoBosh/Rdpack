@@ -2,7 +2,7 @@ Package: Rdpack
 Type: Package
 Title: Update and Manipulate Rd Documentation Objects
 Version: 0.9-1
-Date: 2018-08-04
+Date: 2018-09-20
 Authors@R: c( person(given = c("Georgi", "N."), 
                      family = "Boshnakov", 
                      role = c("aut", "cre"), 
@@ -14,8 +14,10 @@ Description: Functions for manipulation of R documentation objects,
     including functions reprompt() and ereprompt() for updating 'Rd'
     documentation for functions, methods and classes; 'Rd' macros for
     citations and import of references from 'bibtex' files for use in
-    'Rd' files and 'roxygen2' comments; and many functions for
-    manipulation of references and Rd files.
+    'Rd' files and 'roxygen2' comments; 'Rd' macros for evaluating and
+    inserting snippets of 'R' code and the results of its evaluation or
+    creating graphics on the fly; and many functions for manipulation of
+    references and Rd files.
 URL: https://github.com/GeoBosh/Rdpack
 BugReports: https://github.com/GeoBosh/Rdpack/issues
 Depends:

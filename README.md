@@ -1,3 +1,5 @@
+[![rpackages.io rank](http://www.rpackages.io/badge/Rdpack.svg)](http://www.rpackages.io/package/Rdpack)
+
 Rdpack provides functions for manipulation of R documentation objects, including
 functions `reprompt()` and `ereprompt()` for updating existing Rd documentation
 for functions, methods and classes; Rd macros for citations and import of
@@ -7,24 +9,24 @@ and many functions for manipulation of references and Rd files.
 
 # Table of Contents
 
-1.  [Installing Rdpack](#orgaba8366)
-2.  [Inserting Bibtex references and citations](#org43964ea)
-    1.  [Preparation](#orgd4b1046)
-    2.  [Inserting references](#org74b656d)
-    3.  [Inserting citations](#org671c6b0)
-    4.  [Changing the style of references](#orga414a22)
-    5.  [Troubleshooting](#org42ce6a6)
-        1.  [A puzzling message in devtools development mode](#orgaf9110b)
-        2.  [Typical errors](#org3f51222)
-3.  [Viewing Rd files](#org2bbb062)
-4.  [Using Rdpack::reprompt()](#orgeab302e)
-    1.  [What it does](#orgde74e9d)
-    2.  [Reprompt and open in an editor](#orgcb865fc)
-5.  [Inserting evaluated examples](#orgabfa57b)
-6.  [Inserting figures/graphs/plots](#orgcb5ab38)
+1.  [Installing Rdpack](#orgd8efa53)
+2.  [Inserting Bibtex references and citations](#org54312d2)
+    1.  [Preparation](#orga8fa446)
+    2.  [Inserting references](#orgda57a1e)
+    3.  [Inserting citations](#org453d298)
+    4.  [Changing the style of references](#org7b8bae0)
+    5.  [Troubleshooting](#orgeb25216)
+        1.  [A puzzling message in devtools development mode](#org0a54dc1)
+        2.  [Typical errors](#orgd2a23bb)
+3.  [Viewing Rd files](#org869949f)
+4.  [Using Rdpack::reprompt()](#org8a6b3f4)
+    1.  [What it does](#org2b0f287)
+    2.  [Reprompt and open in an editor](#orgbb2b57b)
+5.  [Inserting evaluated examples](#org3c66109)
+6.  [Inserting figures/graphs/plots](#org39017de)
 
 
-<a id="orgaba8366"></a>
+<a id="orgd8efa53"></a>
 
 # Installing Rdpack
 
@@ -38,7 +40,7 @@ You can also install the [development version](https://github.com/GeoBosh/Rdpack
     install_github("GeoBosh/Rdpack")
 
 
-<a id="org43964ea"></a>
+<a id="org54312d2"></a>
 
 # Inserting Bibtex references and citations
 
@@ -49,7 +51,7 @@ the `DESCRIPTION` file of the package needs to be amended, see below the full
 details. 
 
 
-<a id="orgd4b1046"></a>
+<a id="orga8fa446"></a>
 
 ## Preparation
 
@@ -80,7 +82,7 @@ enumerated below in somewhat more detail, see also the vignette
     put the BibTeX references in it.
 
 
-<a id="org74b656d"></a>
+<a id="orgda57a1e"></a>
 
 ## Inserting references
 
@@ -128,7 +130,7 @@ or open the the from `R`:
 [`Inserting_bibtex_references (development version on github)`](https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_bibtex_references.pdf).)
 
 
-<a id="org671c6b0"></a>
+<a id="org453d298"></a>
 
 ## Inserting citations
 
@@ -201,7 +203,7 @@ see also Murdoch (2010) and Francois (2014)
 references for `\insertAllCited`.
 
 
-<a id="orga414a22"></a>
+<a id="org7b8bae0"></a>
 
 ## Changing the style of references
 
@@ -226,12 +228,12 @@ After installling/reloading your package the lists of references should appear
 with long author names. "Rdpack" itself now uses this style.
 
 
-<a id="org42ce6a6"></a>
+<a id="orgeb25216"></a>
 
 ## Troubleshooting
 
 
-<a id="orgaf9110b"></a>
+<a id="org0a54dc1"></a>
 
 ### A puzzling message in devtools development mode
 
@@ -252,7 +254,7 @@ session<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. Even better,
 below to view the required help file.
 
 
-<a id="org3f51222"></a>
+<a id="orgd2a23bb"></a>
 
 ### Typical errors
 
@@ -278,7 +280,7 @@ These errors occur during parsing of the Rd files, before the control is passed
 to the `Rdpack`'s macros. 
 
 
-<a id="org2bbb062"></a>
+<a id="org869949f"></a>
 
 # Viewing Rd files
 
@@ -300,12 +302,12 @@ sources in development mode. This should work also in development mode on any
 platform (e.g. RStudio, Emacs/ESS, Rgui).
 
 
-<a id="orgeab302e"></a>
+<a id="org8a6b3f4"></a>
 
 # Using Rdpack::reprompt()
 
 
-<a id="orgde74e9d"></a>
+<a id="org2b0f287"></a>
 
 ## What it does
 
@@ -332,7 +334,7 @@ but it alerts the user to remove aliases, methods, and descriptions of arguments
 that have been removed. 
 
 
-<a id="orgcb865fc"></a>
+<a id="orgbb2b57b"></a>
 
 ## Reprompt and open in an editor
 
@@ -355,7 +357,7 @@ Elisp code), for example to be invoked on the currently edited file. Such a
 function and example key binding can be found at [georgisemacs](https://github.com/GeoBosh/georgisemacs).
 
 
-<a id="orgabfa57b"></a>
+<a id="org3c66109"></a>
 
 # Inserting evaluated examples
 
@@ -377,7 +379,7 @@ gives
 See vignette [`Inserting_figures_and_evaluated_examples`](https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf) for more details.
 
 
-<a id="orgcb5ab38"></a>
+<a id="org39017de"></a>
 
 # Inserting figures/graphs/plots
 

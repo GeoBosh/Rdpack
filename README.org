@@ -2,6 +2,10 @@
 #+OPTIONS: toc:nil
 #+TITLE: Inserting references in Rd and roxygen2 documentation
 
+#+BEGIN_EXPORT html
+[![rpackages.io rank](http://www.rpackages.io/badge/Rdpack.svg)](http://www.rpackages.io/package/Rdpack)
+#+END_EXPORT
+
 Rdpack provides functions for manipulation of R documentation objects, including
 functions =reprompt()= and =ereprompt()= for updating existing Rd documentation
 for functions, methods and classes; Rd macros for citations and import of

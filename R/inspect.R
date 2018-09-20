@@ -80,8 +80,16 @@ inspect_Rd <- function(rdo, package = NULL){                     # rdo: Rd objec
 }
 
 inspect_Rdclass <- function(rdo){                                             # rdo: Rd object
-    rdo <- inspect_slots(rdo)          # methods: items have the form \item{fname}{signature},
-    rdo <- inspect_clmethods(rdo)      # compare with those from promptClass
+    cur <- inspect_slots(rdo)          # methods: items have the form \item{fname}{signature},
+
+    ## 2018-08-27 - non-exiting class (TDO: check if it could be something else here
+    ##    TODO: think of a better way to handle this.
+    if(inherits(cur, "try-error")){
+        cat(cur)
+        return(rdo)
+    }
+
+    rdo <- inspect_clmethods(cur)      # compare with those from promptClass
 
     rdo                                                      # todo: inspect other things too?
 }
