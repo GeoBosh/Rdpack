@@ -3,6 +3,7 @@
 #+TITLE: Inserting references in Rd and roxygen2 documentation
 
 #+BEGIN_EXPORT html
+[![CRANStatusBadge](http://www.r-pkg.org/badges/version/Rdpack)](https://cran.r-project.org/package=Rdpack)
 [![rpackages.io rank](http://www.rpackages.io/badge/Rdpack.svg)](http://www.rpackages.io/package/Rdpack)
 #+END_EXPORT
 
