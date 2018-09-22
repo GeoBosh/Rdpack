@@ -1,0 +1,13 @@
+Package: RdpackTester
+Type: Package
+Title: Testbed for Rdpack
+Version: 1.0
+Date: 2018-09-22
+Author: Georgi N. Boshnakov
+Maintainer: <georgi.boshnakov@manchester.ac.uk>
+Description: A lot of the functionality of package 'Rdpack' is best tested on a
+    package. This package is part of 'Rdpack' and is used for that purpose.
+License: GPL (>=2)
+RdMacros: Rdpack
+NeedsCompilation: no
+Packaged: 2018-09-22 13:55:28 UTC; mcbssgb2

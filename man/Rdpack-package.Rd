@@ -423,3 +423,10 @@ rebib(infile="path/to/mypackage/man/mypackage-package.Rd", force=TRUE)
   
   \insertAllCited{}
 }
+
+
+
+
+
+
+

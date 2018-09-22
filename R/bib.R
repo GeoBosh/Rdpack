@@ -868,32 +868,7 @@ cleanupLatex <- function(x) {
     }
 }
 
-## ls(environment(bibstyle)$styles$JSS)
-.onLoad <- function(lib, pkg){
-    ## tools::bibstyle("JSSLongNames", .init = TRUE, .default = FALSE,
-    ##     shortName = function(person) {
-    ##         paste(paste(cleanupLatex(person$given), collapse=" "),
-    ##               cleanupLatex(person$family), sep = " ")
-    ##     },
-    ## 
-    ##     cleanupLatex = function(x) {
-    ##         if (!length(x)) return(x)
-    ##         latex <- tryCatch(tools::parseLatex(x), error = function(e)e)
-    ##         if (inherits(latex, "error")) {
-    ##             x
-    ##         } else {
-    ##             Rdpack:::deparseLatexToRd(latexToUtf8(latex), dropBraces=TRUE)
-    ##         }
-    ##     }
-    ##     
-    ##     )
-
-    set_Rdpack_bibstyle("JSSLongNames")
-    
-    Rdpack_bibstyles(package = pkg, authors = "LongNames")
-    invisible(NULL)
-}
-
+#+BEGIN_SRC R
 deparseLatexToRd = function(x, dropBraces = FALSE)
 {
     result <- character()
@@ -973,6 +948,13 @@ Rdpack_bibstyles <- local({
 ## }
 
 set_Rdpack_bibstyle <- function(bibstyle = "JSSRd"){
+    ## from /tools/R/bibstyle.R makeJSS()
+    collapse <- function(strings)
+        paste(strings, collapse="\n")
+    emph <- function(s)
+        if (length(s)) paste0("\\emph{", collapse(s), "}")
+
+
     switch(bibstyle,
     "JSSRd" = tools::bibstyle("JSSRd", .init = TRUE, .default = FALSE,
                     cleanupLatex = function(x) {
@@ -983,7 +965,26 @@ set_Rdpack_bibstyle <- function(bibstyle = "JSSRd"){
                         } else {
                             deparseLatexToRd(latexToUtf8(latex), dropBraces=TRUE)
                         }
+                    },
+
+                    ## modified from tools::makeJSS()
+                    ## TODO: Volume and number seem to refer to the book title, not to a volume in the series
+                    ##    (since they are put in front of the series).
+                    ##    Also, there is no punctuation between them
+                    ## TODO: maybe modify or even report on R-devel.
+                    bookVolume = function(book) {
+                        result <- ""
+                        if (length(book$volume))
+                            result <- paste("volume", collapse(book$volume))
+                        if (length(book$number))
+                            result <- paste(result, "number", collapse(book$number))
+                        if (length(book$series))
+                            ## result <- paste(result, "series", collapse(book$series))
+                            result <- paste(result, collapse(book$series))
+                        if (nzchar(result)) result
                     }
+
+
                     ),
 
     "JSSLongNames" = tools::bibstyle("JSSLongNames", .init = TRUE, .default = FALSE,
@@ -997,6 +998,23 @@ set_Rdpack_bibstyle <- function(bibstyle = "JSSRd"){
                         }
                     },
                     
+                    bookVolume = function(book) {
+                        result <- ""
+                        if (length(book$volume)){
+                            result <- paste("volume", collapse(book$volume))
+                            if (length(book$number))
+                                result <- paste0(result, "(", collapse(book$number), ")")
+                            if (length(book$series))
+                                result <- paste(result, "of", emph(collapse(book$series)))
+                        }else if (length(book$number)){
+                            result <- paste(result, "number", collapse(book$number))
+                            if (length(book$series))
+                                result <- paste(result, "in", collapse(book$series))
+                        }else if (length(book$series))
+                            result <- paste(result, collapse(book$series))
+                        if (nzchar(result)) result
+                    },
+
                     shortName = function(person) {
                         paste(paste(cleanupLatex(person$given), collapse=" "),
                               cleanupLatex(person$family), sep = " ")
@@ -1005,4 +1023,30 @@ set_Rdpack_bibstyle <- function(bibstyle = "JSSRd"){
     ## default
     stop("Unknown bibstyle ", bibstyle)
     )
+}
+
+## ls(environment(bibstyle)$styles$JSS)
+.onLoad <- function(lib, pkg){
+    ## tools::bibstyle("JSSLongNames", .init = TRUE, .default = FALSE,
+    ##     shortName = function(person) {
+    ##         paste(paste(cleanupLatex(person$given), collapse=" "),
+    ##               cleanupLatex(person$family), sep = " ")
+    ##     },
+    ## 
+    ##     cleanupLatex = function(x) {
+    ##         if (!length(x)) return(x)
+    ##         latex <- tryCatch(tools::parseLatex(x), error = function(e)e)
+    ##         if (inherits(latex, "error")) {
+    ##             x
+    ##         } else {
+    ##             Rdpack:::deparseLatexToRd(latexToUtf8(latex), dropBraces=TRUE)
+    ##         }
+    ##     }
+    ##     
+    ##     )
+
+    set_Rdpack_bibstyle("JSSLongNames")
+    
+    Rdpack_bibstyles(package = pkg, authors = "LongNames")
+    invisible(NULL)
 }

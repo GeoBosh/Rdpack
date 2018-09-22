@@ -1,5 +1,11 @@
 # Rdpack 0.9-1
 
+* now references produced by the citation macros for BibTeX entries of type
+  `@book` and `@incollection` treat field 'series' similarly to other BibTeX
+  styles, including JSS (issue#7 raised by Kisung You). Note that even though
+  the underlying base R tools are based on JSS, they treat this field
+  differently.
+
 * Bugfix: now Rd macro `\printExample` evaluates the expressions in the correct
   environment. 
   
@@ -17,6 +23,10 @@
 * now reports printed by `reprompt()` about methods documented in Usage
   sections, but no longer existing, are more readable. This is due to a the new
   print method for (the mostly internal) class "f_usage".
+
+* Many features of Rdpack are best demonstrated on a package. The new package
+  RdpackTester under `./inst/examples` now makes this easier.
+
 
 # Rdpack 0.9-0 (CRAN)
 
