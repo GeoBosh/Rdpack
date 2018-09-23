@@ -40,7 +40,10 @@ install_github("GeoBosh/Rdpack")
 
 The simplest way to insert Bibtex references is with the Rd macro =\insertRef=.
 Just put =\insertRef{key}{package}= in the documentation to insert item with key
-=key=  from file =REFERENCES.bib= in your package =package=. For this to work
+=key= from file =REFERENCES.bib= in your package =package=. Alternatively, use
+one or more =\insertCite{key}{package}= commands to cite works from
+=REFERENCES.bib=, then issue a single =\insertAllCited{}= directive to produce a
+list of all cited references. For this to work
 the =DESCRIPTION= file of the package needs to be amended, see below the full
 details. 
 
@@ -122,7 +125,7 @@ packages to not copy the same refences to each of their own packages.
  
 For further details see the vignette 
 [[https://cran.r-project.org/package=Rdpack][=Inserting_bibtex_references=]]
-or open the the from =R=:
+or open it from =R=:
 #+BEGIN_EXAMPLE
 vignette("Inserting_bibtex_references", package = "Rdpack")
 #+END_EXAMPLE
@@ -134,57 +137,55 @@ vignette("Inserting_bibtex_references", package = "Rdpack")
 
 ** Inserting citations
 
-  From version 0.6-1 of "Rdpack", additional Rd macros are
-  available for citations.  They can be used in both Rd and
-  roxygen2 documentation.
+From version 0.6-1 of "Rdpack", additional Rd macros are available for
+citations.  They can be used in both Rd and roxygen2 documentation.
 
-  =\insertCite{key}{package}= cites =key= and records it for
-  use by =\insertAllCited=, see below. =key= can contain
-  more keys separated by commas.
-
- =\insertCite{parseRd,Rpack:bibtex}{Rdpack}= produces 
- src_R[:exports results :results value raw]{insert_citeOnly("parseRd,Rpack:bibtex", "Rdpack")}
+=\insertCite{key}{package}= cites =key= and records it for use by
+=\insertAllCited=, see below. =key= can contain more keys separated by commas.
+  
+=\insertCite{parseRd,Rpack:bibtex}{Rdpack}= produces 
+src_R[:exports results :results value raw]{insert_citeOnly("parseRd,Rpack:bibtex", "Rdpack")}
 and 
- =\insertCite{Rpack:bibtex}{Rdpack}=         gives
+=\insertCite{Rpack:bibtex}{Rdpack}=         gives
 src_R[:exports results :results value raw]{insert_citeOnly("Rpack:bibtex", "Rdpack")}.
 
 
-  By default the citations are parenthesised: =\insertCite{parseRd}{Rdpack}= produces
-  src_R[:exports results :results value raw]{insert_citeOnly("parseRd", "Rdpack")}.  To get
-  textual citations, like 
-  src_R[:exports results :results value raw]{insert_citeOnly("parseRd;textual", "Rdpack")}, 
-  put the string =;textual= at the end of the key. The references in the last two sentences
-  would be produced with =\insertCite{parseRd}{Rdpack}= and
-  =\insertCite{parseRd;textual}{Rdpack}=, respectively.  This also works with several
-  citations, e.g.
+By default the citations are parenthesised: =\insertCite{parseRd}{Rdpack}= produces
+src_R[:exports results :results value raw]{insert_citeOnly("parseRd", "Rdpack")}.  To get
+textual citations, like 
+src_R[:exports results :results value raw]{insert_citeOnly("parseRd;textual", "Rdpack")}, 
+put the string =;textual= at the end of the key. The references in the last two sentences
+would be produced with =\insertCite{parseRd}{Rdpack}= and
+=\insertCite{parseRd;textual}{Rdpack}=, respectively.  This also works with several
+citations, e.g.
 
-  =\insertCite{parseRd,Rpack:bibtex;textual}{Rdpack}= produces:
-  src_R[:exports results :results value raw]{insert_citeOnly("parseRd,Rpack:bibtex;textual", "Rdpack")}.
+=\insertCite{parseRd,Rpack:bibtex;textual}{Rdpack}= produces:
+src_R[:exports results :results value raw]{insert_citeOnly("parseRd,Rpack:bibtex;textual", "Rdpack")}.
 
-  The macro =\insertNoCite{key}{package}= records one or more
-  references for =\insertAllCited= but does not cite it. Setting
-  =key= to =*= will include all references from the
-  specified package. For example, 
-  =\insertNoCite{R}{bibtex}=  and  =\insertNoCite{*}{utils}=
-  record the specified references for inclusion by =\insertAllCited=. 
+The macro =\insertNoCite{key}{package}= records one or more
+references for =\insertAllCited= but does not cite it. Setting
+=key= to =*= will include all references from the
+specified package. For example, 
+=\insertNoCite{R}{bibtex}=  and  =\insertNoCite{*}{utils}=
+record the specified references for inclusion by =\insertAllCited=. 
 
-  =\insertAllCited= inserts all references cited with
-  =\insertCite= or =\insertNoCite=. Putting this macro
-  in the references section will keep it up to date automatically. 
-  The Rd section may look something like:
+=\insertAllCited= inserts all references cited with
+=\insertCite= or =\insertNoCite=. Putting this macro
+in the references section will keep it up to date automatically. 
+The Rd section may look something like:
 #+BEGIN_EXAMPLE
     \insertAllCited{}
 #+END_EXAMPLE
-  or, in roxygen2, the references chunk might look like this:
+or, in roxygen2, the references chunk might look like this:
 #+BEGIN_EXAMPLE
     #' @references
     #'     \insertAllCited{}
 #+END_EXAMPLE
 
-To mix the citations with other text, such as ``see also'' and
-``chapter 3'', write the list of keys as a free text, starting
-it with the symbol =@= and prefixing each key with it. 
-The =@= symbol will not appear in the output. For example, the following code
+To mix the citations with other text, such as ``see also'' and ``chapter 3'',
+write the list of keys as a free text, starting it with the symbol =@= and
+prefixing each key with it.  The =@= symbol will not appear in the output. For
+example, the following code
 #+BEGIN_EXAMPLE
   \insertCite{@see also @parseRd and @Rpack:bibtex}{Rdpack}
   \insertCite{@see also @parseRd; @Rpack:bibtex}{Rdpack}
@@ -200,9 +201,8 @@ produces:
 
 ---
 
-=\insertCiteOnly{key}{package}= is as
-=\insertCite= but does not include the key in the list of
-references for =\insertAllCited=.
+=\insertCiteOnly{key}{package}= is as =\insertCite= but does not include the key
+in the list of references for =\insertAllCited=.
 
 
 
@@ -213,7 +213,7 @@ Bibliography styles for lists of references are supported from _Rdpack (>=
 N. Boshnakov) in place of the default style (Boshnakov GN). More comprehensive
 alternatives can be included if needed or requested.
 
-To cause all list of references produced by ~\insertAllCited~ in a package to appear with
+To cause all lists of references produced by ~\insertAllCited~ in a package to appear with
 full names, add ~.onLoad()~ function to your package. If you don't have ~.onLoad()~, just
 copy the following definition: 
 #+BEGIN_SRC R
@@ -400,3 +400,17 @@ will evaluate the code, save the graph in file ~"man/figures/cars.png"~ subdirec
 package ~"mypackage"~, and include the figure using ~\figure~. 
 
 See vignette [[https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf][=Inserting_figures_and_evaluated_examples=]] for more details.
+
+* Versions of Rdpack
+
+Versions of ~Rdpack~ on Github are almost always fully functional (at least
+passing =R CMD check --as-cran=), and so use a three-part version number. If a
+version is really unstable, I would use the conventional fourth part
+=.9000=. For release on CRAN, the version is incremented to
+=x.x.0=[fn:versions].
+
+Note that if ~Rdpack (>= x.x.0)~ is required, it can be abbreviated to 
+~Rdpack (>= x.x)~. 
+
+[fn:versions] I adopted this versionning scheme from ~Rdpack 0.7.0~.
+
