@@ -22,7 +22,7 @@
    Built:    \tab \Sexpr[stage=build]{pd$Built}\cr
    }
 
-% 2018-05-24 commentring out   
+% 2018-05-24 commenting out   
 %    Index:
 % 
 %   \Sexpr[stage=build,results=rd]{paste("\\\\preformatted{", paste(if(!is.null(lb$info[[2]])) lb$info[[2]] else "No entries",collapse="\\n"), "}", sep="")}
@@ -355,7 +355,6 @@ Maintainer: \Sexpr[stage=build]{pd$Maintainer}
   "Rd text", "Rd source text", "Rd format" - these refer to the text of
   the Rd files.
 }
-\keyword{ package }
 \seealso{
 %  \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
   \code{\link{ereprompt}},
@@ -369,7 +368,19 @@ Maintainer: \Sexpr[stage=build]{pd$Maintainer}
   \code{\link{vigbib}},
   \code{\link{makeVignetteReference}},
   
-  \code{vignette("Inserting_bibtex_references", package = "Rdpack")}
+  \code{vignette("Inserting_bibtex_references", package = "Rdpack")},
+
+  \code{vignette("Inserting_figures_and_evaluated_examples", package = "Rdpack")}
+  
+}
+\references{
+
+  \strong{Note:} Reference \insertCite{dummyArticle;textual}{Rdpack}
+  does not exist. It is a test that simple math in BibTeX entries works.
+
+  ---
+  
+  \insertAllCited{}
 }
 \examples{
 ## The examples below show typical use but are not executable.
@@ -414,19 +425,4 @@ promptPackageSexpr("mypackage")
 rebib(infile="path/to/mypackage/man/mypackage-package.Rd", force=TRUE)
 }
 }
-\references{
-
-  \strong{Note:} Reference \insertCite{dummyArticle;textual}{Rdpack}
-  does not exist. It is a test that simple math in BibTeX entries works.
-
-  ---
-  
-  \insertAllCited{}
-}
-
-
-
-
-
-
-
+\keyword{ package }

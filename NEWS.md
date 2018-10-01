@@ -1,5 +1,12 @@
 # Rdpack 0.9-1
 
+* Now macros `\insertCite` and `\insertCiteOnly` use the correct `results=rd`
+  instead of `results=Rd`. This was not catched by `R`s building tools but
+  caused errors when processed with `pkgdown::build_site()`. Fixes issue#8. Also
+  fixes r-lib/pkgdown#784. 
+  Thanks to [Jay Hesselberth](https://github.com/jayhesselberth) for uncovering
+  this. 
+
 * now references produced by the citation macros for BibTeX entries of type
   `@book` and `@incollection` treat field 'series' similarly to other BibTeX
   styles, including JSS (issue#7 raised by Kisung You). Note that even though

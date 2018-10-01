@@ -852,8 +852,12 @@ insert_all_ref <- function(refs, style = ""){
            else character(0)
 
     res <- .toRd_styled(bibs, pkg)
-
-    paste0(res, collapse = "\n\n")
+        # 2018-10-01 use \par since pkgdown ignores the empty lines
+        #     TODO: needs further thought
+        # was: 
+        #  (for now restoring the old one, to check ifpkgdown would consider this as a bug)
+     paste0(res, collapse = "\n\n")
+    # paste0(res, collapse = "\\cr\\cr ")
 }
 
 # Clean up LaTeX accents and braces
@@ -968,18 +972,22 @@ set_Rdpack_bibstyle <- function(bibstyle = "JSSRd"){
                     },
 
                     ## modified from tools::makeJSS()
-                    ## TODO: Volume and number seem to refer to the book title, not to a volume in the series
-                    ##    (since they are put in front of the series).
-                    ##    Also, there is no punctuation between them
-                    ## TODO: maybe modify or even report on R-devel.
+                    ## TODO: report on R-devel?.
                     bookVolume = function(book) {
                         result <- ""
-                        if (length(book$volume))
+                        if (length(book$volume)){
                             result <- paste("volume", collapse(book$volume))
-                        if (length(book$number))
+                            if (length(book$number))
+                                result <- paste0(result, "(", collapse(book$number), ")")
+                            if (length(book$series))
+                                result <- paste(result, "of", emph(collapse(book$series)))
+                        }else if (length(book$number)){
+                            ## todo: in JSS style and others the title end with '.' and 
+                            ##       'number' is 'Number', but don't want to fiddle with this now. 
                             result <- paste(result, "number", collapse(book$number))
-                        if (length(book$series))
-                            ## result <- paste(result, "series", collapse(book$series))
+                            if (length(book$series))
+                                result <- paste(result, "in", collapse(book$series))
+                        }else if (length(book$series))
                             result <- paste(result, collapse(book$series))
                         if (nzchar(result)) result
                     }
@@ -1007,6 +1015,8 @@ set_Rdpack_bibstyle <- function(bibstyle = "JSSRd"){
                             if (length(book$series))
                                 result <- paste(result, "of", emph(collapse(book$series)))
                         }else if (length(book$number)){
+                            ## todo: in JSS style and others the title end with '.' and 
+                            ##       'number' is 'Number', but don't want to fiddle with this now. 
                             result <- paste(result, "number", collapse(book$number))
                             if (length(book$series))
                                 result <- paste(result, "in", collapse(book$series))
