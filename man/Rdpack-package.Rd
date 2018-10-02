@@ -4,7 +4,7 @@
 \docType{package}
 \title{
   \Sexpr[stage=build,results=hide]{require(Rdpack)}
-  \Sexpr[stage=build,results=hide]{pd <- packageDescription("Rdpack")}
+  \Sexpr[stage=build,results=hide]{pd <- utils::packageDescription("Rdpack")}
   \Sexpr[stage=build,results=hide]{lb <- library(help="Rdpack", character.only=TRUE)}
   \Sexpr[stage=build]{pd$Title}
 }

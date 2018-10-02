@@ -15,7 +15,7 @@
 
   Here we find all methods for \code{show()} defined in package
   \code{"methods"} and print the first few of them: 
-  \printExample{fn <- help("show-methods", package = "methods"); rdo <- utils:::.getHelpFile(fn); head(get_sig_text(rdo))}
+  \printExample{fn <- utils::help("show-methods", package = "methods"); rdo <- utils:::.getHelpFile(fn); head(get_sig_text(rdo))}
 
 
   

@@ -42,14 +42,14 @@ rdo_top_tags
   
   \Sexpr[stage=build,results=rd]{require(Rdpack);
     paste(
-    "\\\\if{latex}{",
-    "\\\\tabular{ll|lll}{",
+    "\\\\ifelse{latex}{\\\\out{",
+    "\\\\begin{tabular}{ll|lll}",
           paste(names(Rdo_predefined_sections)[1:5], Rdo_predefined_sections[1:5],
           " ",
           names(Rdo_predefined_sections)[-(1:5)], Rdo_predefined_sections[-(1:5)],
-          sep=" \\\\tab ", collapse="\\\\cr\n"),
-          "}",
-	  "}{",
+          sep=" & ", collapse="\\\\\\\\\\\\\\\\ \n"),
+          "\\\\end{tabular}",
+	  "}}{",
     "\\\\tabular{lllll}{",
           paste(names(Rdo_predefined_sections)[1:5], Rdo_predefined_sections[1:5],
           " | ",
@@ -60,17 +60,17 @@ rdo_top_tags
 	  "}"
 
 	  )}
-
+	
   for \code{Rdo_piece_types}, the name-value pairs are:
 
   \Sexpr[stage=build,results=rd]{
     paste(
-    "\\\\if{latex}{",
-    "\\\\tabular{ll|ll|ll|ll|ll|ll}{",
-     paste(names(Rdo_piece_types), "\\\\tab ", Rdo_piece_types, c(rep("\\\\tab ",2),"\\\\cr"),
+    "\\\\ifelse{latex}{\\\\out{",
+    "\\\\begin{tabular}{ll|ll|ll|ll|ll|ll}",
+     paste(names(Rdo_piece_types), " & ", Rdo_piece_types, c(rep(" & ",2),"\\\\\\\\\\\\\\\\"),
            sep="", collapse="\n"),
-           "}",
-	   "}{",
+           "\\\\end{tabular}",
+	   "}}{",
 
     "\\\\tabular{llllllllllll}{",
     paste(names(Rdo_piece_types), "\\\\tab ", Rdo_piece_types,

@@ -28,11 +28,25 @@
   happen during development if a class is removed.
 
 * now reports printed by `reprompt()` about methods documented in Usage
-  sections, but no longer existing, are more readable. This is due to a the new
+  sections, but no longer existing, are more readable. This is due to a new
   print method for (the mostly internal) class "f_usage".
 
 * Many features of Rdpack are best demonstrated on a package. The new package
   RdpackTester under `./inst/examples` now makes this easier.
+
+* now the help page "predefined.Rd" does not print some tables twice in the pdf
+  manual. (This was due to using `\if{latex}{}{}' instead of
+  `\ifelse{latex}{}{}' for those tables.)
+
+* also in "predefined.Rd", removed illegal use of vertical bars (in column
+  specifications of tabular environments) from the pure LaTeX code in the
+  `\ifelse` clause(s) and wrapped them in `\out{}`. 
+
+* in "get_sig_text.Rd", replace `help()` with `utils::help()` to avoid warnings
+  from more stringent `R CMD check`. Similarly, in "Rdpack-package.Rd" replace
+  `packageDescription()` with `utils::packageDescription()`. This may
+  be needed in `\Sexpr`'s more generally (__TODO:__ check if these would still
+  be needed if the symbols are imported by the package.)
 
 
 # Rdpack 0.9-0 (CRAN)
