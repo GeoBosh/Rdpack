@@ -321,7 +321,26 @@ Among other things, it contains some dummy references which illustrate the above
 [fn:6] Thanks to Michael Dewey for suggesting the discussion of this.
 
 
-** Viewing Rd files 
+** Encoding of file REFERENCES.bib
+
+If a package has a declared encoding (in file =DESCRIPTION=), =REFERENCES.bib= is read-in
+with that encoding[fn:enc].  Otherwise, the encoding of =REFERENCES.bib= is assumed to be
+UTF-8 (which includes ASCII as a subset).
+
+Note that BibTeX entries downloaded from online databases and similar sources may contain
+unexpected characters in other encodings, e.g. 'latin1'. In such cases the check tools in
+R-devel (since about 2018-10-01) give warnings like:
+#+BEGIN_EXAMPLE
+    prepare_Rd: input string 1 is invalid in this locale
+#+END_EXAMPLE
+To resolve this, convert the file to the declared encoding or UTF-8. Alternatively, replace
+the offending symbols with their classic TeX/LaTeX equivalents (which are ASCII).
+
+[fn:enc] From =Rdpack (>=0.9-1)= The issue of not handling the encoding was raised by
+Professor Brian Ripley.
+
+
+* Viewing Rd files 
 
 
 A function, \code{viewRd}, to view Rd files in the source directory of a package was

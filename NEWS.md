@@ -1,5 +1,8 @@
 # Rdpack 0.9-1
 
+* now `REFERENCES.bib` is read-in using the declared encoding for the
+  corresponding package. If there is no declared encoding, "UTF-8" is assumed. 
+
 * Now macros `\insertCite` and `\insertCiteOnly` use the correct `results=rd`
   instead of `results=Rd`. This was not catched by `R`s building tools but
   caused errors when processed with `pkgdown::build_site()`. Fixes issue#8. Also

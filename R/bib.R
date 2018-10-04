@@ -98,7 +98,18 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib",
             
     }
 
-    res <- read.bib(file = fn)
+    ## 2018-10-03
+    ## use package encoding if specified.
+    ## TODO: maybe this function should have argument 'encoding'
+    ## TODO: in principle the  Rd file may have its own encoding,
+    ##       but my current understanding is that parse_Rd() first converts it to UTF-8.
+    ##   BUT what is the encoding of the strings in the object returned by read.bib?
+    encoding <- if(!is.null(package) && !is.null(utils::packageDescription(package)$Encoding))
+                    utils::packageDescription(package)$Encoding
+                else
+                    "UTF-8"
+
+    res <- read.bib(file = fn, encoding = encoding)
 
          # 2018-03-10 commenting out
          #      since bibtex v. >= 0.4.0 has been required for a long time in DESCRIPTION
