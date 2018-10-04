@@ -1,6 +1,6 @@
 # Rdpack 0.10-1 (CRAN)
 
-* removed redundant references from REFERENCES.bib (tehy were leftovers from
+* removed redundant references from REFERENCES.bib (they were leftovers from
   testing).
 
 # Rdpack 0.10-0 
