@@ -38,7 +38,7 @@
   an S4 generic function.
 Here we find all methods for show() defined in package
   &quot;methods&quot; and print the first few of them: 
-  fn &amp;lt;- help(&quot;show-methods&quot;, package = &quot;methods&quot;)
+  fn &amp;lt;- utils::help(&quot;show-methods&quot;, package = &quot;methods&quot;)
 rdo &amp;lt;- utils:::.getHelpFile(fn)
 head(get_sig_text(rdo))
 ##: [1] &quot;signature(object = \&quot;ANY\&quot;)&quot;                   
@@ -77,7 +77,7 @@ head(get_sig_text(rdo))
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rdpack</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.2</span>
       </span>
     </div>
 
@@ -128,7 +128,7 @@ head(get_sig_text(rdo))
   an S4 generic function.</p>
 <p>Here we find all methods for <code>show()</code> defined in package
   <code>"methods"</code> and print the first few of them: 
-  <pre>fn &lt;- help("show-methods", package = "methods")
+  <pre>fn &lt;- utils::help("show-methods", package = "methods")
 rdo &lt;- utils:::.getHelpFile(fn)
 head(get_sig_text(rdo))
 ##: [1] "signature(object = \"ANY\")"                   

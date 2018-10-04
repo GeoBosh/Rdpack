@@ -66,6 +66,9 @@ promptUsage(\dots, usage)
   % this code  prints ugly: \printExample{cat( get_usage(function(x = 3, y="a"){}, "f") )} 
   %  so do it manually in two steps:
   \code{cat( get_usage(function(x = 3, y = "a"){}, "f") )}
+
+% TODO: this is commented out from the pkgdown site, since pkgdown() doesn't handle
+%  results=verbatim yet.
   \Sexpr[stage=build,results=verbatim]{cat("##: ", get_usage(function(x = 3, y = "a"){}, "f"), "\n" )}
 
   \code{get_usage()} can also be used to insert dynamically signatures
