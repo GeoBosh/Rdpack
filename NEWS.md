@@ -1,3 +1,13 @@
+# Rdpack 0.10-1 (CRAN)
+
+* removed redundant references from REFERENCES.bib (tehy were leftovers from
+  testing).
+
+# Rdpack 0.10-0 
+
+* updated vignette 'Inserting_bibtex_references'.
+
+
 # Rdpack 0.9-1
 
 * now `REFERENCES.bib` is read-in using the declared encoding for the
