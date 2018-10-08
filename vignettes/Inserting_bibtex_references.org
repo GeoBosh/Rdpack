@@ -304,7 +304,8 @@ function ~viewRd()~, discussed below, for viewing Rd files.
 In principle, BibTeX entries may contain arbitrary Latex markup, while the Rd format
 supports only a subset. As a consequence, some BibTeX entries may need some editing when
 included in REFERENCES.bib[fn:6]. Only do this for entries that do not render properly or
-cause errors, since most of the time this should not be necessary.
+cause errors, since most of the time this should not be necessary. For encoding related
+issues of REFERENCES.bib see the dedicated subsection below.
 
 If mathematics doesn't render properly replace the Latex dollar syntax with Rd's ~\eqn~,
 e.g. ~$x^2$~ with ~\eqn{x^2}~. This should not be needed for versions of Rdpack
@@ -329,16 +330,33 @@ UTF-8 (which includes ASCII as a subset).
 
 Note that BibTeX entries downloaded from online databases and similar sources may contain
 unexpected characters in other encodings, e.g. 'latin1'. In such cases the check tools in
-R-devel (since about 2018-10-01) give warnings like:
+R-devel (since about 2018-10-01) may give warnings like:
 #+BEGIN_EXAMPLE
     prepare_Rd: input string 1 is invalid in this locale
 #+END_EXAMPLE
 To resolve this, convert the file to the declared encoding or UTF-8. Alternatively, replace
-the offending symbols with their classic TeX/LaTeX equivalents (which are ASCII).
+the offending symbols with their classic TeX/LaTeX equivalents (which are ASCII). Non-ASCII
+symbols in BibTeX entries obtained from online databases are often in fields like "Abstract",
+which are normally not included in lists of eferences and can be deleted from REFERENCES.bib.
+
+One way to check for non-ASCII symbols in a file is =tools::showNonASCIIfile()=.
+
+Internally, LaTeX sequences standing for accented Latin characters, such as =\'e= and =\"o=,
+are converted to UTF-8.  So, even if the file REFERENCES.bib is pure ASCII, it may implicitly
+give raise to non-ASCII characters. This may cause R's checking tools to complain about
+non-ASCII characters even after it has been verified that there are none. If this happens,
+add the encoding declaration to file DESCRIPTION[fn:enc2]:
+#+BEGIN_EXAMPLE
+Encoding: UTF-8
+#+END_EXAMPLE
+Needless to say, make sure that there are really no characters from encodings like 'latin1'.
+
 
 [fn:enc] From =Rdpack (>=0.9-1)= The issue of not handling the encoding was raised by
 Professor Brian Ripley.
 
+[fn:enc2] Admittedly, this is not ideal since the user should not need to care how things are
+processed internally but I haven't pinpointed the exact cause for this.
 
 * Viewing Rd files 
 
