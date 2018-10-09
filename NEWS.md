@@ -1,3 +1,8 @@
+# Rdpack 0.10-2 (CRAN)
+
+* added pkgdown site to DESCRIPTION.
+
+
 # Rdpack 0.10-1 (CRAN)
 
 * removed redundant references from REFERENCES.bib (they were leftovers from
