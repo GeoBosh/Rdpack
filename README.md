@@ -13,27 +13,27 @@ references and Rd files.
 
 # Table of Contents
 
-1.  [Installing Rdpack](#org36d0aea)
-2.  [Inserting Bibtex references and citations](#orgd00fca1)
-    1.  [Preparation](#org2861433)
-    2.  [Inserting references](#org46e28bf)
-    3.  [Inserting citations](#org135c377)
-    4.  [Changing the style of references](#org69b7fd2)
-    5.  [Troubleshooting](#orgcfbe063)
-        1.  [A puzzling message in devtools development mode](#orga505033)
-        2.  [Typical errors](#orgc4bcfcf)
-    6.  [Latex markup in BibTeX entries](#orgf2c6dd9)
-    7.  [Encoding of file REFERENCES.bib](#orgfb5aa65)
-3.  [Viewing Rd files](#org2d544b4)
-4.  [Using Rdpack::reprompt()](#org7330915)
-    1.  [What it does](#orge4aabd4)
-    2.  [Reprompt and open in an editor](#org5fef320)
-5.  [Inserting evaluated examples](#org441f734)
-6.  [Inserting figures/graphs/plots](#org96b65e8)
-7.  [Versions of Rdpack](#org3894547)
+1.  [Installing Rdpack](#org2e20466)
+2.  [Inserting Bibtex references and citations](#org93ae1c3)
+    1.  [Preparation](#org4b80cba)
+    2.  [Inserting references](#org73a8538)
+    3.  [Inserting citations](#orgb10cfbe)
+    4.  [Changing the style of references](#orgf71c82f)
+    5.  [Troubleshooting](#org4e737e6)
+        1.  [A puzzling message in devtools development mode](#org1405095)
+        2.  [Typical errors](#org52dc53a)
+    6.  [Latex markup in BibTeX entries](#orged9746f)
+    7.  [Encoding of file REFERENCES.bib](#org2fb6841)
+3.  [Viewing Rd files](#org34a78b5)
+4.  [Using Rdpack::reprompt()](#orgfd7af49)
+    1.  [What it does](#org6ed52fe)
+    2.  [Reprompt and open in an editor](#orga8f3dc6)
+5.  [Inserting evaluated examples](#orgf979734)
+6.  [Inserting figures/graphs/plots](#orgaf22e59)
+7.  [Versions of Rdpack](#orgae9fd91)
 
 
-<a id="org36d0aea"></a>
+<a id="org2e20466"></a>
 
 # Installing Rdpack
 
@@ -47,7 +47,7 @@ You can also install the [development version](https://github.com/GeoBosh/Rdpack
     install_github("GeoBosh/Rdpack")
 
 
-<a id="orgd00fca1"></a>
+<a id="org93ae1c3"></a>
 
 # Inserting Bibtex references and citations
 
@@ -61,7 +61,7 @@ the `DESCRIPTION` file of the package needs to be amended, see below the full
 details. 
 
 
-<a id="org2861433"></a>
+<a id="org4b80cba"></a>
 
 ## Preparation
 
@@ -92,7 +92,7 @@ enumerated below in somewhat more detail, see also the vignette
     put the BibTeX references in it.
 
 
-<a id="org46e28bf"></a>
+<a id="org73a8538"></a>
 
 ## Inserting references
 
@@ -140,7 +140,7 @@ or open it from `R`:
 [`Inserting_bibtex_references (development version on github)`](https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_bibtex_references.pdf).)
 
 
-<a id="org135c377"></a>
+<a id="orgb10cfbe"></a>
 
 ## Inserting citations
 
@@ -210,7 +210,7 @@ see also Murdoch (2010) and Francois (2014)
 in the list of references for `\insertAllCited`.
 
 
-<a id="org69b7fd2"></a>
+<a id="orgf71c82f"></a>
 
 ## Changing the style of references
 
@@ -235,12 +235,12 @@ After installling/reloading your package the lists of references should appear
 with long author names. "Rdpack" itself now uses this style.
 
 
-<a id="orgcfbe063"></a>
+<a id="org4e737e6"></a>
 
 ## Troubleshooting
 
 
-<a id="orga505033"></a>
+<a id="org1405095"></a>
 
 ### A puzzling message in devtools development mode
 
@@ -261,7 +261,7 @@ session<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. Even better,
 below to view the required help file.
 
 
-<a id="orgc4bcfcf"></a>
+<a id="org52dc53a"></a>
 
 ### Typical errors
 
@@ -287,7 +287,7 @@ These errors occur during parsing of the Rd files, before the control is passed
 to the `Rdpack`'s macros. 
 
 
-<a id="orgf2c6dd9"></a>
+<a id="orged9746f"></a>
 
 ## Latex markup in BibTeX entries
 
@@ -307,7 +307,7 @@ See also the overview help page, \code{help("Rdpack-package")}, of \pkg{Rdpack}.
 Among other things, it contains some dummy references which illustrate the above.
 
 
-<a id="orgfb5aa65"></a>
+<a id="org2fb6841"></a>
 
 ## Encoding of file REFERENCES.bib
 
@@ -324,7 +324,7 @@ R-devel (since about 2018-10-01) may give warnings like:
 To resolve this, convert the file to the declared encoding or UTF-8. Alternatively, replace
 the offending symbols with their classic TeX/LaTeX equivalents (which are ASCII). Non-ASCII
 symbols in BibTeX entries obtained from online databases are often in fields like "Abstract",
-which are normally not included in lists of eferences and can be deleted from REFERENCES.bib.
+which are normally not included in lists of references and can be deleted from REFERENCES.bib.
 
 One way to check for non-ASCII symbols in a file is `tools::showNonASCIIfile()`.
 
@@ -339,7 +339,7 @@ add the encoding declaration to file DESCRIPTION<sup><a id="fnr.4" class="footre
 Needless to say, make sure that there are really no characters from encodings like 'latin1'.
 
 
-<a id="org2d544b4"></a>
+<a id="org34a78b5"></a>
 
 # Viewing Rd files
 
@@ -361,12 +361,12 @@ sources in development mode. This should work also in development mode on any
 platform (e.g. RStudio, Emacs/ESS, Rgui).
 
 
-<a id="org7330915"></a>
+<a id="orgfd7af49"></a>
 
 # Using Rdpack::reprompt()
 
 
-<a id="orge4aabd4"></a>
+<a id="org6ed52fe"></a>
 
 ## What it does
 
@@ -393,7 +393,7 @@ but it alerts the user to remove aliases, methods, and descriptions of arguments
 that have been removed. 
 
 
-<a id="org5fef320"></a>
+<a id="orga8f3dc6"></a>
 
 ## Reprompt and open in an editor
 
@@ -416,7 +416,7 @@ Elisp code), for example to be invoked on the currently edited file. Such a
 function and example key binding can be found at [georgisemacs](https://github.com/GeoBosh/georgisemacs).
 
 
-<a id="org441f734"></a>
+<a id="orgf979734"></a>
 
 # Inserting evaluated examples
 
@@ -438,7 +438,7 @@ gives
 See vignette [`Inserting_figures_and_evaluated_examples`](https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf) for more details.
 
 
-<a id="org96b65e8"></a>
+<a id="orgaf22e59"></a>
 
 # Inserting figures/graphs/plots
 
@@ -456,7 +456,7 @@ package `"mypackage"`, and include the figure using `\figure`.
 See vignette [`Inserting_figures_and_evaluated_examples`](https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf) for more details.
 
 
-<a id="org3894547"></a>
+<a id="orgae9fd91"></a>
 
 # Versions of Rdpack
 

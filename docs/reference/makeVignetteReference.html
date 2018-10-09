@@ -218,21 +218,21 @@ vigbib(package, verbose = TRUE, &#8230;, vig = NULL)</pre>
 <span class='fu'>vigbib</span>(<span class='st'>"utils"</span>)</div><div class='output co'>#&gt; @Article{vigutils:Sweave,
 #&gt;   title = {Sweave User Manual},
 #&gt;   author = {R Core Team and contributors worldwide},
-#&gt;   journal = {URL https://CRAN.R-Project.org. Vignette included in R package utils (Part of R 3.5.0)},
+#&gt;   journal = {URL https://CRAN.R-Project.org. Vignette included in R package utils (Part of R 3.5.1)},
 #&gt;   year = {2018},
 #&gt;   publisher = {CRAN},
 #&gt;   url = {https://CRAN.R-Project.org},
 #&gt; }</div><div class='input'><span class='fu'>makeVignetteReference</span>(<span class='st'>"utils"</span>, <span class='kw'>vig</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; @Article{vigutils:Sweave,
 #&gt;   title = {Sweave User Manual},
 #&gt;   author = {R Core Team and contributors worldwide},
-#&gt;   journal = {URL https://CRAN.R-Project.org. Vignette included in R package utils (Part of R 3.5.0)},
+#&gt;   journal = {URL https://CRAN.R-Project.org. Vignette included in R package utils (Part of R 3.5.1)},
 #&gt;   year = {2018},
 #&gt;   publisher = {CRAN},
 #&gt;   url = {https://CRAN.R-Project.org},
 #&gt; }
 #&gt; </div><div class='output co'>#&gt; R Core Team, contributors worldwide (2018). "Sweave User Manual." _URL
 #&gt; https://CRAN.R-Project.org. Vignette included in R package utils (Part
-#&gt; of R 3.5.0)_. &lt;URL: https://CRAN.R-Project.org&gt;.</div><div class='input'>## commented out since can be slow:
+#&gt; of R 3.5.1)_. &lt;URL: https://CRAN.R-Project.org&gt;.</div><div class='input'>## commented out since can be slow:
 ## high <- installed.packages(priority = "high")
 ## highbib <- lapply(rownames(high), function(x) try(Rdpack:::vigbib(x, verbose = FALSE)))
 </div></pre>

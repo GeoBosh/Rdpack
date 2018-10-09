@@ -337,7 +337,7 @@ R-devel (since about 2018-10-01) may give warnings like:
 To resolve this, convert the file to the declared encoding or UTF-8. Alternatively, replace
 the offending symbols with their classic TeX/LaTeX equivalents (which are ASCII). Non-ASCII
 symbols in BibTeX entries obtained from online databases are often in fields like "Abstract",
-which are normally not included in lists of eferences and can be deleted from REFERENCES.bib.
+which are normally not included in lists of references and can be deleted from REFERENCES.bib.
 
 One way to check for non-ASCII symbols in a file is =tools::showNonASCIIfile()=.
 

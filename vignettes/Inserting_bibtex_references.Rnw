@@ -1,4 +1,4 @@
-% Created 2018-10-08 Mon 09:15
+% Created 2018-10-09 Tue 08:35
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper,twoside,11pt,nojss,article]{jss}
 	       \usepackage[T1]{fontenc}
@@ -50,7 +50,7 @@ This vignette is part of package Rdpack, version~\Sexpr{pd$Version}.
 %\VignettePackage{Rdpack}
 
 \section{Setup}
-\label{sec:org3c4d9aa}
+\label{sec:org44dee5d}
 
 To prepare a package for importing BibTeX references it is necessary to tell the
 package management tools that package \pkg{Rdpack} and its Rd macros are
@@ -82,7 +82,7 @@ the bibtex references in it.
 
 
 \section{Inserting references in package documentation}
-\label{sec:orgd6b59f7}
+\label{sec:org6d0cb7f}
 
 Once the steps outlined in the previous section are done, references can be
 inserted in the documentation as \texttt{\textbackslash{}insertRef\{key\}\{package\}},
@@ -119,7 +119,7 @@ A roxygen2 documentation chunk might look like this:
 
 
 \section{Inserting citations}
-\label{sec:org59909a1}
+\label{sec:org0c80b90}
 
 From version 0.7 of \pkg{Rdpack}, additional Rd macros are available for
 citations\footnote{They were introduced in the development version 0.6-1, but 0.7
@@ -128,7 +128,7 @@ using these, it will be prudent to require at least this version of Rdpack in
 the ``Imports:'' directive in file DESCRIPTION: \texttt{Rdpack (>= 0.7)}.
 
 \subsection{Macros fof citations}
-\label{sec:orgfefe547}
+\label{sec:org5910792}
 \label{sec:macros-citations}
 
 \texttt{\textbackslash{}insertCite\{key\}\{package\}} cites the key and records it for use by
@@ -198,7 +198,7 @@ produces:
 for the list of references assembled by \texttt{\textbackslash{}insertAllCited}.
 
 \subsection{Automatically generating lists of references}
-\label{sec:org4a01716}
+\label{sec:orgcf7a4f7}
 
 The macro \texttt{\textbackslash{}insertAllCited\{\}} can be used to insert all references cited with
 \texttt{\textbackslash{}insertCite} or \texttt{\textbackslash{}insertNoCite}. A natural place to put this macro is the
@@ -217,10 +217,10 @@ The analogous documentation chunk in roxygen2 might look like this:
 
 
 \section{Possible issues}
-\label{sec:org785d773}
+\label{sec:org766ffef}
 
 \subsection{Warning from 'R CMD build'}
-\label{sec:org6583efe}
+\label{sec:org8906f2e}
 
 If 'R CMD build' or \texttt{devtools::build()} gives a warning along the lines of:
 \begin{verbatim}
@@ -231,7 +231,7 @@ then check the syntax in file DESCRIPTION --- the most common cause of this is m
 
 
 \subsection{Development using `devtools'}
-\label{sec:org95e5089}
+\label{sec:orgc7fa81d}
 
 The described procedure works transparently in `roxygen2' chunks and with Hadley Wickham's
 `devtools'.  Packages are built and installed properly with the `devtools' commands and the
@@ -259,11 +259,11 @@ function \texttt{viewRd()}, discussed below, for viewing Rd files.
 
 
 \subsection{Latex markup in BibTeX entries}
-\label{sec:orgfd30c23}
+\label{sec:org04f244e}
 
 In principle, BibTeX entries may contain arbitrary Latex markup, while the Rd format
 supports only a subset. As a consequence, some BibTeX entries may need some editing when
-included in REFERENCES.bib\footnote{Thanks to Michael Dewey for suggesting the discussion of this.\label{org703d245}}. Only do this for entries that do not render properly or
+included in REFERENCES.bib\footnote{Thanks to Michael Dewey for suggesting the discussion of this.\label{org76ee4c2}}. Only do this for entries that do not render properly or
 cause errors, since most of the time this should not be necessary. For encoding related
 issues of REFERENCES.bib see the dedicated subsection below.
 
@@ -279,7 +279,7 @@ Among other things, it contains some dummy references which illustrate the above
 
 
 \subsection{Encoding of file REFERENCES.bib}
-\label{sec:orga73a1af}
+\label{sec:org6d39969}
 
 If a package has a declared encoding (in file \texttt{DESCRIPTION}), \texttt{REFERENCES.bib} is read-in
 with that encoding\footnote{From \texttt{Rdpack (>=0.9-1)} The issue of not handling the encoding was raised by
@@ -295,7 +295,7 @@ R-devel (since about 2018-10-01) may give warnings like:
 To resolve this, convert the file to the declared encoding or UTF-8. Alternatively, replace
 the offending symbols with their classic \TeX{}/\LaTeX{} equivalents (which are ASCII). Non-ASCII
 symbols in BibTeX entries obtained from online databases are often in fields like "Abstract",
-which are normally not included in lists of eferences and can be deleted from REFERENCES.bib.
+which are normally not included in lists of references and can be deleted from REFERENCES.bib.
 
 One way to check for non-ASCII symbols in a file is \texttt{tools::showNonASCIIfile()}.
 
@@ -311,7 +311,7 @@ Encoding: UTF-8
 Needless to say, make sure that there are really no characters from encodings like 'latin1'.
 
 \section{Viewing Rd files}
-\label{sec:orgea44902}
+\label{sec:org04c3082}
 
 
 A function, \code{viewRd}, to view Rd files in the source directory of a package was
@@ -325,5 +325,5 @@ set argument \code{type} to \code{"html"}:
     Rdpack::viewRd("./man/filename.Rd", type = "html")
 \end{verbatim}
 
-Users of 'devtools' can use \code{viewRd()} in place of \code{help()} to view Rd sources\textsuperscript{\ref{org703d245}}.
+Users of 'devtools' can use \code{viewRd()} in place of \code{help()} to view Rd sources\textsuperscript{\ref{org76ee4c2}}.
 \end{document}

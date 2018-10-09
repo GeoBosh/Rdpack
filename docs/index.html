@@ -81,36 +81,38 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#table-of-contents" class="anchor"></a>Table of Contents</h1></div>
 <ol>
-<li><a href="#orgd584939">Installing Rdpack</a></li>
+<li><a href="#org36d0aea">Installing Rdpack</a></li>
 <li>
-<a href="#org450542e">Inserting Bibtex references and citations</a>
+<a href="#orgd00fca1">Inserting Bibtex references and citations</a>
 <ol>
-<li><a href="#org66640f7">Preparation</a></li>
-<li><a href="#org8468ccc">Inserting references</a></li>
-<li><a href="#org4cfcd4c">Inserting citations</a></li>
-<li><a href="#org305e983">Changing the style of references</a></li>
+<li><a href="#org2861433">Preparation</a></li>
+<li><a href="#org46e28bf">Inserting references</a></li>
+<li><a href="#org135c377">Inserting citations</a></li>
+<li><a href="#org69b7fd2">Changing the style of references</a></li>
 <li>
-<a href="#org3adc9c7">Troubleshooting</a>
+<a href="#orgcfbe063">Troubleshooting</a>
 <ol>
-<li><a href="#org2b1b2a3">A puzzling message in devtools development mode</a></li>
-<li><a href="#org205f15c">Typical errors</a></li>
+<li><a href="#orga505033">A puzzling message in devtools development mode</a></li>
+<li><a href="#orgc4bcfcf">Typical errors</a></li>
 </ol>
 </li>
+<li><a href="#orgf2c6dd9">Latex markup in BibTeX entries</a></li>
+<li><a href="#orgfb5aa65">Encoding of file REFERENCES.bib</a></li>
 </ol>
 </li>
-<li><a href="#org6b9b531">Viewing Rd files</a></li>
+<li><a href="#org2d544b4">Viewing Rd files</a></li>
 <li>
-<a href="#org45c58bd">Using Rdpack::reprompt()</a>
+<a href="#org7330915">Using Rdpack::reprompt()</a>
 <ol>
-<li><a href="#org820e014">What it does</a></li>
-<li><a href="#orgfc00388">Reprompt and open in an editor</a></li>
+<li><a href="#orge4aabd4">What it does</a></li>
+<li><a href="#org5fef320">Reprompt and open in an editor</a></li>
 </ol>
 </li>
-<li><a href="#org091ed19">Inserting evaluated examples</a></li>
-<li><a href="#org53bd6dd">Inserting figures/graphs/plots</a></li>
-<li><a href="#orgca65833">Versions of Rdpack</a></li>
+<li><a href="#org441f734">Inserting evaluated examples</a></li>
+<li><a href="#org96b65e8">Inserting figures/graphs/plots</a></li>
+<li><a href="#org3894547">Versions of Rdpack</a></li>
 </ol>
-<p><a id="orgd584939"></a></p>
+<p><a id="org36d0aea"></a></p>
 </div>
 <div id="installing-rdpack" class="section level1">
 <h1 class="hasAnchor">
@@ -120,13 +122,13 @@
 <p>You can also install the <a href="https://github.com/GeoBosh/Rdpack">development version</a> of <code>Rdpack</code> from Github:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(devtools)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">install_github</span>(<span class="st">"GeoBosh/Rdpack"</span>)</a></code></pre></div>
-<p><a id="org450542e"></a></p>
+<p><a id="orgd00fca1"></a></p>
 </div>
 <div id="inserting-bibtex-references-and-citations" class="section level1">
 <h1 class="hasAnchor">
 <a href="#inserting-bibtex-references-and-citations" class="anchor"></a>Inserting Bibtex references and citations</h1>
 <p>The simplest way to insert Bibtex references is with the Rd macro <code>\insertRef</code>. Just put <code>\insertRef{key}{package}</code> in the documentation to insert item with key <code>key</code> from file <code>REFERENCES.bib</code> in your package <code>package</code>. Alternatively, use one or more <code>\insertCite{key}{package}</code> commands to cite works from <code>REFERENCES.bib</code>, then issue a single <code>\insertAllCited{}</code> directive to produce a list of all cited references. For this to work the <code>DESCRIPTION</code> file of the package needs to be amended, see below the full details.</p>
-<p><a id="org66640f7"></a></p>
+<p><a id="org2861433"></a></p>
 <div id="preparation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#preparation" class="anchor"></a>Preparation</h2>
@@ -146,7 +148,7 @@
 </li>
 <li><p>Create file <code>REFERENCES.bib</code> in subdirectory <code>inst/</code> of your package and put the BibTeX references in it.</p></li>
 </ol>
-<p><a id="org8468ccc"></a></p>
+<p><a id="org46e28bf"></a></p>
 </div>
 <div id="inserting-references" class="section level2">
 <h2 class="hasAnchor">
@@ -170,7 +172,7 @@
 <p>For further details see the vignette <a href="https://cran.r-project.org/package=Rdpack"><code>Inserting_bibtex_references</code></a> or open it from <code>R</code>:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">vignette</span>(<span class="st">"Inserting_bibtex_references"</span>, <span class="dt">package =</span> <span class="st">"Rdpack"</span>)</a></code></pre></div>
 <p>(The latest version of the vignette is at <a href="https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_bibtex_references.pdf"><code>Inserting_bibtex_references (development version on github)</code></a>.)</p>
-<p><a id="org4cfcd4c"></a></p>
+<p><a id="org135c377"></a></p>
 </div>
 <div id="inserting-citations" class="section level2">
 <h2 class="hasAnchor">
@@ -196,7 +198,7 @@
 <p>see also Murdoch (2010) and Francois (2014)</p>
 <p>—</p>
 <p><code>\insertCiteOnly{key}{package}</code> is as <code>\insertCite</code> but does not include the key in the list of references for <code>\insertAllCited</code>.</p>
-<p><a id="org305e983"></a></p>
+<p><a id="org69b7fd2"></a></p>
 </div>
 <div id="changing-the-style-of-references" class="section level2">
 <h2 class="hasAnchor">
@@ -209,12 +211,12 @@
 <a class="sourceLine" id="cb13-4" data-line-number="4">}</a></code></pre></div>
 <p>If you already have <code>.onLoad()</code>, add the line containing the <code><a href="reference/Rdpack_bibstyles.html">Rdpack::Rdpack_bibstyles</a></code> call to it.</p>
 <p>After installling/reloading your package the lists of references should appear with long author names. “Rdpack” itself now uses this style.</p>
-<p><a id="org3adc9c7"></a></p>
+<p><a id="orgcfbe063"></a></p>
 </div>
 <div id="troubleshooting" class="section level2">
 <h2 class="hasAnchor">
 <a href="#troubleshooting" class="anchor"></a>Troubleshooting</h2>
-<p><a id="org2b1b2a3"></a></p>
+<p><a id="orga505033"></a></p>
 <div id="a-puzzling-message-in-devtools-development-mode" class="section level3">
 <h3 class="hasAnchor">
 <a href="#a-puzzling-message-in-devtools-development-mode" class="anchor"></a>A puzzling message in devtools development mode</h3>
@@ -223,7 +225,7 @@
 <div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="dv">1</span><span class="op">:</span><span class="st"> </span>In tools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tools/topics/parse_Rd">parse_Rd</a></span>(path) <span class="op">:</span></a>
 <a class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span><span class="er">~/</span>mypackage<span class="op">/</span>man<span class="op">/</span>abcde.Rd<span class="op">:</span><span class="st"> </span><span class="dv">67</span><span class="op">:</span><span class="st"> </span>unknown macro <span class="st">'\insertRef'</span></a></code></pre></div>
 <p>These warnings are harmless and can be ignored — the help pages are built properly and no warnings appear outside <em>developer’s mode</em>, e.g. in a separate R session<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. Even better, use the function <code><a href="reference/viewRd.html">viewRd()</a></code> described below to view the required help file.</p>
-<p><a id="org205f15c"></a></p>
+<p><a id="orgc4bcfcf"></a></p>
 </div>
 <div id="typical-errors" class="section level3">
 <h3 class="hasAnchor">
@@ -235,25 +237,47 @@
 <li><p>omitted second argument of a reference or citation macro. Most of these macros have the package name as a second argument.</p></li>
 </ul>
 <p>These errors occur during parsing of the Rd files, before the control is passed to the <code>Rdpack</code>’s macros.</p>
-<p><a id="org6b9b531"></a></p>
+<p><a id="orgf2c6dd9"></a></p>
 </div>
+</div>
+<div id="latex-markup-in-bibtex-entries" class="section level2">
+<h2 class="hasAnchor">
+<a href="#latex-markup-in-bibtex-entries" class="anchor"></a>Latex markup in BibTeX entries</h2>
+<p>In principle, BibTeX entries may contain arbitrary Latex markup, while the Rd format supports only a subset. As a consequence, some BibTeX entries may need some editing when included in REFERENCES.bib<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>. Only do this for entries that do not render properly or cause errors, since most of the time this should not be necessary.</p>
+<p>If mathematics doesn’t render properly replace the Latex dollar syntax with Rd’s <code>\eqn</code>, e.g. <code>$x^2$</code> with <code>\eqn{x^2}</code>. This should not be needed for versions of Rdpack 0.8-4 or later.</p>
+<p>Some Latex macros may have to be removed or replaced with suitable Rd markup. Again, do this only if they cause problems, since some are supported, e.g. <code>\doi</code>.</p>
+<p>See also the overview help page, \code{help(“Rdpack-package”)}, of \pkg{Rdpack}. Among other things, it contains some dummy references which illustrate the above.</p>
+<p><a id="orgfb5aa65"></a></p>
+</div>
+<div id="encoding-of-file-references-bib" class="section level2">
+<h2 class="hasAnchor">
+<a href="#encoding-of-file-references-bib" class="anchor"></a>Encoding of file REFERENCES.bib</h2>
+<p>If a package has a declared encoding (in file <code>DESCRIPTION</code>), <code>REFERENCES.bib</code> is read-in with that encoding<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>. Otherwise, the encoding of <code>REFERENCES.bib</code> is assumed to be UTF-8 (which includes ASCII as a subset).</p>
+<p>Note that BibTeX entries downloaded from online databases and similar sources may contain unexpected characters in other encodings, e.g. ‘latin1’. In such cases the check tools in R-devel (since about 2018-10-01) may give warnings like:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">prepare_Rd<span class="op">:</span><span class="st"> </span>input string <span class="dv">1</span> is invalid <span class="cf">in</span> this locale</a></code></pre></div>
+<p>To resolve this, convert the file to the declared encoding or UTF-8. Alternatively, replace the offending symbols with their classic TeX/LaTeX equivalents (which are ASCII). Non-ASCII symbols in BibTeX entries obtained from online databases are often in fields like “Abstract”, which are normally not included in lists of eferences and can be deleted from REFERENCES.bib.</p>
+<p>One way to check for non-ASCII symbols in a file is <code><a href="http://www.rdocumentation.org/packages/tools/topics/showNonASCII">tools::showNonASCIIfile()</a></code>.</p>
+<p>Internally, LaTeX sequences standing for accented Latin characters, such as <code>\'e</code> and <code>\"o</code>, are converted to UTF-8. So, even if the file REFERENCES.bib is pure ASCII, it may implicitly give raise to non-ASCII characters. This may cause R’s checking tools to complain about non-ASCII characters even after it has been verified that there are none. If this happens, add the encoding declaration to file DESCRIPTION<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">Encoding<span class="op">:</span><span class="st"> </span>UTF<span class="dv">-8</span></a></code></pre></div>
+<p>Needless to say, make sure that there are really no characters from encodings like ‘latin1’.</p>
+<p><a id="org2d544b4"></a></p>
 </div>
 </div>
 <div id="viewing-rd-files" class="section level1">
 <h1 class="hasAnchor">
 <a href="#viewing-rd-files" class="anchor"></a>Viewing Rd files</h1>
 <p>A function, <code><a href="reference/viewRd.html">viewRd()</a></code>, to view Rd files in the source directory of a package was introduced in version 0.4-23 of <code>Rdpack</code>. A typical user call would look something like:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">Rdpack<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/Rdpack/topics/viewRd">viewRd</a></span>(<span class="st">"./man/filename.Rd"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">Rdpack<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/Rdpack/topics/viewRd">viewRd</a></span>(<span class="st">"./man/filename.Rd"</span>)</a></code></pre></div>
 <p>By default the requested help page is shown in text format. To open the page in a browser, set argument ‘type’ to “html”:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">Rdpack<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/Rdpack/topics/viewRd">viewRd</a></span>(<span class="st">"./man/filename.Rd"</span>, <span class="dt">type =</span> <span class="st">"html"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">Rdpack<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/Rdpack/topics/viewRd">viewRd</a></span>(<span class="st">"./man/filename.Rd"</span>, <span class="dt">type =</span> <span class="st">"html"</span>)</a></code></pre></div>
 <p><code><a href="reference/viewRd.html">viewRd()</a></code> renders references and citations correctly, since it understands Rd macros.</p>
 <p>Users of ‘devtools’ can use <code>viewRd</code> in place of <code>help()</code> to view rendered Rd sources in development mode. This should work also in development mode on any platform (e.g. RStudio, Emacs/ESS, Rgui).</p>
-<p><a id="org45c58bd"></a></p>
+<p><a id="org7330915"></a></p>
 </div>
 <div id="using-rdpackreprompt" class="section level1">
 <h1 class="hasAnchor">
 <a href="#using-rdpackreprompt" class="anchor"></a>Using Rdpack::reprompt()</h1>
-<p><a id="org820e014"></a></p>
+<p><a id="orge4aabd4"></a></p>
 <div id="what-it-does" class="section level2">
 <h2 class="hasAnchor">
 <a href="#what-it-does" class="anchor"></a>What it does</h2>
@@ -261,7 +285,7 @@
 <p><code><a href="reference/reprompt.html">Rdpack::reprompt()</a></code> can also be invoked on an object or the name of an object, just as <code><a href="http://www.rdocumentation.org/packages/utils/topics/prompt">utils::prompt</a></code>. In that case it checks for installed documentation for the object and works on it if found. Otherwise it creates an <code>Rd</code> file with initial content similar to the one generated by <code><a href="http://www.rdocumentation.org/packages/utils/topics/prompt">utils::prompt</a></code> but modified so that the package can be built.</p>
 <p>If a new function, say <code>newfun</code> is to be documented in an existing Rd file, just add <code>newfun()</code> to the usage section in the file and call <code><a href="reference/reprompt.html">Rdpack::reprompt()</a></code> to insert the correct usage statement, add an alias, and add items for any new arguments.</p>
 <p><code><a href="reference/reprompt.html">Rdpack::reprompt()</a></code> <strong>does not remove</strong> anything that has become obsolete but it alerts the user to remove aliases, methods, and descriptions of arguments that have been removed.</p>
-<p><a id="orgfc00388"></a></p>
+<p><a id="org5fef320"></a></p>
 </div>
 <div id="reprompt-and-open-in-an-editor" class="section level2">
 <h2 class="hasAnchor">
@@ -269,43 +293,46 @@
 <p>To open the <code><a href="reference/reprompt.html">reprompt()</a></code>-ed file, argument <code>edit</code> can be used. For this to work, <code>options("editor")</code> needs to be set suitably but it usually is. If <code>edit = TRUE</code>, then <code><a href="reference/reprompt.html">Rdpack::reprompt()</a></code> will open the Rd file in an editor. For more convenient access to this feature, use <code><a href="reference/ereprompt.html">Rdpack::ereprompt()</a></code> (edit reprompt), which calls <code><a href="reference/reprompt.html">Rdpack::reprompt()</a></code> with <code>edit = TRUE</code> and sets the output filename to be the same as the input filename.</p>
 <p>In RStudio, <code><a href="reference/reprompt.html">reprompt()</a></code> can be invoked on the <code>Rd</code> file being edited or the selected name of an object in a source code file using RStudio add-in <code>Repropmpt</code> (contributed by Duncan Murdoch). Obviously, this makes sense only for Rd files not generated by <code>roxygen2</code>.</p>
 <p>In Emacs/ESS there are various ways to use <code><a href="reference/reprompt.html">Rdpack::reprompt()</a></code> and <code><a href="reference/ereprompt.html">Rdpack::ereprompt()</a></code>. If <code>options("editor")</code> is set to <code>emacsclient</code>, <code><a href="reference/ereprompt.html">Rdpack::ereprompt</a></code> is one option. It can also be assigned to a key (wrapped in Elisp code), for example to be invoked on the currently edited file. Such a function and example key binding can be found at <a href="https://github.com/GeoBosh/georgisemacs">georgisemacs</a>.</p>
-<p><a id="org091ed19"></a></p>
+<p><a id="org441f734"></a></p>
 </div>
 </div>
 <div id="inserting-evaluated-examples" class="section level1">
 <h1 class="hasAnchor">
 <a href="#inserting-evaluated-examples" class="anchor"></a>Inserting evaluated examples</h1>
 <p>There is a macro that takes a chunk of R code, evaluates it, and includes both the code and the results in the rendered documentation. The layout is similar to that in the R console but the code is not prefixed with anything and the output is prefixed with comment symbols. For example,</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">\printExample{<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>; a &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="dv">3</span>; a}</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">\printExample{<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>; a &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="dv">3</span>; a}</a></code></pre></div>
 <p>gives</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb18-2" data-line-number="2">##: 4</a>
-<a class="sourceLine" id="cb18-3" data-line-number="3">a &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb18-4" data-line-number="4">a</a>
-<a class="sourceLine" id="cb18-5" data-line-number="5">##: 6</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">##: 4</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3">a &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb20-4" data-line-number="4">a</a>
+<a class="sourceLine" id="cb20-5" data-line-number="5">##: 6</a></code></pre></div>
 <p>See vignette <a href="https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf"><code>Inserting_figures_and_evaluated_examples</code></a> for more details.</p>
-<p><a id="org53bd6dd"></a></p>
+<p><a id="org96b65e8"></a></p>
 </div>
 <div id="inserting-figuresgraphsplots" class="section level1">
 <h1 class="hasAnchor">
 <a href="#inserting-figuresgraphsplots" class="anchor"></a>Inserting figures/graphs/plots</h1>
 <p>Figures can be inserted with the help of the standard Rd markup command <code>\figure</code>. The Rd macro <code>\insertFig</code> provided by package \pkg{Rdpack} takes a snipped of R code, evaluates it and inserts the plot produced by it (using <code>\figure</code>). <code>\insertFig</code> takes three arguments: a filename, the package name and the code to evaluate to produce the figure. For example,</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">\insertFig{cars.png}{mypackage}{x &lt;-<span class="st"> </span>cars<span class="op">$</span>speed; y &lt;-<span class="st"> </span>cars<span class="op">$</span>dist; <span class="kw">plot</span>(x,y)}</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">\insertFig{cars.png}{mypackage}{x &lt;-<span class="st"> </span>cars<span class="op">$</span>speed; y &lt;-<span class="st"> </span>cars<span class="op">$</span>dist; <span class="kw">plot</span>(x,y)}</a></code></pre></div>
 <p>will evaluate the code, save the graph in file <code>"man/figures/cars.png"</code> subdirectory of package <code>"mypackage"</code>, and include the figure using <code>\figure</code>.</p>
 <p>See vignette <a href="https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf"><code>Inserting_figures_and_evaluated_examples</code></a> for more details.</p>
-<p><a id="orgca65833"></a></p>
+<p><a id="org3894547"></a></p>
 </div>
 <div id="versions-of-rdpack" class="section level1">
 <h1 class="hasAnchor">
 <a href="#versions-of-rdpack" class="anchor"></a>Versions of Rdpack</h1>
-<p>Versions of <code>Rdpack</code> on Github are almost always fully functional (at least passing <code>R CMD check --as-cran</code>), and so use a three-part version number. If a version is really unstable, I would use the conventional fourth part <code>.9000</code>. For release on CRAN, the version is incremented to <code>x.x.0</code><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.</p>
+<p>Versions of <code>Rdpack</code> on Github are almost always fully functional (at least passing <code>R CMD check --as-cran</code>), and so use a three-part version number. If a version is really unstable, I would use the conventional fourth part <code>.9000</code>. For release on CRAN, the version is incremented to <code>x.x.0</code><sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup>.</p>
 <p>Note that if <code>Rdpack (&gt;= x.x.0)</code> is required, it can be abbreviated to <code>Rdpack (&gt;= x.x)</code>.</p>
 </div>
 <div id="footnotes" class="section level1">
 <h1 class="hasAnchor">
 <a href="#footnotes" class="anchor"></a>Footnotes</h1>
 <p><sup><a id="fn.1" href="#fnr.1">1</a></sup> If you care, here is what happens. These warnings appear because <code>devtools</code> reroutes the help command to process the developer’s Rd sources (rather than the documentation in the installed directory) but doesn’t tell <code>parse_Rd</code> where to look for additional macros. Indeed, the message above shows that the error is in processing a source Rd file in the development directory of the package and that the call to <code>parse_Rd</code> specifies only the file.</p>
-<p><sup><a id="fn.2" href="#fnr.2">2</a></sup> I adopted this versionning scheme from <code>Rdpack 0.7.0</code>.</p>
+<p><sup><a id="fn.2" href="#fnr.2">2</a></sup> Thanks to Michael Dewey for suggesting the discussion of this.</p>
+<p><sup><a id="fn.3" href="#fnr.3">3</a></sup> From <code>Rdpack (&gt;=0.9-1)</code> The issue of not handling the encoding was raised by Professor Brian Ripley.</p>
+<p><sup><a id="fn.4" href="#fnr.4">4</a></sup> Admittedly, this is not ideal since the user should not need to care how things are processed internally but I haven’t pinpointed the exact cause for this.</p>
+<p><sup><a id="fn.5" href="#fnr.5">5</a></sup> I adopted this versionning scheme from <code>Rdpack 0.7.0</code>.</p>
 </div>
 
   </div>
