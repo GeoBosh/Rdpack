@@ -448,6 +448,34 @@ gives
 #+END_EXAMPLE
 See vignette [[https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf][=Inserting_figures_and_evaluated_examples=]] for more details.
 
+** Evaluating the examples in section Examples
+
+The experimental macro ~\runExamples~ can be used as a replacement of section ~examples~.
+For example, if the following code is put at the top level in an Rd file (i.e. not in a
+section):
+#+BEGIN_EXAMPLE
+    \runExamples{2+2; a <- 2*3; a}
+#+END_EXAMPLE 
+then it will be evaluated and replaced by a normal section examples:
+#+BEGIN_EXAMPLE
+    \examples{
+    2 + 2
+    ##: 4
+    a <- 2 * 3
+    a
+    ##: 6
+    }
+#+END_EXAMPLE
+This generated examples section is processed by the standard R tools (almost) as if it was
+there from the outset. In particular, the examples are run by the R's quality control tools
+and tangled along with examples in other documentation files[fn:runExamples]. A small example package
+using this feature is at [[https://github.com/GeoBosh/reprexes/tree/master/runExamplesCheck][runExamplesCheck]].
+ 
+[fn:runExamples] The macro ~\runExamples~ is fully working but is marked as experimental, since
+currently ~R CMD check~ gives a warning about unknown ~\Sexpr~ section at top level.
+(Amendment on 2018-10-11: R-devel does no longer give the warning at least since 2018-10-02
+r75388.) 
+
 
 * Inserting figures/graphs/plots
 

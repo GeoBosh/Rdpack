@@ -96,14 +96,16 @@ then it will be evaluated and replaced by a normal section examples:
 #+END_EXAMPLE
 This generated examples section is processed by the standard R tools (almost) as if it was
 there from the outset. In particular, the examples are run by the R's quality control tools
-and tangled along with examples in other documentation files[fn:2].
+and tangled along with examples in other documentation files[fn:2]. A small example package
+using this feature is at [[https://github.com/GeoBosh/reprexes/tree/master/runExamplesCheck][runExamplesCheck]].
  
 [fn:2] The macro ~\runExamples~ is fully working but is marked as experimental, since
 currently ~R CMD check~ gives a warning about unknown ~\Sexpr~ section at top level.
-According to the specification of the Rd format (see
-[[https://developer.r-project.org/parseRd.pdf][Murdoch (2010), p. 4]] ~\Sexpr~'s at top level
-are legal.  I need to check with the CRAN team or R devel if such expressions produced by
-user macros are excluded on purpose.
+(Amendment on 2018-10-11: R-devel does no longer give the warning at least since 2018-10-02
+r75388.) 
+# According to the specification of the Rd format (see [[https://developer.r-project.org/parseRd.pdf][Murdoch (2010), p. 4]] ~\Sexpr~'s at top
+# level are legal.  I need to check with the CRAN team or R devel if such expressions produced
+# by user macros are excluded on purpose.
 
 * Creating and including graphs
 
