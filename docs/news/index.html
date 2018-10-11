@@ -8,6 +8,8 @@
 
 <title>Changelog • Rdpack</title>
 
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
@@ -35,7 +37,7 @@
 
 
 <!-- mathjax -->
-<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -102,6 +104,15 @@
       <small>Source: <a href='https://github.com/GeoBosh/Rdpack/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="rdpack-0-10-2-cran" class="section level1">
+<h1 class="page-header">
+<a href="#rdpack-0-10-2-cran" class="anchor"></a>Rdpack 0.10-2 (CRAN)<small> Unreleased </small>
+</h1>
+<ul>
+<li><p>added pkgdown site to DESCRIPTION.</p></li>
+<li><p>README and the vignette about evaluated examples now state that R-devel no longer gives warings about <code>\Sexpr</code> not being a top level section. This means that macro <code>runExamples</code> which creates section ‘Examples’ containing code and results of evaluation will be useable in CRAN packages.</p></li>
+</ul>
+</div>
     <div id="rdpack-0-10-1-cran" class="section level1">
 <h1 class="page-header">
 <a href="#rdpack-0-10-1-cran" class="anchor"></a>Rdpack 0.10-1 (CRAN)<small> 2018-10-04 </small>
@@ -480,6 +491,7 @@ May be particularly helpful for devtools developers.</p></li>
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#rdpack-0-10-2-cran">0.10-2</a></li>
         <li><a href="#rdpack-0-10-1-cran">0.10-1</a></li>
         <li><a href="#rdpack-0-10-0">0.10-0</a></li>
         <li><a href="#rdpack-0-9-1">0.9-1</a></li>
