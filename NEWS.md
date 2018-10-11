@@ -2,6 +2,11 @@
 
 * added pkgdown site to DESCRIPTION.
 
+* README and the vignette about evaluated examples now state that R-devel no
+  longer gives warings about `\Sexpr` not being a top level section. 
+  This means that macro `runExamples` which creates section 'Examples'
+  containing code and results of evaluation will be useable in CRAN packages. 
+
 
 # Rdpack 0.10-1 (CRAN)
 
