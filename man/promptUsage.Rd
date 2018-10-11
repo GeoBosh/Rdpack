@@ -69,7 +69,7 @@ promptUsage(\dots, usage)
 
 % TODO: this is commented out from the pkgdown site, since pkgdown() doesn't handle
 %  results=verbatim yet.
-%  \Sexpr[stage=build,results=verbatim]{cat("##: ", get_usage(function(x = 3, y = "a"){}, "f"), "\n" )}
+  \Sexpr[stage=build,results=verbatim]{cat("##: ", get_usage(function(x = 3, y = "a"){}, "f"), "\n" )}
 
   \code{get_usage()} can also be used to insert dynamically signatures
   of functions located in other objects, such as environments and lists,
