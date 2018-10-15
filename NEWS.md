@@ -1,4 +1,4 @@
-# Rdpack 0.10-2 (CRAN)
+# Rdpack 0.10-2
 
 * added pkgdown site to DESCRIPTION.
 
