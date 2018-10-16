@@ -156,15 +156,18 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># add a keyword section</span>
-<span class='fu'>char2Rdpiece</span>(<span class='st'>"graphics"</span>,<span class='st'>"keyword"</span>)</div><div class='output co'>#&gt; [[1]]
+    <pre class="examples"><div class='input'><span class='co'>## add a keyword section</span>
+<span class='no'>a1</span> <span class='kw'>&lt;-</span> <span class='fu'>char2Rdpiece</span>(<span class='st'>"graphics"</span>, <span class='st'>"keyword"</span>)
+<span class='no'>a1</span></div><div class='output co'>#&gt; [[1]]
 #&gt; [1] "graphics"
 #&gt; attr(,"Rd_tag")
 #&gt; [1] "TEXT"
 #&gt; 
 #&gt; attr(,"Rd_tag")
-#&gt; [1] "\\keyword"</div><div class='input'>
-<span class='co'># an element suitable to be put in a "usage" section</span>
+#&gt; [1] "\\keyword"</div><div class='input'><span class='co'>## "keyword" is a standard Rd top level section, so 'force.sec' is irrelevant</span>
+<span class='no'>a2</span> <span class='kw'>&lt;-</span> <span class='fu'>char2Rdpiece</span>(<span class='st'>"graphics"</span>, <span class='st'>"keyword"</span>, <span class='kw'>force.sec</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>identical</span>(<span class='no'>a1</span>, <span class='no'>a2</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='co'>## an element suitable to be put in a "usage" section</span>
 <span class='fu'>char2Rdpiece</span>(<span class='st'>"log(x, base = exp(1))"</span>, <span class='st'>"usage"</span>)</div><div class='output co'>#&gt; [[1]]
 #&gt; [1] "log(x, base = exp(1))"
 #&gt; attr(,"Rd_tag")
@@ -172,7 +175,7 @@
 #&gt; 
 #&gt; attr(,"Rd_tag")
 #&gt; [1] "\\usage"</div><div class='input'>
-<span class='co'>#</span>
+<span class='co'>## a user defined section "Todo"</span>
 <span class='fu'>char2Rdpiece</span>(<span class='st'>"Give more examples for this function."</span>, <span class='st'>"Todo"</span>, <span class='kw'>force.sec</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [[1]]
 #&gt; [[1]][[1]]
 #&gt; [1] "Todo"
@@ -188,10 +191,7 @@
 #&gt; 
 #&gt; 
 #&gt; attr(,"Rd_tag")
-#&gt; [1] "\\section"</div><div class='input'>
-
-
-</div></pre>
+#&gt; [1] "\\section"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

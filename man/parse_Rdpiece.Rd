@@ -90,21 +90,12 @@ Rdo_show(rdoa)
 #     specialised functions
 rdob <- Rdo_append_argument(rdo, "\dots", "further arguments to be passed on.")
 
-
 Rdo_show(reprompt(rdob))
 # todo: Rdo_show(rdob) for some reason does not show the arguments.
 #       investigate! Rdo_show uses Rd2txt. Is it possible that the
 #       latter needs srcref's in the Rd object? They are only refreshed
 #       Rd_parse is called.
 
-
 unlink(fn)
-
-
 }
-
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-
-% R documentation directory.
-
 \keyword{RdoProgramming}

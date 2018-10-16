@@ -166,18 +166,15 @@
               <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"numeric vector"</span>,
               <span class='kw'>author</span> <span class='kw'>=</span> <span class='st'>"A. Author"</span>,
               <span class='kw'>Rd_class</span><span class='kw'>=</span><span class='fl'>TRUE</span> )
-
 <span class='fu'><a href='Rdo_show.html'>Rdo_show</a></span>(<span class='no'>u1</span>)
 
-<span class='co'># call reprompt to fill the arguments section</span>
-<span class='co'>#    (and correct the usage)</span>
-
-<span class='no'>fn</span> <span class='kw'>&lt;-</span> <span class='fu'>tempfile</span>(<span class='st'>"dummyfun"</span>, <span class='kw'>fileext</span><span class='kw'>=</span><span class='st'>"Rd"</span>)
-<span class='fu'><a href='reprompt.html'>reprompt</a></span>(<span class='no'>dummyfun</span>, <span class='kw'>filename</span><span class='kw'>=</span><span class='no'>fn</span>)</div><div class='output co'>#&gt; Rd source not supplied, looking for installed documentation.
+<span class='co'># call reprompt to fill the arguments section (and correct the usage)</span>
+<span class='no'>fn</span> <span class='kw'>&lt;-</span> <span class='fu'>tempfile</span>(<span class='st'>"dummyfun"</span>, <span class='kw'>fileext</span> <span class='kw'>=</span> <span class='st'>"Rd"</span>)
+<span class='fu'><a href='reprompt.html'>reprompt</a></span>(<span class='no'>dummyfun</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='no'>fn</span>)</div><div class='output co'>#&gt; Rd source not supplied, looking for installed documentation.
 #&gt; Rd source not supplied and installed documentation not found.
 #&gt; Trying a 'prompt' function to generate documentation for the object.</div><div class='output co'>#&gt; <span class='error'>Error in reprompt(dummyfun, filename = fn): unsuccessful attempt to create Rd doc. using a 'prompt' function.</span></div><div class='input'>
 <span class='co'># check that the result can be parsed and show it.</span>
-<span class='fu'><a href='Rdo_show.html'>Rdo_show</a></span>(<span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/tools/topics/parse_Rd'>parse_Rd</a></span>(<span class='no'>fn</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot open file 'C:\Users\mcbssgb2\AppData\Local\Temp\Rtmp8MBcKc\dummyfunb8c2f72e6aRd': No such file or directory</span></div><div class='output co'>#&gt; <span class='error'>Error in file(con, "r"): cannot open the connection</span></div><div class='input'>
+<span class='fu'><a href='Rdo_show.html'>Rdo_show</a></span>(<span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/tools/topics/parse_Rd'>parse_Rd</a></span>(<span class='no'>fn</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot open file 'C:\Users\mcbssgb2\AppData\Local\Temp\RtmpegpE73\dummyfun2ad43c057da2Rd': No such file or directory</span></div><div class='output co'>#&gt; <span class='error'>Error in file(con, "r"): cannot open the connection</span></div><div class='input'>
 <span class='fu'>unlink</span>(<span class='no'>fn</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

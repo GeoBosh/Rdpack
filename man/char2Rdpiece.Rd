@@ -61,23 +61,19 @@ char2Rdpiece(content, name, force.sec = FALSE)
 
 
 \examples{
-# add a keyword section
-char2Rdpiece("graphics","keyword")
+## add a keyword section
+a1 <- char2Rdpiece("graphics", "keyword")
+a1
+## "keyword" is a standard Rd top level section, so 'force.sec' is irrelevant
+a2 <- char2Rdpiece("graphics", "keyword", force.sec = TRUE)
+identical(a1, a2)
 
-# an element suitable to be put in a "usage" section
+## an element suitable to be put in a "usage" section
 char2Rdpiece("log(x, base = exp(1))", "usage")
 
-#
+## a user defined section "Todo"
 char2Rdpiece("Give more examples for this function.", "Todo", force.sec = TRUE)
-
-
-
 }
-
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-
-% R documentation directory.
-
 %\keyword{RdoProgramming}
 %\keyword{RdoElements}
 \keyword{RdoBuild}

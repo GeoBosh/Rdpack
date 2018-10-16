@@ -37,19 +37,7 @@
   an S4 generic function — get_sig_text" />
 
 <meta property="og:description" content="Produce the textual form of the  signatures of available methods for
-  an S4 generic function.
-Here we find all methods for show() defined in package
-  &quot;methods&quot; and print the first few of them: 
-  fn &amp;lt;- utils::help(&quot;show-methods&quot;, package = &quot;methods&quot;)
-rdo &amp;lt;- utils:::.getHelpFile(fn)
-head(get_sig_text(rdo))
-##: [1] &quot;signature(object = \&quot;ANY\&quot;)&quot;                   
-##: [2] &quot;signature(object = \&quot;C++Class\&quot;)&quot;              
-##: [3] &quot;signature(object = \&quot;C++Function\&quot;)&quot;           
-##: [4] &quot;signature(object = \&quot;C++Object\&quot;)&quot;             
-##: [5] &quot;signature(object = \&quot;classGeneratorFunction\&quot;)&quot;
-##: [6] &quot;signature(object = \&quot;classRepresentation\&quot;)&quot;   
-" />
+  an S4 generic function." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -128,18 +116,6 @@ head(get_sig_text(rdo))
     
     <p>Produce the textual form of the  signatures of available methods for
   an S4 generic function.</p>
-<p>Here we find all methods for <code>show()</code> defined in package
-  <code>"methods"</code> and print the first few of them: 
-  <pre>fn &lt;- utils::help("show-methods", package = "methods")
-rdo &lt;- utils:::.getHelpFile(fn)
-head(get_sig_text(rdo))
-##: [1] "signature(object = \"ANY\")"                   
-##: [2] "signature(object = \"C++Class\")"              
-##: [3] "signature(object = \"C++Function\")"           
-##: [4] "signature(object = \"C++Object\")"             
-##: [5] "signature(object = \"classGeneratorFunction\")"
-##: [6] "signature(object = \"classRepresentation\")"   
-</pre></p>
     
     </div>
 
@@ -163,6 +139,18 @@ head(get_sig_text(rdo))
 
     <p>Signatures are found using function <code>findMethodSignatures</code> from
   package "methods".</p>
+    <p>Here we find all methods for <code>show()</code> defined in package
+  <code>"methods"</code> and print the first few of them: 
+  <pre>fn &lt;- utils::help("show-methods", package = "methods")
+rdo &lt;- utils:::.getHelpFile(fn)
+head(get_sig_text(rdo))
+##: [1] "signature(object = \"ANY\")"                   
+##: [2] "signature(object = \"C++Class\")"              
+##: [3] "signature(object = \"C++Function\")"           
+##: [4] "signature(object = \"C++Object\")"             
+##: [5] "signature(object = \"classGeneratorFunction\")"
+##: [6] "signature(object = \"classRepresentation\")"   
+</pre></p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
@@ -179,55 +167,71 @@ head(get_sig_text(rdo))
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'>require</span>(<span class='st'>"stats4"</span>) <span class='co'># to ensure the presence of S4 methods from</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: stats4</span></div><div class='input'>                  <span class='co'># at least one package other than "methods"</span>
+    <pre class="examples"><div class='input'><span class='co'>## load another package with some S4 methods ("methods" is already loaded)</span>
+<span class='fu'>require</span>(<span class='st'>"stats4"</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: stats4</span></div><div class='input'>
+<span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='Rdo_fetch.html'>Rdo_fetch</a></span>(<span class='st'>"show"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"methods"</span>)
+<span class='co'>## alternatively:</span>
+<span class='co'>#fn &lt;- help("show-methods", package = "methods")</span>
+<span class='co'>#rdo &lt;- utils:::.getHelpFile(fn)</span>
 
-<span class='no'>fn</span> <span class='kw'>&lt;-</span> <span class='fu'>help</span>(<span class='st'>"show-methods"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"methods"</span>)
-<span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>utils</span><span class='kw ns'>:::</span><span class='fu'>.getHelpFile</span>(<span class='no'>fn</span>)
-
-<span class='co'># this will find all methods for "show" in currently loaded packages</span>
-<span class='fu'>get_sig_text</span>(<span class='no'>rdo</span>)</div><div class='output co'>#&gt;  [1] "signature(object = \"ANY\")"                      
-#&gt;  [2] "signature(object = \"C++Class\")"                 
-#&gt;  [3] "signature(object = \"C++Function\")"              
-#&gt;  [4] "signature(object = \"C++Object\")"                
-#&gt;  [5] "signature(object = \"classGeneratorFunction\")"   
-#&gt;  [6] "signature(object = \"classRepresentation\")"      
-#&gt;  [7] "signature(object = \"envRefClass\")"              
-#&gt;  [8] "signature(object = \"externalRefMethod\")"        
-#&gt;  [9] "signature(object = \"genericFunction\")"          
-#&gt; [10] "signature(object = \"genericFunctionWithTrace\")" 
-#&gt; [11] "signature(object = \"MethodDefinition\")"         
-#&gt; [12] "signature(object = \"MethodDefinitionWithTrace\")"
-#&gt; [13] "signature(object = \"MethodSelectionReport\")"    
-#&gt; [14] "signature(object = \"MethodWithNext\")"           
-#&gt; [15] "signature(object = \"MethodWithNextWithTrace\")"  
-#&gt; [16] "signature(object = \"mle\")"                      
-#&gt; [17] "signature(object = \"Module\")"                   
-#&gt; [18] "signature(object = \"namedList\")"                
-#&gt; [19] "signature(object = \"ObjectsWithPackage\")"       
-#&gt; [20] "signature(object = \"oldClass\")"                 
-#&gt; [21] "signature(object = \"refClassRepresentation\")"   
-#&gt; [22] "signature(object = \"refMethodDef\")"             
-#&gt; [23] "signature(object = \"refObjectGenerator\")"       
-#&gt; [24] "signature(object = \"signature\")"                
-#&gt; [25] "signature(object = \"sourceEnvironment\")"        
-#&gt; [26] "signature(object = \"summary.mle\")"              
-#&gt; [27] "signature(object = \"traceable\")"                </div><div class='input'>
-<span class='co'># this will select only the ones from package "stats4"</span>
+<span class='co'>## this will find all methods for "show" in currently loaded packages</span>
+<span class='co'>## (print only some of them)</span>
+<span class='fu'>head</span>(<span class='fu'>get_sig_text</span>(<span class='no'>rdo</span>))</div><div class='output co'>#&gt; [1] "signature(object = \"ANY\")"                   
+#&gt; [2] "signature(object = \"C++Class\")"              
+#&gt; [3] "signature(object = \"C++Function\")"           
+#&gt; [4] "signature(object = \"C++Object\")"             
+#&gt; [5] "signature(object = \"classGeneratorFunction\")"
+#&gt; [6] "signature(object = \"classRepresentation\")"   </div><div class='input'>
+<span class='co'>## this will select only the ones from package "stats4"</span>
 <span class='fu'>get_sig_text</span>(<span class='no'>rdo</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"stats4"</span>)</div><div class='output co'>#&gt; [1] "signature(object = \"mle\")"         "signature(object = \"summary.mle\")"</div><div class='input'>
-<span class='co'># this is also fine but need to choose</span>
-<span class='co'># the appropriate element of "fn" if length(fn) &gt; 1</span>
-<span class='no'>fn</span> <span class='kw'>&lt;-</span> <span class='fu'>help</span>(<span class='st'>"show-methods"</span>)
+<span class='co'>## this is also fine (interactively) but need to choose</span>
+<span class='co'>## the appropriate element of "fn" if length(fn) &gt; 1</span>
+<span class='co'>#fn &lt;- help("show-methods")</span>
 
+<span class='co'>## this finds nothing</span>
+<span class='co'>#fn &lt;- help("logLik-methods", package = "methods")</span>
+<span class='co'>#fn</span>
+<span class='fu'><a href='Rdo_fetch.html'>Rdo_fetch</a></span>(<span class='st'>"logLik-methods"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"methods"</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'>
+<span class='co'>## this does</span>
+<span class='co'>#fn &lt;- help("logLik-methods", package = "stats4")</span>
+<span class='co'>#rdo &lt;- utils:::.getHelpFile(fn)</span>
+<span class='no'>rdo2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='Rdo_fetch.html'>Rdo_fetch</a></span>(<span class='st'>"logLik-methods"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"stats4"</span>)
 
-<span class='co'># this finds nothing</span>
-<span class='no'>fn</span> <span class='kw'>&lt;-</span> <span class='fu'>help</span>(<span class='st'>"logLik-methods"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"methods"</span>)
+<span class='fu'>get_sig_text</span>(<span class='no'>rdo2</span>)</div><div class='output co'>#&gt; [1] "signature(object = \"ANY\")" "signature(object = \"mle\")"</div><div class='input'><span class='fu'>get_sig_text</span>(<span class='no'>rdo2</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"stats4"</span>)</div><div class='output co'>#&gt; [1] "signature(object = \"ANY\")" "signature(object = \"mle\")"</div><div class='input'>
+<span class='co'>## only default method defined</span>
+<span class='co'>## using this:</span>
+<span class='fu'>setGeneric</span>(<span class='st'>"f1"</span>, <span class='kw'>function</span>(<span class='no'>x</span>, <span class='no'>y</span>){<span class='kw'>NULL</span>})</div><div class='output co'>#&gt; [1] "f1"</div><div class='input'><span class='co'>## since the following gives error in pkgdown:</span>
+<span class='co'>#f1 &lt;- function(x, y){NULL}</span>
+<span class='co'>#setGeneric("f1")</span>
 
-<span class='co'># this does</span>
-<span class='no'>fn</span> <span class='kw'>&lt;-</span> <span class='fu'>help</span>(<span class='st'>"logLik-methods"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"stats4"</span>)
-<span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>utils</span><span class='kw ns'>:::</span><span class='fu'>.getHelpFile</span>(<span class='no'>fn</span>)
+<span class='no'>fn</span> <span class='kw'>&lt;-</span> <span class='fu'>tempfile</span>()
 
-<span class='fu'>get_sig_text</span>(<span class='no'>rdo</span>)</div><div class='output co'>#&gt; [1] "signature(object = \"ANY\")" "signature(object = \"mle\")"</div><div class='input'><span class='fu'>get_sig_text</span>(<span class='no'>rdo</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"stats4"</span>)</div><div class='output co'>#&gt; [1] "signature(object = \"ANY\")" "signature(object = \"mle\")"</div></pre>
+<span class='fu'><a href='reprompt.html'>reprompt</a></span>(<span class='st'>"f1"</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='no'>fn</span>)</div><div class='output co'>#&gt; Rd source not supplied, looking for installed documentation.
+#&gt; Rd source not supplied and installed documentation not found.
+#&gt; Trying a 'prompt' function to generate documentation for the object.
+#&gt; 	success: documentation generated using a 'prompt' function.
+#&gt; 	The Rd content was written to file  C:\Users\mcbssgb2\AppData\Local\Temp\RtmpegpE73\file2ad441133 </div><div class='output co'>#&gt; [1] "C:\\Users\\mcbssgb2\\AppData\\Local\\Temp\\RtmpegpE73\\file2ad441133"</div><div class='input'><span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/tools/topics/parse_Rd'>parse_Rd</a></span>(<span class='no'>fn</span>)
+<span class='fu'>get_sig_text</span>(<span class='no'>rdo</span>)</div><div class='output co'>#&gt; [1] "signature(x = \"ANY\")"</div><div class='input'>
+<span class='fu'>setClass</span>(<span class='st'>"aRdpack"</span>)
+<span class='fu'>setClass</span>(<span class='st'>"bRdpack"</span>)
+
+<span class='co'>## several methods defined</span>
+<span class='fu'>setGeneric</span>(<span class='st'>"f4"</span>, <span class='kw'>function</span>(<span class='no'>x</span>, <span class='no'>y</span>){<span class='kw'>NULL</span>})</div><div class='output co'>#&gt; [1] "f4"</div><div class='input'><span class='fu'>setMethod</span>(<span class='st'>"f4"</span>, <span class='fu'>c</span>(<span class='st'>"numeric"</span>, <span class='st'>"numeric"</span>), <span class='kw'>function</span>(<span class='no'>x</span>, <span class='no'>y</span>){<span class='kw'>NULL</span>})
+<span class='fu'>setMethod</span>(<span class='st'>"f4"</span>, <span class='fu'>c</span>(<span class='st'>"aRdpack"</span>, <span class='st'>"numeric"</span>), <span class='kw'>function</span>(<span class='no'>x</span>, <span class='no'>y</span>){<span class='kw'>NULL</span>})
+<span class='fu'>setMethod</span>(<span class='st'>"f4"</span>, <span class='fu'>c</span>(<span class='st'>"bRdpack"</span>, <span class='st'>"numeric"</span>), <span class='kw'>function</span>(<span class='no'>x</span>, <span class='no'>y</span>){<span class='kw'>NULL</span>})
+<span class='fu'>setMethod</span>(<span class='st'>"f4"</span>, <span class='fu'>c</span>(<span class='st'>"aRdpack"</span>, <span class='st'>"bRdpack"</span>), <span class='kw'>function</span>(<span class='no'>x</span>, <span class='no'>y</span>){<span class='kw'>NULL</span>})
+
+<span class='fu'><a href='reprompt.html'>reprompt</a></span>(<span class='st'>"f4"</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='no'>fn</span>)</div><div class='output co'>#&gt; Rd source not supplied, looking for installed documentation.
+#&gt; Rd source not supplied and installed documentation not found.
+#&gt; Trying a 'prompt' function to generate documentation for the object.
+#&gt; 	success: documentation generated using a 'prompt' function.
+#&gt; 	The Rd content was written to file  C:\Users\mcbssgb2\AppData\Local\Temp\RtmpegpE73\file2ad441133 </div><div class='output co'>#&gt; [1] "C:\\Users\\mcbssgb2\\AppData\\Local\\Temp\\RtmpegpE73\\file2ad441133"</div><div class='input'><span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/tools/topics/parse_Rd'>parse_Rd</a></span>(<span class='no'>fn</span>)
+<span class='fu'>get_sig_text</span>(<span class='no'>rdo</span>)</div><div class='output co'>#&gt; [1] "signature(x = \"ANY\", y = \"ANY\")"        
+#&gt; [2] "signature(x = \"aRdpack\", y = \"bRdpack\")"
+#&gt; [3] "signature(x = \"aRdpack\", y = \"numeric\")"
+#&gt; [4] "signature(x = \"bRdpack\", y = \"numeric\")"
+#&gt; [5] "signature(x = \"numeric\", y = \"numeric\")"</div><div class='input'>
+<span class='fu'>unlink</span>(<span class='no'>fn</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

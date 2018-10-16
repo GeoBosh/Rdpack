@@ -31,8 +31,9 @@ Rdo_reparse(rdo)
 \examples{
 # the following creates Rd object rdo
 dummyfun <- function(x) x
-fn <- tempfile("dummyfun", fileext="Rd")
-reprompt(dummyfun, filename=fn)
+fn <- tempfile("dummyfun", fileext = "Rd")
+
+reprompt(dummyfun, filename = fn)
 rdo <- tools::parse_Rd(fn)
 
 dottext <- "further arguments to be passed on."
@@ -46,8 +47,6 @@ Rdo_show(Rdo_reparse(rdo2))
 #    (see also examples in Rdo_append_argument)
 Rdo_show(rdo2)
 
-
+unlink(fn)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
 \keyword{Rd}

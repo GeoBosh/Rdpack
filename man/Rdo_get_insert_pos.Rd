@@ -1,28 +1,18 @@
 \name{Rdo_get_insert_pos}
-
 \alias{Rdo_get_insert_pos}
-
-%- Also NEED an '\alias' for EACH other topic documented here.
-
 \title{
   Find the position of an "Rd_tag"
 }
-
 \description{
   Find the position of an "Rd_tag".
 }
-
 \usage{
 Rdo_get_insert_pos(rdo, tag)
 }
-
-%- maybe also 'usage' for other objects documented here.
-
 \arguments{
   \item{rdo}{an Rd object}
   \item{tag}{the "Rd_tag" to search for, a string}
 }
-
 \details{
 
   This function returns a position in \code{rdo}, where the next element
@@ -38,39 +28,26 @@ Rdo_get_insert_pos(rdo, tag)
   ordering of sections in an Rd object is followed. This is set in the
   internal variable \code{.rd_sections}.
 }
-
 \value{
   an integer
 }
-
-
-
 \author{Georgi N. Boshnakov}
-
-
-
-
 %% ~Make other sections like Warning with \section{Warning }{....} ~
-
-
-
-
 \examples{
-h <- help("Rdo_macro")
-rdo <- utils:::.getHelpFile(h)
+#h <- help("Rdo_macro")
+#rdo <- utils:::.getHelpFile(h)
+rdo <- Rdo_fetch("Rdo_macro", "Rdpack")
 
 ialias <- which(tools:::RdTags(rdo) == "\\\\alias")
+ialias
 next_pos <- Rdo_get_insert_pos(rdo, "\\\\alias") # 1 + max(ialias)
+next_pos
 stopifnot(next_pos == max(ialias) + 1)
 
 ikeyword <- which(tools:::RdTags(rdo) == "\\\\keyword")
+ikeyword
 next_pos <- Rdo_get_insert_pos(rdo, "\\\\keyword") # 1 + max(ikeyword)
+next_pos
 stopifnot(next_pos == max(ikeyword) + 1)
-
 }
-
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-
-% R documentation directory.
-
 \keyword{RdoProgramming}

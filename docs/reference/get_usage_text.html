@@ -144,12 +144,22 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># get the Rd object documenting Rdo_macro</span>
-<span class='no'>h</span> <span class='kw'>&lt;-</span> <span class='fu'>help</span>(<span class='st'>"Rdo_macro"</span>)</div><div class='output co'>#&gt; <span class='message'>Using development documentation for Rdo_macro</span></div><div class='input'><span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>utils</span><span class='kw ns'>:::</span><span class='fu'>.getHelpFile</span>(<span class='no'>h</span>)</div><div class='output co'>#&gt; <span class='error'>Error in dirname(file): a character vector argument expected</span></div><div class='input'>
-<span class='no'>ut</span> <span class='kw'>&lt;-</span> <span class='fu'>get_usage_text</span>(<span class='no'>rdo</span>)</div><div class='output co'>#&gt; <span class='error'>Error in get_usage_text(rdo): object 'rdo' not found</span></div><div class='input'>
-<span class='co'># in this case rdo describes other objects</span>
-<span class='co'># and their usage entries are returned, as well.</span>
-<span class='fu'>cat</span>(<span class='no'>ut</span>,<span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"\n"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in cat(ut, sep = "\n"): object 'ut' not found</span></div></pre>
+    <pre class="examples"><div class='input'><span class='co'>## get the Rd object documenting Rdo_macro</span>
+<span class='co'>#h &lt;- utils::help("Rdo_macro", lib.loc = .libPaths())</span>
+<span class='co'>#rdo &lt;- utils:::.getHelpFile(h)</span>
+<span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='Rdo_fetch.html'>Rdo_fetch</a></span>(<span class='st'>"Rdo_macro"</span>, <span class='st'>"Rdpack"</span>)
+<span class='co'># extract the usage section and print it:</span>
+<span class='no'>ut</span> <span class='kw'>&lt;-</span> <span class='fu'>get_usage_text</span>(<span class='no'>rdo</span>)
+<span class='fu'>cat</span>(<span class='no'>ut</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"\n"</span>)</div><div class='output co'>#&gt; 
+#&gt; Rdo_macro(x, name)
+#&gt; 
+#&gt; Rdo_macro1(x, name)
+#&gt; 
+#&gt; Rdo_macro2(x, y, name)
+#&gt; 
+#&gt; Rdo_item(x, y)
+#&gt; 
+#&gt; Rdo_sigitem(x, y, newline = TRUE)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

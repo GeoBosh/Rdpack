@@ -1,26 +1,18 @@
 \name{compare_usage1}
-
 \alias{compare_usage1}
-
-%- Also NEED an '\alias' for EACH other topic documented here.
-
 \title{
-  Compare usage entries for a function
+  Compare usage entries for a function to its actual arguments
 }
-
 \description{
-  Compare usage entries for a function.
+  Compare usage entries for a function to its actual arguments.
 }
-
 \usage{
 compare_usage1(urdo, ucur)
 }
-
-%- maybe also 'usage' for other objects documented here.
-
 \arguments{
-  \item{urdo}{usage text for a function or S3 method from an Rd object
-    or file.}
+  \item{urdo}{
+    usage text for a function or S3 method from an Rd object or file.
+  }
   \item{ucur}{usage generated from the actual object.}
 }
 
@@ -60,25 +52,8 @@ compare_usage1(urdo, ucur)
   \item{cur_usage                }{a copy of \code{ucur}.}
   \item{alias                    }{alias of the name of the object, see `Details'.}
 }
-
-
-
 \author{Georgi N. Boshnakov}
-
-
-
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-
 \seealso{
   \code{\link{inspect_usage}}
 }
-
-
-
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-
-% R documentation directory.
-
 \keyword{RdoUsage}

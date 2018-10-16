@@ -59,21 +59,20 @@ Rdo_set_section(text, sec, file, \dots)
   \code{\link{Rdo_modify}}
 }
 \examples{
+fnA <- tempfile("dummyfun", fileext = "Rd")
 dummyfun <- function(x) x
-
-fn <- tempfile("dummyfun", fileext = "Rd")
-reprompt(dummyfun, filename = fn)
-Rdo_show(tools::parse_Rd(fn))
+reprompt(dummyfun, filename = fnA)
+Rdo_show(tools::parse_Rd(fnA))
 
 ## set the author section, create it if necessary.
-Rdo_set_section("A.A. Author", "author", fn, create = TRUE)
-Rdo_show(tools::parse_Rd(fn))
+Rdo_set_section("A.A. Author", "author", fnA, create = TRUE)
+Rdo_show(tools::parse_Rd(fnA))
 
 ## replace the author section
-Rdo_set_section("Georgi N. Boshnakov", "author", fn)
-Rdo_show(tools::parse_Rd(fn))
+Rdo_set_section("Georgi N. Boshnakov", "author", fnA)
+Rdo_show(tools::parse_Rd(fnA))
 
-unlink(fn)
+unlink(fnA)
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the

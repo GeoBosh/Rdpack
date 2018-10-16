@@ -48,22 +48,16 @@ u1 <- list_Rd(name = "Dummyname", alias = "dummyfun",
               value = "numeric vector",
               author = "A. Author",
               Rd_class=TRUE )
-
 Rdo_show(u1)
 
-# call reprompt to fill the arguments section
-#    (and correct the usage)
-
-fn <- tempfile("dummyfun", fileext="Rd")
-reprompt(dummyfun, filename=fn)
+# call reprompt to fill the arguments section (and correct the usage)
+fn <- tempfile("dummyfun", fileext = "Rd")
+reprompt(dummyfun, filename = fn)
 
 # check that the result can be parsed and show it.
 Rdo_show(tools::parse_Rd(fn))
 
 unlink(fn)
-
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
 \keyword{RdoBuild}
 

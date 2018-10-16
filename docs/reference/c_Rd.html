@@ -165,6 +165,7 @@
 <span class='no'>a4</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='char2Rdpiece.html'>char2Rdpiece</a></span>(<span class='st'>"Dummy description"</span>, <span class='st'>"description"</span>)
 
 <span class='co'>## The following are equivalent</span>
+<span class='co'>## (gbRd::Rdo_empty() creates an empty list of class 'Rd')</span>
 <span class='no'>b1</span> <span class='kw'>&lt;-</span> <span class='fu'>c_Rd</span>(<span class='kw pkg'>gbRd</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/gbRd/topics/Rdo_create'>Rdo_empty</a></span>(), <span class='fu'>list</span>(<span class='no'>a1</span>), <span class='fu'>list</span>(<span class='no'>a2</span>), <span class='fu'>list</span>(<span class='no'>a3</span>), <span class='fu'>list</span>(<span class='no'>a4</span>))
 <span class='no'>c1</span> <span class='kw'>&lt;-</span> <span class='fu'>c_Rd</span>(<span class='kw pkg'>gbRd</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/gbRd/topics/Rdo_create'>Rdo_empty</a></span>(), <span class='fu'>list</span>(<span class='no'>a1</span>, <span class='no'>a2</span>, <span class='no'>a3</span>, <span class='no'>a4</span>))
 <span class='no'>d1</span> <span class='kw'>&lt;-</span> <span class='fu'>c_Rd</span>(<span class='kw pkg'>gbRd</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/gbRd/topics/Rdo_create'>Rdo_empty</a></span>(), <span class='fu'>list</span>(<span class='no'>a1</span>, <span class='no'>a2</span>), <span class='fu'>list</span>(<span class='no'>a3</span>, <span class='no'>a4</span>))
@@ -196,7 +197,8 @@
 <span class='co'>## the function 'list_Rd' may be more convenient.</span>
 <span class='no'>u1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='list_Rd.html'>list_Rd</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Dummyname"</span>, <span class='kw'>alias</span> <span class='kw'>=</span> <span class='st'>"Dummyallias1"</span>,
               <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Dummy title"</span>, <span class='kw'>description</span> <span class='kw'>=</span> <span class='st'>"Dummy description"</span>,
-              <span class='kw'>Rd_class</span> <span class='kw'>=</span> <span class='fl'>TRUE</span> )</div></pre>
+              <span class='kw'>Rd_class</span> <span class='kw'>=</span> <span class='fl'>TRUE</span> )
+<span class='fu'><a href='Rdo_show.html'>Rdo_show</a></span>(<span class='no'>u1</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

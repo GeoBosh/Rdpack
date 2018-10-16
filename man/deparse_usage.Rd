@@ -59,7 +59,8 @@ deparse_usage1(x, width = 72)
 }
 \examples{
 cur_wd <- getwd()
-setwd(tempdir())
+tmpdir <- tempdir()
+setwd(tmpdir)
 
 ## prepare a list of "f_usage" objects
 fnseq <- reprompt(seq)            # get and save the help page of "seq"
@@ -84,6 +85,7 @@ cat(as.character(utp[[2]]))   # same
 
 unlink(fnseq)
 setwd(cur_wd)
+unlink(tmpdir)
 }
 %\keyword{RdoProgramming}
 \keyword{RdoUsage}

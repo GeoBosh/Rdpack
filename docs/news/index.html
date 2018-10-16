@@ -104,13 +104,16 @@
       <small>Source: <a href='https://github.com/GeoBosh/Rdpack/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="rdpack-0-10-2-cran" class="section level1">
+    <div id="rdpack-0-10-2" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-10-2-cran" class="anchor"></a>Rdpack 0.10-2 (CRAN)<small> Unreleased </small>
+<a href="#rdpack-0-10-2" class="anchor"></a>Rdpack 0.10-2<small> Unreleased </small>
 </h1>
 <ul>
 <li><p>added pkgdown site to DESCRIPTION.</p></li>
-<li><p>README and the vignette about evaluated examples now state that R-devel no longer gives warings about <code>\Sexpr</code> not being a top level section. This means that macro <code>runExamples</code> which creates section ‘Examples’ containing code and results of evaluation will be useable in CRAN packages.</p></li>
+<li><p>README and the vignette about evaluated examples now state that R-devel no longer gives warnings about <code>\Sexpr</code> not being a top level section. This means that macro <code>runExamples</code> which creates section ‘Examples’ containing code and results of evaluation will be useable in CRAN packages.</p></li>
+<li><p>new function <code><a href="../reference/Rdo_fetch.html">Rdo_fetch()</a></code> gets the Rd object representing a help page from an installed or source package. It works also for packages under devtool’s developer’s mode</p></li>
+<li><p>The site created with pkgdown contains fewer errors now. (Note that the documentation builds without error with R’s tools).</p></li>
+<li><p>Started moving tests from my local setup to testthat.</p></li>
 </ul>
 </div>
     <div id="rdpack-0-10-1-cran" class="section level1">
@@ -491,7 +494,7 @@ May be particularly helpful for devtools developers.</p></li>
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#rdpack-0-10-2-cran">0.10-2</a></li>
+        <li><a href="#rdpack-0-10-2">0.10-2</a></li>
         <li><a href="#rdpack-0-10-1-cran">0.10-1</a></li>
         <li><a href="#rdpack-0-10-0">0.10-0</a></li>
         <li><a href="#rdpack-0-9-1">0.9-1</a></li>

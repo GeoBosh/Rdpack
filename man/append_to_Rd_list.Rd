@@ -57,8 +57,11 @@ append_to_Rd_list(rdo, x, pos)
 
 
 \examples{
-rdoseq <- utils:::.getHelpFile(help("seq"))
+#rdoseq <- utils:::.getHelpFile(help("seq"))
+rdoseq <- Rdo_fetch("seq", "base")
 iusage <- which(tools:::RdTags(rdoseq) == "\\\\usage")
+iusage
+attr(rdoseq[[iusage]], "Rd_tag")
 
 ## append a new line after the last usage line
 rdoseq2 <- append_to_Rd_list(rdoseq, list(Rdo_newline()), iusage)

@@ -2,7 +2,7 @@ Package: Rdpack
 Type: Package
 Title: Update and Manipulate Rd Documentation Objects
 Version: 0.10-2
-Date: 2018-10-09
+Date: 2018-10-16
 Authors@R: c( person(given = c("Georgi", "N."), 
                      family = "Boshnakov", 
                      role = c("aut", "cre"), 
@@ -30,8 +30,9 @@ Imports:
     bibtex (>= 0.4.0),
     gbRd
 Suggests:
+    testthat,
     rstudioapi,
     rprojroot
 License: GPL (>= 2)
 LazyLoad: yes
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.0.9000

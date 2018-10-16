@@ -1,17 +1,11 @@
 \name{Rdo_append_argument}
-
 \alias{Rdo_append_argument}
-
-%- Also NEED an '\alias' for EACH other topic documented here.
-
 \title{
   Append an item for a new argument to an Rd object
 }
-
 \description{
   Append an item for a new argument to an Rd object.
 }
-
 \usage{
 Rdo_append_argument(rdo, argname, description = NA, indent = "  ", create = FALSE)
 }
@@ -74,15 +68,8 @@ Rdo_show(reprompt(rdo2))
 #       latter needs srcref's in the Rd object? They are only refreshed
 #       Rd_parse is called.
 
-
 unlink(fn)
-
 }
-
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-
-% R documentation directory.
-
 \keyword{RdoBuild}
 %\keyword{RdoElements}
 

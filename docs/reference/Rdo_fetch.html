@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Find leaves of an Rd object using a predicate — Rdo_locate_leaves • Rdpack</title>
+<title>Get help pages as Rd objects — Rdo_fetch • Rdpack</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
@@ -32,10 +32,9 @@
 
 
 
-<meta property="og:title" content="Find leaves of an Rd object using a predicate — Rdo_locate_leaves" />
+<meta property="og:title" content="Get help pages as Rd objects — Rdo_fetch" />
 
-<meta property="og:description" content="Apply a function to the character leaves of an Rd object
-  and return the indices of those for which the result is TRUE." />
+<meta property="og:description" content="Get a help page as an Rd object from an installed or source package." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -104,64 +103,93 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Find leaves of an Rd object using a predicate</h1>
+    <h1>Get help pages as Rd objects</h1>
     
-    <div class="hidden name"><code>Rdo_locate_leaves.Rd</code></div>
+    <div class="hidden name"><code>Rdo_fetch.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Apply a function to the character leaves of an Rd object
-  and return the indices of those for which the result is TRUE.</p>
+    <p>Get a help page as an Rd object from an installed or source package.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>Rdo_locate_leaves</span>(<span class='no'>object</span>, <span class='kw'>f</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>x</span>) <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>Rdo_fetch</span>(<span class='kw'>Rd_name</span> <span class='kw'>=</span> <span class='fu'>character</span>(<span class='fl'>0</span>), <span class='no'>package</span>, <span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>installed</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
-      <td><p>the object to be examined, usually a list.</p></td>
+      <th>Rd_name</th>
+      <td><p>names of one or more Rd help pages. <code>name</code> here is the name of
+    an Rd file stripped from the extension.</p></td>
     </tr>
     <tr>
-      <th>f</th>
-      <td><p>a function (predicate) returning TRUE for elements with the
-    desired property.</p></td>
+      <th>package</th>
+      <td><p>the package from which to get the Rd object, a character string.</p></td>
+    </tr>
+    <tr>
+      <th>dir</th>
+      <td><p>a character string giving the root directory of a source package.
+    Used only if <code>package</code> is missing.</p></td>
+    </tr>
+    <tr>
+      <th>installed</th>
+      <td><p>if <code>TRUE</code>, the default, the Rd object is taken unconditionally
+    from the installed <code>package</code>. 
+    If <code>FALSE</code>, the help page may be taken from a source tree, if
+    appropriate (typically if <code>package</code> is in `developer's mode
+    under devtools, see Details).</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>object</code> can be any list whose elements are character strings or
-  lists. The structure is examined recursively. If <code>object</code> is a
-  character vector, it is enclosed in a list.</p>
-<p>This function provides a convenient way to locate leaves of an Rd
-  object with a particular content. The function is not limited to Rd
-  objects but it assumes that the elements of <code>object</code> are either
-  lists or charater vectors and currently does not check if this is the
-  case.</p>
-<p><strong>todo:</strong> describe the case of <code>list()</code> (<code>Rd_tag</code>'ed.)</p>
+    
+    <p>If <code>Rd_name</code> is a character string (typical use case), the
+  corresponding help page is returned as an object from class
+  <code>"Rd"</code>.  If the length of <code>Rd_name</code> is greater than one, the
+  result is a Rd_named list containing the corresponding <code>"Rd"</code>
+  objects.  The default <code>Rd_name = character(0)</code> requests all Rd
+  pages in the package.</p>
+<p>Note that <code>Rd_name</code> does not contain the extention <code>".Rd"</code>
+  but the names in the returned list do.</p>
+<p>Argument <code>package</code> names the package from which to fetch the
+  documentation object. With the default <code>installed = TRUE</code> the
+  object is taken unconditionally from the installed package. To get it
+  from the source tree of a package, use argument <code>"dir"</code> instead.
+  The default, <code>""</code>, for <code>dir</code> is suitable for workflows where
+  the working directory is the root of the desired package.</p>
+<p>Argument <code>installed</code> concerns primarily development under package
+  <code>"devtools"</code>. <code>"devtools"</code> intercepts and modifies several
+  base <span style="R">R</span> commands, concerning access to system files and getting help,
+  with the aim of rerouting them to the source trees of packages under
+  developer's mode.  If argument <code>installed</code> is <code>TRUE</code>, the
+  default, the requested pages are taken from the installed package,
+  even if it is in development mode. If argument <code>installed</code> is
+  <code>FALSE</code>, the Rd objects are taken from the corresponding source
+  tree, if the specified package is under developer's mode, and from the
+  installed package otherwise.</p>  
+<p>Argument <code>Rd_name</code> is the name used in the <code>\name</code> section
+  of Rd files.</p>
+<p>When working off the source tree of a package, <code>Rdo_fetch</code>
+  processes the Rd files, so <code>roxygen2</code> users need to update
+  them if necessary.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a list of the positions of the leaves for which the predicate gives
-  <code>TRUE</code>. Each position is an integer vector suitable for the
-  <code>"[["</code> operator.</p>
+    <p>if <code>length(Rd_name) = 1</code>, an object of class <code>"Rd"</code>,
+  otherwise a list of <code>"Rd"</code> objects.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>dummyfun</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) <span class='no'>x</span>
+    <pre class="examples"><div class='input'><span class='co'>## get a single help page</span>
+<span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='fu'>Rdo_fetch</span>(<span class='st'>"viewRd"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"Rdpack"</span>)
+<span class='fu'><a href='Rdo_show.html'>Rdo_show</a></span>(<span class='no'>rdo</span>)
 
-<span class='no'>fn</span> <span class='kw'>&lt;-</span> <span class='fu'>tempfile</span>(<span class='st'>"dummyfun"</span>, <span class='kw'>fileext</span><span class='kw'>=</span><span class='st'>"Rd"</span>)
-<span class='fu'><a href='reprompt.html'>reprompt</a></span>(<span class='no'>dummyfun</span>, <span class='kw'>filename</span><span class='kw'>=</span><span class='no'>fn</span>)</div><div class='output co'>#&gt; Rd source not supplied, looking for installed documentation.
-#&gt; Rd source not supplied and installed documentation not found.
-#&gt; Trying a 'prompt' function to generate documentation for the object.</div><div class='output co'>#&gt; <span class='error'>Error in reprompt(dummyfun, filename = fn): unsuccessful attempt to create Rd doc. using a 'prompt' function.</span></div><div class='input'><span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/tools/topics/parse_Rd'>parse_Rd</a></span>(<span class='no'>fn</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot open file 'C:\Users\mcbssgb2\AppData\Local\Temp\RtmpegpE73\dummyfun2ad470bd48acRd': No such file or directory</span></div><div class='output co'>#&gt; <span class='error'>Error in file(con, "r"): cannot open the connection</span></div><div class='input'>
-<span class='no'>f</span> <span class='kw'>&lt;-</span>  <span class='kw'>function</span>(<span class='no'>x</span>) <span class='fu'><a href='Rdo_is_newline.html'>Rdo_is_newline</a></span>(<span class='no'>x</span>)
-
-<span class='no'>nl</span> <span class='kw'>&lt;-</span> <span class='fu'>Rdo_locate_leaves</span>(<span class='no'>rdo</span>, <span class='no'>f</span> )</div><div class='output co'>#&gt; <span class='error'>Error in fxx(object): object 'rdo' not found</span></div><div class='input'>
-<span class='fu'>length</span>(<span class='no'>nl</span>)  <span class='co'># there are quite a few newline leaves!</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'nl' not found</span></div></pre>
+<span class='co'>## get a list of help pages</span>
+<span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='fu'>Rdo_fetch</span>(<span class='fu'>c</span>(<span class='st'>"viewRd"</span>, <span class='st'>"reprompt"</span>), <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"Rdpack"</span>)
+<span class='fu'>names</span>(<span class='no'>rdo</span>)</div><div class='output co'>#&gt; [1] "viewRd.Rd"   "reprompt.Rd"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

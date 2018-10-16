@@ -181,17 +181,13 @@ Rdo_show(rdoa)
 #     specialised functions
 rdob <- Rdo_append_argument(rdo, "\dots", "further arguments to be passed on.")
 
-
 Rdo_show(reprompt(rdob))
 # todo: Rdo_show(rdob) for some reason does not show the arguments.
 #       investigate! Rdo_show uses Rd2txt. Is it possible that the
 #       latter needs srcref's in the Rd object? They are only refreshed
 #       Rd_parse is called.
 
-
 unlink(fn)
-
-
 </div><div class='output co'>#&gt; <span class='error'>Error: '\d' is an unrecognized escape in character string starting ""\d"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

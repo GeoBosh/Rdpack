@@ -243,7 +243,8 @@ reprompt(object, infile = NULL, Rdtext = NULL, final = TRUE,
 
 ## change to a temporary directory to avoid clogging up user's
 cur_wd <- getwd()
-setwd(tempdir())
+tmpdir <- tempdir()
+setwd(tmpdir)
 
 ## as for prompt() the default is to save in current dir as "seq.Rd".
 ## the argument here is a function, reprompt finds its doc and
@@ -290,8 +291,9 @@ reprompt(infile = "seq.Rd", filename = "seq2.Rd")
 reprompt(infile = "seq2.Rd", filename = "seq3.Rd")
 
 ## Rd objects for installed help may need some tidying for human editing.
-hseq_inst <- help("seq")
-rdo <- utils:::.getHelpFile(hseq_inst)
+#hseq_inst <- help("seq")
+#rdo <- utils:::.getHelpFile(hseq_inst)
+rdo <- Rdo_fetch("seq", "base")
 rdo
 rdo <- Rdpack:::.Rd_tidy(rdo)          # tidy up (e.g. insert new lines
                                        #          for human readers)
@@ -306,6 +308,7 @@ unlink("seqA.Rd")
 unlink("seqB.Rd")
 
 setwd(cur_wd)            # restore user's working directory
+unlink(tmpdir)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

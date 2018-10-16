@@ -355,7 +355,8 @@
 
 <span class='co'>## change to a temporary directory to avoid clogging up user's</span>
 <span class='no'>cur_wd</span> <span class='kw'>&lt;-</span> <span class='fu'>getwd</span>()
-<span class='fu'>setwd</span>(<span class='fu'>tempdir</span>())
+<span class='no'>tmpdir</span> <span class='kw'>&lt;-</span> <span class='fu'>tempdir</span>()
+<span class='fu'>setwd</span>(<span class='no'>tmpdir</span>)
 
 <span class='co'>## as for prompt() the default is to save in current dir as "seq.Rd".</span>
 <span class='co'>## the argument here is a function, reprompt finds its doc and</span>
@@ -405,8 +406,9 @@
 #&gt; Parsing the Rd documentation in file seq2.Rd ...
 #&gt; 	The Rd content was written to file  seq3.Rd </div><div class='output co'>#&gt; [1] "seq3.Rd"</div><div class='input'>
 <span class='co'>## Rd objects for installed help may need some tidying for human editing.</span>
-<span class='no'>hseq_inst</span> <span class='kw'>&lt;-</span> <span class='fu'>help</span>(<span class='st'>"seq"</span>)
-<span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>utils</span><span class='kw ns'>:::</span><span class='fu'>.getHelpFile</span>(<span class='no'>hseq_inst</span>)
+<span class='co'>#hseq_inst &lt;- help("seq")</span>
+<span class='co'>#rdo &lt;- utils:::.getHelpFile(hseq_inst)</span>
+<span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='Rdo_fetch.html'>Rdo_fetch</a></span>(<span class='st'>"seq"</span>, <span class='st'>"base"</span>)
 <span class='no'>rdo</span></div><div class='output co'>#&gt; \title{Sequence Generation}\name{seq}\alias{seq}\alias{seq.default}\alias{seq.int}\alias{seq_along}\alias{seq_len}\keyword{manip}\description{
 #&gt;   Generate regular sequences.  \code{seq} is a standard generic with a
 #&gt;   default method.  \code{seq.int} is a primitive which can be
@@ -541,7 +543,8 @@
 <span class='fu'>unlink</span>(<span class='st'>"seqA.Rd"</span>)
 <span class='fu'>unlink</span>(<span class='st'>"seqB.Rd"</span>)
 
-<span class='fu'>setwd</span>(<span class='no'>cur_wd</span>)            <span class='co'># restore user's working directory</span></div></pre>
+<span class='fu'>setwd</span>(<span class='no'>cur_wd</span>)            <span class='co'># restore user's working directory</span>
+<span class='fu'>unlink</span>(<span class='no'>tmpdir</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

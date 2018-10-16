@@ -139,8 +139,9 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'># the following creates Rd object rdo
 dummyfun <- function(x) x
-fn <- tempfile("dummyfun", fileext="Rd")
-reprompt(dummyfun, filename=fn)
+fn <- tempfile("dummyfun", fileext = "Rd")
+
+reprompt(dummyfun, filename = fn)
 rdo <- tools::parse_Rd(fn)
 
 dottext <- "further arguments to be passed on."
@@ -154,7 +155,7 @@ Rdo_show(Rdo_reparse(rdo2))
 #    (see also examples in Rdo_append_argument)
 Rdo_show(rdo2)
 
-
+unlink(fn)
 </div><div class='output co'>#&gt; <span class='error'>Error: '\d' is an unrecognized escape in character string starting ""\d"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

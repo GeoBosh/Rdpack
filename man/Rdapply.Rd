@@ -118,7 +118,6 @@ u2 <- Rdpack:::.Rd_tidy(u1)
 Rdo2Rdf(u2, file = fn)
 file.show(fn)
 
-
 unlink(fn)
 }
 

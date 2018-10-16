@@ -3,10 +3,18 @@
 * added pkgdown site to DESCRIPTION.
 
 * README and the vignette about evaluated examples now state that R-devel no
-  longer gives warings about `\Sexpr` not being a top level section. 
+  longer gives warnings about `\Sexpr` not being a top level section. 
   This means that macro `runExamples` which creates section 'Examples'
   containing code and results of evaluation will be useable in CRAN packages. 
 
+* new function `Rdo_fetch()` gets the Rd object representing a help page from an
+  installed or source package. It works also for packages under devtool's
+  developer's mode
+  
+* The site created with pkgdown contains fewer errors now.
+  (Note that the documentation builds without error with R's tools).
+
+* Started moving tests from my local setup to testthat. 
 
 # Rdpack 0.10-1 (CRAN)
 

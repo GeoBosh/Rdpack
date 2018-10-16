@@ -34,7 +34,7 @@
 
 <meta property="og:title" content="Convert an Rd object to text and show it — Rdo_show" />
 
-<meta property="og:description" content="Convert an Rd object to text and show it with file.show." />
+<meta property="og:description" content="Convert an Rd object to text and show it with file.show()." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -110,7 +110,7 @@
 
     <div class="ref-description">
     
-    <p>Convert an Rd object to text and show it with file.show.</p>
+    <p>Convert an Rd object to text and show it with <code>file.show()</code>.</p>
     
     </div>
 
@@ -132,6 +132,14 @@
   representation of <code>rdo</code>.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'>## create a minimal Rd object</span>
+<span class='no'>u1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='list_Rd.html'>list_Rd</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Dummyname"</span>, <span class='kw'>alias</span> <span class='kw'>=</span> <span class='st'>"Dummyallias1"</span>,
+              <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Dummy title"</span>, <span class='kw'>description</span> <span class='kw'>=</span> <span class='st'>"Dummy description"</span>,
+              <span class='kw'>Rd_class</span> <span class='kw'>=</span> <span class='fl'>TRUE</span> )</div><span class='co'># NOT RUN {</span>
+<span class='co'>## run this interactively:    </span>
+<span class='fu'>Rdo_show</span>(<span class='no'>u1</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -139,7 +147,9 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
     <h2>Author</h2>
     Georgi N. Boshnakov

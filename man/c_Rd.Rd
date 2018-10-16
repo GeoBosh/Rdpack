@@ -1,12 +1,10 @@
 \name{c_Rd}
 \alias{c_Rd}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{Concatenate Rd objects or pieces}
 \description{Concatenates Rd objects or pieces}
 \usage{
 c_Rd(...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{\dots}{objects to be concatenated, Rd objects or character
     strings, see `Details'.
@@ -48,6 +46,7 @@ a3 <- char2Rdpiece("Dummy title", "title")
 a4 <- char2Rdpiece("Dummy description", "description")
 
 ## The following are equivalent
+## (gbRd::Rdo_empty() creates an empty list of class 'Rd')
 b1 <- c_Rd(gbRd::Rdo_empty(), list(a1), list(a2), list(a3), list(a4))
 c1 <- c_Rd(gbRd::Rdo_empty(), list(a1, a2, a3, a4))
 d1 <- c_Rd(gbRd::Rdo_empty(), list(a1, a2), list(a3, a4))
@@ -64,6 +63,7 @@ str(d1n)
 u1 <- list_Rd(name = "Dummyname", alias = "Dummyallias1",
               title = "Dummy title", description = "Dummy description",
               Rd_class = TRUE )
+Rdo_show(u1)
 }
 \keyword{RdoBuild}
 %\keyword{RdoProgramming}

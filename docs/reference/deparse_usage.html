@@ -190,7 +190,8 @@ as.character(x, &#8230; )</pre>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>cur_wd</span> <span class='kw'>&lt;-</span> <span class='fu'>getwd</span>()
-<span class='fu'>setwd</span>(<span class='fu'>tempdir</span>())
+<span class='no'>tmpdir</span> <span class='kw'>&lt;-</span> <span class='fu'>tempdir</span>()
+<span class='fu'>setwd</span>(<span class='no'>tmpdir</span>)
 
 <span class='co'>## prepare a list of "f_usage" objects</span>
 <span class='no'>fnseq</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='reprompt.html'>reprompt</a></span>(<span class='no'>seq</span>)            <span class='co'># get and save the help page of "seq"</span></div><div class='output co'>#&gt; Rd source not supplied, looking for installed documentation.
@@ -242,7 +243,8 @@ as.character(x, &#8230; )</pre>
 #&gt;     length.out = NULL, along.with = NULL, \dots)</div><div class='input'><span class='fu'>cat</span>(<span class='fu'>as.character</span>(<span class='no'>utp</span><span class='kw'>[[</span><span class='fl'>2</span>]]))   <span class='co'># same</span></div><div class='output co'>#&gt; \method{seq}{default}(from = 1, to = 1, by = ((to - from)/(length.out - 1)), 
 #&gt;     length.out = NULL, along.with = NULL, \dots)</div><div class='input'>
 <span class='fu'>unlink</span>(<span class='no'>fnseq</span>)
-<span class='fu'>setwd</span>(<span class='no'>cur_wd</span>)</div></pre>
+<span class='fu'>setwd</span>(<span class='no'>cur_wd</span>)
+<span class='fu'>unlink</span>(<span class='no'>tmpdir</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

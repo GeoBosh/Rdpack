@@ -51,15 +51,13 @@ get_usage_text(rdo)
 
 
 \examples{
-# get the Rd object documenting Rdo_macro
-h <- help("Rdo_macro")
-rdo <- utils:::.getHelpFile(h)
-
+## get the Rd object documenting Rdo_macro
+#h <- utils::help("Rdo_macro", lib.loc = .libPaths())
+#rdo <- utils:::.getHelpFile(h)
+rdo <- Rdo_fetch("Rdo_macro", "Rdpack")
+# extract the usage section and print it:
 ut <- get_usage_text(rdo)
-
-# in this case rdo describes other objects
-# and their usage entries are returned, as well.
-cat(ut,sep = "\n")
+cat(ut, sep = "\n")
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
