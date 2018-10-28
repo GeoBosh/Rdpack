@@ -1,3 +1,10 @@
+# Rdpack 0.10-3
+
+* fixed issue#9 (reported by by @aravind-j) appearing when a package is built
+  with R-devel (since about Oct 2018) causing references by `\insertAllCited{}`
+  to appear in a single paragraph in the `html` rendering of the Rd documentation.
+  
+
 # Rdpack 0.10-2
 
 * added pkgdown site to DESCRIPTION.

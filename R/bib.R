@@ -866,9 +866,10 @@ insert_all_ref <- function(refs, style = ""){
         # 2018-10-01 use \par since pkgdown ignores the empty lines
         #     TODO: needs further thought
         # was: 
-        #  (for now restoring the old one, to check ifpkgdown would consider this as a bug)
-     paste0(res, collapse = "\n\n")
-    # paste0(res, collapse = "\\cr\\cr ")
+        #  (for now restoring the old one, to check if pkgdown would consider this as a bug)
+#browser()
+    # paste0(res, collapse = "\n\n")
+    paste0(res, collapse = "\\cr\\cr ")
 }
 
 # Clean up LaTeX accents and braces

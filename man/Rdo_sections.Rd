@@ -40,6 +40,9 @@ Rdo_locate_core_section(rdo, sec)
   one instance of the requested section---it is put in a list of length
   one. 
 
+  \insertCite{parseRd}{Rdpack}  % only for testing!
+  \insertCite{Rpack:bibtex}{Rdpack}  % only for testing!
+
 }
 \value{
   A list giving the positions and titles of the sections in \code{rdo}
@@ -63,6 +66,9 @@ Rdo_locate_core_section(rdo, sec)
 }
 \seealso{
   \code{\link{Rdo_locate}}
+}
+\references{
+\insertAllCited{} % only for testing
 }
 \examples{
 infile <- system.file("examples", "tz.Rd", package = "Rdpack")

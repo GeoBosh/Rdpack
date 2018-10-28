@@ -19,8 +19,14 @@ Rdo_reparse(rdo)
   Also, the functions in this package do not attend to attribute
   "srcref" (and do not use it) and reparsing takes care of this.
   (todo: check if there is a problem if the tempfile disappears.)
-}
 
+  %insertCite{@see @parseRd,@Rpack:bibtex}{Rdpack}  % only for testing!
+
+  \insertCite{parseRd,Rpack:bibtex}{Rdpack}  % only for testing!
+}
+\references{
+\insertAllCited{} % only for testing
+}
 
 
 
