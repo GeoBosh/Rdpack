@@ -139,7 +139,7 @@ the ``Imports:'' directive in file DESCRIPTION: ~Rdpack (>= 0.7)~.
 [fn:4] They were introduced in the development version 0.6-1, but 0.7
   is the first version with them released on CRAN.
 
-** Macros fof citations 
+** Macros for citations 
 \label{sec:macros-citations}
 
 ~\insertCite{key}{package}~ cites the key and records it for use by
