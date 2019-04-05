@@ -8,14 +8,13 @@
 # Removing this, since doesn't seem to be updated anymore:
 # [![rpackages.io rank](http://www.rpackages.io/badge/Rdpack.svg)](http://www.rpackages.io/package/Rdpack)
 
-Rdpack provides functions for manipulation of R documentation objects, including
-functions =reprompt()= and =ereprompt()= for updating existing Rd documentation
-for functions, methods and classes; Rd macros for citations and import of
-references from =bibtex= files for use in =Rd= files and =roxygen2= comments
-(=\insertRef=, =\insertCite=); Rd macros for evaluating and inserting snippets
-of R code and the results of its evaluation (=\printExample=) or creating
-graphics on the fly (=\insertFig=); and many functions for manipulation of
-references and Rd files.
+Rdpack provides functions for manipulation of R documentation objects, including functions
+=reprompt()= and =ereprompt()= for updating existing Rd documentation for functions, methods
+and classes; Rd macros for citations and import of references from =bibtex= files for use in
+=Rd= files and =roxygen2= comments (=\insertRef=, =\insertCite=, =\insertAllCited=); Rd
+macros for evaluating and inserting snippets of R code and the results of its evaluation
+(=\printExample=) or creating graphics on the fly (=\insertFig=); and many functions for
+manipulation of references and Rd files.
 
 #+BEGIN_SRC R :results value silent :exports none
 library(Rdpack)
@@ -67,7 +66,7 @@ enumerated below in somewhat more detail, see also the vignette
    #+END_EXAMPLE
    Make sure the capitalisation of =RdMacros:= is as shown. If the field
    =RdMacros:= is already present, add "Rdpack" to the list on that
-   line. Similarly for field "Imports".
+   line. Similarly for field "Imports:".
 
 2. Add the following line to file "NAMESPACE":
    #+BEGIN_EXAMPLE
@@ -301,7 +300,7 @@ e.g. ~$x^2$~ with ~\eqn{x^2}~. This should not be needed for versions of Rdpack
 Some Latex macros may have to be removed or replaced with suitable Rd markup. Again,
 do this only if they cause problems, since some are supported, e.g. ~\doi~.
 
-See also the overview help page, \code{help("Rdpack-package")}, of \pkg{Rdpack}. 
+See also the overview help page, ~help("Rdpack-package")~, of package ="Rdpack"=. 
 Among other things, it contains some dummy references which illustrate the above.
 
 
@@ -451,9 +450,8 @@ See vignette [[https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting
 
 ** Evaluating the examples in section Examples
 
-The experimental macro ~\runExamples~ can be used as a replacement of section ~examples~.
-For example, if the following code is put at the top level in an Rd file (i.e. not in a
-section):
+The macro ~\runExamples~ can be used as a replacement of section ~examples~.  For example, if
+the following code is put at the top level in an Rd file (i.e. not in a section):
 #+BEGIN_EXAMPLE
     \runExamples{2+2; a <- 2*3; a}
 #+END_EXAMPLE 
@@ -472,19 +470,18 @@ there from the outset. In particular, the examples are run by the R's quality co
 and tangled along with examples in other documentation files[fn:runExamples]. A small example package
 using this feature is at [[https://github.com/GeoBosh/reprexes/tree/master/runExamplesCheck][runExamplesCheck]].
  
-[fn:runExamples] The macro ~\runExamples~ is fully working but is marked as experimental, since
-currently ~R CMD check~ gives a warning about unknown ~\Sexpr~ section at top level.
-(Amendment on 2018-10-11: R-devel does no longer give the warning at least since 2018-10-02
-r75388.) 
+[fn:runExamples] In versions of ~R~ before =3.6.0=  the macro ~\runExamples~ may cause
+~R CMD check~ to give a warning warning about unknown ~\Sexpr~ section at top level.
+This warning is not issued at least since R-devel 2018-10-02 r75388.
 
 
 * Inserting figures/graphs/plots
 
-Figures can be inserted with the help of the standard Rd markup command ~\figure~. 
-The Rd macro ~\insertFig~ provided by package \pkg{Rdpack} takes a snipped of R code,
-evaluates it and inserts the plot produced by it (using ~\figure~).  ~\insertFig~ takes three
-arguments: a filename, the package name and the code to evaluate to produce the figure. 
-For example,
+Figures can be inserted with the help of the standard Rd markup command ~\figure~.  To
+generate figures on the fly, package ="Rdpack"= provides the Rd macro ~\insertFig~ which
+takes a snipped of R code, evaluates it and inserts the plot produced by it (using
+~\figure~).  ~\insertFig~ takes three arguments: a filename, the package name and the code to
+evaluate to produce the figure.  For example,
 #+BEGIN_EXAMPLE
     \insertFig{cars.png}{mypackage}{x <- cars$speed; y <- cars$dist; plot(x,y)}
 #+END_EXAMPLE

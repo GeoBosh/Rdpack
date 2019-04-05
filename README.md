@@ -1,39 +1,38 @@
 [![CRANStatusBadge](http://www.r-pkg.org/badges/version/Rdpack)](https://cran.r-project.org/package=Rdpack)
 
-Rdpack provides functions for manipulation of R documentation objects, including
-functions `reprompt()` and `ereprompt()` for updating existing Rd documentation
-for functions, methods and classes; Rd macros for citations and import of
-references from `bibtex` files for use in `Rd` files and `roxygen2` comments
-(`\insertRef`, `\insertCite`); Rd macros for evaluating and inserting snippets
-of R code and the results of its evaluation (`\printExample`) or creating
-graphics on the fly (`\insertFig`); and many functions for manipulation of
-references and Rd files.
+Rdpack provides functions for manipulation of R documentation objects, including functions
+`reprompt()` and `ereprompt()` for updating existing Rd documentation for functions, methods
+and classes; Rd macros for citations and import of references from `bibtex` files for use in
+`Rd` files and `roxygen2` comments (`\insertRef`, `\insertCite`, `\insertAllCited`); Rd
+macros for evaluating and inserting snippets of R code and the results of its evaluation
+(`\printExample`) or creating graphics on the fly (`\insertFig`); and many functions for
+manipulation of references and Rd files.
 
 
 # Table of Contents
 
-1.  [Installing Rdpack](#orgaf121fc)
-2.  [Inserting Bibtex references and citations](#org7819a63)
-    1.  [Preparation](#org00f720d)
-    2.  [Inserting references](#org1b17a23)
-    3.  [Inserting citations](#orgbbc52cf)
-    4.  [Changing the style of references](#org856bd68)
-    5.  [Troubleshooting](#org4499912)
-        1.  [A puzzling message in devtools development mode](#org9e4191d)
-        2.  [Typical errors](#orgfe1af41)
-    6.  [Latex markup in BibTeX entries](#org55a5e32)
-    7.  [Encoding of file REFERENCES.bib](#org53d8b1b)
-3.  [Viewing Rd files](#orgfc8014d)
-4.  [Using Rdpack::reprompt()](#orgb2aaecb)
-    1.  [What it does](#orgc76d5c6)
-    2.  [Reprompt and open in an editor](#orgf4bdcf3)
-5.  [Inserting evaluated examples](#org24a6a29)
-    1.  [Evaluating the examples in section Examples](#org72df153)
-6.  [Inserting figures/graphs/plots](#org6fbc297)
-7.  [Versions of Rdpack](#org0bcf105)
+1.  [Installing Rdpack](#org580e46c)
+2.  [Inserting Bibtex references and citations](#org0b59439)
+    1.  [Preparation](#org0dda69b)
+    2.  [Inserting references](#orgf9ecf72)
+    3.  [Inserting citations](#org63ae4ef)
+    4.  [Changing the style of references](#orga3483bb)
+    5.  [Troubleshooting](#org3280646)
+        1.  [A puzzling message in devtools development mode](#orgc1d5ebd)
+        2.  [Typical errors](#org571f8ae)
+    6.  [Latex markup in BibTeX entries](#org79c83aa)
+    7.  [Encoding of file REFERENCES.bib](#org75f69cf)
+3.  [Viewing Rd files](#orgac805f9)
+4.  [Using Rdpack::reprompt()](#orgad640c4)
+    1.  [What it does](#org4d41fd9)
+    2.  [Reprompt and open in an editor](#orgf4ae518)
+5.  [Inserting evaluated examples](#org3ec68b5)
+    1.  [Evaluating the examples in section Examples](#org7e19f1f)
+6.  [Inserting figures/graphs/plots](#org55f98e3)
+7.  [Versions of Rdpack](#orga35c96f)
 
 
-<a id="orgaf121fc"></a>
+<a id="org580e46c"></a>
 
 # Installing Rdpack
 
@@ -47,7 +46,7 @@ You can also install the [development version](https://github.com/GeoBosh/Rdpack
     install_github("GeoBosh/Rdpack")
 
 
-<a id="org7819a63"></a>
+<a id="org0b59439"></a>
 
 # Inserting Bibtex references and citations
 
@@ -61,7 +60,7 @@ the `DESCRIPTION` file of the package needs to be amended, see below the full
 details. 
 
 
-<a id="org00f720d"></a>
+<a id="org0dda69b"></a>
 
 ## Preparation
 
@@ -78,7 +77,7 @@ enumerated below in somewhat more detail, see also the vignette
     
     Make sure the capitalisation of `RdMacros:` is as shown. If the field
     `RdMacros:` is already present, add "Rdpack" to the list on that
-    line. Similarly for field "Imports".
+    line. Similarly for field "Imports:".
 
 2.  Add the following line to file "NAMESPACE":
     
@@ -92,7 +91,7 @@ enumerated below in somewhat more detail, see also the vignette
     put the BibTeX references in it.
 
 
-<a id="org1b17a23"></a>
+<a id="orgf9ecf72"></a>
 
 ## Inserting references
 
@@ -140,7 +139,7 @@ or open it from `R`:
 [`Inserting_bibtex_references (development version on github)`](https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_bibtex_references.pdf).)
 
 
-<a id="orgbbc52cf"></a>
+<a id="org63ae4ef"></a>
 
 ## Inserting citations
 
@@ -210,7 +209,7 @@ see also Murdoch (2010) and Francois (2014)
 in the list of references for `\insertAllCited`.
 
 
-<a id="org856bd68"></a>
+<a id="orga3483bb"></a>
 
 ## Changing the style of references
 
@@ -235,12 +234,12 @@ After installling/reloading your package the lists of references should appear
 with long author names. "Rdpack" itself now uses this style.
 
 
-<a id="org4499912"></a>
+<a id="org3280646"></a>
 
 ## Troubleshooting
 
 
-<a id="org9e4191d"></a>
+<a id="orgc1d5ebd"></a>
 
 ### A puzzling message in devtools development mode
 
@@ -261,7 +260,7 @@ session<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. Even better,
 below to view the required help file.
 
 
-<a id="orgfe1af41"></a>
+<a id="org571f8ae"></a>
 
 ### Typical errors
 
@@ -287,7 +286,7 @@ These errors occur during parsing of the Rd files, before the control is passed
 to the `Rdpack`'s macros. 
 
 
-<a id="org55a5e32"></a>
+<a id="org79c83aa"></a>
 
 ## Latex markup in BibTeX entries
 
@@ -303,11 +302,11 @@ e.g. `$x^2$` with `\eqn{x^2}`. This should not be needed for versions of Rdpack
 Some Latex macros may have to be removed or replaced with suitable Rd markup. Again,
 do this only if they cause problems, since some are supported, e.g. `\doi`.
 
-See also the overview help page, \code{help("Rdpack-package")}, of \pkg{Rdpack}. 
+See also the overview help page, `help("Rdpack-package")`, of package `"Rdpack"`. 
 Among other things, it contains some dummy references which illustrate the above.
 
 
-<a id="org53d8b1b"></a>
+<a id="org75f69cf"></a>
 
 ## Encoding of file REFERENCES.bib
 
@@ -339,7 +338,7 @@ add the encoding declaration to file DESCRIPTION<sup><a id="fnr.4" class="footre
 Needless to say, make sure that there are really no characters from encodings like 'latin1'.
 
 
-<a id="orgfc8014d"></a>
+<a id="orgac805f9"></a>
 
 # Viewing Rd files
 
@@ -361,12 +360,12 @@ sources in development mode. This should work also in development mode on any
 platform (e.g. RStudio, Emacs/ESS, Rgui).
 
 
-<a id="orgb2aaecb"></a>
+<a id="orgad640c4"></a>
 
 # Using Rdpack::reprompt()
 
 
-<a id="orgc76d5c6"></a>
+<a id="org4d41fd9"></a>
 
 ## What it does
 
@@ -393,7 +392,7 @@ but it alerts the user to remove aliases, methods, and descriptions of arguments
 that have been removed. 
 
 
-<a id="orgf4bdcf3"></a>
+<a id="orgf4ae518"></a>
 
 ## Reprompt and open in an editor
 
@@ -416,7 +415,7 @@ Elisp code), for example to be invoked on the currently edited file. Such a
 function and example key binding can be found at [georgisemacs](https://github.com/GeoBosh/georgisemacs).
 
 
-<a id="org24a6a29"></a>
+<a id="org3ec68b5"></a>
 
 # Inserting evaluated examples
 
@@ -438,13 +437,12 @@ gives
 See vignette [`Inserting_figures_and_evaluated_examples`](https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf) for more details.
 
 
-<a id="org72df153"></a>
+<a id="org7e19f1f"></a>
 
 ## Evaluating the examples in section Examples
 
-The experimental macro `\runExamples` can be used as a replacement of section `examples`.
-For example, if the following code is put at the top level in an Rd file (i.e. not in a
-section):
+The macro `\runExamples` can be used as a replacement of section `examples`.  For example, if
+the following code is put at the top level in an Rd file (i.e. not in a section):
 
     \runExamples{2+2; a <- 2*3; a}
 
@@ -464,15 +462,15 @@ and tangled along with examples in other documentation files<sup><a id="fnr.5" c
 using this feature is at [runExamplesCheck](https://github.com/GeoBosh/reprexes/tree/master/runExamplesCheck).
 
 
-<a id="org6fbc297"></a>
+<a id="org55f98e3"></a>
 
 # Inserting figures/graphs/plots
 
-Figures can be inserted with the help of the standard Rd markup command `\figure`. 
-The Rd macro `\insertFig` provided by package \pkg{Rdpack} takes a snipped of R code,
-evaluates it and inserts the plot produced by it (using `\figure`).  `\insertFig` takes three
-arguments: a filename, the package name and the code to evaluate to produce the figure. 
-For example,
+Figures can be inserted with the help of the standard Rd markup command `\figure`.  To
+generate figures on the fly, package `"Rdpack"` provides the Rd macro `\insertFig` which
+takes a snipped of R code, evaluates it and inserts the plot produced by it (using
+`\figure`).  `\insertFig` takes three arguments: a filename, the package name and the code to
+evaluate to produce the figure.  For example,
 
     \insertFig{cars.png}{mypackage}{x <- cars$speed; y <- cars$dist; plot(x,y)}
 
@@ -482,7 +480,7 @@ package `"mypackage"`, and include the figure using `\figure`.
 See vignette [`Inserting_figures_and_evaluated_examples`](https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf) for more details.
 
 
-<a id="org0bcf105"></a>
+<a id="orga35c96f"></a>
 
 # Versions of Rdpack
 
@@ -514,9 +512,8 @@ Professor Brian Ripley.
 <sup><a id="fn.4" href="#fnr.4">4</a></sup> Admittedly, this is not ideal since the user should not need to care how things are
 processed internally but I haven't pinpointed the exact cause for this.
 
-<sup><a id="fn.5" href="#fnr.5">5</a></sup> The macro `\runExamples` is fully working but is marked as experimental, since
-currently `R CMD check` gives a warning about unknown `\Sexpr` section at top level.
-(Amendment on 2018-10-11: R-devel does no longer give the warning at least since 2018-10-02
-r75388.)
+<sup><a id="fn.5" href="#fnr.5">5</a></sup> In versions of `R` before `3.6.0`  the macro `\runExamples` may cause
+`R CMD check` to give a warning warning about unknown `\Sexpr` section at top level.
+This warning is not issued at least since R-devel 2018-10-02 r75388.
 
 <sup><a id="fn.6" href="#fnr.6">6</a></sup> I adopted this versionning scheme from `Rdpack 0.7.0`.
