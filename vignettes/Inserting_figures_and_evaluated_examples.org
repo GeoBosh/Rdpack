@@ -54,7 +54,7 @@ code and their results.
 The standard Rd macro ~\Sexpr~ caters for a number of possibilities to evaluate R code and
 insert the results and the code in the documentation. 
 The Rd macro ~\printExample~ provided by package
-\pkg{Rdpack} builds on it to print a snippet of R code and the results of its evaluation, similarly to
+="Rdpack"= builds on it to print a snippet of R code and the results of its evaluation, similarly to
 console output but the code is not prefixed and the results are prefixed with comment
 symbols.
 For example
@@ -73,8 +73,11 @@ The argument of ~\printExample~ must be on a single line with released versions 
 
 ~\printExample~ is typically placed in section Details of an object's documentation.
 
-[fn:1] This limitation has been lifted in R-devel starting from June 2018 but obviously this
-is currently of little help for production packages.
+[fn:1] This limitation has been lifted in =R-devel= starting from June 2018 and in =R-3.6.0=.
+In earlier versions of =R= the lines after the first are ignored without warnings or
+errors. This should not be a big concern if you already require ~R >= 3.6.0~ or can live
+with somewhat inferior documentation in older versions or =R=.
+
 
 ** Experimental feature 
 
