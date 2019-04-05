@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rdpack</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.4</span>
       </span>
     </div>
 
@@ -104,9 +104,22 @@
       <small>Source: <a href='https://github.com/GeoBosh/Rdpack/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="rdpack-0-10-2" class="section level1">
+    <div id="rdpack-010-4" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-10-2" class="anchor"></a>Rdpack 0.10-2<small> Unreleased </small>
+<a href="#rdpack-010-4" class="anchor"></a>Rdpack 0.10-4<small> Unreleased </small>
+</h1>
+</div>
+    <div id="rdpack-010-3" class="section level1">
+<h1 class="page-header">
+<a href="#rdpack-010-3" class="anchor"></a>Rdpack 0.10-3<small> Unreleased </small>
+</h1>
+<ul>
+<li>fixed issue<a href='https://github.com/GeoBosh/Rdpack/issues/9'>#9</a> (reported by by <a href='http://github.com/aravind-j'>@aravind-j</a>) appearing when a package is built with R-devel (since about Oct 2018) causing references by <code>\insertAllCited{}</code> to appear in a single paragraph in the <code>html</code> rendering of the Rd documentation.</li>
+</ul>
+</div>
+    <div id="rdpack-010-2" class="section level1">
+<h1 class="page-header">
+<a href="#rdpack-010-2" class="anchor"></a>Rdpack 0.10-2<small> Unreleased </small>
 </h1>
 <ul>
 <li><p>added pkgdown site to DESCRIPTION.</p></li>
@@ -116,29 +129,29 @@
 <li><p>Started moving tests from my local setup to testthat.</p></li>
 </ul>
 </div>
-    <div id="rdpack-0-10-1-cran" class="section level1">
+    <div id="rdpack-010-1-cran" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-10-1-cran" class="anchor"></a>Rdpack 0.10-1 (CRAN)<small> 2018-10-04 </small>
+<a href="#rdpack-010-1-cran" class="anchor"></a>Rdpack 0.10-1 (CRAN)<small> 2018-10-04 </small>
 </h1>
 <ul>
 <li>removed redundant references from REFERENCES.bib (they were leftovers from testing).</li>
 </ul>
 </div>
-    <div id="rdpack-0-10-0" class="section level1">
+    <div id="rdpack-010-0" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-10-0" class="anchor"></a>Rdpack 0.10-0<small> Unreleased </small>
+<a href="#rdpack-010-0" class="anchor"></a>Rdpack 0.10-0<small> Unreleased </small>
 </h1>
 <ul>
 <li>updated vignette ‘Inserting_bibtex_references’.</li>
 </ul>
 </div>
-    <div id="rdpack-0-9-1" class="section level1">
+    <div id="rdpack-09-1" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-9-1" class="anchor"></a>Rdpack 0.9-1<small> Unreleased </small>
+<a href="#rdpack-09-1" class="anchor"></a>Rdpack 0.9-1<small> Unreleased </small>
 </h1>
 <ul>
 <li><p>now <code>REFERENCES.bib</code> is read-in using the declared encoding for the corresponding package. If there is no declared encoding, “UTF-8” is assumed.</p></li>
-<li><p>Now macros <code>\insertCite</code> and <code>\insertCiteOnly</code> use the correct <code>results=rd</code> instead of <code>results=Rd</code>. This was not catched by <code>R</code>s building tools but caused errors when processed with <code><a href="http://pkgdown.r-lib.org/reference/build_site.html">pkgdown::build_site()</a></code>. Fixes issue<a href='https://github.com/GeoBosh/Rdpack/issues/8'>#8</a>. Also fixes r-lib/pkgdown<a href='https://github.com/GeoBosh/Rdpack/issues/784'>#784</a>. Thanks to <a href="https://github.com/jayhesselberth">Jay Hesselberth</a> for uncovering this.</p></li>
+<li><p>Now macros <code>\insertCite</code> and <code>\insertCiteOnly</code> use the correct <code>results=rd</code> instead of <code>results=Rd</code>. This was not catched by <code>R</code>s building tools but caused errors when processed with <code><a href="https://pkgdown.r-lib.org/reference/build_site.html">pkgdown::build_site()</a></code>. Fixes issue<a href='https://github.com/GeoBosh/Rdpack/issues/8'>#8</a>. Also fixes r-lib/pkgdown<a href='https://github.com/GeoBosh/Rdpack/issues/784'>#784</a>. Thanks to <a href="https://github.com/jayhesselberth">Jay Hesselberth</a> for uncovering this.</p></li>
 <li><p>now references produced by the citation macros for BibTeX entries of type <code><a href='http://github.com/book'>@book</a></code> and <code><a href='http://github.com/incollection'>@incollection</a></code> treat field ‘series’ similarly to other BibTeX styles, including JSS (issue<a href='https://github.com/GeoBosh/Rdpack/issues/7'>#7</a> raised by Kisung You). Note that even though the underlying base R tools are based on JSS, they treat this field differently.</p></li>
 <li><p>Bugfix: now Rd macro <code>\printExample</code> evaluates the expressions in the correct environment.</p></li>
 <li><p>help page of <code>get_usage</code> gets a fairly complete Details section with numerous evaluated examples.</p></li>
@@ -151,25 +164,25 @@
 <li><p>in “get_sig_text.Rd”, replace <code>help()</code> with <code><a href="http://www.rdocumentation.org/packages/utils/topics/help">utils::help()</a></code> to avoid warnings from more stringent <code>R CMD check</code>. Similarly, in “Rdpack-package.Rd” replace <code>packageDescription()</code> with <code><a href="http://www.rdocumentation.org/packages/utils/topics/packageDescription">utils::packageDescription()</a></code>. This may be needed in <code>\Sexpr</code>’s more generally (<strong>TODO:</strong> check if these would still be needed if the symbols are imported by the package.)</p></li>
 </ul>
 </div>
-    <div id="rdpack-0-9-0-cran" class="section level1">
+    <div id="rdpack-09-0-cran" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-9-0-cran" class="anchor"></a>Rdpack 0.9-0 (CRAN)<small> 2018-08-04 </small>
+<a href="#rdpack-09-0-cran" class="anchor"></a>Rdpack 0.9-0 (CRAN)<small> 2018-08-04 </small>
 </h1>
 <ul>
 <li>some brush-up of the documentation for the changes since version 0.8-0 of the package.</li>
 </ul>
 </div>
-    <div id="rdpack-0-8-4" class="section level1">
+    <div id="rdpack-08-4" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-8-4" class="anchor"></a>Rdpack 0.8-4<small> Unreleased </small>
+<a href="#rdpack-08-4" class="anchor"></a>Rdpack 0.8-4<small> Unreleased </small>
 </h1>
 <ul>
 <li>now simple mathematics in BibTeX entries is rendered natively, no need to replace dollars with <code>\eqn{}</code>.</li>
 </ul>
 </div>
-    <div id="rdpack-0-8-3" class="section level1">
+    <div id="rdpack-08-3" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-8-3" class="anchor"></a>Rdpack 0.8-3<small> Unreleased </small>
+<a href="#rdpack-08-3" class="anchor"></a>Rdpack 0.8-3<small> Unreleased </small>
 </h1>
 <ul>
 <li>
@@ -189,34 +202,34 @@
 <li><p>new vignette gives a brief description of the new macros.</p></li>
 </ul>
 </div>
-    <div id="rdpack-0-8-2" class="section level1">
+    <div id="rdpack-08-2" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-8-2" class="anchor"></a>Rdpack 0.8-2<small> Unreleased </small>
+<a href="#rdpack-08-2" class="anchor"></a>Rdpack 0.8-2<small> Unreleased </small>
 </h1>
 <ul>
 <li>Now text citations use “et al.” when there are three or more authors. (Issue<a href='https://github.com/GeoBosh/Rdpack/issues/6'>#6</a> reported by Timothy P. Bilton)</li>
 </ul>
 </div>
-    <div id="rdpack-0-8-1" class="section level1">
+    <div id="rdpack-08-1" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-8-1" class="anchor"></a>Rdpack 0.8-1<small> Unreleased </small>
+<a href="#rdpack-08-1" class="anchor"></a>Rdpack 0.8-1<small> Unreleased </small>
 </h1>
 <ul>
 <li>in this file, added backticks to <code>\insertRef</code> and <code>\insertAllCited</code> (see below) - in the rendered <code>News</code> on CRAN the backslashed words had disappeared.</li>
 </ul>
 </div>
-    <div id="rdpack-0-8-0-cran" class="section level1">
+    <div id="rdpack-08-0-cran" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-8-0-cran" class="anchor"></a>Rdpack 0.8-0 (CRAN)<small> 2018-05-24 </small>
+<a href="#rdpack-08-0-cran" class="anchor"></a>Rdpack 0.8-0 (CRAN)<small> 2018-05-24 </small>
 </h1>
 <ul>
 <li><p><code>\insertRef</code> and <code>\insertAllCited</code> macros now support <code>bibstyles</code> for formatting references (feature requested by Jamie Halliday, issue<a href='https://github.com/GeoBosh/Rdpack/issues/5'>#5</a>). Use <code>Rdpack (&gt;= 0.8)</code> in <code>Imports:</code> to use this feature. Currently only long author names are supported but complete support for styles can be added trivially if requested.</p></li>
 <li><p>updates to the documentation, in particular the bulk of Rdpack-package.Rd was from 2011!</p></li>
 </ul>
 </div>
-    <div id="rdpack-0-7-1" class="section level1">
+    <div id="rdpack-07-1" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-7-1" class="anchor"></a>Rdpack 0.7-1<small> Unreleased </small>
+<a href="#rdpack-07-1" class="anchor"></a>Rdpack 0.7-1<small> Unreleased </small>
 </h1>
 <ul>
 <li><p>improvements to handling of free form citations in textual mode:</p></li>
@@ -226,9 +239,9 @@
 <li><p>fix a bug in <code><a href="../reference/Rdo_sections.html">Rdo_locate_core_section()</a></code>.</p></li>
 </ul>
 </div>
-    <div id="rdpack-0-7-0-cran" class="section level1">
+    <div id="rdpack-07-0-cran" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-7-0-cran" class="anchor"></a>Rdpack 0.7-0 (CRAN)<small> 2018-03-26 </small>
+<a href="#rdpack-07-0-cran" class="anchor"></a>Rdpack 0.7-0 (CRAN)<small> 2018-03-26 </small>
 </h1>
 <ul>
 <li><p>consolidated the changes introduced since the previous CRAN release of Rdpack (it was 0.5-5) in preparation for the next release. Users of the new macros for citation can use <code>Rdpack (&gt;=0.7)</code> in the <code>Imports:</code> field of file “DESCRIPTION” to ensure that they are available.</p></li>
@@ -236,9 +249,9 @@
 <li><p>Unresolved BibTeX keys produce warnings during building and installation of the package, but not errors. Dummy entries are inserted in the documentation explaining what was amiss (currently with ‘author’ A Adummy).</p></li>
 </ul>
 </div>
-    <div id="rdpack-0-6-x" class="section level1">
+    <div id="rdpack-06-x" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-6-x" class="anchor"></a>Rdpack 0.6-x<small> Unreleased </small>
+<a href="#rdpack-06-x" class="anchor"></a>Rdpack 0.6-x<small> Unreleased </small>
 </h1>
 <ul>
 <li><p>new Rd macros for citations</p></li>
@@ -250,9 +263,9 @@
 <li><p>updates to the documentation.</p></li>
 </ul>
 </div>
-    <div id="rdpack-0-5-7" class="section level1">
+    <div id="rdpack-05-7" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-5-7" class="anchor"></a>Rdpack 0.5-7<small> Unreleased </small>
+<a href="#rdpack-05-7" class="anchor"></a>Rdpack 0.5-7<small> Unreleased </small>
 </h1>
 <ul>
 <li><p><code><a href="../reference/get_bibentries.html">get_bibentries()</a></code> gets a new argument “everywhere”. When is is TRUE, the default, unescaped percents are escaped in all bibtex fields, otherwise the replacement is done only in field “URL”.</p></li>
@@ -261,9 +274,9 @@
 <li><p>cleaned up the imports in NAMESPACE.</p></li>
 </ul>
 </div>
-    <div id="rdpack-0-5-6" class="section level1">
+    <div id="rdpack-05-6" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-5-6" class="anchor"></a>Rdpack 0.5-6<small> Unreleased </small>
+<a href="#rdpack-05-6" class="anchor"></a>Rdpack 0.5-6<small> Unreleased </small>
 </h1>
 <ul>
 <li><p><code><a href="../reference/insert_ref.html">insert_ref()</a></code> and Rd macro <code>\insertRef</code> should now work ok in the presence of percent encoded symbols in URL field of a BibTeX entry. Closes issue “Unexpected END_OF_INPUT error (URL parsing?)”, see <a href="https://github.com/GeoBosh/Rdpack/issues/3">Rdpack issue 3</a>, raised by <a href="https://github.com/jdnewmil">jdnewmil</a>.</p></li>
@@ -271,9 +284,9 @@
 <li><p><code><a href="../reference/get_bibentries.html">get_bibentries()</a></code> now tries to load the <code>bib</code> file from the development directory of argument “package”, in case it is in development mode under “devtools”. (Even though the search is with <code>system.file()</code>, which <code>devtools</code> replaces with its own version, the bib file still needs to be looked for in “inst/”, i.e. it is not in the root directory as is the case in installed packages.)</p></li>
 </ul>
 </div>
-    <div id="rdpack-0-5-5-cran" class="section level1">
+    <div id="rdpack-05-5-cran" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-5-5-cran" class="anchor"></a>Rdpack 0.5-5 (CRAN)<small> 2018-02-14 </small>
+<a href="#rdpack-05-5-cran" class="anchor"></a>Rdpack 0.5-5 (CRAN)<small> 2018-02-14 </small>
 </h1>
 <ul>
 <li><p>Streamlined the help page of <code><a href="../reference/reprompt.html">reprompt()</a></code> and <code>Rdpack-package</code>.</p></li>
@@ -285,9 +298,9 @@
 <li><p><code><a href="../reference/viewRd.html">viewRd()</a></code> now works also when the file is from a package under devtools’ development mode on any platform (e.g. RStudio, Emacs/ESS, Rgui).</p></li>
 </ul>
 </div>
-    <div id="rdpack-0-5-4-9000" class="section level1">
+    <div id="rdpack-05-49000" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-5-4-9000" class="anchor"></a>Rdpack 0.5-4.9000<small> Unreleased </small>
+<a href="#rdpack-05-49000" class="anchor"></a>Rdpack 0.5-4.9000<small> Unreleased </small>
 </h1>
 <ul>
 <li>
@@ -296,9 +309,9 @@
 </li>
 </ul>
 </div>
-    <div id="rdpack-0-5-4" class="section level1">
+    <div id="rdpack-05-4" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-5-4" class="anchor"></a>Rdpack 0.5-4<small> Unreleased </small>
+<a href="#rdpack-05-4" class="anchor"></a>Rdpack 0.5-4<small> Unreleased </small>
 </h1>
 <ul>
 <li><p>added the version of <code>Rdpack</code> to the abstract of the vignette. This seems more informative than giving the compilation date.</p></li>
@@ -306,42 +319,42 @@
 <li><p>fixed a bug in <code><a href="../reference/inspect_args.html">inspect_args()</a></code> which caused the warning <em>“In is.na(x) : is.na() applied to non-(list or vector) of type ‘NULL’”</em> in <code><a href="../reference/reprompt.html">reprompt()</a></code>, when the signature of a function in “Usage” section was empty.</p></li>
 </ul>
 </div>
-    <div id="rdpack-0-5-3-cran" class="section level1">
+    <div id="rdpack-05-3-cran" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-5-3-cran" class="anchor"></a>Rdpack 0.5-3 (CRAN)<small> 2018-01-27 </small>
+<a href="#rdpack-05-3-cran" class="anchor"></a>Rdpack 0.5-3 (CRAN)<small> 2018-01-27 </small>
 </h1>
 <ul>
 <li>The warning message about a missing reference key now appears also in the respective help page.</li>
 </ul>
 </div>
-    <div id="rdpack-0-5-2" class="section level1">
+    <div id="rdpack-05-2" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-5-2" class="anchor"></a>Rdpack 0.5-2<small> Unreleased </small>
+<a href="#rdpack-05-2" class="anchor"></a>Rdpack 0.5-2<small> Unreleased </small>
 </h1>
 <ul>
 <li><p>added the github url to DESCRIPTION.</p></li>
 <li><p>now give a more informative warning if a key is missing from REFERENCES.bib (thanks to Kisung You for suggesting this).</p></li>
 </ul>
 </div>
-    <div id="rdpack-0-5-1-cran" class="section level1">
+    <div id="rdpack-05-1-cran" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-5-1-cran" class="anchor"></a>Rdpack 0.5-1 (CRAN)<small> 2017-12-13 </small>
+<a href="#rdpack-05-1-cran" class="anchor"></a>Rdpack 0.5-1 (CRAN)<small> 2017-12-13 </small>
 </h1>
 <ul>
 <li>an example was not restoring the working directory.</li>
 </ul>
 </div>
-    <div id="rdpack-0-5-0" class="section level1">
+    <div id="rdpack-05-0" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-5-0" class="anchor"></a>Rdpack 0.5-0<small> Unreleased </small>
+<a href="#rdpack-05-0" class="anchor"></a>Rdpack 0.5-0<small> Unreleased </small>
 </h1>
 <ul>
 <li>moved gbRd from Depends to Imports and adjusted some examples to use <code><a href="http://www.rdocumentation.org/packages/tools/topics/parse_Rd">tools::parse_Rd()</a></code> rather than <code>parse_Rd()</code> (before this was not necessary since ‘gbRd’ <em>depended on</em> ‘tools’).</li>
 </ul>
 </div>
-    <div id="rdpack-0-4-23" class="section level1">
+    <div id="rdpack-04-23" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-4-23" class="anchor"></a>Rdpack 0.4-23<small> Unreleased </small>
+<a href="#rdpack-04-23" class="anchor"></a>Rdpack 0.4-23<small> Unreleased </small>
 </h1>
 <ul>
 <li><p>new function <code><a href="../reference/viewRd.html">viewRd()</a></code> parses and shows an Rd file in a source package.<br>
@@ -350,9 +363,9 @@ May be particularly helpful for devtools developers.</p></li>
 <li><p>new functions <code><a href="../reference/makeVignetteReference.html">makeVignetteReference()</a></code> and <code><a href="../reference/makeVignetteReference.html">vigbib()</a></code> generate Bibtex references for vignettes in a package.</p></li>
 </ul>
 </div>
-    <div id="rdpack-0-4-22-cran" class="section level1">
+    <div id="rdpack-04-22-cran" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-4-22-cran" class="anchor"></a>Rdpack 0.4-22 (CRAN)<small> 2017-10-02 </small>
+<a href="#rdpack-04-22-cran" class="anchor"></a>Rdpack 0.4-22 (CRAN)<small> 2017-10-02 </small>
 </h1>
 <ul>
 <li><p>Added the requirement to <strong>Import Rdpack</strong> to the help page of <code><a href="../reference/insert_ref.html">insert_ref()</a></code>. (It was out of sync with the vignette.)</p></li>
@@ -360,9 +373,9 @@ May be particularly helpful for devtools developers.</p></li>
 <li><p>Bug fix in the vignette: changed <code>\<a href='http://github.com/references'>@references</a></code> to <code><a href='http://github.com/references'>@references</a></code> in the roxygen2 example.</p></li>
 </ul>
 </div>
-    <div id="rdpack-0-4-21-cran" class="section level1">
+    <div id="rdpack-04-21-cran" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-4-21-cran" class="anchor"></a>Rdpack 0.4-21 (CRAN)<small> 2017-08-06 </small>
+<a href="#rdpack-04-21-cran" class="anchor"></a>Rdpack 0.4-21 (CRAN)<small> 2017-08-06 </small>
 </h1>
 <ul>
 <li><p>Edited and amended vignette <em>“Inserting_bibtex_references”</em>, including:</p></li>
@@ -372,46 +385,46 @@ May be particularly helpful for devtools developers.</p></li>
 <li><p>changed the URL for parse_Rd.pdf in REFERENCES.bib to https.</p></li>
 </ul>
 </div>
-    <div id="rdpack-0-4-20-cran" class="section level1">
+    <div id="rdpack-04-20-cran" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-4-20-cran" class="anchor"></a>Rdpack 0.4-20 (CRAN)<small> 2016-07-26 </small>
+<a href="#rdpack-04-20-cran" class="anchor"></a>Rdpack 0.4-20 (CRAN)<small> 2016-07-26 </small>
 </h1>
 <ul>
 <li>cleaned up some minor CRAN issues.</li>
 </ul>
 </div>
-    <div id="rdpack-0-4-19" class="section level1">
+    <div id="rdpack-04-19" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-4-19" class="anchor"></a>Rdpack 0.4-19<small> Unreleased </small>
+<a href="#rdpack-04-19" class="anchor"></a>Rdpack 0.4-19<small> Unreleased </small>
 </h1>
 <ul>
 <li>
 <p>new facility for inserting references from BibTeX files - just put the line:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">  RdMacros<span class="op">:</span><span class="st"> </span>Rdpack</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">  RdMacros<span class="op">:</span><span class="st"> </span>Rdpack</a></code></pre></div>
 <p>in the <code>DESCRIPTION</code> file of your package and the references in <code>inst/REFERENCES.bib</code>. Then put <code>\inserRef{key}{yourpackage}</code> in documentation chunks to insert item <code>key</code> from the bib file. This works with both manually created Rd files and roxygen comments, see the documentation for details.</p>
 </li>
 </ul>
 </div>
-    <div id="rdpack-0-4-18-cran" class="section level1">
+    <div id="rdpack-04-18-cran" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-4-18-cran" class="anchor"></a>Rdpack 0.4-18 (CRAN)<small> 2015-07-15 </small>
+<a href="#rdpack-04-18-cran" class="anchor"></a>Rdpack 0.4-18 (CRAN)<small> 2015-07-15 </small>
 </h1>
 <ul>
 <li><p>from now on, put (CRAN) next to versions published on CRAN (as above)</p></li>
 <li><p>a minor correction in file NEWS.</p></li>
 </ul>
 </div>
-    <div id="rdpack-0-4-17" class="section level1">
+    <div id="rdpack-04-17" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-4-17" class="anchor"></a>Rdpack 0.4-17<small> Unreleased </small>
+<a href="#rdpack-04-17" class="anchor"></a>Rdpack 0.4-17<small> Unreleased </small>
 </h1>
 <ul>
 <li>In file DESCRIPTION, changed reprompt and rebib to <code><a href="../reference/reprompt.html">reprompt()</a></code> and <code><a href="../reference/rebib.html">rebib()</a></code>.</li>
 </ul>
 </div>
-    <div id="rdpack-0-4-16" class="section level1">
+    <div id="rdpack-04-16" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-4-16" class="anchor"></a>Rdpack 0.4-16<small> Unreleased </small>
+<a href="#rdpack-04-16" class="anchor"></a>Rdpack 0.4-16<small> Unreleased </small>
 </h1>
 <ul>
 <li><p>don’t export <code>parse_text</code></p></li>
@@ -420,18 +433,18 @@ May be particularly helpful for devtools developers.</p></li>
 <li><p>included <code>methods</code> in <code>Imports:</code> - around R-devel version 2015-07-01 r68620 not including it triggers warnings)</p></li>
 </ul>
 </div>
-    <div id="rdpack-0-4-8" class="section level1">
+    <div id="rdpack-04-8" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-4-8" class="anchor"></a>Rdpack 0.4-8<small> Unreleased </small>
+<a href="#rdpack-04-8" class="anchor"></a>Rdpack 0.4-8<small> Unreleased </small>
 </h1>
 <ul>
 <li><p>new functions <code>.whichtageq</code> and <code>.whichtagin</code>; replaced most calls to <code>toolsdotdotdotRdTags</code> with these.</p></li>
 <li><p>removed <code>toolsdotdotdotRdTags</code></p></li>
 </ul>
 </div>
-    <div id="rdpack-0-4-7" class="section level1">
+    <div id="rdpack-04-7" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-4-7" class="anchor"></a>Rdpack 0.4-7<small> Unreleased </small>
+<a href="#rdpack-04-7" class="anchor"></a>Rdpack 0.4-7<small> Unreleased </small>
 </h1>
 <ul>
 <li><p>removed <code>:::</code> calls from code; copied some functions from <code>tools</code> to achieve this (see “threedots.R”). Renamed the functions replacing <code>:::</code> with dotdotdot.</p></li>
@@ -439,9 +452,9 @@ May be particularly helpful for devtools developers.</p></li>
 <li><p>new functions: <code>Rdo_get_argument_names</code>, <code>Rdo_get_item_labels</code></p></li>
 </ul>
 </div>
-    <div id="rdpack-0-4-5" class="section level1">
+    <div id="rdpack-04-5" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-4-5" class="anchor"></a>Rdpack 0.4-5<small> Unreleased </small>
+<a href="#rdpack-04-5" class="anchor"></a>Rdpack 0.4-5<small> Unreleased </small>
 </h1>
 <ul>
 <li><p>dependence <code>bibtex</code> becomes “Imports”. <code>tools</code> and <code>gbRd</code> remain (for now) “Depends” since functions from them are used in some examples without <code>require()</code>’s.</p></li>
@@ -450,9 +463,9 @@ May be particularly helpful for devtools developers.</p></li>
 <li><p>small changes in the documentation</p></li>
 </ul>
 </div>
-    <div id="rdpack-0-4-1" class="section level1">
+    <div id="rdpack-04-1" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-4-1" class="anchor"></a>Rdpack 0.4-1<small> Unreleased </small>
+<a href="#rdpack-04-1" class="anchor"></a>Rdpack 0.4-1<small> Unreleased </small>
 </h1>
 <ul>
 <li><p>new major feature: processing references from Bibtex files. The top user level function is <code><a href="../reference/rebib.html">rebib()</a></code>, which updates section “references” in an Rd file. <code><a href="../reference/promptPackageSexpr.html">promptPackageSexpr()</a></code> has been updated to use this feature. <code><a href="../reference/rebib.html">inspect_Rdbib()</a></code> can be used in programming.</p></li>
@@ -462,27 +475,27 @@ May be particularly helpful for devtools developers.</p></li>
 <li><p>some gaps in the documentation filled.</p></li>
 </ul>
 </div>
-    <div id="rdpack-0-3-11" class="section level1">
+    <div id="rdpack-03-11" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-3-11" class="anchor"></a>Rdpack 0.3-11<small> Unreleased </small>
+<a href="#rdpack-03-11" class="anchor"></a>Rdpack 0.3-11<small> Unreleased </small>
 </h1>
 <ul>
 <li>
 <code><a href="../reference/reprompt.html">reprompt()</a></code> was not handling properly S4 replacement methods. Changed the parsing of the arguments to rectify this. Some other functions also needed correction to handle this.</li>
 </ul>
 </div>
-    <div id="rdpack-0-3-10" class="section level1">
+    <div id="rdpack-03-10" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-3-10" class="anchor"></a>Rdpack 0.3-10<small> 2012-11-03 </small>
+<a href="#rdpack-03-10" class="anchor"></a>Rdpack 0.3-10<small> 2012-11-03 </small>
 </h1>
 <ul>
 <li>
 <code>Depends</code> field in DESCRIPTION file updated to require R 2.15.0 or later. (because of a few uses of <code>paste0()</code> in recent code.)</li>
 </ul>
 </div>
-    <div id="rdpack-0-3-8-cran" class="section level1">
+    <div id="rdpack-03-8-cran" class="section level1">
 <h1 class="page-header">
-<a href="#rdpack-0-3-8-cran" class="anchor"></a>Rdpack 0.3-8 (CRAN)<small> 2012-10-25 </small>
+<a href="#rdpack-03-8-cran" class="anchor"></a>Rdpack 0.3-8 (CRAN)<small> 2012-10-25 </small>
 </h1>
 <ul>
 <li>first public version</li>
@@ -494,43 +507,45 @@ May be particularly helpful for devtools developers.</p></li>
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#rdpack-0-10-2">0.10-2</a></li>
-        <li><a href="#rdpack-0-10-1-cran">0.10-1</a></li>
-        <li><a href="#rdpack-0-10-0">0.10-0</a></li>
-        <li><a href="#rdpack-0-9-1">0.9-1</a></li>
-        <li><a href="#rdpack-0-9-0-cran">0.9-0</a></li>
-        <li><a href="#rdpack-0-8-4">0.8-4</a></li>
-        <li><a href="#rdpack-0-8-3">0.8-3</a></li>
-        <li><a href="#rdpack-0-8-2">0.8-2</a></li>
-        <li><a href="#rdpack-0-8-1">0.8-1</a></li>
-        <li><a href="#rdpack-0-8-0-cran">0.8-0</a></li>
-        <li><a href="#rdpack-0-7-1">0.7-1</a></li>
-        <li><a href="#rdpack-0-7-0-cran">0.7-0</a></li>
-        <li><a href="#rdpack-0-6-x">0.6</a></li>
-        <li><a href="#rdpack-0-5-7">0.5-7</a></li>
-        <li><a href="#rdpack-0-5-6">0.5-6</a></li>
-        <li><a href="#rdpack-0-5-5-cran">0.5-5</a></li>
-        <li><a href="#rdpack-0-5-4-9000">0.5-4.9000</a></li>
-        <li><a href="#rdpack-0-5-4">0.5-4</a></li>
-        <li><a href="#rdpack-0-5-3-cran">0.5-3</a></li>
-        <li><a href="#rdpack-0-5-2">0.5-2</a></li>
-        <li><a href="#rdpack-0-5-1-cran">0.5-1</a></li>
-        <li><a href="#rdpack-0-5-0">0.5-0</a></li>
-        <li><a href="#rdpack-0-4-23">0.4-23</a></li>
-        <li><a href="#rdpack-0-4-22-cran">0.4-22</a></li>
-        <li><a href="#rdpack-0-4-21-cran">0.4-21</a></li>
-        <li><a href="#rdpack-0-4-20-cran">0.4-20</a></li>
-        <li><a href="#rdpack-0-4-19">0.4-19</a></li>
-        <li><a href="#rdpack-0-4-18-cran">0.4-18</a></li>
-        <li><a href="#rdpack-0-4-17">0.4-17</a></li>
-        <li><a href="#rdpack-0-4-16">0.4-16</a></li>
-        <li><a href="#rdpack-0-4-8">0.4-8</a></li>
-        <li><a href="#rdpack-0-4-7">0.4-7</a></li>
-        <li><a href="#rdpack-0-4-5">0.4-5</a></li>
-        <li><a href="#rdpack-0-4-1">0.4-1</a></li>
-        <li><a href="#rdpack-0-3-11">0.3-11</a></li>
-        <li><a href="#rdpack-0-3-10">0.3-10</a></li>
-        <li><a href="#rdpack-0-3-8-cran">0.3-8</a></li>
+        <li><a href="#rdpack-010-4">0.10-4</a></li>
+        <li><a href="#rdpack-010-3">0.10-3</a></li>
+        <li><a href="#rdpack-010-2">0.10-2</a></li>
+        <li><a href="#rdpack-010-1-cran">0.10-1</a></li>
+        <li><a href="#rdpack-010-0">0.10-0</a></li>
+        <li><a href="#rdpack-09-1">0.9-1</a></li>
+        <li><a href="#rdpack-09-0-cran">0.9-0</a></li>
+        <li><a href="#rdpack-08-4">0.8-4</a></li>
+        <li><a href="#rdpack-08-3">0.8-3</a></li>
+        <li><a href="#rdpack-08-2">0.8-2</a></li>
+        <li><a href="#rdpack-08-1">0.8-1</a></li>
+        <li><a href="#rdpack-08-0-cran">0.8-0</a></li>
+        <li><a href="#rdpack-07-1">0.7-1</a></li>
+        <li><a href="#rdpack-07-0-cran">0.7-0</a></li>
+        <li><a href="#rdpack-06-x">0.6</a></li>
+        <li><a href="#rdpack-05-7">0.5-7</a></li>
+        <li><a href="#rdpack-05-6">0.5-6</a></li>
+        <li><a href="#rdpack-05-5-cran">0.5-5</a></li>
+        <li><a href="#rdpack-05-49000">0.5-4.9000</a></li>
+        <li><a href="#rdpack-05-4">0.5-4</a></li>
+        <li><a href="#rdpack-05-3-cran">0.5-3</a></li>
+        <li><a href="#rdpack-05-2">0.5-2</a></li>
+        <li><a href="#rdpack-05-1-cran">0.5-1</a></li>
+        <li><a href="#rdpack-05-0">0.5-0</a></li>
+        <li><a href="#rdpack-04-23">0.4-23</a></li>
+        <li><a href="#rdpack-04-22-cran">0.4-22</a></li>
+        <li><a href="#rdpack-04-21-cran">0.4-21</a></li>
+        <li><a href="#rdpack-04-20-cran">0.4-20</a></li>
+        <li><a href="#rdpack-04-19">0.4-19</a></li>
+        <li><a href="#rdpack-04-18-cran">0.4-18</a></li>
+        <li><a href="#rdpack-04-17">0.4-17</a></li>
+        <li><a href="#rdpack-04-16">0.4-16</a></li>
+        <li><a href="#rdpack-04-8">0.4-8</a></li>
+        <li><a href="#rdpack-04-7">0.4-7</a></li>
+        <li><a href="#rdpack-04-5">0.4-5</a></li>
+        <li><a href="#rdpack-04-1">0.4-1</a></li>
+        <li><a href="#rdpack-03-11">0.3-11</a></li>
+        <li><a href="#rdpack-03-10">0.3-10</a></li>
+        <li><a href="#rdpack-03-8-cran">0.3-8</a></li>
       </ul>
     </div>
   </div>

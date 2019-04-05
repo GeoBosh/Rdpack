@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rdpack</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.4</span>
       </span>
     </div>
 
@@ -235,7 +235,7 @@ rattr(x, y)</pre>
 <span class='co'>#   (reprompt() takes care of this too as it uses Rdo2Rdf for saving)</span>
 
 <span class='no'>fn</span> <span class='kw'>&lt;-</span> <span class='fu'>tempfile</span>(<span class='st'>"u1"</span>, <span class='kw'>fileext</span><span class='kw'>=</span><span class='st'>"Rd"</span>)
-<span class='fu'><a href='Rdo2Rdf.html'>Rdo2Rdf</a></span>(<span class='no'>u1</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>fn</span>)</div><div class='output co'>#&gt; 	The Rd content was written to file  C:\Users\mcbssgb2\AppData\Local\Temp\RtmpegpE73\u12ad472513e57Rd </div><div class='input'>
+<span class='fu'><a href='Rdo2Rdf.html'>Rdo2Rdf</a></span>(<span class='no'>u1</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>fn</span>)</div><div class='output co'>#&gt; 	The Rd content was written to file  C:\Users\mcbssgb2\AppData\Local\Temp\Rtmpm84Klu\u1430423894d2cRd </div><div class='input'>
 <span class='co'># the saved file contains escaped percents but they disappear in parsing:</span>
 <span class='fu'>file.show</span>(<span class='no'>fn</span>)
 <span class='fu'><a href='Rdo_show.html'>Rdo_show</a></span>(<span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/tools/topics/parse_Rd'>parse_Rd</a></span>(<span class='no'>fn</span>))
@@ -243,7 +243,7 @@ rattr(x, y)</pre>
 <span class='co'># if you think that sections should start on new lines,</span>
 <span class='co'># the following makes the file a little more human-friendly</span>
 <span class='co'>#   (by inserting new lines).</span></div><div class='input'><span class='no'>u2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>Rdpack</span><span class='kw ns'>:::</span><span class='fu'>.Rd_tidy</span>(<span class='no'>u1</span>)
-<span class='fu'><a href='Rdo2Rdf.html'>Rdo2Rdf</a></span>(<span class='no'>u2</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>fn</span>)</div><div class='output co'>#&gt; 	The Rd content was written to file  C:\Users\mcbssgb2\AppData\Local\Temp\RtmpegpE73\u12ad472513e57Rd </div><div class='input'><span class='fu'>file.show</span>(<span class='no'>fn</span>)
+<span class='fu'><a href='Rdo2Rdf.html'>Rdo2Rdf</a></span>(<span class='no'>u2</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>fn</span>)</div><div class='output co'>#&gt; 	The Rd content was written to file  C:\Users\mcbssgb2\AppData\Local\Temp\Rtmpm84Klu\u1430423894d2cRd </div><div class='input'><span class='fu'>file.show</span>(<span class='no'>fn</span>)
 
 <span class='fu'>unlink</span>(<span class='no'>fn</span>)</div></pre>
   </div>
