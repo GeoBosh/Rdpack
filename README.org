@@ -431,7 +431,7 @@ function and example key binding can be found at [[https://github.com/GeoBosh/ge
 
 * Inserting evaluated examples
 
-There is a macro that takes a chunk of R code, evaluates it, and includes both the code and
+=Rdpack= provides a macro that takes a chunk of R code, evaluates it, and includes both the code and
 the results in the rendered documentation. The layout is similar to that in the R console but
 the code is not prefixed with anything and the output is prefixed with comment symbols.
 For example,
@@ -472,7 +472,7 @@ using this feature is at [[https://github.com/GeoBosh/reprexes/tree/master/runEx
  
 [fn:runExamples] In versions of ~R~ before =3.6.0=  the macro ~\runExamples~ may cause
 ~R CMD check~ to give a warning warning about unknown ~\Sexpr~ section at top level.
-This warning is not issued at least since R-devel 2018-10-02 r75388.
+# This warning is not issued at least since R-devel 2018-10-02 r75388.
 
 
 * Inserting figures/graphs/plots

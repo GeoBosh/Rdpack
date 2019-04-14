@@ -1,4 +1,4 @@
-% Created 2018-11-08 Thu 21:27
+% Created 2019-04-14 Sun 12:05
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper,twoside,11pt,nojss,article]{jss}
 	       \usepackage[T1]{fontenc}
@@ -50,7 +50,7 @@ This vignette is part of package Rdpack, version~\Sexpr{pd$Version}.
 %\VignettePackage{Rdpack}
 
 \section{Setup}
-\label{sec:org8a976c1}
+\label{sec:org848e2e4}
 
 To prepare a package for importing BibTeX references it is necessary to tell the
 package management tools that package \pkg{Rdpack} and its Rd macros are
@@ -82,7 +82,7 @@ the bibtex references in it.
 
 
 \section{Inserting references in package documentation}
-\label{sec:org0f322ef}
+\label{sec:orge601e7c}
 
 Once the steps outlined in the previous section are done, references can be
 inserted in the documentation as \texttt{\textbackslash{}insertRef\{key\}\{package\}},
@@ -119,7 +119,7 @@ A roxygen2 documentation chunk might look like this:
 
 
 \section{Inserting citations}
-\label{sec:orgbef480a}
+\label{sec:orgb780a37}
 
 From version 0.7 of \pkg{Rdpack}, additional Rd macros are available for
 citations\footnote{They were introduced in the development version 0.6-1, but 0.7
@@ -128,7 +128,7 @@ using these, it will be prudent to require at least this version of Rdpack in
 the ``Imports:'' directive in file DESCRIPTION: \texttt{Rdpack (>= 0.7)}.
 
 \subsection{Macros for citations}
-\label{sec:org68aa0f1}
+\label{sec:orgbaabdbb}
 \label{sec:macros-citations}
 
 \texttt{\textbackslash{}insertCite\{key\}\{package\}} cites the key and records it for use by
@@ -198,7 +198,7 @@ produces:
 for the list of references assembled by \texttt{\textbackslash{}insertAllCited}.
 
 \subsection{Automatically generating lists of references}
-\label{sec:org55f5ab1}
+\label{sec:org5309182}
 
 The macro \texttt{\textbackslash{}insertAllCited\{\}} can be used to insert all references cited with
 \texttt{\textbackslash{}insertCite} or \texttt{\textbackslash{}insertNoCite}. A natural place to put this macro is the
@@ -215,12 +215,35 @@ The analogous documentation chunk in roxygen2 might look like this:
 \end{verbatim}
 
 
+\subsection{Changing the style of references}
+\label{sec:orgefd3695}
+
+Package \texttt{Rdpack} supports bibliography styles for lists of references\footnote{Support for styles is available since \texttt{Rdpack (>= 0.8)}.}.
+Currently the only alternative offered is to use long names (Georgi
+N. Boshnakov) in place of the default style (Boshnakov GN). More comprehensive
+alternatives can be included if needed or requested.
+
+To cause all lists of references produced by \texttt{\textbackslash{}insertAllCited} in a package to appear with
+full names, add \texttt{.onLoad()} function to your package. If you don't have \texttt{.onLoad()}, just
+copy the following definition: 
+<<>>=
+.onLoad <- function(lib, pkg){
+    Rdpack::Rdpack_bibstyles(package = pkg, authors = "LongNames")
+    invisible(NULL)
+}
+@ %def
+
+If you already have \texttt{.onLoad()}, add the line containing the
+\texttt{Rdpack::Rdpack\_bibstyles} call to it.
+
+After installling/reloading your package the lists of references should appear
+with long author names. "Rdpack" itself now uses this style.
 
 \section{Possible issues}
-\label{sec:org1f5915d}
+\label{sec:org4871d85}
 
 \subsection{Warning from 'R CMD build'}
-\label{sec:orga0d6c1e}
+\label{sec:org2375713}
 
 If 'R CMD build' or \texttt{devtools::build()} gives a warning along the lines of:
 \begin{verbatim}
@@ -231,7 +254,7 @@ then check the syntax in file DESCRIPTION --- the most common cause of this is m
 
 
 \subsection{Development using `devtools'}
-\label{sec:org805dd38}
+\label{sec:org657ff99}
 
 The described procedure works transparently in `roxygen2' chunks and with Hadley Wickham's
 `devtools'.  Packages are built and installed properly with the `devtools' commands and the
@@ -259,11 +282,11 @@ function \texttt{viewRd()}, discussed below, for viewing Rd files.
 
 
 \subsection{Latex markup in BibTeX entries}
-\label{sec:org9657862}
+\label{sec:org2606b37}
 
 In principle, BibTeX entries may contain arbitrary Latex markup, while the Rd format
 supports only a subset. As a consequence, some BibTeX entries may need some editing when
-included in REFERENCES.bib\footnote{Thanks to Michael Dewey for suggesting the discussion of this.\label{org6915713}}. Only do this for entries that do not render properly or
+included in REFERENCES.bib\footnote{Thanks to Michael Dewey for suggesting the discussion of this.\label{org0aff802}}. Only do this for entries that do not render properly or
 cause errors, since most of the time this should not be necessary. For encoding related
 issues of REFERENCES.bib see the dedicated subsection below.
 
@@ -279,7 +302,7 @@ Among other things, it contains some dummy references which illustrate the above
 
 
 \subsection{Encoding of file REFERENCES.bib}
-\label{sec:orga892569}
+\label{sec:orgb642964}
 
 If a package has a declared encoding (in file \texttt{DESCRIPTION}), \texttt{REFERENCES.bib} is read-in
 with that encoding\footnote{From \texttt{Rdpack (>=0.9-1)} The issue of not handling the encoding was raised by
@@ -311,7 +334,7 @@ Encoding: UTF-8
 Needless to say, make sure that there are really no characters from encodings like 'latin1'.
 
 \section{Viewing Rd files}
-\label{sec:org6dda210}
+\label{sec:org5f9a745}
 
 
 A function, \code{viewRd}, to view Rd files in the source directory of a package was
@@ -325,5 +348,5 @@ set argument \code{type} to \code{"html"}:
     Rdpack::viewRd("./man/filename.Rd", type = "html")
 \end{verbatim}
 
-Users of 'devtools' can use \code{viewRd()} in place of \code{help()} to view Rd sources\textsuperscript{\ref{org6915713}}.
+Users of 'devtools' can use \code{viewRd()} in place of \code{help()} to view Rd sources\textsuperscript{\ref{org0aff802}}.
 \end{document}

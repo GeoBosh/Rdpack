@@ -54,10 +54,8 @@ code and their results.
 The standard Rd macro ~\Sexpr~ caters for a number of possibilities to evaluate R code and
 insert the results and the code in the documentation. 
 The Rd macro ~\printExample~ provided by package
-="Rdpack"= builds on it to print a snippet of R code and the results of its evaluation, similarly to
-console output but the code is not prefixed and the results are prefixed with comment
-symbols.
-For example
+="Rdpack"= builds on it to print a snippet of R code and the results of its evaluation. 
+For example,
 #+BEGIN_EXAMPLE
     \printExample{2+2; a <- 2*3; a}
 #+END_EXAMPLE 
@@ -69,19 +67,31 @@ gives
     a
     ##: 6
 #+END_EXAMPLE
-The argument of ~\printExample~ must be on a single line with released versions of R[fn:1]. 
+Note that each command is printed on a separate line even though in this example the source code
+is on a single line, separated by semicolons[fn:1]. 
+Similarly to =knitr=, the results are prefixed with comment symbols but the code is not
+prefixed with anything.
 
-~\printExample~ is typically placed in section Details of an object's documentation.
+[fn:1] 
+The argument of ~\printExample~ needed to be on a single line with versions of R before
+=R-3.6.0=, since the lines after the first were silently ignored, with no errors and no
+warnings. This should not be a concern if your package requires ~R >= 3.6.0~ anyway or if you
+can live with somewhat inferior documentation in older versions or =R=.
 
-[fn:1] This limitation has been lifted in =R-devel= starting from June 2018 and in =R-3.6.0=.
-In earlier versions of =R= the lines after the first are ignored without warnings or
-errors. This should not be a big concern if you already require ~R >= 3.6.0~ or can live
-with somewhat inferior documentation in older versions or =R=.
+# The argument of ~\printExample~ must be on a single line with released versions of R. 
+# This limitation has been lifted in =R-devel= starting from June 2018 and in =R-3.6.0=.
+#
+# From NEWS in R 3.6.0: User macros in Rd files now accept empty and multi-line arguments
+
+* Section examples with results
 
 
-** Experimental feature 
+The macro ~\printExample~ can be used as many times as needed and is typically placed in
+section /Details/ of an object's documentation.
 
-The experimental macro ~\runExamples~ can be used as a replacement of section ~examples~.
+In contrast, the macro ~\runExamples~ can be used as a replacement of the whole ~\examples~
+section in the Rd file. The code and its results are printed just as by ~\printExample~.
+
 For example, if the following code is put at the top level in an Rd file (i.e. not in a
 section):
 #+BEGIN_EXAMPLE
@@ -102,13 +112,17 @@ there from the outset. In particular, the examples are run by the R's quality co
 and tangled along with examples in other documentation files[fn:2]. A small example package
 using this feature is at [[https://github.com/GeoBosh/reprexes/tree/master/runExamplesCheck][runExamplesCheck]].
  
-[fn:2] The macro ~\runExamples~ is fully working but is marked as experimental, since
-currently ~R CMD check~ gives a warning about unknown ~\Sexpr~ section at top level.
-(Amendment on 2018-10-11: R-devel does no longer give the warning at least since 2018-10-02
-r75388.) 
+[fn:2] In versions of R before 3.6.0, ~R CMD check~ used to give warnings about unknown
+~\Sexpr~ section at top level. See also the note about multiline argument for
+~\printExample~. 
+
+# (Amendment on 2018-10-11: R-devel does no longer give the warning at least since 2018-10-02
+# r75388.)
+# 
 # According to the specification of the Rd format (see [[https://developer.r-project.org/parseRd.pdf][Murdoch (2010), p. 4]] ~\Sexpr~'s at top
-# level are legal.  I need to check with the CRAN team or R devel if such expressions produced
-# by user macros are excluded on purpose.
+# level are legal.  I need to check with the CRAN team or R devel if such expressions
+# produced by user macros are excluded on purpose.
+
 
 * Creating and including graphs
 
@@ -120,17 +134,20 @@ For example,
 #+BEGIN_EXAMPLE
     \insertFig{cars.png}{mypackage}{x <- cars$speed; y <- cars$dist; plot(x,y)}
 #+END_EXAMPLE
-will evaluate the code, save the graph in file ~"man/figures/cars.png"~ subdirectory of
+will evaluate the code[fn:3], save the graph in file ~"man/figures/cars.png"~ subdirectory of
 package ~"mypackage"~, and include the figure using ~\figure~. 
 Subdirectory ~"figures"~ is created if it doesn't exist. 
 Currently the graphs are saved in ~"png"~ format only.
-The code should be on a single line for the reasons explained in the discussion of
-~\printExample~. 
+
 
 The sister macro ~\makeFig~ creates the graph in exactly the same way as ~\insertFig~ but
 does not insert it. This can be done with a separate ~\figure~ command. This can be used if
 additional options are desired for different output formats, see the description of ~\figure~ in
 "Writing R extensions". 
+
+[fn:3] See also the remark about using miltiline code in =\printExample=. For figures this is
+not a problem at all even in older versions of R, since all preparatory code can be put in a
+separate =\Sexpr=, and then =\insertFig= can be given only the final command producing the graph.
 
 ** A technical note
 
@@ -149,3 +166,8 @@ The net effect is that a package tarball always contains freshly generated up-to
 graphs. Developers who never generate the documentation by other means may not even have the
 directory ~man/figures~ in the source tree of their package (but it will be present in the
 package tarball).
+
+# To avoid splitting 'Affiliation' on two pages
+#+BEGIN_EXPORT latex
+\newpage
+#+END_EXPORT

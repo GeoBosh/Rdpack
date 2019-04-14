@@ -1,5 +1,17 @@
-# Rdpack 0.10-4
+# Rdpack 0.11-0 (CRAN)
 
+- Updated the vignette about `insertFig`, `printExample` and `\runExamples`, to 
+  reflect the lifting of some limitations of Rd processing vefore `R 3.6.0`. 
+  
+- Vignette /Inserting BibTeX references/ now includes a section on bibliography
+  styles. This section was previously only in README.
+  
+- The fix in Rdpack 0.10-3 (see below) for an issue introduced in R-devel in Oct
+  2018 will be made permanent, at least for now. This fix resolves also a
+  similar issue in package `pkgdown`, see the discussion at 
+  https://github.com/GeoBosh/Rdpack/issues/9 for details and further links.
+  
+  
 
 # Rdpack 0.10-3
 
