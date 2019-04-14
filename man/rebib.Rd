@@ -44,14 +44,15 @@ inspect_Rdbib(rdo, force = FALSE, \dots)
 
   The Bibtex key for each reference is put in a comment line in the
   references section, as in
-  \preformatted{\references{
-    \% bibentry: key1
+\preformatted{
+    \references{
+        \% bibentry: key1
 
-    \% bibentry: key2
+        \% bibentry: key2
 
-    ...
-  }
-  }
+        ...
+    }
+}
 
   At least one space after the colon, ':', is required, spaces before
   "bibentry:" are ignored.
@@ -78,8 +79,9 @@ inspect_Rdbib(rdo, force = FALSE, \dots)
 
   To include all references from the bib file, the following line can be
   used:
-  \preformatted{\% bibentry:all
-  }
+\preformatted{
+    \% bibentry:all
+}
   Notice that there is no space after the colon in this case.
   In this case a marker is put after the last reference and the whole
   thing is considered one block.  So, if the end marker is present and

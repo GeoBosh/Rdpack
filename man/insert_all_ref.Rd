@@ -8,8 +8,8 @@ insert_all_ref(refs, style = "")
 \arguments{
   \item{refs}{
     % TODO: is this description up-to-date? 
-    a matrix specifying key-package pairs of the references to insert,
-    see Details.
+    a matrix specifying key-package pairs of the references to insert.
+    Can also be a cached environment, see Details.
   }
   \item{style}{a bibstyle, see Details.}
 }
@@ -20,7 +20,7 @@ insert_all_ref(refs, style = "")
 
   Argument \code{refs} is a two-column character matrix.  The first
   column specifies bibtex keys.  To specify more than one key in a
-  single element, separate them by commas. The second row specifies the
+  single element, separate them by commas. The second column specifies the
   package in which to look for the keys.
 
   A key equal to "*" requests in keys in the corresponding package. 
@@ -28,7 +28,10 @@ insert_all_ref(refs, style = "")
   \code{insert_all_ref} drops duplicated keys, collects the references,
   and converts them to Rd textual representation for inclusion in Rd
   documentation files.
-  
+
+  \code{refs} can be a cached environment. This is for internal use and
+  not documented.
+
 }
 \value{
   for \code{insert_all_ref}, a character string containing a textual

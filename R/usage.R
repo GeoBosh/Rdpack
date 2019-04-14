@@ -316,9 +316,29 @@ get_usage <- function(object, name = NULL, force.function = FALSE, ...,
 
     # the comparison is symmetric but the interpretation assumes that ucur may be more recent.
 compare_usage1 <- function(urdo, ucur){   # urdo - usage from Rdo file/object;
-                                          # ucur -       generated from actual object
-    obj_removed <- is.null(ucur) || is.na(ucur)
-    obj_added   <- is.null(urdo) || is.na(urdo)
+                                        # ucur -       generated from actual object
+    ## 2019-04-14 in R-devel for R-3.7.0 this gives error.
+
+    ##    What is the intent in is.na(ucur) and is.na(urdo)? The documentation of
+    ##       compare_usage1() clearly shows that the intent is that of gbutils::isNA(). I
+    ##       can't find now what may set ucur or urdo to NA, probably initially I was setting
+    ##       NA, not NULL, and the check is.na() remained as a guard, which is not needed
+    ##       now.
+    ##
+    ##    For typical input here, is.na() gives something like:
+    ##
+    ##                --- value of length: 7 type: logical ---
+    ##            name  S3class    S4sig    infix       fu argnames defaults
+    ##           FALSE    FALSE    FALSE    FALSE    FALSE    FALSE    FALSE
+    ##
+    ##    TODO: check if it is necessary in the code below to be more defensive
+    ##          e.g. (urdo$S3class != "") is potentially troublesome.
+    ##
+    ## obj_removed <- is.null(ucur) || is.na(ucur)
+    ## obj_added   <- is.null(urdo) || is.na(urdo)
+
+    obj_removed <- is.null(ucur) || ( is.atomic(ucur) && length(ucur) == 1 && is.na(ucur) )
+    obj_added   <- is.null(urdo) || ( is.atomic(urdo) && length(urdo) == 1 && is.na(urdo) )
 
     if(!obj_added && !obj_removed  && urdo$S3class != ""){
         fn <- paste(urdo$name, ".", urdo$S3class, sep="")

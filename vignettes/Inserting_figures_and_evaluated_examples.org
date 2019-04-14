@@ -72,6 +72,11 @@ is on a single line, separated by semicolons[fn:1].
 Similarly to =knitr=, the results are prefixed with comment symbols but the code is not
 prefixed with anything.
 
+The help page of ~?Rdpack::promptUsage~ contains a number of examples created with
+~\printExample~. The corresponding Rd file can be obtained from the package tarball or from
+https://github.com/GeoBosh/Rdpack/blob/master/man/promptUsage.Rd. 
+
+
 [fn:1] 
 The argument of ~\printExample~ needed to be on a single line with versions of R before
 =R-3.6.0=, since the lines after the first were silently ignored, with no errors and no

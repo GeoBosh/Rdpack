@@ -53,7 +53,6 @@ pairlist2f_usage1(x, name, S3class = "", S4sig = "", infix = FALSE,
   generates a text suitable for inclusion in Rd documentation.
   \printExample{pairlist2f_usage1(formals(summary.lm), "summary", S3class = "lm")}
 
-
 }
 \value{
   For \code{parse_pairlist}, a list with the following components:

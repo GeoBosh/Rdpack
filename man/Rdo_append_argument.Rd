@@ -9,17 +9,13 @@
 \usage{
 Rdo_append_argument(rdo, argname, description = NA, indent = "  ", create = FALSE)
 }
-
-%- maybe also 'usage' for other objects documented here.
-
 \arguments{
-  \item{rdo}{an Rd object}
+  \item{rdo}{an Rd object.}
   \item{argname}{name of the argument, a character vector.}
   \item{description}{description of the argument, a character vector.}
   \item{indent}{a string, typically whitespace.}
   \item{create}{not used (todo: remove?)}
 }
-
 \details{
   Appends one or more items to the section describing arguments of
   functions in an Rd object. The section is created if not present.
@@ -32,23 +28,10 @@ Rdo_append_argument(rdo, argname, description = NA, indent = "  ", create = FALS
   be equal but if \code{description} is of length one, it is repeated to
   achieve this when needed.
 }
-
 \value{
   an Rd object
 }
-
-
-
 \author{Georgi N. Boshnakov}
-
-
-
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-
-
-
 \examples{
 # the following creates Rd object rdo
 dummyfun <- function(x) x

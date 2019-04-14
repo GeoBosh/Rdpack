@@ -43,7 +43,7 @@ Rdo2Rdf(rdo, deparse = FALSE, ex_restore = FALSE, file = NULL,
   work completely for me either).
 
   Arguments \code{ex_restore} and \code{rcode} were added on an ad-hoc
-  basis. \code{rcode} is more recent and causes the \code{Rdo2Rdf} to
+  basis. \code{rcode} is more recent and causes \code{Rdo2Rdf} to
   duplicate backslashes found in any element \code{Rd_tag}-ed with
   "RCODE". \code{ex_restore} does the same but only for the examples
   section. In effect, if \code{rcode} is TRUE, \code{ex_restore} is

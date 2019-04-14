@@ -12,22 +12,22 @@
   \Sexpr[stage=build]{pd$Description}
 }
 \details{
-   \tabular{ll}{
-   Package:  \tab \Sexpr[stage=build]{pd$Package}\cr
-   Type:     \tab \Sexpr[stage=build]{pd$Type}\cr
-   Version:  \tab \Sexpr[stage=build]{pd$Version} \cr
-   Date:     \tab \Sexpr[stage=build]{pd$Date}\cr
-   License:  \tab \Sexpr[stage=build]{pd$License}\cr
-   LazyLoad: \tab \Sexpr[stage=build]{pd$LazyLoad}\cr
-   Built:    \tab \Sexpr[stage=build]{pd$Built}\cr
-   }
-
+  \tabular{ll}{
+    Package:  \tab \Sexpr[stage=build]{pd$Package}\cr
+    Type:     \tab \Sexpr[stage=build]{pd$Type}\cr
+    Version:  \tab \Sexpr[stage=build]{pd$Version} \cr
+    Date:     \tab \Sexpr[stage=build]{pd$Date}\cr
+    License:  \tab \Sexpr[stage=build]{pd$License}\cr
+    LazyLoad: \tab \Sexpr[stage=build]{pd$LazyLoad}\cr
+    Built:    \tab \Sexpr[stage=build]{pd$Built}
+  }
+%
 % 2018-05-24 commenting out   
 %    Index:
 % 
 %   \Sexpr[stage=build,results=rd]{paste("\\\\preformatted{", paste(if(!is.null(lb$info[[2]])) lb$info[[2]] else "No entries",collapse="\\n"), "}", sep="")}
-
-
+%
+%
   Package \code{Rdpack} provides a number of functions for maintenance
   of documentation in \R packages.  Although base \R and
   package \code{methods} have functions for creation of skeleton
@@ -51,6 +51,7 @@
   The subsections below give additional details, see also the vignettes.
 
   \subsection{Creating and updating Rd files}{
+    
   The main function provided by this package is \code{\link{reprompt}}.
   There is also a function \code{\link{promptPackageSexpr}} for creating
   initial skeleton for overall package description such as this help
@@ -67,11 +68,11 @@
   automatically, leaving manual editing untouched.
 
   The typical use of \code{reprompt} is with one argument, as in
-  \preformatted{
+\preformatted{
     reprompt(infile = "./Rdpack/man/reprompt.Rd")
     reprompt(reprompt)
     reprompt("reprompt")
-  }
+}
   \code{reprompt} updates the documentation of all objects described in
   the Rd object or file, and writes the updated Rd file in the current
   working directory, see \code{\link{reprompt}} for details.
@@ -106,9 +107,9 @@
 
   For example, the source of this help page is file
   `Rdpack-package.Rd'. It was initially produced using
-  \preformatted{
+\preformatted{
     promptPackageSexpr("Rdpack")
-  }
+}
   The factual information at the beginning of this help topic (the index
   above, the version and other stuff that can be determined
   automatically) is kept automatically up to date.
@@ -122,8 +123,9 @@
   references and citations is based on Rd macros.
 
   The provided Rd macros are fully portable and, in particular, work in
-  Rd files and roxygen2 comments, see \code{\link{insertRef}} and the
-  vignette for details and examples.
+  Rd files and roxygen2 comments, see \code{\link{insertRef}} and
+  vignette \code{vignette("Inserting_bibtex_references", "Rdpack")}
+  for details and examples.
 
   The Bibtex source for the references and citations produced by the Rd
   macros is file "REFERENCES.bib", which should be located in the root
@@ -147,20 +149,20 @@
     }
 
     \item{
-      Add the following line to file `NAMESPACE' \cr
-    
-      \verb{importFrom(Rdpack,reprompt)}
-
+      Add the following line to file `NAMESPACE':
+\preformatted{  
+    importFrom(Rdpack,reprompt)
+}
       Alternatively, if \pkg{devtools} is managing your NAMESPACE file,
-      the equivalent \pkg{roxygen2} line is: \cr 
-      
-      \verb{#' @importFrom Rdpack reprompt} \cr
-      
-    }
+      the equivalent \pkg{roxygen2} line is:
+\preformatted{  
+    #' @importFrom Rdpack reprompt}
+}
+
     \item{
       Create file \code{"REFERENCES.bib"} in subdirectory
       \code{"inst/"} of the package and put the BibTeX references in
-      file
+      that file.
     }
   }
 
@@ -169,20 +171,35 @@
   the reference whose key is \code{key} from "REFERENCES.bib" of the
   specified package (almost always the one being documented).
 
-  With \pkg{Rdpack (>= 0.6-1)}, citations can be done with Rd
+  % With \pkg{Rdpack (>= 0.6-1)},
+  Citations can be done with Rd
   macro \code{\\insertCite}, which inserts citation(s) for one or more
   BibTeX keys and records the keys.  \code{\\insertCiteOnly} is similar
   to \code{\\insertCite} but does not record the
   keys. \code{\\insertNoCite} records the keys but does not produce
-  citations. \code{\\insertAllCited} creates a bibliography including
-  all references recorded by \code{\\insertAllCited} and
-  \code{\\insertNoCite}.
+  citations.
 
-  Bibliography styles for lists of references are supported from
-  \pkg{Rdpack (>= 0.8)}. Currently the only alternative offered is to
-  use long names (Georgi N. Boshnakov) in place of the default style
-  (Boshnakov GN). More comprehensive alternatives can be included if
-  needed or requested.
+  \code{\\insertAllCited} creates a bibliography including
+  all references recorded by \code{\\insertCite} and
+  \code{\\insertNoCite}. It is usually put in section
+  \dQuote{References}, something like:
+\preformatted{  
+    \references{
+        \insertAllCited{}
+    }
+}
+    in an Rd file.
+    The analogous documentation chunk in roxygen2 might look like this:
+\preformatted{  
+    #' @references
+    #'     \insertAllCited{}
+}  
+
+  Bibliography styles for lists of references are supported as
+  well. Currently the only alternative offered is to use long names
+  (Georgi N. Boshnakov) in place of the default style (Boshnakov
+  GN). More comprehensive alternatives can be included if needed or
+  requested.
 
   Convenience functions \code{\link{makeVignetteReference}} and
   \code{\link{vigbib}} generate Bibtex entries for vignettes.
@@ -212,14 +229,14 @@
   the bibliographic references in an Rd file. Rdpack uses a simple
   scheme for inclusion of bibliographic references. The key for each
   reference is in a TeX comment line, as in:
-  
-  \preformatted{\references{
-    ...
-    \% bibentry: key1
-    \% bibentry: key2
-    ...
-  }
-  }
+\preformatted{
+    \references{
+      ...
+      \% bibentry: key1
+      \% bibentry: key2
+      ...
+    }
+}
   \code{rebib} puts each reference after the line containing its
   key. It does nothing if the reference has been put by a previous call
   of \code{rebib}. If the Bibtex entry for some references changes, it
@@ -243,17 +260,21 @@ symbols.
 For example, \verb{\printExample{2+2; a <- 2*3; a}} produces the
 following in the rendered documentation:
 
-\printExample{2+2; a <- 2*3; a}  
+\printExample{2+2; a <- 2*3; a}
 
-The argument of \verb{\printExample} must be on a single line with released versions of R. 
-(This limitation has been lifted in R-devel starting from June 2018 but obviously this
-is currently of little help for production packages.)
+The help page of \code{\link{promptUsage}} contains a number of examples created with
+\code{\\printExample}. The corresponding Rd file can be obtained from the package tarball or from
+\url{https://github.com/GeoBosh/Rdpack/blob/master/man/promptUsage.Rd}.
+
+The argument of \verb{\printExample} must be on a single line with versions of R before
+R 3.6.0.
+
 
 \verb{\printExample} is typically placed in section Details of an
 object's documentation, see section Details of \code{\link{get_usage}}
 for anumber of examples produced mostly with \verb{\printExample}.
 
-The experimental macro \verb{\runExamples} can be used as a replacement
+The macro \verb{\runExamples} can be used as a replacement
 of section \verb{Examples}.
 For example, if the following code is put at the top level in an Rd file (i.e. not in a
 section):
@@ -273,15 +294,13 @@ then it will be evaluated and replaced by a normal section examples:
 This generated examples section is processed by the standard \R tools (almost) as if it was
 there from the outset. In particular, the examples are run by the R's quality control tools
 and tangled along with examples in other documentation files.
- 
-The macro \verb{\runExamples} is fully working but is marked as
-experimental, since currently \verb{R CMD check} gives a warning about
-unknown \verb{\Sexpr} section at top level.  According to the
-specification of the Rd format, \insertCite{@see @parseRd, p. 4;textual}{Rdpack}
-\verb{\Sexpr} at top level is legal but  I need to check with the CRAN
-team or R devel if such expressions produced by user macros are excluded
-on purpose.
 
+In \R versions before 3.6.0 \verb{R CMD check} used to give a warning about
+unknown \verb{\Sexpr} section at top level.
+
+% According to the specification of the Rd format, \insertCite{@see @parseRd,
+% p. 4;textual}{Rdpack} \verb{\Sexpr} at top level is legal but I need to check with the CRAN
+% team or R devel if such expressions produced by user macros are excluded on purpose.
 }
 
 \subsection{Creating and including graphs}{
@@ -299,8 +318,8 @@ will evaluate the code, save the graph in file \code{"man/figures/cars.png"} sub
 package \code{"mypackage"}, and include the figure using \verb{\figure}. 
 Subdirectory \code{"figures"} is created if it doesn't exist. 
 Currently the graphs are saved in \code{"png"} format only.
-The code should be on a single line for the reasons explained in the discussion of
-\verb{\printExample}. 
+In older versions of \R the code should be on a single line for the reasons explained in the
+discussion of \verb{\printExample}. 
 
 The sister macro \verb{\makeFig} creates the graph in exactly the same
 way as \verb{\insertFig} but does not insert it. This can be done with a

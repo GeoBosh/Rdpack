@@ -53,13 +53,13 @@ vigbib(package, verbose = TRUE, \dots, vig = NULL)
 
   \code{vignette("Inserting_bibtex_references", package = "Rdpack")}.
 
-   \code{makeVignetteReference()} makes a Bibtex entry for one
-   vignette. It looks for the available vignettes using
-%   \code{vignette(package=package)}. Argument \code{vig} can be a
-   character string identifying the vignette by the name that would be
-%   used in a call to \code{vignette()}. It can also be an integer,
-   identifying the vignette by the index (in the order in which the
-%  vignettes are returned by \code{vignette()}). By default the first
+  \code{makeVignetteReference()} makes a Bibtex entry for one
+  vignette. It looks for the available vignettes using
+  \code{vignette(package=package)}. Argument \code{vig} can be a
+  character string identifying the vignette by the name that would be
+  used in a call to \code{vignette()}. It can also be an integer,
+  identifying the vignette by the index (in the order in which the
+  vignettes are returned by \code{vignette()}). By default the first
   vignette is returned. If \code{vig} is not suitable, a suitable list
   of alternatives is printed.
 

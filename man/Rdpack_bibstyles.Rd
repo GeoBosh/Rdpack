@@ -23,30 +23,30 @@ Rdpack_bibstyles(package, authors)
 
   Package authors can request this feature by adding the following line
   to their \code{.onLoad} function (if their package has one):
-  \preformatted{
-      Rdpack::Rdpack_bibstyles(package = pkg, authors = "LongNames")
-  }
+\preformatted{
+    Rdpack::Rdpack_bibstyles(package = pkg, authors = "LongNames")
+}
   of just copy the following definition in a package that does not have
   \code{.onLoad}  : 
-  \preformatted{
+\preformatted{
     .onLoad <- function(lib, pkg){
         Rdpack::Rdpack_bibstyles(package = pkg, authors = "LongNames")
         invisible(NULL)
     }
-  }
+}
   After building and installing the package the references should be
   using long names. 
 }
 \value{
   in .onLoad(), the function is used purely to set up a bibstyle as
-  discussed in Details;
+  discussed in Details.
 
   Internally, \pkg{Rdpack} uses it to extract styles set up by packages: 
 
-  if called with argument \code{package} only, the style requested
-  by that package;
+  - if called with argument \code{package} only, the style requested
+    by that package;
 
-  if called with no arguments, a list of all styles.
+  - if called with no arguments, a list of all styles.
 }
 %\references{
 %}

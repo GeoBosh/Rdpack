@@ -41,7 +41,7 @@ rattr(x, y)
   \code{classes} and \code{how}.  See the documentation of
   \code{\link{rapply}} for details and the possible choices for
   \code{classes}, \code{how} or other arguments passed to it via
-  \code{\dots}.
+  \code{"\dots"}.
 
   \code{Rdtagapply} is a convenience variant of \code{Rdapply} for the
   common task of modifying or examining only elements with a given
@@ -60,8 +60,9 @@ rattr(x, y)
   corresponding attributes in the second.
 }
 \value{
-  For \code{Rdapply}, an Rd object with some of its leaves replaced as
-  specified above.
+  
+  For \code{Rdapply} and \code{Rdtagapply}, an Rd object with some of
+  its leaves replaced as specified above.
 
   For \code{rattr}, the object \code{x} with attributes of any list
   elements of it set to the corresponding attributes of \code{y}.

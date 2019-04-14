@@ -446,7 +446,11 @@ gives
     a
     ##: 6
 #+END_EXAMPLE
-See vignette [[https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf][=Inserting_figures_and_evaluated_examples=]] for more details.
+The help page of ~?Rdpack::promptUsage~ contains a number of examples created with
+~\printExample~. The corresponding Rd file can be obtained from the package tarball or from
+https://github.com/GeoBosh/Rdpack/blob/master/man/promptUsage.Rd. 
+
+Vignette [[https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf][=Inserting_figures_and_evaluated_examples=]] gives further details.
 
 ** Evaluating the examples in section Examples
 
