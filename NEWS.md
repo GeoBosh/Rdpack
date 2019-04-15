@@ -1,9 +1,15 @@
+# Rdpack 0.11-1
+
+- corrected some minor typo's in the documentation.
+
+
 # Rdpack 0.11-0 (CRAN)
 
 - Updated the vignette about `insertFig`, `printExample` and `\runExamples`, to 
-  reflect the lifting of some limitations of Rd processing vefore `R 3.6.0`. 
+  reflect the lifting in  `R 3.6.0` of some limitations of Rd processing in
+  previous R versions. 
   
-- Vignette /Inserting BibTeX references/ now includes a section on bibliography
+- Vignette 'Inserting BibTeX references' now includes a section on bibliography
   styles. This section was previously only in README.
   
 - The fix in Rdpack 0.10-3 (see below) for an issue introduced in R-devel in Oct
