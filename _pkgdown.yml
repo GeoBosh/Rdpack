@@ -1,0 +1,72 @@
+
+reference:
+  - title: "Rdpack overview"
+    desc: >
+      Rdpack overview
+    contents:
+      "Rdpack-package"
+  - title: "Updating and previewing Rd documentation files"
+    desc: >
+      Functions for ensuring that the Rd documentation of 
+      functions, methods, classes and other objects is consistent with their
+      definitions. 
+    contents: 
+      - matches("reprompt")
+      - viewRd
+      - promptPackageSexpr
+      - Rdo_show
+  - title: "Bibtex references and citations"
+    desc: >
+      Bibtex references and citations
+    contents:
+      - matches("bib")
+      - insert_all_ref
+      - insert_ref
+  - title: "Replacing parts of Rd objects"
+    desc: >
+      Functions to change Rd contents programmatically
+    contents:
+      - matches("apply")
+      - Rdreplace_section
+      - Rd_combo
+  - title: "Getting specific parts of Rd objects"
+    desc: >
+      Getting specific parts of Rd objects
+    contents:
+      - matches("get")
+      - Rdo_tags
+      - S4formals
+      - -get_bibentries      
+  - title: "Inspecting Rd objects"
+    desc: >
+      Functions for inspection of Rd objects
+    contents:
+      - matches("inspect")
+  - title: "Programming with Rd objects"
+    desc: >
+      Functions for use in programmatic manipulation of Rd objects
+    contents:
+      - matches("get")
+  - title: "Parsing Rd objects"
+    desc: >
+      Functions for parsing Rd objects
+    contents:
+      - matches("parse")
+  - title: "Composing Rd objects"
+    desc: "Functions to put together Rd objects"
+    contents:
+      - c_Rd
+      - list_Rd
+      - append_to_Rd_list
+      - char2Rdpiece
+  - title: "Other"
+    desc: "Other functions for manipulation of Rd objects"
+    contents:
+      - matches("^Rdo")
+      - -Rdo_show
+      
+      - compare_usage1
+      - format_funusage
+      - rdo_text_restore
+      - update_aliases_tmp      
+
