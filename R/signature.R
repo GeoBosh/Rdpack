@@ -178,8 +178,28 @@ get_sig_text <- function(rdo, package = NULL){           # finds the actual sign
 S4formals <- function(fun, ...){                                    # could be made S4 generic
     if(!is(fun, "MethodDefinition"))
         fun <- getMethod(fun, ...)
-                                                  # todo: check that this is ok
-    formals(body(fun@.Data)[[c(2,3)]])            #       if not, fall back to formals(m1)
+#browser()
+    ## 2019-04-21 was:
+    ##                                        # todo: check that this is ok
+    ##     formals(body(fun@.Data)[[c(2,3)]]) #     if not, fall back to formals(m1)
+    ##
+    ## This resolves a very old 'todo' (see the commented text above).
+    ## The hack above doesn't always work. Replace it it more enlightened approach.
+
+    fff <- fun@.Data
+
+    funbody <- body(fff)
+    if(length(funbody) == 3 && identical(funbody[[1]], as.name("{"))  &&
+       length(funbody[[2]]) == 3 &&
+       identical(funbody[[c(2,1)]], as.name("<-"))     &&
+       identical(funbody[[c(2,2)]], as.name(".local")) &&
+       is.function(funbody[[c(2,3)]]) ){
+        ## this is the old hack: formals(body(fun@.Data)[[c(2,3)]])
+        formals(funbody[[c(2,3)]])
+    }else{
+        formals(fff)
+    }
+
 }
 
 # showMethods("plot")

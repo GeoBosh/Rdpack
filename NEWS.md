@@ -1,6 +1,18 @@
 # Rdpack 0.11-1
 
+- in some cases `reprompt()` failed to process properly `\S4method` entries in
+  the Usage section of Rd files. Now fixed.
+  
+- `reprompt()` now handles `\S4method` statements for replacement methods.  As
+  for other functions and methods (S3 and S4), it is sufficient to put a
+  declaration with empty argument list in the Usage sectio and `reprompt()` will
+  insert the correct formal arguments for the method (they may be different from
+  those of the generic).
+
 - corrected some minor typo's in the documentation.
+
+- README and the documentation of `reprompt()` and `Rdpack-package` now give
+  more details on `reprompt()`ing replacement functions.
 
 
 # Rdpack 0.11-0 (CRAN)

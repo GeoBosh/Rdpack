@@ -126,6 +126,19 @@ parse_1usage_text <- function(text){
     }else if(grepl("^S4_usage",text)){
         name  <- gsub("[^(]*\\(([^,]*),.*", "\\1", text)   # same as for S3 name above
         S3class <- ""
+#browser()
+           # similar to S3 but there may be commas in the signature, so change accordingly
+        if(grepl("S4_usage\\(.*\\)[ ]* <-[ ]*value[ ]*$", text)){   # S4 assignment method
+            text <- gsub("(S4_usage\\()([^,]*)(.*)\\)[ ]* <-[ ]*value[ ]*$",
+                         "\\1`\\2<-`\\3,value)", text)
+
+            if(grepl("\\([ ]*,[ ]*value", text)) # patch for 0 arguments in the current signature
+               text <- sub("\\([ ]*,[ ]*value", "(dummyvar, value", text)
+            name <- paste0(name, "<-")
+        }# TODO: non-syntactic names?
+
+
+
         S4sig <- gsub("[^,]*,([^)]*)\\).*", "\\1", text)   # same as for S3class above
                                              # but S4 signatures may have more than 1 element,
                                              # make a character vector from the single string

@@ -75,7 +75,11 @@
 }
   \code{reprompt} updates the documentation of all objects described in
   the Rd object or file, and writes the updated Rd file in the current
-  working directory, see \code{\link{reprompt}} for details.
+  working directory, see \code{\link{reprompt}} for details. To describe
+  a new function in an existing Rd file, just add something like
+  \code{myfun()} and run reprompt to insert the correct signature,
+  alias, etc. This works also for replacement functions, see
+  \code{\link{reprompt}} for details.
 
   \code{\link{ereprompt}} updates the Rd documentation in a file,
   overwrites it and opens it in an editor. It calls \code{reprompt} to

@@ -59,7 +59,12 @@ reprompt(object, infile = NULL, Rdtext = NULL, final = TRUE,
 
   To document a function, say \code{myfun}, in an existing Rd file, just
   add \code{myfun()} to the usage section in the file and call
-  \code{reprompt()} on that file. 
+  \code{reprompt()} on that file. Put quotes around the function name if
+  it is non-syntactic.  For replacement functions (functions with names
+  ending in \code{<-}) \code{reprompt()} will insert the proper usage
+  statement. For example, if the signature of \code{xxx<-} is \code{(x,
+  ..., value)} then both, \code{"xxx<-"()} and \code{xxx() <- value}
+  will be replaced by \code{xxx(x, ...) <- value}.
   
   For S4 methods and classes the argument "package" is often needed to
   restrict the output to methods defined in the package of interest.
@@ -144,7 +149,12 @@ reprompt(object, infile = NULL, Rdtext = NULL, final = TRUE,
 
 
   If \code{filename} is a character string, it is used as is, so any
-  path should be included in the string.
+  path should be included in the string.  Argument \code{filename}
+  usuallly is omitted since the automatically generated file name is
+  suitable in most cases. Exceptions are functions with non-standard
+  names (such as replacement functions whose names end in \code{"<-"})
+  for which the generated file names may not be acceptable on some
+  operating systems.
   
   If \code{filename} is missing or \code{NULL}, a suitable name is
   generated as follows. If \code{infile} is supplied, \code{filename} is
@@ -155,8 +165,8 @@ reprompt(object, infile = NULL, Rdtext = NULL, final = TRUE,
 
   If \code{filename} is \code{TRUE}, it is set to \code{infile} or, if
   \code{infile} is missing or \code{NULL}, a suitable name is generated
-  as above. This can be used to change \code{infile} in place. 
-  
+  as above. This can be used to change \code{infile} in place.
+
   If \code{filename} is \code{FALSE}, the Rd text is returned as a
   character vector and not written to a file. 
 
