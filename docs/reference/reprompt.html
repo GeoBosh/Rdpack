@@ -206,7 +206,12 @@
   <code><a href='https://www.rdocumentation.org/packages/utils/topics/prompt'>prompt()</a></code>, so that the package can be built).</p>
 <p>To document a function, say <code>myfun</code>, in an existing Rd file, just
   add <code>myfun()</code> to the usage section in the file and call
-  <code>reprompt()</code> on that file.</p>  
+  <code>reprompt()</code> on that file. Put quotes around the function name if
+  it is non-syntactic.  For replacement functions (functions with names
+  ending in <code>&lt;-</code>) <code>reprompt()</code> will insert the proper usage
+  statement. For example, if the signature of <code>xxx&lt;-</code> is <code>(x,
+  ..., value)</code> then both, <code>"xxx&lt;-"()</code> and <code>xxx() &lt;- value</code>
+  will be replaced by <code>xxx(x, ...) &lt;- value</code>.</p>  
 <p>For S4 methods and classes the argument "package" is often needed to
   restrict the output to methods defined in the package of interest.</p><pre>
     reprompt("myfun-methods")
@@ -270,7 +275,12 @@
   but a message is issued to alert the user. Alias sections are inserted
   for any functions with "usage" but without "alias" section.</p>
     <p>If <code>filename</code> is a character string, it is used as is, so any
-  path should be included in the string.</p>  
+  path should be included in the string.  Argument <code>filename</code>
+  usuallly is omitted since the automatically generated file name is
+  suitable in most cases. Exceptions are functions with non-standard
+  names (such as replacement functions whose names end in <code>"&lt;-"</code>)
+  for which the generated file names may not be acceptable on some
+  operating systems.</p>  
 <p>If <code>filename</code> is missing or <code>NULL</code>, a suitable name is
   generated as follows. If <code>infile</code> is supplied, <code>filename</code> is
   set to a file with the same name in the current working directory
@@ -279,7 +289,7 @@
   with <code>".Rd"</code>.</p>
 <p>If <code>filename</code> is <code>TRUE</code>, it is set to <code>infile</code> or, if
   <code>infile</code> is missing or <code>NULL</code>, a suitable name is generated
-  as above. This can be used to change <code>infile</code> in place.</p>  
+  as above. This can be used to change <code>infile</code> in place.</p>
 <p>If <code>filename</code> is <code>FALSE</code>, the Rd text is returned as a
   character vector and not written to a file.</p>
 <p>If <code>edit</code> is <code>TRUE</code>, the reprompted file is opened in an

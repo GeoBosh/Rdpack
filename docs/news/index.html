@@ -109,7 +109,10 @@
 <a href="#rdpack-0-11-1" class="anchor"></a>Rdpack 0.11-1<small> Unreleased </small>
 </h1>
 <ul>
-<li>corrected some minor typo’s in the documentation.</li>
+<li><p>in some cases <code><a href="../reference/reprompt.html">reprompt()</a></code> failed to process properly <code>\S4method</code> entries in the Usage section of Rd files. Now fixed.</p></li>
+<li><p><code><a href="../reference/reprompt.html">reprompt()</a></code> now handles <code>\S4method</code> statements for replacement methods. As for other functions and methods (S3 and S4), it is sufficient to put a declaration with empty argument list in the Usage sectio and <code><a href="../reference/reprompt.html">reprompt()</a></code> will insert the correct formal arguments for the method (they may be different from those of the generic).</p></li>
+<li><p>corrected some minor typo’s in the documentation.</p></li>
+<li><p>README and the documentation of <code><a href="../reference/reprompt.html">reprompt()</a></code> and <code>Rdpack-package</code> now give more details on <code><a href="../reference/reprompt.html">reprompt()</a></code>ing replacement functions.</p></li>
 </ul>
 </div>
     <div id="rdpack-0-11-0-cran" class="section level1">

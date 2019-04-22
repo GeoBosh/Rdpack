@@ -135,7 +135,7 @@ references and Rd files.</p>
 <tr><td>Package:</td><td>Rdpack</td></tr>
 <tr><td>Type:</td><td>Package</td></tr>
 <tr><td>Version:</td><td>0.11-1</td></tr>
-<tr><td>Date:</td><td>2019-04-15</td></tr>
+<tr><td>Date:</td><td>2019-04-22</td></tr>
 <tr><td>License:</td><td>GPL (&gt;= 2)</td></tr>
 <tr><td>LazyLoad:</td><td>yes</td></tr>
 <tr><td>Built:</td><td></td></tr>
@@ -188,7 +188,11 @@ references and Rd files.</p>
 </pre>
   <code>reprompt</code> updates the documentation of all objects described in
   the Rd object or file, and writes the updated Rd file in the current
-  working directory, see <code><a href='reprompt.html'>reprompt</a></code> for details.
+  working directory, see <code><a href='reprompt.html'>reprompt</a></code> for details. To describe
+  a new function in an existing Rd file, just add something like
+  <code>myfun()</code> and run reprompt to insert the correct signature,
+  alias, etc. This works also for replacement functions, see
+  <code><a href='reprompt.html'>reprompt</a></code> for details.
     <code><a href='ereprompt.html'>ereprompt</a></code> updates the Rd documentation in a file,
   overwrites it and opens it in an editor. It calls <code>reprompt</code> to
   do the actual job but has different defaults. Which editor is opened,
