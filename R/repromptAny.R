@@ -146,6 +146,11 @@ reprompt <- function(object, infile = NULL, Rdtext = NULL, final = TRUE,
         cat("\tUsing argument 'type'.\n")
     }# else 'type'  has the value needed.
 
+    ## 2019-04-26 print a message since otherwise the error is not clear,
+    ##        e.g. if the call has 'type = class' (note: no quotes around class)
+    if(!is.character(type) || length(type) != 1L)
+        print("!!! if not missing, 'type' must be a character string")
+
     wrk <- try(switch(type,
                       methods = {
                           if(is.null(methods) && !is.null(package))

@@ -22,7 +22,8 @@ inspect_slots <- function(rdo, final=TRUE){
         ##            see also inspect_clmethods - there is a lot of common ground.
         ##            todo: consolidate?
 
-        newnames <- names(icmp$i_new)  # 2014-06-21 new
+        ## 2019-05-12 was: newnames <- names(icmp$i_new)  # 2014-06-21 new
+        newnames <- curnames[icmp$i_new]
 
         cat("Undocumented slots:", newnames  # 2014-06-21 was: names(icmp$i_new)
                                              # 2014-06-18 was: icmp$i_new
@@ -42,7 +43,8 @@ inspect_slots <- function(rdo, final=TRUE){
     }
 
     if(length(icmp$i_removed)>0){             # todo: maybe put this note in a section in rdo?
-        cat("Slots:", icmp$i_removed, "\n")
+        ## 2019-05-12 was: cat("Slots:", icmp$i_removed, "\n")
+        cat("Slots:", rdonames[icmp$i_removed], "\n")
         cat("are no longer present. Please remove their descriptions manually.\n")
     }
     rdo

@@ -1,5 +1,10 @@
 # Rdpack 0.11-1
 
+- in documentation of S4 classes, such as `"classname-class.Rd"`, `reprompt()`
+  was sometimes inserting entries for slots already listed in the Slots
+  section. The same bug was causing the new slots not to be reported properly to
+  the user.
+
 - in some cases `reprompt()` failed to process properly `\S4method` entries in
   the Usage section of Rd files. Now fixed.
   
@@ -8,6 +13,8 @@
   declaration with empty argument list in the Usage sectio and `reprompt()` will
   insert the correct formal arguments for the method (they may be different from
   those of the generic).
+  
+- `reprompt()`  now gives a more helpful error message when `type` is invalid.
 
 - corrected some minor typo's in the documentation.
 
