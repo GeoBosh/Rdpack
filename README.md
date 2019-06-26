@@ -1,4 +1,5 @@
 [![CRANStatusBadge](http://www.r-pkg.org/badges/version/Rdpack)](https://cran.r-project.org/package=Rdpack)
+[![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/Rdpack)](https://www.r-pkg.org/pkg/Rdpack)
 
 Rdpack provides functions for manipulation of R documentation objects, including functions
 `reprompt()` and `ereprompt()` for updating existing Rd documentation for functions, methods
@@ -11,28 +12,28 @@ manipulation of references and Rd files.
 
 # Table of Contents
 
-1.  [Installing Rdpack](#org97c2d47)
-2.  [Inserting Bibtex references and citations](#org8f877e2)
-    1.  [Preparation](#org388475f)
-    2.  [Inserting references](#orgb65229b)
-    3.  [Inserting citations](#orgf4caa6e)
-    4.  [Changing the style of references](#org286c8c5)
-    5.  [Troubleshooting](#orgc957748)
-        1.  [A puzzling message in devtools development mode](#org53d5c5d)
-        2.  [Typical errors](#org72c431a)
-    6.  [Latex markup in BibTeX entries](#orgfde9165)
-    7.  [Encoding of file REFERENCES.bib](#org2ca15fc)
-3.  [Viewing Rd files](#orgf435657)
-4.  [Using Rdpack::reprompt()](#orge19147c)
-    1.  [What it does](#orgc4f4d3a)
-    2.  [Reprompt and open in an editor](#orgf5c44bb)
-5.  [Inserting evaluated examples](#orgc2197c4)
-    1.  [Evaluating the examples in section Examples](#orgb26cce0)
-6.  [Inserting figures/graphs/plots](#org15ef26a)
-7.  [Versions of Rdpack](#org1d018b8)
+1.  [Installing Rdpack](#org72231b7)
+2.  [Inserting Bibtex references and citations](#org2f46fa3)
+    1.  [Preparation](#org90969ce)
+    2.  [Inserting references](#orgcd52e01)
+    3.  [Inserting citations](#org61f6af2)
+    4.  [Changing the style of references](#orgec97bb8)
+    5.  [Troubleshooting](#org509e868)
+        1.  [A puzzling message in devtools development mode](#orga85843f)
+        2.  [Typical errors](#org72d25a0)
+    6.  [Latex markup in BibTeX entries](#org9113c8b)
+    7.  [Encoding of file REFERENCES.bib](#org8a4fbe1)
+3.  [Viewing Rd files](#org44a5291)
+4.  [Using Rdpack::reprompt()](#org53a201e)
+    1.  [What it does](#orgdc92cb0)
+    2.  [Reprompt and open in an editor](#org8a77552)
+5.  [Inserting evaluated examples](#orgdd8791f)
+    1.  [Evaluating the examples in section Examples](#orge939faa)
+6.  [Inserting figures/graphs/plots](#org6f3fd95)
+7.  [Versions of Rdpack](#org649c176)
 
 
-<a id="org97c2d47"></a>
+<a id="org72231b7"></a>
 
 # Installing Rdpack
 
@@ -46,7 +47,7 @@ You can also install the [development version](https://github.com/GeoBosh/Rdpack
     install_github("GeoBosh/Rdpack")
 
 
-<a id="org8f877e2"></a>
+<a id="org2f46fa3"></a>
 
 # Inserting Bibtex references and citations
 
@@ -60,7 +61,7 @@ the `DESCRIPTION` file of the package needs to be amended, see below the full
 details. 
 
 
-<a id="org388475f"></a>
+<a id="org90969ce"></a>
 
 ## Preparation
 
@@ -91,7 +92,7 @@ enumerated below in somewhat more detail, see also the vignette
     put the BibTeX references in it.
 
 
-<a id="orgb65229b"></a>
+<a id="orgcd52e01"></a>
 
 ## Inserting references
 
@@ -139,7 +140,7 @@ or open it from `R`:
 [`Inserting_bibtex_references (development version on github)`](https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_bibtex_references.pdf).)
 
 
-<a id="orgf4caa6e"></a>
+<a id="org61f6af2"></a>
 
 ## Inserting citations
 
@@ -209,7 +210,7 @@ see also Murdoch (2010) and Francois (2014)
 in the list of references for `\insertAllCited`.
 
 
-<a id="org286c8c5"></a>
+<a id="orgec97bb8"></a>
 
 ## Changing the style of references
 
@@ -234,12 +235,12 @@ After installling/reloading your package the lists of references should appear
 with long author names. "Rdpack" itself now uses this style.
 
 
-<a id="orgc957748"></a>
+<a id="org509e868"></a>
 
 ## Troubleshooting
 
 
-<a id="org53d5c5d"></a>
+<a id="orga85843f"></a>
 
 ### A puzzling message in devtools development mode
 
@@ -260,7 +261,7 @@ session<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. Even better,
 below to view the required help file.
 
 
-<a id="org72c431a"></a>
+<a id="org72d25a0"></a>
 
 ### Typical errors
 
@@ -286,7 +287,7 @@ These errors occur during parsing of the Rd files, before the control is passed
 to the `Rdpack`'s macros. 
 
 
-<a id="orgfde9165"></a>
+<a id="org9113c8b"></a>
 
 ## Latex markup in BibTeX entries
 
@@ -306,7 +307,7 @@ See also the overview help page, `help("Rdpack-package")`, of package `"Rdpack"`
 Among other things, it contains some dummy references which illustrate the above.
 
 
-<a id="org2ca15fc"></a>
+<a id="org8a4fbe1"></a>
 
 ## Encoding of file REFERENCES.bib
 
@@ -338,7 +339,7 @@ add the encoding declaration to file DESCRIPTION<sup><a id="fnr.4" class="footre
 Needless to say, make sure that there are really no characters from encodings like 'latin1'.
 
 
-<a id="orgf435657"></a>
+<a id="org44a5291"></a>
 
 # Viewing Rd files
 
@@ -360,12 +361,12 @@ sources in development mode. This should work also in development mode on any
 platform (e.g. RStudio, Emacs/ESS, Rgui).
 
 
-<a id="orge19147c"></a>
+<a id="org53a201e"></a>
 
 # Using Rdpack::reprompt()
 
 
-<a id="orgc4f4d3a"></a>
+<a id="orgdc92cb0"></a>
 
 ## What it does
 
@@ -395,7 +396,7 @@ but it alerts the user to remove aliases, methods, and descriptions of arguments
 that have been removed. 
 
 
-<a id="orgf5c44bb"></a>
+<a id="org8a77552"></a>
 
 ## Reprompt and open in an editor
 
@@ -418,7 +419,7 @@ Elisp code), for example to be invoked on the currently edited file. Such a
 function and example key binding can be found at [georgisemacs](https://github.com/GeoBosh/georgisemacs).
 
 
-<a id="orgc2197c4"></a>
+<a id="orgdd8791f"></a>
 
 # Inserting evaluated examples
 
@@ -444,7 +445,7 @@ The help page of `?Rdpack::promptUsage` contains a number of examples created wi
 Vignette [`Inserting_figures_and_evaluated_examples`](https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf) gives further details.
 
 
-<a id="orgb26cce0"></a>
+<a id="orge939faa"></a>
 
 ## Evaluating the examples in section Examples
 
@@ -469,7 +470,7 @@ and tangled along with examples in other documentation files<sup><a id="fnr.5" c
 using this feature is at [runExamplesCheck](https://github.com/GeoBosh/reprexes/tree/master/runExamplesCheck).
 
 
-<a id="org15ef26a"></a>
+<a id="org6f3fd95"></a>
 
 # Inserting figures/graphs/plots
 
@@ -487,7 +488,7 @@ package `"mypackage"`, and include the figure using `\figure`.
 See vignette [`Inserting_figures_and_evaluated_examples`](https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf) for more details.
 
 
-<a id="org1d018b8"></a>
+<a id="org649c176"></a>
 
 # Versions of Rdpack
 

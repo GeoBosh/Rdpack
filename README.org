@@ -4,6 +4,7 @@
 
 #+BEGIN_EXPORT html
 [![CRANStatusBadge](http://www.r-pkg.org/badges/version/Rdpack)](https://cran.r-project.org/package=Rdpack)
+[![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/Rdpack)](https://www.r-pkg.org/pkg/Rdpack)
 #+END_EXPORT
 # Removing this, since doesn't seem to be updated anymore:
 # [![rpackages.io rank](http://www.rpackages.io/badge/Rdpack.svg)](http://www.rpackages.io/package/Rdpack)
