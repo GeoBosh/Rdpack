@@ -16,8 +16,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -69,7 +68,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -84,7 +83,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/GeoBosh/Rdpack">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -109,8 +108,10 @@
 <a href="#rdpack-0-11-1" class="anchor"></a>Rdpack 0.11-1<small> Unreleased </small>
 </h1>
 <ul>
+<li><p>in documentation of S4 classes, such as <code>"classname-class.Rd"</code>, <code><a href="../reference/reprompt.html">reprompt()</a></code> was sometimes inserting entries for slots already listed in the Slots section. The same bug was causing the new slots not to be reported properly to the user.</p></li>
 <li><p>in some cases <code><a href="../reference/reprompt.html">reprompt()</a></code> failed to process properly <code>\S4method</code> entries in the Usage section of Rd files. Now fixed.</p></li>
 <li><p><code><a href="../reference/reprompt.html">reprompt()</a></code> now handles <code>\S4method</code> statements for replacement methods. As for other functions and methods (S3 and S4), it is sufficient to put a declaration with empty argument list in the Usage sectio and <code><a href="../reference/reprompt.html">reprompt()</a></code> will insert the correct formal arguments for the method (they may be different from those of the generic).</p></li>
+<li><p><code><a href="../reference/reprompt.html">reprompt()</a></code> now gives a more helpful error message when <code>type</code> is invalid.</p></li>
 <li><p>corrected some minor typo’s in the documentation.</p></li>
 <li><p>README and the documentation of <code><a href="../reference/reprompt.html">reprompt()</a></code> and <code>Rdpack-package</code> now give more details on <code><a href="../reference/reprompt.html">reprompt()</a></code>ing replacement functions.</p></li>
 </ul>
@@ -201,8 +202,19 @@
 <a href="#rdpack-0-8-3" class="anchor"></a>Rdpack 0.8-3<small> Unreleased </small>
 </h1>
 <ul>
-<li><p>new macro <code>\printExample</code> for inclusion of example computations in narrative sections, such as <code>Details</code>. The code is evaluated and printed similarly to <code>R</code> sessions but the code is not prefixed and the output is prefixed with comment symbols, eg. <code>2+2   ##: 4</code></p></li>
-<li><p>new experimental macro <code>\runExamples</code> for use as top level section in an Rd file as a replacement of section <code>\examples</code>. <code>\runExamples{code}</code> evaluates the code and creates section <code>\examples</code> containing the code and the results (similarly to <code>\printExample</code>). So, <code>\runExamples{2 + 2}</code> produces <code>\examples{   2 + 2   ##: 4   }</code> The generated section <code>examples</code> is processed by R’s documentation tools (almost) as if it was there from the outset.</p></li>
+<li>
+<p>new macro <code>\printExample</code> for inclusion of example computations in narrative sections, such as <code>Details</code>. The code is evaluated and printed similarly to <code>R</code> sessions but the code is not prefixed and the output is prefixed with comment symbols, eg.</p>
+<pre><code>2+2
+##: 4</code></pre>
+</li>
+<li>
+<p>new experimental macro <code>\runExamples</code> for use as top level section in an Rd file as a replacement of section <code>\examples</code>. <code>\runExamples{code}</code> evaluates the code and creates section <code>\examples</code> containing the code and the results (similarly to <code>\printExample</code>). So, <code>\runExamples{2 + 2}</code> produces</p>
+<pre><code>\examples{
+2 + 2
+##: 4
+}</code></pre>
+<p>The generated section <code>examples</code> is processed by R’s documentation tools (almost) as if it was there from the outset.</p>
+</li>
 <li><p>new experimental macro <code>\insertFig</code> to create a figure with <code>R</code> code and include it in the documentation. The related macro <code>\makeFig</code> just creates a graphics file, which can be included with the standard Rd command <code>\figure</code>.</p></li>
 <li><p>new vignette gives a brief description of the new macros.</p></li>
 </ul>
@@ -296,7 +308,7 @@
 <ul>
 <li><p>Streamlined the help page of <code><a href="../reference/reprompt.html">reprompt()</a></code> and <code>Rdpack-package</code>.</p></li>
 <li><p>new argument, <code>edit', in</code>reprompt()` opens the Rd file after updating it.</p></li>
-<li><p>new function <code><a href="../reference/ereprompt.html">ereprompt()</a></code> (<code>e' for _edit_)* opens</code>reprompt()<code>with suitable   defaults to replace the original Rd file and open it in an editor, otherwise   equivalent to</code>reprompt()`.</p></li>
+<li><p>new function <code><a href="../reference/ereprompt.html">ereprompt()</a></code> (<code>e' for _edit_)* opens</code>reprompt()<code>with suitable defaults to replace the original Rd file and open it in an editor, otherwise equivalent to</code>reprompt()`.</p></li>
 <li><p>now if <code>infile</code> does not exist, <code><a href="../reference/reprompt.html">reprompt()</a></code>, and hence <code><a href="../reference/ereprompt.html">ereprompt()</a></code>, strips the directory part, finds the root of the package directory, and looks for the file under <code>man/</code> (this uses package <code>rprojroot</code>’). In particular, if the working directory is anywhere under the package root, <code>infile</code> can be simply the name of the Rd file, without path.</p></li>
 <li><p>now README.md is generated from README.org. I changed the layout and amended the information in it.</p></li>
 <li><p>README.* now get links to <a href="https://github.com/GeoBosh/georgisemacs">georgisemacs</a> for an emacs function to <code><a href="../reference/reprompt.html">reprompt()</a></code> the Rd file at point.</p></li>
@@ -308,9 +320,11 @@
 <a href="#rdpack-0-5-4-9000" class="anchor"></a>Rdpack 0.5-4.9000<small> Unreleased </small>
 </h1>
 <ul>
-<li>new RStudio add-in ’Reprompt`, contributed by Duncan Murdoch.</li>
-</ul>
+<li>
+<p>new RStudio add-in ’Reprompt`, contributed by Duncan Murdoch.</p>
 <p>If the file being edited in the code editor is an Rd file it calls <code><a href="../reference/reprompt.html">reprompt()</a></code>. If the file is as R source file, it looks for the help page of a selected object name and works on it if found, otherwise creates one.</p>
+</li>
+</ul>
 </div>
     <div id="rdpack-0-5-4" class="section level1">
 <h1 class="page-header">
@@ -403,10 +417,10 @@ May be particularly helpful for devtools developers.</p></li>
 <ul>
 <li>
 <p>new facility for inserting references from BibTeX files - just put the line:</p>
-<div class="sourceCode"><pre class="sourceCode R"><code class="sourceCode r">RdMacros<span class="op">:</span><span class="st"> </span>Rdpack</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">  RdMacros<span class="op">:</span><span class="st"> </span>Rdpack</a></code></pre></div>
+<p>in the <code>DESCRIPTION</code> file of your package and the references in <code>inst/REFERENCES.bib</code>. Then put <code>\inserRef{key}{yourpackage}</code> in documentation chunks to insert item <code>key</code> from the bib file. This works with both manually created Rd files and roxygen comments, see the documentation for details.</p>
 </li>
 </ul>
-<p>in the <code>DESCRIPTION</code> file of your package and the references in <code>inst/REFERENCES.bib</code>. Then put <code>\inserRef{key}{yourpackage}</code> in documentation chunks to insert item <code>key</code> from the bib file. This works with both manually created Rd files and roxygen comments, see the documentation for details.</p>
 </div>
     <div id="rdpack-0-4-18-cran" class="section level1">
 <h1 class="page-header">
@@ -562,7 +576,7 @@ May be particularly helpful for devtools developers.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
       </footer>
    </div>

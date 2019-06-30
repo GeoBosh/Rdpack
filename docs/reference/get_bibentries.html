@@ -16,8 +16,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -72,7 +71,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -87,7 +86,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/GeoBosh/Rdpack">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -200,40 +199,40 @@ R package version 0.4.0, <a href='https://CRAN.R-project.org/package=bibtex'>htt
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='fu'>get_bibentries</span>(<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"Rdpack"</span>)
-<span class='no'>r</span></div><div class='output co'>#&gt; Romain Francois (2014). _bibtex: bibtex parser_. R package version
-#&gt; 0.4.0, &lt;URL: https://CRAN.R-project.org/package=bibtex&gt;.
+<span class='no'>r</span></div><div class='output co'>#&gt; Francois R (2014). _bibtex: bibtex parser_. R package version 0.4.0,
+#&gt; &lt;URL: https://CRAN.R-project.org/package=bibtex&gt;.
 #&gt; 
-#&gt; Duncan Murdoch (2010). "Parsing Rd files." &lt;URL:
+#&gt; Murdoch D (2010). “Parsing Rd files.” &lt;URL:
 #&gt; https://developer.r-project.org/parseRd.pdf&gt;.
 #&gt; 
-#&gt; Hadley Wickham, Jim Hester, Winston Chang (2018). _devtools: Tools to
-#&gt; Make Developing R Packages Easier_. R package version 1.13.5, &lt;URL:
+#&gt; Wickham H, Hester J, Chang W (2018). _devtools: Tools to Make
+#&gt; Developing R Packages Easier_. R package version 1.13.5, &lt;URL:
 #&gt; https://CRAN.R-project.org/package=devtools&gt;.
 #&gt; 
-#&gt; A. ZZZ (2018). "A relation between several fundamental constants:
-#&gt; e^{ipi}=-1." _A non-existent journal with the formula L_2 in its
+#&gt; ZZZ A (2018). “A relation between several fundamental constants:
+#&gt; $e^i\pi=-1$.” _A non-existent journal with the formula $L_2$ in its
 #&gt; name._. This reference does not exist. It is a test/demo that simple
-#&gt; formulas in BibTeX files are OK. A formula in field 'note': c^2 = a^2 +
-#&gt; b^2.</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>r</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"html"</span>)</div><div class='output co'>#&gt; &lt;p&gt;Romain Francois (2014).
+#&gt; formulas in BibTeX files are OK. A formula in field 'note': $c^2 = a^2
+#&gt; + b^2$.</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>r</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"html"</span>)</div><div class='output co'>#&gt; &lt;p&gt;Francois R (2014).
 #&gt; &lt;em&gt;bibtex: bibtex parser&lt;/em&gt;.
 #&gt; R package version 0.4.0, &lt;a href="https://CRAN.R-project.org/package=bibtex"&gt;https://CRAN.R-project.org/package=bibtex&lt;/a&gt;. 
 #&gt; &lt;/p&gt;
 #&gt; 
-#&gt; &lt;p&gt;Duncan Murdoch (2010).
+#&gt; &lt;p&gt;Murdoch D (2010).
 #&gt; &amp;ldquo;Parsing Rd files.&amp;rdquo;
 #&gt; &lt;a href="https://developer.r-project.org/parseRd.pdf"&gt;https://developer.r-project.org/parseRd.pdf&lt;/a&gt;. 
 #&gt; &lt;/p&gt;
 #&gt; 
-#&gt; &lt;p&gt;Hadley Wickham, Jim Hester, Winston Chang (2018).
+#&gt; &lt;p&gt;Wickham H, Hester J, Chang W (2018).
 #&gt; &lt;em&gt;devtools: Tools to Make Developing R Packages Easier&lt;/em&gt;.
 #&gt; R package version 1.13.5, &lt;a href="https://CRAN.R-project.org/package=devtools"&gt;https://CRAN.R-project.org/package=devtools&lt;/a&gt;. 
 #&gt; &lt;/p&gt;
 #&gt; 
-#&gt; &lt;p&gt;A. ZZZ (2018).
-#&gt; &amp;ldquo;A relation between several fundamental constants: &lt;i&gt;e^{i&amp;pi;}=-1&lt;/i&gt;.&amp;rdquo;
-#&gt; &lt;em&gt;A non-existent journal with the formula &lt;i&gt;L_2&lt;/i&gt; in its name.&lt;/em&gt;.
+#&gt; &lt;p&gt;ZZZ A (2018).
+#&gt; &amp;ldquo;A relation between several fundamental constants: $e^i\pi=-1$.&amp;rdquo;
+#&gt; &lt;em&gt;A non-existent journal with the formula $L_2$ in its name.&lt;/em&gt;.
 #&gt; This reference does not exist. It is a test/demo that simple formulas in BibTeX
-#&gt; files are OK. A formula in field 'note': &lt;i&gt;c^2 = a^2 + b^2&lt;/i&gt;. 
+#&gt; files are OK. A formula in field 'note': $c^2 = a^2 + b^2$. 
 #&gt; &lt;/p&gt;</div><div class='input'>
 <span class='no'>b</span> <span class='kw'>&lt;-</span> <span class='fu'>get_bibentries</span>(<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"stats"</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>b</span><span class='kw'>[[</span><span class='fl'>1</span>]], <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"R"</span>)</div><div class='output co'>#&gt; bibentry(bibtype = "Book",
@@ -247,8 +246,8 @@ R package version 0.4.0, <a href='https://CRAN.R-project.org/package=bibtex'>htt
 #&gt;          year = "1986",
 #&gt;          title = "Akaike Information Criterion Statistics",
 #&gt;          publisher = "Reidel Publishing Company")</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>b</span><span class='kw'>[[</span><span class='fl'>1</span>]], <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"citation"</span>)</div><div class='output co'>#&gt; 
-#&gt; Y. Sakamoto, M. Ishiguro, Kitagawa G. (1986). _Akaike Information
-#&gt; Criterion Statistics_. Reidel Publishing Company.
+#&gt; Sakamoto Y, Ishiguro M, G. K (1986). _Akaike Information Criterion
+#&gt; Statistics_. Reidel Publishing Company.
 #&gt; 
 #&gt; A BibTeX entry for LaTeX users is
 #&gt; 
@@ -265,8 +264,7 @@ R package version 0.4.0, <a href='https://CRAN.R-project.org/package=bibtex'>htt
 
 <span class='co'>## the links produced by all of the following are valid</span>
 <span class='co'>## and can be put in a browser</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>u</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"html"</span>)</div><div class='output co'>#&gt; &lt;p&gt;Georgi
-#&gt; N. Boshnakov (2018).
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>u</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"html"</span>)</div><div class='output co'>#&gt; &lt;p&gt;Boshnakov GN (2018).
 #&gt; &amp;ldquo;Dummy example of URL with percents.&amp;rdquo;
 #&gt; &lt;em&gt;Example bibtex file&lt;/em&gt;, &lt;b&gt;51&lt;/b&gt;, 1&amp;ndash;1.
 #&gt; &lt;a href="https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib"&gt;https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib&lt;/a&gt;. 
@@ -287,11 +285,11 @@ R package version 0.4.0, <a href='https://CRAN.R-project.org/package=bibtex'>htt
 #&gt;          author = person(given = c("Georgi", "N."),
 #&gt;                          family = "Boshnakov"),
 #&gt;          year = "2018",
-#&gt;          pages = "1--1")</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>u</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"text"</span>)</div><div class='output co'>#&gt; Georgi N. Boshnakov (2018). "Dummy example of URL with percents."
-#&gt; _Example bibtex file_, *51*, 1-1. &lt;URL:
+#&gt;          pages = "1--1")</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>u</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"text"</span>)</div><div class='output co'>#&gt; Boshnakov GN (2018). “Dummy example of URL with percents.” _Example
+#&gt; bibtex file_, *51*, 1-1. &lt;URL:
 #&gt; https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib&gt;.</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>u</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"citation"</span>)</div><div class='output co'>#&gt; 
-#&gt; Georgi N. Boshnakov (2018). "Dummy example of URL with percents."
-#&gt; _Example bibtex file_, *51*, 1-1. &lt;URL:
+#&gt; Boshnakov GN (2018). “Dummy example of URL with percents.” _Example
+#&gt; bibtex file_, *51*, 1-1. &lt;URL:
 #&gt; https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib&gt;.
 #&gt; 
 #&gt; A BibTeX entry for LaTeX users is
@@ -309,16 +307,14 @@ R package version 0.4.0, <a href='https://CRAN.R-project.org/package=bibtex'>htt
 <span class='co'>## The link here contains escapes but when put in a LaTeX document</span>
 <span class='co'>## which uses the JSS style it generates correct clickable link,</span>
 <span class='co'>## (see Details section) </span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>u</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"latex"</span>)</div><div class='output co'>#&gt; Georgi
-#&gt; N. Boshnakov (2018).
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>u</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"latex"</span>)</div><div class='output co'>#&gt; Boshnakov GN (2018).
 #&gt; ``Dummy example of URL with percents.''
 #&gt; \emph{Example bibtex file}, \bold{51}, 1--1.
 #&gt; \url{https://github.com/GeoBosh/zzfiles/blob/master/url\%20with\%20percents.bib}.</div><div class='input'>
 <span class='co'>## here the journal field contains percent encoding</span>
 <span class='no'>fn_other</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"examples"</span>, <span class='st'>"journal_with_percents.bib"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"Rdpack"</span>)
 <span class='no'>j</span> <span class='kw'>&lt;-</span> <span class='fu'>get_bibentries</span>(<span class='kw'>bibfile</span> <span class='kw'>=</span> <span class='no'>fn_url</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>j</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"html"</span>)</div><div class='output co'>#&gt; &lt;p&gt;Georgi
-#&gt; N. Boshnakov (2018).
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>j</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"html"</span>)</div><div class='output co'>#&gt; &lt;p&gt;Boshnakov GN (2018).
 #&gt; &amp;ldquo;Dummy example of URL with percents.&amp;rdquo;
 #&gt; &lt;em&gt;Example bibtex file&lt;/em&gt;, &lt;b&gt;51&lt;/b&gt;, 1&amp;ndash;1.
 #&gt; &lt;a href="https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib"&gt;https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib&lt;/a&gt;. 
@@ -339,11 +335,11 @@ R package version 0.4.0, <a href='https://CRAN.R-project.org/package=bibtex'>htt
 #&gt;          author = person(given = c("Georgi", "N."),
 #&gt;                          family = "Boshnakov"),
 #&gt;          year = "2018",
-#&gt;          pages = "1--1")</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>j</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"text"</span>)</div><div class='output co'>#&gt; Georgi N. Boshnakov (2018). "Dummy example of URL with percents."
-#&gt; _Example bibtex file_, *51*, 1-1. &lt;URL:
+#&gt;          pages = "1--1")</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>j</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"text"</span>)</div><div class='output co'>#&gt; Boshnakov GN (2018). “Dummy example of URL with percents.” _Example
+#&gt; bibtex file_, *51*, 1-1. &lt;URL:
 #&gt; https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib&gt;.</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>j</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"citation"</span>)</div><div class='output co'>#&gt; 
-#&gt; Georgi N. Boshnakov (2018). "Dummy example of URL with percents."
-#&gt; _Example bibtex file_, *51*, 1-1. &lt;URL:
+#&gt; Boshnakov GN (2018). “Dummy example of URL with percents.” _Example
+#&gt; bibtex file_, *51*, 1-1. &lt;URL:
 #&gt; https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib&gt;.
 #&gt; 
 #&gt; A BibTeX entry for LaTeX users is
@@ -358,8 +354,7 @@ R package version 0.4.0, <a href='https://CRAN.R-project.org/package=bibtex'>htt
 #&gt;     pages = {1--1},
 #&gt;   }
 #&gt; </div><div class='input'>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>j</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"latex"</span>)</div><div class='output co'>#&gt; Georgi
-#&gt; N. Boshnakov (2018).
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>j</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"latex"</span>)</div><div class='output co'>#&gt; Boshnakov GN (2018).
 #&gt; ``Dummy example of URL with percents.''
 #&gt; \emph{Example bibtex file}, \bold{51}, 1--1.
 #&gt; \url{https://github.com/GeoBosh/zzfiles/blob/master/url\%20with\%20percents.bib}.</div></pre>
@@ -389,7 +384,7 @@ R package version 0.4.0, <a href='https://CRAN.R-project.org/package=bibtex'>htt
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
       </footer>
    </div>

@@ -16,8 +16,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -72,7 +71,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -87,7 +86,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/GeoBosh/Rdpack">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -147,57 +146,54 @@
 .</p>  
 <p><table class='table'>
 <tr><td>name</td><td>VERB</td><td>|</td><td>description</td><td>TEXT</td></tr>
-<tr><td>alias</td><td>VERB</td><td>|</td><td>examples</td><td>RCODE</td></tr>
-<tr><td>concept</td><td>TEXT</td><td>|</td><td>usage</td><td>RCODE</td></tr>
-<tr><td>docType</td><td>TEXT</td><td>|</td><td>Rdversion</td><td>VERB</td></tr>
-<tr><td>title</td><td>TEXT</td><td>|</td><td>synopsis</td><td>VERB</td></tr>
+<tr><td></td><td>alias</td><td>VERB</td><td>|</td><td>examples</td></tr>
+<tr><td>RCODE</td><td></td><td>concept</td><td>TEXT</td><td>|</td></tr>
+<tr><td>usage</td><td>RCODE</td><td></td><td>docType</td><td>TEXT</td></tr>
+<tr><td>|</td><td>Rdversion</td><td>VERB</td><td></td><td>title</td></tr>
+<tr><td>TEXT</td><td>|</td><td>synopsis</td><td>VERB</td><td></td></tr>
 <tr><td>name</td><td>VERB</td><td>|</td><td>section</td><td>TEXT</td></tr>
-<tr><td>alias</td><td>VERB</td><td>|</td><td>arguments</td><td>TEXT</td></tr>
-<tr><td>concept</td><td>TEXT</td><td>|</td><td>keyword</td><td>TEXT</td></tr>
-<tr><td>docType</td><td>TEXT</td><td>|</td><td>note</td><td>TEXT</td></tr>
-<tr><td>title</td><td>TEXT</td><td>|</td><td>format</td><td>TEXT</td></tr>
+<tr><td></td><td>alias</td><td>VERB</td><td>|</td><td>arguments</td></tr>
+<tr><td>TEXT</td><td></td><td>concept</td><td>TEXT</td><td>|</td></tr>
+<tr><td>keyword</td><td>TEXT</td><td></td><td>docType</td><td>TEXT</td></tr>
+<tr><td>|</td><td>note</td><td>TEXT</td><td></td><td>title</td></tr>
+<tr><td>TEXT</td><td>|</td><td>format</td><td>TEXT</td><td></td></tr>
 <tr><td>name</td><td>VERB</td><td>|</td><td>source</td><td>TEXT</td></tr>
-<tr><td>alias</td><td>VERB</td><td>|</td><td>details</td><td>TEXT</td></tr>
-<tr><td>concept</td><td>TEXT</td><td>|</td><td>value</td><td>TEXT</td></tr>
-<tr><td>docType</td><td>TEXT</td><td>|</td><td>references</td><td>TEXT</td></tr>
-<tr><td>title</td><td>TEXT</td><td>|</td><td>author</td><td>TEXT</td></tr>
+<tr><td></td><td>alias</td><td>VERB</td><td>|</td><td>details</td></tr>
+<tr><td>TEXT</td><td></td><td>concept</td><td>TEXT</td><td>|</td></tr>
+<tr><td>value</td><td>TEXT</td><td></td><td>docType</td><td>TEXT</td></tr>
+<tr><td>|</td><td>references</td><td>TEXT</td><td></td><td>title</td></tr>
+<tr><td>TEXT</td><td>|</td><td>author</td><td>TEXT</td><td></td></tr>
 <tr><td>name</td><td>VERB</td><td>|</td><td>seealso</td><td>TEXT</td></tr>
 </table></p>	
 <p>for <code>Rdo_piece_types</code>, the name-value pairs are:</p>
 <p><table class='table'>
-<tr><td>name</td><td>VERB</td><td>|
-alias</td><td>VERB</td><td>|
-concept</td><td>TEXT</td><td>docType</td><td>TEXT</td><td>|
-title</td><td>TEXT</td><td>|
-description</td><td>TEXT</td></tr>
-<tr><td>examples</td><td>RCODE</td><td>|
-usage</td><td>RCODE</td><td>|
-Rdversion</td><td>VERB</td><td>synopsis</td><td>VERB</td><td>|
-Sexpr</td><td>RCODE</td><td>|
-RdOpts</td><td>VERB</td></tr>
-<tr><td>code</td><td>RCODE</td><td>|
-dontshow</td><td>RCODE</td><td>|
-donttest</td><td>RCODE</td><td>testonly</td><td>RCODE</td><td>|
-dontrun</td><td>VERB</td><td>|
-env</td><td>VERB</td></tr>
-<tr><td>kbd</td><td>VERB</td><td>|
-option</td><td>VERB</td><td>|
-out</td><td>VERB</td><td>preformatted</td><td>VERB</td><td>|
-samp</td><td>VERB</td><td>|
-special</td><td>VERB</td></tr>
-<tr><td>url</td><td>VERB</td><td>|
-verb</td><td>VERB</td><td>|
-deqn</td><td>VERB</td><td>eqn</td><td>VERB</td><td>|
-renewcommand</td><td>VERB</td><td>|
-newcommand</td><td>VERB</td></tr>
+<tr><td>name</td><td>VERB</td><td>|</td><td>alias</td><td>VERB</td><td>|</td><td>concept</td><td>TEXT</td><td></td><td>docType</td><td>TEXT</td><td>|</td></tr>
+<tr><td>title</td><td>TEXT</td><td>|</td><td>description</td><td>TEXT</td><td></td><td>examples</td><td>RCODE</td><td>|</td><td>usage</td><td>RCODE</td><td>|</td></tr>
+<tr><td>Rdversion</td><td>VERB</td><td></td><td>synopsis</td><td>VERB</td><td>|</td><td>Sexpr</td><td>RCODE</td><td>|</td><td>RdOpts</td><td>VERB</td><td></td></tr>
+<tr><td>code</td><td>RCODE</td><td>|</td><td>dontshow</td><td>RCODE</td><td>|</td><td>donttest</td><td>RCODE</td><td></td><td>testonly</td><td>RCODE</td><td>|</td></tr>
+<tr><td>dontrun</td><td>VERB</td><td>|</td><td>env</td><td>VERB</td><td></td><td>kbd</td><td>VERB</td><td>|</td><td>option</td><td>VERB</td><td>|</td></tr>
+<tr><td>out</td><td>VERB</td><td></td><td>preformatted</td><td>VERB</td><td>|</td><td>samp</td><td>VERB</td><td>|</td><td>special</td><td>VERB</td><td></td></tr>
+<tr><td>url</td><td>VERB</td><td>|</td><td>verb</td><td>VERB</td><td>|</td><td>deqn</td><td>VERB</td><td></td><td>eqn</td><td>VERB</td><td>|</td></tr>
+<tr><td>renewcommand</td><td>VERB</td><td>|</td><td>newcommand</td><td>VERB</td><td></td><td>name</td><td>VERB</td><td>|</td><td>alias</td><td>VERB</td><td>|</td></tr>
 </table></p>
 <p>for <code>rdo_top_tags</code>, the values are:</p>
 <p><table class='table'>
-<tr><td>\name</td><td>\Rdversion</td><td>\docType</td><td>\alias</td><td>\encoding</td></tr>
-<tr><td>\concept</td><td>\title</td><td>\description</td><td>\usage</td><td>\format</td></tr>
-<tr><td>\source</td><td>\arguments</td><td>\details</td><td>\value</td><td>\references</td></tr>
-<tr><td>\section</td><td>\note</td><td>\author</td><td>\seealso</td><td>\examples</td></tr>
-<tr><td>\keyword</td><td><code>#</code>ifdef</td><td><code>#</code>ifndef</td><td>\newcommand</td><td>\renewcommand</td></tr>
+<tr><td></td><td>\</td><td>name</td><td></td><td>\</td></tr>
+<tr><td>Rdversion</td><td></td><td>\</td><td>docType</td><td></td></tr>
+<tr><td>\</td><td>alias</td><td></td><td>\</td><td>encoding</td></tr>
+<tr><td></td><td>\</td><td>concept</td><td></td><td>\</td></tr>
+<tr><td>title</td><td></td><td>\</td><td>description</td><td></td></tr>
+<tr><td>\</td><td>usage</td><td></td><td>\</td><td>format</td></tr>
+<tr><td></td><td>\</td><td>source</td><td></td><td>\</td></tr>
+<tr><td>arguments</td><td></td><td>\</td><td>details</td><td></td></tr>
+<tr><td>\</td><td>value</td><td></td><td>\</td><td>references</td></tr>
+<tr><td></td><td>\</td><td>section</td><td></td><td>\</td></tr>
+<tr><td>note</td><td></td><td>\</td><td>author</td><td></td></tr>
+<tr><td>\</td><td>seealso</td><td></td><td>\</td><td>examples</td></tr>
+<tr><td></td><td>\</td><td>keyword</td><td></td><td><code>#</code></td></tr>
+<tr><td>ifdef</td><td></td><td><code>#</code></td><td>ifndef</td><td></td></tr>
+<tr><td>\</td><td>newcommand</td><td></td><td>\</td><td>renewcommand</td></tr>
+<tr><td></td><td>COMMENT</td><td></td><td>TEXT</td><td></td></tr>
 </table></p>
 <p>Note that most, but not all,  are prefixed with backaslash.</p>
     
@@ -229,7 +225,7 @@ newcommand</td><td>VERB</td></tr>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
       </footer>
    </div>
