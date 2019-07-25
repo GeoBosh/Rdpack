@@ -39,7 +39,7 @@ manipulation of references and Rd files.
 
 Install the  [latest stable version](https://cran.r-project.org/package=Rdpack) from CRAN:
 
-    install_packages("Rdpack")
+    install.packages("Rdpack")
 
 You can also install the [development version](https://github.com/GeoBosh/Rdpack) of `Rdpack` from Github:
 
