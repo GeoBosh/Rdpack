@@ -21,6 +21,9 @@
 - README and the documentation of `reprompt()` and `Rdpack-package` now give
   more details on `reprompt()`ing replacement functions.
 
+- README.md aand REAMD.org now give the correct `install.packages`
+  instruction for CRAN (pull request #10 from @katrinleinweber).
+
 
 # Rdpack 0.11-0 (CRAN)
 
