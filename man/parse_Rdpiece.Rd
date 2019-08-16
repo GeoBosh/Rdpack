@@ -71,9 +71,9 @@ u1 <- list_Rd(name = "Dummyname", alias = "dummyfun",
               usage = "dummyfun(x,y)",
               value = "numeric vector",
               author = "A. Author",
-              Rd_class=TRUE )
-fn <- tempfile("dummyfun", fileext="Rd")
-reprompt(dummyfun, filename=fn)
+              Rd_class = TRUE )
+fn <- tempfile("dummyfun", fileext = "Rd")
+reprompt(dummyfun, filename = fn)
 rdo <- tools::parse_Rd(fn)
 
 # let's prepare a new item
@@ -86,15 +86,10 @@ rdoa <- append_to_Rd_list(rdo, newarg, iarg)
 
 Rdo_show(rdoa)
 
-# for arguments and other frequent tasks there are
-#     specialised functions
-rdob <- Rdo_append_argument(rdo, "\dots", "further arguments to be passed on.")
+# for arguments and other frequent tasks, there are specialised functions
+rdob <- Rdo_append_argument(rdo, "\\dots", "further arguments to be passed on.")
 
-Rdo_show(reprompt(rdob))
-# todo: Rdo_show(rdob) for some reason does not show the arguments.
-#       investigate! Rdo_show uses Rd2txt. Is it possible that the
-#       latter needs srcref's in the Rd object? They are only refreshed
-#       Rd_parse is called.
+Rdo_show(reprompt(rdob, filename = fn))
 
 unlink(fn)
 }

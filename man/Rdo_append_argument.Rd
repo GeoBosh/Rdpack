@@ -33,23 +33,20 @@ Rdo_append_argument(rdo, argname, description = NA, indent = "  ", create = FALS
 }
 \author{Georgi N. Boshnakov}
 \examples{
-# the following creates Rd object rdo
+## the following creates Rd object rdo
 dummyfun <- function(x) x
-fn <- tempfile("dummyfun", fileext=".Rd")
-reprompt(dummyfun, filename=fn)
+fn <- tempfile("dummyfun", fileext = ".Rd")
+reprompt(dummyfun, filename = fn)
 rdo <- tools::parse_Rd(fn)
 
+## add documentation for arguments
+## that are not in the signature of 'dummyfun()'
 dottext <- "further arguments to be passed on."
-
-# rdo2 <- Rdo_append_argument(rdo, "\dots", dottext, create = TRUE)
 rdo2 <- Rdo_append_argument(rdo, "\\dots", dottext, create = TRUE)
 rdo2 <- Rdo_append_argument(rdo2, "z", "a numeric vector")
-Rdo_show(reprompt(rdo2))
 
-# todo: Rdo_show(rdob) for some reason does not show the arguments.
-#       investigate! Rdo_show uses Rd2txt. Is it possible that the
-#       latter needs srcref's in the Rd object? They are only refreshed
-#       Rd_parse is called.
+## reprompt() warns to remove documentation for non-existing arguments:
+Rdo_show(reprompt(rdo2, filename = fn))
 
 unlink(fn)
 }

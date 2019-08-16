@@ -1,6 +1,5 @@
 \name{Rdo_locate_leaves}
 \alias{Rdo_locate_leaves}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{Find leaves of an Rd object using a predicate}
 \description{Apply a function to the character leaves of an Rd object
   and return the indices of those for which the result is TRUE.}
@@ -34,15 +33,11 @@ Rdo_locate_leaves(object, f = function(x) TRUE)
 
 \author{Georgi N. Boshnakov}
 
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-
 \examples{
 dummyfun <- function(x) x
 
-fn <- tempfile("dummyfun", fileext="Rd")
-reprompt(dummyfun, filename=fn)
+fn <- tempfile("dummyfun", fileext = "Rd")
+reprompt(dummyfun, filename = fn)
 rdo <- tools::parse_Rd(fn)
 
 f <-  function(x) Rdo_is_newline(x)
@@ -50,10 +45,8 @@ f <-  function(x) Rdo_is_newline(x)
 nl <- Rdo_locate_leaves(rdo, f )
 
 length(nl)  # there are quite a few newline leaves!
+
+unlink(fn)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
 %\keyword{Rdlookup}
 \keyword{Rd}
-
-

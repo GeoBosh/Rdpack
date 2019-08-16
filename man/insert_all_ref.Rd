@@ -23,7 +23,7 @@ insert_all_ref(refs, style = "")
   single element, separate them by commas. The second column specifies the
   package in which to look for the keys.
 
-  A key equal to "*" requests in keys in the corresponding package. 
+  A key equal to "*" requests all keys in the corresponding package. 
   
   \code{insert_all_ref} drops duplicated keys, collects the references,
   and converts them to Rd textual representation for inclusion in Rd
