@@ -8,21 +8,25 @@
 
 <title>Update the documentation of a topic — reprompt • Rdpack</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,12 +34,13 @@
 
 
 
-<meta property="og:title" content="Update the documentation of a topic — reprompt" />
 
+<meta property="og:title" content="Update the documentation of a topic — reprompt" />
 <meta property="og:description" content="Examine the documentation of functions, methods or classes and
   update it with additional arguments, methods or slots, as
   appropriate. This is an extention of the promptXXX() family of functions." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -47,6 +52,7 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -73,7 +79,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -84,11 +90,10 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/GeoBosh/Rdpack">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -99,6 +104,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -110,17 +116,15 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Examine the documentation of functions, methods or classes and
   update it with additional arguments, methods or slots, as
   appropriate. This is an extention of the promptXXX() family of functions.</p>
-    
     </div>
 
-    <pre class="usage">reprompt(object, infile = NULL, Rdtext = NULL, final = TRUE, 
-         type = NULL, package = NULL, methods = NULL, verbose = TRUE, 
-         filename = NULL, sec_copy = TRUE, edit = FALSE, &#8230;)</pre>
-    
+    <pre class="usage"><span class='fu'>reprompt</span>(<span class='no'>object</span>, <span class='kw'>infile</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>Rdtext</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>final</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+         <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>methods</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+         <span class='kw'>filename</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sec_copy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>edit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -157,7 +161,7 @@
       <th>methods</th>
       <td><p>used for documentation of S4 methods only, rarely needed even for
     them.  This argument is passed on to
-    <code><a href='https://www.rdocumentation.org/packages/methods/topics/promptMethods'>promptMethods</a></code>, see its documentation for
+    <code><a href='https://rdrr.io/r/methods/promptMethods.html'>promptMethods</a></code>, see its documentation for
     details.</p></td>
     </tr>
     <tr>
@@ -172,7 +176,7 @@
     if <code>FALSE</code> the Rd text is returned, see `Details'.</p></td>
     </tr>
     <tr>
-      <th>&#8230;</th>
+      <th>...</th>
       <td><p>currently not used.</p></td>
     </tr>
     <tr>
@@ -186,7 +190,7 @@
     returning. This argument is ignored if <code>filename</code> is <code>FALSE</code>.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The typical use of <code>reprompt</code> is with one argument, as in</p><pre>
@@ -202,7 +206,7 @@
   the object, <code>reprompt</code> creates a skeleton Rd file similar to the
   one produced by the base R functions from the <code>prompt</code> family (if
   <code>final = TRUE</code>, the default, it modifies the output of
-  <code><a href='https://www.rdocumentation.org/packages/utils/topics/prompt'>prompt()</a></code>, so that the package can be built).</p>
+  <code><a href='https://rdrr.io/r/utils/prompt.html'>prompt()</a></code>, so that the package can be built).</p>
 <p>To document a function, say <code>myfun</code>, in an existing Rd file, just
   add <code>myfun()</code> to the usage section in the file and call
   <code>reprompt()</code> on that file. Put quotes around the function name if
@@ -214,13 +218,16 @@
 <p>For S4 methods and classes the argument "package" is often needed to
   restrict the output to methods defined in the package of interest.</p><pre>
     reprompt("myfun-methods")
+
     reprompt("[&lt;--methods", package = "mypackage")             
     reprompt("[&lt;-", type = "methods", package = "mypackage") # same
+
     reprompt("myclass", type = "class", package = "mypackage") 
     reprompt("myclass-class", package = "mypackage")         # same
   </pre><p>Without the "package" argument the reprompt for <code>"[&lt;-"</code> would give
   all methods defined by loaded packages at the time of the call.</p>
-    <p>Currently <code>reprompt</code> functionality is not implemented for topic
+  
+<p>Currently <code>reprompt</code> functionality is not implemented for topic
   "package" but if <code>object</code> has the form "name-package" (or the
   equivalent with argument <code>topic</code>) and there is no documentation
   for <code>package?name</code>, <code>reprompt</code> calls
@@ -228,12 +235,14 @@
   Note that the shell produced by <code>promptPackageSexpr</code> does not
   need `reprompting' since the automatically generated information is
   included by <code>\Sexpr</code>'s, not literal strings.</p>
-    <p>Below are the details.</p>
+
+  
+<p>Below are the details.</p>
 <p>Typically, only one of <code>object</code>, <code>infile</code>, and <code>Rdtext</code>
   is supplied. Warning messages are issued if this is not the case.</p>
 <p>The object must have been made available by the time when
   <code>reprompt()</code> is issued. If the object is in a package this is
-  typically achieved by a <code><a href='https://www.rdocumentation.org/packages/base/topics/library'>library()</a></code> command.</p>
+  typically achieved by a <code><a href='https://rdrr.io/r/base/library.html'>library()</a></code> command.</p>
 <p><code>object</code> may be a function or a name, as accepted by the <code>?</code>
   operator. If it has the form "name-class" and "name-methods" a
   documentation shell for class "name" or the methods for generic function
@@ -273,7 +282,8 @@
   printed. Arguments no longer in the usage statements are NOT removed
   but a message is issued to alert the user. Alias sections are inserted
   for any functions with "usage" but without "alias" section.</p>
-    <p>If <code>filename</code> is a character string, it is used as is, so any
+
+<p>If <code>filename</code> is a character string, it is used as is, so any
   path should be included in the string.  Argument <code>filename</code>
   usuallly is omitted since the automatically generated file name is
   suitable in most cases. Exceptions are functions with non-standard
@@ -295,7 +305,7 @@
   editor, see also <code><a href='ereprompt.html'>ereprompt</a></code> (`e' for `edit') which is
   like <code>reprompt</code> but has as default <code>edit = TRUE</code> and some
   other related settings.</p>
-<p><code><a href='https://www.rdocumentation.org/packages/utils/topics/file.edit'>file.edit()</a></code> is used to call the editor.  Which editor is opened
+<p><code><a href='https://rdrr.io/r/utils/file.edit.html'>file.edit()</a></code> is used to call the editor.  Which editor is opened
   depends on the OS and on the user configuration. RStudio users will
   probably prefer the 'Reprompt' add-in or the underlying function
   <code><a href='RStudio_reprompt.html'>RStudio_reprompt</a></code>.  Emacs users would normally have set
@@ -312,17 +322,16 @@
   usually not desirable. For example, if such changes creep into the
   Details section (which <code>reprompt</code> never changes) the user may be
   annoyed or worried.</p>
-    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>if <code>filename</code> is a character string or <code>NULL</code>, the name of
   the file to which the updated shell was written.</p>
 <p>Otherwise, the Rd text is returned as a character vector.</p>
-    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     
-    <p>The arguments of <code>reprompt</code> are similar to prompt, with some
+
+<p>The arguments of <code>reprompt</code> are similar to prompt, with some
   additions. As in <code>prompt</code>, <code>filename</code> specifies the output
   file. In <code>reprompt</code> a new argument, <code>infile</code>, specifies the
   input file containing the Rd source.</p>
@@ -333,7 +342,8 @@
   original Rd content from the installed documentation. Also, the fields
   (e.g. the keywords) in the installed documentation may not be were you
   expect them to be. (This may be addressed in a future revision.)</p>
-    <p>While <code>reprompt</code> adds new items to the documentation, it never
+
+<p>While <code>reprompt</code> adds new items to the documentation, it never
   removes existing content. It only issues a suggestion to remove an
   item, if it does not seem necessary any more (e.g. a removed argument
   from a function definition).</p>
@@ -350,12 +360,10 @@
   expression.  Currently the usage section is recreated completely if
   the usage of any of the described functions has changed. Manual
   formatting may be lost in such cases.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='ereprompt.html'>ereprompt</a></code> which by default calls the editor on the
     original file</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## note: usage of reprompt() is simple.  the examples below are bulky</span>
@@ -363,9 +371,9 @@
 <span class='co'>##       while in normal usage they would be due to editing.</span>
 
 <span class='co'>## change to a temporary directory to avoid clogging up user's</span>
-<span class='no'>cur_wd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/getwd'>getwd</a></span>()
-<span class='no'>tmpdir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>()
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/getwd'>setwd</a></span>(<span class='no'>tmpdir</span>)
+<span class='no'>cur_wd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>()
+<span class='no'>tmpdir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>()
+<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>tmpdir</span>)
 
 <span class='co'>## as for prompt() the default is to save in current dir as "seq.Rd".</span>
 <span class='co'>## the argument here is a function, reprompt finds its doc and</span>
@@ -376,25 +384,25 @@
 #&gt; Installed documentation found, processing it...
 #&gt; 	The Rd content was written to file  seq.Rd </div><div class='input'>
 <span class='co'>## let's parse the saved Rd file (the filename is returned by reprompt)</span>
-<span class='no'>rdoseq</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/tools/topics/parse_Rd'>parse_Rd</a></span>(<span class='no'>fnseq</span>)   <span class='co'># parse fnseq to see the result.</span>
+<span class='no'>rdoseq</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/tools/parse_Rd.html'>parse_Rd</a></span>(<span class='no'>fnseq</span>)   <span class='co'># parse fnseq to see the result.</span>
 <span class='fu'><a href='Rdo_show.html'>Rdo_show</a></span>(<span class='no'>rdoseq</span>)
 
 <span class='co'>## we replace usage statements with wrong ones for illustration.</span>
 <span class='co'>## (note there is an S3 method along with the functions)</span>
-<span class='no'>dummy_usage</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='char2Rdpiece.html'>char2Rdpiece</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='st'>"seq()"</span>, <span class='st'>"\\method{seq}{default}()"</span>,
+<span class='no'>dummy_usage</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='char2Rdpiece.html'>char2Rdpiece</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"seq()"</span>, <span class='st'>"\\method{seq}{default}()"</span>,
                    <span class='st'>"seq.int()"</span>, <span class='st'>"seq_along()"</span>, <span class='st'>"seq_len()"</span>, <span class='kw'>sep</span><span class='kw'>=</span><span class='st'>"\n"</span>),
                    <span class='st'>"usage"</span>)
 <span class='no'>rdoseq_dummy</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='Rdo_modify.html'>Rdo_replace_section</a></span>(<span class='no'>rdoseq</span>, <span class='no'>dummy_usage</span>)
 <span class='fu'><a href='Rdo_show.html'>Rdo_show</a></span>(<span class='no'>rdoseq_dummy</span>)  <span class='co'># usage statements are wrong</span>
 
 <span class='fu'>reprompt</span>(<span class='no'>rdoseq_dummy</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"seqA.Rd"</span>)</div><div class='output co'>#&gt; Processing the Rd object...
-#&gt; 	The Rd content was written to file  seqA.Rd </div><div class='output co'>#&gt; [1] "seqA.Rd"</div><div class='input'><span class='fu'><a href='Rdo_show.html'>Rdo_show</a></span>(<span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/tools/topics/parse_Rd'>parse_Rd</a></span>(<span class='st'>"seqA.Rd"</span>))  <span class='co'># usage ok after reprompt</span>
+#&gt; 	The Rd content was written to file  seqA.Rd </div><div class='output co'>#&gt; [1] "seqA.Rd"</div><div class='input'><span class='fu'><a href='Rdo_show.html'>Rdo_show</a></span>(<span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/tools/parse_Rd.html'>parse_Rd</a></span>(<span class='st'>"seqA.Rd"</span>))  <span class='co'># usage ok after reprompt</span>
 
 <span class='co'>## define function myseq() </span>
 <span class='no'>myseq</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>from</span>, <span class='no'>to</span>, <span class='no'>x</span>){
     <span class='kw'>if</span>(<span class='no'>to</span> <span class='kw'>&lt;</span> <span class='fl'>0</span>) {
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='kw'>from</span> <span class='kw'>=</span> <span class='no'>from</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>x</span>) + <span class='no'>to</span>)
-    } <span class='kw'>else</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='no'>from</span>, <span class='no'>to</span>)
+        <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='kw'>from</span> <span class='kw'>=</span> <span class='no'>from</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>x</span>) + <span class='no'>to</span>)
+    } <span class='kw'>else</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='no'>from</span>, <span class='no'>to</span>)
 }
 
 <span class='co'>## we wish to describe  myseq() along with seq();</span>
@@ -404,7 +412,7 @@
 <span class='fu'>reprompt</span>(<span class='no'>rdo2</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"seqB.Rd"</span>)  <span class='co'># updates usage of myseq</span></div><div class='output co'>#&gt; Processing the Rd object...
 #&gt; 	The Rd content was written to file  seqB.Rd </div><div class='output co'>#&gt; [1] "seqB.Rd"</div><div class='input'>
 <span class='co'>## show the rendered result:</span>
-<span class='fu'><a href='Rdo_show.html'>Rdo_show</a></span>(<span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/tools/topics/parse_Rd'>parse_Rd</a></span>(<span class='st'>"seqB.Rd"</span>))
+<span class='fu'><a href='Rdo_show.html'>Rdo_show</a></span>(<span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/tools/parse_Rd.html'>parse_Rd</a></span>(<span class='st'>"seqB.Rd"</span>))
 
 <span class='co'>## Run this if you wish to see the Rd file:</span>
 <span class='co'>##   file.show("seqB.Rd")</span>
@@ -541,33 +549,28 @@
 #&gt; }</div><div class='input'><span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>Rdpack</span><span class='kw ns'>:::</span><span class='fu'>.Rd_tidy</span>(<span class='no'>rdo</span>)          <span class='co'># tidy up (e.g. insert new lines</span>
                                        <span class='co'>#          for human readers)</span>
 <span class='fu'>reprompt</span>(<span class='no'>rdo</span>) <span class='co'># rdo and rdoseq are equivalent</span></div><div class='output co'>#&gt; Processing the Rd object...
-#&gt; 	The Rd content was written to file  seq.Rd </div><div class='output co'>#&gt; [1] "seq.Rd"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all.equal'>all.equal</a></span>(<span class='fu'>reprompt</span>(<span class='no'>rdo</span>), <span class='fu'>reprompt</span>(<span class='no'>rdoseq</span>)) <span class='co'># TRUE</span></div><div class='output co'>#&gt; Processing the Rd object...
+#&gt; 	The Rd content was written to file  seq.Rd </div><div class='output co'>#&gt; [1] "seq.Rd"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='fu'>reprompt</span>(<span class='no'>rdo</span>), <span class='fu'>reprompt</span>(<span class='no'>rdoseq</span>)) <span class='co'># TRUE</span></div><div class='output co'>#&gt; Processing the Rd object...
 #&gt; 	The Rd content was written to file  seq.Rd 
 #&gt; Processing the Rd object...
 #&gt; 	The Rd content was written to file  seq.Rd </div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
 <span class='co'>## clean up </span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/unlink'>unlink</a></span>(<span class='st'>"seq.Rd"</span>)         <span class='co'># remove temporary files</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/unlink'>unlink</a></span>(<span class='st'>"seq2.Rd"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/unlink'>unlink</a></span>(<span class='st'>"seq3.Rd"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/unlink'>unlink</a></span>(<span class='st'>"seqA.Rd"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/unlink'>unlink</a></span>(<span class='st'>"seqB.Rd"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"seq.Rd"</span>)         <span class='co'># remove temporary files</span>
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"seq2.Rd"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"seq3.Rd"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"seqA.Rd"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"seqB.Rd"</span>)
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/getwd'>setwd</a></span>(<span class='no'>cur_wd</span>)            <span class='co'># restore user's working directory</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/unlink'>unlink</a></span>(<span class='no'>tmpdir</span>)</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>cur_wd</span>)            <span class='co'># restore user's working directory</span>
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='no'>tmpdir</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#details">Details</a></li>
-
       <li><a href="#value">Value</a></li>
-
       <li><a href="#note">Note</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -576,19 +579,23 @@
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by Georgi N. Boshnakov.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

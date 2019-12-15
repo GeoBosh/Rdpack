@@ -1,3 +1,4 @@
+.rsync_exclude
 ^docs/
 ^vignettes/.RData
 ^_pkgdown.yml$
