@@ -1,4 +1,4 @@
-# Rdpack 0.11-1
+# Rdpack 0.11-1 (CRAN)
 
 - in documentation of S4 classes, such as `"classname-class.Rd"`, `reprompt()`
   was sometimes inserting entries for slots already listed in the Slots
