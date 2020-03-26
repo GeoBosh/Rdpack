@@ -92,6 +92,10 @@ vigbib(package, verbose = TRUE, \dots, vig = NULL)
 %%% ~~objects to See Also as \code{\link{help}}, ~~~
 %}
 \examples{
+## NOTE (2020-01-21): the following examples work fine, but are not
+##   rendered correctly by pkgdown::build_site(), so there may be errors
+##   on the site produced by it, https://geobosh.github.io/Rdpack/.
+
 vigbib("Rdpack")
 makeVignetteReference("Rdpack", vig = 1)
 makeVignetteReference("Rdpack", vig = "Inserting_bibtex_references")

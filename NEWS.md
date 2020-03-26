@@ -1,3 +1,10 @@
+# Rdpack 0.11-2
+
+- corrected a typo in NEWS.md.
+
+- edited some documentation files.
+
+
 # Rdpack 0.11-1 (CRAN)
 
 - in documentation of S4 classes, such as `"classname-class.Rd"`, `reprompt()`
@@ -10,7 +17,7 @@
   
 - `reprompt()` now handles `\S4method` statements for replacement methods.  As
   for other functions and methods (S3 and S4), it is sufficient to put a
-  declaration with empty argument list in the Usage sectio and `reprompt()` will
+  declaration with empty argument list in the Usage section and `reprompt()` will
   insert the correct formal arguments for the method (they may be different from
   those of the generic).
   
