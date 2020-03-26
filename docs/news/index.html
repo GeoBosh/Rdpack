@@ -10,16 +10,20 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -53,7 +57,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -67,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rdpack</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11-2</span>
       </span>
     </div>
 
@@ -88,7 +92,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/GeoBosh/Rdpack">
+  <a href="https://github.com/GeoBosh/Rdpack/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -106,18 +110,27 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
+      <h1 data-toc-skip>Changelog <small></small></h1>
       <small>Source: <a href='https://github.com/GeoBosh/Rdpack/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="rdpack-011-2" class="section level1">
+<h1 class="page-header" data-toc-text="0.11-2">
+<a href="#rdpack-011-2" class="anchor"></a>Rdpack 0.11-2<small> Unreleased </small>
+</h1>
+<ul>
+<li><p>corrected a typo in NEWS.md.</p></li>
+<li><p>edited some documentation files.</p></li>
+</ul>
+</div>
     <div id="rdpack-011-1-cran" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.11-1">
 <a href="#rdpack-011-1-cran" class="anchor"></a>Rdpack 0.11-1 (CRAN)<small> 2019-12-14 </small>
 </h1>
 <ul>
 <li><p>in documentation of S4 classes, such as <code>"classname-class.Rd"</code>, <code><a href="../reference/reprompt.html">reprompt()</a></code> was sometimes inserting entries for slots already listed in the Slots section. The same bug was causing the new slots not to be reported properly to the user.</p></li>
 <li><p>in some cases <code><a href="../reference/reprompt.html">reprompt()</a></code> failed to process properly <code>\S4method</code> entries in the Usage section of Rd files. Now fixed.</p></li>
-<li><p><code><a href="../reference/reprompt.html">reprompt()</a></code> now handles <code>\S4method</code> statements for replacement methods. As for other functions and methods (S3 and S4), it is sufficient to put a declaration with empty argument list in the Usage sectio and <code><a href="../reference/reprompt.html">reprompt()</a></code> will insert the correct formal arguments for the method (they may be different from those of the generic).</p></li>
+<li><p><code><a href="../reference/reprompt.html">reprompt()</a></code> now handles <code>\S4method</code> statements for replacement methods. As for other functions and methods (S3 and S4), it is sufficient to put a declaration with empty argument list in the Usage section and <code><a href="../reference/reprompt.html">reprompt()</a></code> will insert the correct formal arguments for the method (they may be different from those of the generic).</p></li>
 <li><p><code><a href="../reference/reprompt.html">reprompt()</a></code> now gives a more helpful error message when <code>type</code> is invalid.</p></li>
 <li><p>corrected some minor typo’s in the documentation.</p></li>
 <li><p>README and the documentation of <code><a href="../reference/reprompt.html">reprompt()</a></code> and <code>Rdpack-package</code> now give more details on <code><a href="../reference/reprompt.html">reprompt()</a></code>ing replacement functions.</p></li>
@@ -126,7 +139,7 @@
 </ul>
 </div>
     <div id="rdpack-011-0-cran" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.11-0">
 <a href="#rdpack-011-0-cran" class="anchor"></a>Rdpack 0.11-0 (CRAN)<small> 2019-04-14 </small>
 </h1>
 <ul>
@@ -136,7 +149,7 @@
 </ul>
 </div>
     <div id="rdpack-010-3" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.10-3">
 <a href="#rdpack-010-3" class="anchor"></a>Rdpack 0.10-3<small> Unreleased </small>
 </h1>
 <ul>
@@ -144,7 +157,7 @@
 </ul>
 </div>
     <div id="rdpack-010-2" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.10-2">
 <a href="#rdpack-010-2" class="anchor"></a>Rdpack 0.10-2<small> Unreleased </small>
 </h1>
 <ul>
@@ -156,7 +169,7 @@
 </ul>
 </div>
     <div id="rdpack-010-1-cran" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.10-1">
 <a href="#rdpack-010-1-cran" class="anchor"></a>Rdpack 0.10-1 (CRAN)<small> 2018-10-04 </small>
 </h1>
 <ul>
@@ -164,7 +177,7 @@
 </ul>
 </div>
     <div id="rdpack-010-0" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.10-0">
 <a href="#rdpack-010-0" class="anchor"></a>Rdpack 0.10-0<small> Unreleased </small>
 </h1>
 <ul>
@@ -172,7 +185,7 @@
 </ul>
 </div>
     <div id="rdpack-09-1" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.9-1">
 <a href="#rdpack-09-1" class="anchor"></a>Rdpack 0.9-1<small> Unreleased </small>
 </h1>
 <ul>
@@ -187,11 +200,11 @@
 <li><p>Many features of Rdpack are best demonstrated on a package. The new package RdpackTester under <code>./inst/examples</code> now makes this easier.</p></li>
 <li><p>now the help page “predefined.Rd” does not print some tables twice in the pdf manual. (This was due to using <code>\if{latex}{}{}' instead of</code>\ifelse{latex}{}{}’ for those tables.)</p></li>
 <li><p>also in “predefined.Rd”, removed illegal use of vertical bars (in column specifications of tabular environments) from the pure LaTeX code in the <code>\ifelse</code> clause(s) and wrapped them in <code>\out{}</code>.</p></li>
-<li><p>in “get_sig_text.Rd”, replace <code><a href="https://rdrr.io/r/utils/help.html">help()</a></code> with <code><a href="https://rdrr.io/r/utils/help.html">utils::help()</a></code> to avoid warnings from more stringent <code>R CMD check</code>. Similarly, in “Rdpack-package.Rd” replace <code><a href="https://rdrr.io/r/utils/packageDescription.html">packageDescription()</a></code> with <code><a href="https://rdrr.io/r/utils/packageDescription.html">utils::packageDescription()</a></code>. This may be needed in <code>\Sexpr</code>’s more generally (<strong>TODO:</strong> check if these would still be needed if the symbols are imported by the package.)</p></li>
+<li><p>in “get_sig_text.Rd”, replace <code>help()</code> with <code>utils::help()</code> to avoid warnings from more stringent <code>R CMD check</code>. Similarly, in “Rdpack-package.Rd” replace <code><a href="https://rdrr.io/r/utils/packageDescription.html">packageDescription()</a></code> with <code><a href="https://rdrr.io/r/utils/packageDescription.html">utils::packageDescription()</a></code>. This may be needed in <code>\Sexpr</code>’s more generally (<strong>TODO:</strong> check if these would still be needed if the symbols are imported by the package.)</p></li>
 </ul>
 </div>
     <div id="rdpack-09-0-cran" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.9-0">
 <a href="#rdpack-09-0-cran" class="anchor"></a>Rdpack 0.9-0 (CRAN)<small> 2018-08-04 </small>
 </h1>
 <ul>
@@ -199,7 +212,7 @@
 </ul>
 </div>
     <div id="rdpack-08-4" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.8-4">
 <a href="#rdpack-08-4" class="anchor"></a>Rdpack 0.8-4<small> Unreleased </small>
 </h1>
 <ul>
@@ -207,7 +220,7 @@
 </ul>
 </div>
     <div id="rdpack-08-3" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.8-3">
 <a href="#rdpack-08-3" class="anchor"></a>Rdpack 0.8-3<small> Unreleased </small>
 </h1>
 <ul>
@@ -229,7 +242,7 @@
 </ul>
 </div>
     <div id="rdpack-08-2" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.8-2">
 <a href="#rdpack-08-2" class="anchor"></a>Rdpack 0.8-2<small> Unreleased </small>
 </h1>
 <ul>
@@ -237,7 +250,7 @@
 </ul>
 </div>
     <div id="rdpack-08-1" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.8-1">
 <a href="#rdpack-08-1" class="anchor"></a>Rdpack 0.8-1<small> Unreleased </small>
 </h1>
 <ul>
@@ -245,7 +258,7 @@
 </ul>
 </div>
     <div id="rdpack-08-0-cran" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.8-0">
 <a href="#rdpack-08-0-cran" class="anchor"></a>Rdpack 0.8-0 (CRAN)<small> 2018-05-24 </small>
 </h1>
 <ul>
@@ -254,7 +267,7 @@
 </ul>
 </div>
     <div id="rdpack-07-1" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.7-1">
 <a href="#rdpack-07-1" class="anchor"></a>Rdpack 0.7-1<small> Unreleased </small>
 </h1>
 <ul>
@@ -266,7 +279,7 @@
 </ul>
 </div>
     <div id="rdpack-07-0-cran" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.7-0">
 <a href="#rdpack-07-0-cran" class="anchor"></a>Rdpack 0.7-0 (CRAN)<small> 2018-03-26 </small>
 </h1>
 <ul>
@@ -276,7 +289,7 @@
 </ul>
 </div>
     <div id="rdpack-06-x" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.6">
 <a href="#rdpack-06-x" class="anchor"></a>Rdpack 0.6-x<small> Unreleased </small>
 </h1>
 <ul>
@@ -290,7 +303,7 @@
 </ul>
 </div>
     <div id="rdpack-05-7" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5-7">
 <a href="#rdpack-05-7" class="anchor"></a>Rdpack 0.5-7<small> Unreleased </small>
 </h1>
 <ul>
@@ -301,7 +314,7 @@
 </ul>
 </div>
     <div id="rdpack-05-6" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5-6">
 <a href="#rdpack-05-6" class="anchor"></a>Rdpack 0.5-6<small> Unreleased </small>
 </h1>
 <ul>
@@ -311,7 +324,7 @@
 </ul>
 </div>
     <div id="rdpack-05-5-cran" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5-5">
 <a href="#rdpack-05-5-cran" class="anchor"></a>Rdpack 0.5-5 (CRAN)<small> 2018-02-14 </small>
 </h1>
 <ul>
@@ -325,7 +338,7 @@
 </ul>
 </div>
     <div id="rdpack-05-49000" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5-4.9000">
 <a href="#rdpack-05-49000" class="anchor"></a>Rdpack 0.5-4.9000<small> Unreleased </small>
 </h1>
 <ul>
@@ -336,7 +349,7 @@
 </ul>
 </div>
     <div id="rdpack-05-4" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5-4">
 <a href="#rdpack-05-4" class="anchor"></a>Rdpack 0.5-4<small> Unreleased </small>
 </h1>
 <ul>
@@ -346,7 +359,7 @@
 </ul>
 </div>
     <div id="rdpack-05-3-cran" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5-3">
 <a href="#rdpack-05-3-cran" class="anchor"></a>Rdpack 0.5-3 (CRAN)<small> 2018-01-27 </small>
 </h1>
 <ul>
@@ -354,7 +367,7 @@
 </ul>
 </div>
     <div id="rdpack-05-2" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5-2">
 <a href="#rdpack-05-2" class="anchor"></a>Rdpack 0.5-2<small> Unreleased </small>
 </h1>
 <ul>
@@ -363,7 +376,7 @@
 </ul>
 </div>
     <div id="rdpack-05-1-cran" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5-1">
 <a href="#rdpack-05-1-cran" class="anchor"></a>Rdpack 0.5-1 (CRAN)<small> 2017-12-13 </small>
 </h1>
 <ul>
@@ -371,7 +384,7 @@
 </ul>
 </div>
     <div id="rdpack-05-0" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5-0">
 <a href="#rdpack-05-0" class="anchor"></a>Rdpack 0.5-0<small> Unreleased </small>
 </h1>
 <ul>
@@ -379,7 +392,7 @@
 </ul>
 </div>
     <div id="rdpack-04-23" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4-23">
 <a href="#rdpack-04-23" class="anchor"></a>Rdpack 0.4-23<small> Unreleased </small>
 </h1>
 <ul>
@@ -390,7 +403,7 @@ May be particularly helpful for devtools developers.</p></li>
 </ul>
 </div>
     <div id="rdpack-04-22-cran" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4-22">
 <a href="#rdpack-04-22-cran" class="anchor"></a>Rdpack 0.4-22 (CRAN)<small> 2017-10-02 </small>
 </h1>
 <ul>
@@ -400,7 +413,7 @@ May be particularly helpful for devtools developers.</p></li>
 </ul>
 </div>
     <div id="rdpack-04-21-cran" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4-21">
 <a href="#rdpack-04-21-cran" class="anchor"></a>Rdpack 0.4-21 (CRAN)<small> 2017-08-06 </small>
 </h1>
 <ul>
@@ -412,7 +425,7 @@ May be particularly helpful for devtools developers.</p></li>
 </ul>
 </div>
     <div id="rdpack-04-20-cran" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4-20">
 <a href="#rdpack-04-20-cran" class="anchor"></a>Rdpack 0.4-20 (CRAN)<small> 2016-07-26 </small>
 </h1>
 <ul>
@@ -420,7 +433,7 @@ May be particularly helpful for devtools developers.</p></li>
 </ul>
 </div>
     <div id="rdpack-04-19" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4-19">
 <a href="#rdpack-04-19" class="anchor"></a>Rdpack 0.4-19<small> Unreleased </small>
 </h1>
 <ul>
@@ -432,7 +445,7 @@ May be particularly helpful for devtools developers.</p></li>
 </ul>
 </div>
     <div id="rdpack-04-18-cran" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4-18">
 <a href="#rdpack-04-18-cran" class="anchor"></a>Rdpack 0.4-18 (CRAN)<small> 2015-07-15 </small>
 </h1>
 <ul>
@@ -441,7 +454,7 @@ May be particularly helpful for devtools developers.</p></li>
 </ul>
 </div>
     <div id="rdpack-04-17" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4-17">
 <a href="#rdpack-04-17" class="anchor"></a>Rdpack 0.4-17<small> Unreleased </small>
 </h1>
 <ul>
@@ -449,7 +462,7 @@ May be particularly helpful for devtools developers.</p></li>
 </ul>
 </div>
     <div id="rdpack-04-16" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4-16">
 <a href="#rdpack-04-16" class="anchor"></a>Rdpack 0.4-16<small> Unreleased </small>
 </h1>
 <ul>
@@ -460,7 +473,7 @@ May be particularly helpful for devtools developers.</p></li>
 </ul>
 </div>
     <div id="rdpack-04-8" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4-8">
 <a href="#rdpack-04-8" class="anchor"></a>Rdpack 0.4-8<small> Unreleased </small>
 </h1>
 <ul>
@@ -469,7 +482,7 @@ May be particularly helpful for devtools developers.</p></li>
 </ul>
 </div>
     <div id="rdpack-04-7" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4-7">
 <a href="#rdpack-04-7" class="anchor"></a>Rdpack 0.4-7<small> Unreleased </small>
 </h1>
 <ul>
@@ -479,18 +492,18 @@ May be particularly helpful for devtools developers.</p></li>
 </ul>
 </div>
     <div id="rdpack-04-5" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4-5">
 <a href="#rdpack-04-5" class="anchor"></a>Rdpack 0.4-5<small> Unreleased </small>
 </h1>
 <ul>
-<li><p>dependence <code>bibtex</code> becomes “Imports”. <code>tools</code> and <code>gbRd</code> remain (for now) “Depends” since functions from them are used in some examples without <code><a href="https://rdrr.io/r/base/library.html">require()</a></code>’s.</p></li>
+<li><p>dependence <code>bibtex</code> becomes “Imports”. <code>tools</code> and <code>gbRd</code> remain (for now) “Depends” since functions from them are used in some examples without <code>require()</code>’s.</p></li>
 <li><p><code><a href="../reference/rebib.html">rebib()</a></code>: now <code>outfile=""</code> can be used to request overwriting <code>infile</code>. (a small convenience; before the change, one could do this by giving the <code>outfile</code> and <code>infile</code> the same values.)</p></li>
 <li><p>Bug fix: <code>predefined.Rd</code> contained <code>\tabular</code> environments with vertical bars, <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code>, in the format specification. This is not documented in “Writing R exts” but works for LaTeX and remained unnoticed by me and R CMD check. However, rendering the help page for the objects documented in “predefined.Rd” gave an error in html and text mode. Package installation failed only if html was requested at build time.</p></li>
 <li><p>small changes in the documentation</p></li>
 </ul>
 </div>
     <div id="rdpack-04-1" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4-1">
 <a href="#rdpack-04-1" class="anchor"></a>Rdpack 0.4-1<small> Unreleased </small>
 </h1>
 <ul>
@@ -502,7 +515,7 @@ May be particularly helpful for devtools developers.</p></li>
 </ul>
 </div>
     <div id="rdpack-03-11" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.3-11">
 <a href="#rdpack-03-11" class="anchor"></a>Rdpack 0.3-11<small> Unreleased </small>
 </h1>
 <ul>
@@ -511,7 +524,7 @@ May be particularly helpful for devtools developers.</p></li>
 </ul>
 </div>
     <div id="rdpack-03-10" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.3-10">
 <a href="#rdpack-03-10" class="anchor"></a>Rdpack 0.3-10<small> 2012-11-03 </small>
 </h1>
 <ul>
@@ -520,7 +533,7 @@ May be particularly helpful for devtools developers.</p></li>
 </ul>
 </div>
     <div id="rdpack-03-8-cran" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.3-8">
 <a href="#rdpack-03-8-cran" class="anchor"></a>Rdpack 0.3-8 (CRAN)<small> 2012-10-25 </small>
 </h1>
 <ul>
@@ -529,52 +542,10 @@ May be particularly helpful for devtools developers.</p></li>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#rdpack-011-1-cran">0.11-1</a></li>
-        <li><a href="#rdpack-011-0-cran">0.11-0</a></li>
-        <li><a href="#rdpack-010-3">0.10-3</a></li>
-        <li><a href="#rdpack-010-2">0.10-2</a></li>
-        <li><a href="#rdpack-010-1-cran">0.10-1</a></li>
-        <li><a href="#rdpack-010-0">0.10-0</a></li>
-        <li><a href="#rdpack-09-1">0.9-1</a></li>
-        <li><a href="#rdpack-09-0-cran">0.9-0</a></li>
-        <li><a href="#rdpack-08-4">0.8-4</a></li>
-        <li><a href="#rdpack-08-3">0.8-3</a></li>
-        <li><a href="#rdpack-08-2">0.8-2</a></li>
-        <li><a href="#rdpack-08-1">0.8-1</a></li>
-        <li><a href="#rdpack-08-0-cran">0.8-0</a></li>
-        <li><a href="#rdpack-07-1">0.7-1</a></li>
-        <li><a href="#rdpack-07-0-cran">0.7-0</a></li>
-        <li><a href="#rdpack-06-x">0.6</a></li>
-        <li><a href="#rdpack-05-7">0.5-7</a></li>
-        <li><a href="#rdpack-05-6">0.5-6</a></li>
-        <li><a href="#rdpack-05-5-cran">0.5-5</a></li>
-        <li><a href="#rdpack-05-49000">0.5-4.9000</a></li>
-        <li><a href="#rdpack-05-4">0.5-4</a></li>
-        <li><a href="#rdpack-05-3-cran">0.5-3</a></li>
-        <li><a href="#rdpack-05-2">0.5-2</a></li>
-        <li><a href="#rdpack-05-1-cran">0.5-1</a></li>
-        <li><a href="#rdpack-05-0">0.5-0</a></li>
-        <li><a href="#rdpack-04-23">0.4-23</a></li>
-        <li><a href="#rdpack-04-22-cran">0.4-22</a></li>
-        <li><a href="#rdpack-04-21-cran">0.4-21</a></li>
-        <li><a href="#rdpack-04-20-cran">0.4-20</a></li>
-        <li><a href="#rdpack-04-19">0.4-19</a></li>
-        <li><a href="#rdpack-04-18-cran">0.4-18</a></li>
-        <li><a href="#rdpack-04-17">0.4-17</a></li>
-        <li><a href="#rdpack-04-16">0.4-16</a></li>
-        <li><a href="#rdpack-04-8">0.4-8</a></li>
-        <li><a href="#rdpack-04-7">0.4-7</a></li>
-        <li><a href="#rdpack-04-5">0.4-5</a></li>
-        <li><a href="#rdpack-04-1">0.4-1</a></li>
-        <li><a href="#rdpack-03-11">0.3-11</a></li>
-        <li><a href="#rdpack-03-10">0.3-10</a></li>
-        <li><a href="#rdpack-03-8-cran">0.3-8</a></li>
-      </ul>
-    </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 
 </div>
@@ -586,7 +557,7 @@ May be particularly helpful for devtools developers.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
 </div>
 
       </footer>

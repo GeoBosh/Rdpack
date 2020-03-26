@@ -11,16 +11,20 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -40,7 +44,6 @@
   an S4 generic function — get_sig_text" />
 <meta property="og:description" content="Produce the textual form of the  signatures of available methods for
   an S4 generic function." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -58,7 +61,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -72,7 +75,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rdpack</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11-2</span>
       </span>
     </div>
 
@@ -93,7 +96,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/GeoBosh/Rdpack">
+  <a href="https://github.com/GeoBosh/Rdpack/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -145,16 +148,15 @@
 
 <p>Here we find all methods for <code>show()</code> defined in package
   <code>"methods"</code> and print the first few of them: 
-  <pre>fn &lt;- utils::help("show-methods", package = "methods")
-rdo &lt;- utils:::.getHelpFile(fn)
-head(get_sig_text(rdo))
-##: [1] "signature(object = \"ANY\")"                   
-##: [2] "signature(object = \"C++Class\")"              
-##: [3] "signature(object = \"C++Function\")"           
-##: [4] "signature(object = \"C++Object\")"             
-##: [5] "signature(object = \"classGeneratorFunction\")"
-##: [6] "signature(object = \"classRepresentation\")"   
-</pre></p>
+  <pre><span class='no'>fn</span> <span class='kw'>&amp;</span><span class='no'>lt</span>;- <span class='kw pkg'>utils</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/utils/help.html'>help</a></span>(<span class='st'>"show-methods"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"methods"</span>)
+<span class='no'>rdo</span> <span class='kw'>&amp;</span><span class='no'>lt</span>;- <span class='kw pkg'>utils</span><span class='kw ns'>:::</span><span class='fu'>.getHelpFile</span>(<span class='no'>fn</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'>get_sig_text</span>(<span class='no'>rdo</span>))
+<span class='co'>##: [1] "signature(object = \"ANY\")"                   </span>
+<span class='co'>##: [2] "signature(object = \"C++Class\")"              </span>
+<span class='co'>##: [3] "signature(object = \"C++Function\")"           </span>
+<span class='co'>##: [4] "signature(object = \"C++Object\")"             </span>
+<span class='co'>##: [5] "signature(object = \"classGeneratorFunction\")"</span>
+<span class='co'>##: [6] "signature(object = \"classRepresentation\")"   </span></pre></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A character vector with one element for each method.</p>
@@ -212,7 +214,7 @@ head(get_sig_text(rdo))
 #&gt; Rd source not supplied and installed documentation not found.
 #&gt; Trying a 'prompt' function to generate documentation for the object.
 #&gt; 	success: documentation generated using a 'prompt' function.
-#&gt; 	The Rd content was written to file  /tmp/RtmpBJduua/file26d9496f74fc </div><div class='output co'>#&gt; [1] "/tmp/RtmpBJduua/file26d9496f74fc"</div><div class='input'><span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/tools/parse_Rd.html'>parse_Rd</a></span>(<span class='no'>fn</span>)
+#&gt; 	The Rd content was written to file  /tmp/RtmpdJ5zIR/file687d62ea7fd3 </div><div class='output co'>#&gt; [1] "/tmp/RtmpdJ5zIR/file687d62ea7fd3"</div><div class='input'><span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/tools/parse_Rd.html'>parse_Rd</a></span>(<span class='no'>fn</span>)
 <span class='fu'>get_sig_text</span>(<span class='no'>rdo</span>)</div><div class='output co'>#&gt; [1] "signature(x = \"ANY\")"</div><div class='input'>
 <span class='fu'>setClass</span>(<span class='st'>"aRdpack"</span>)
 <span class='fu'>setClass</span>(<span class='st'>"bRdpack"</span>)
@@ -227,7 +229,7 @@ head(get_sig_text(rdo))
 #&gt; Rd source not supplied and installed documentation not found.
 #&gt; Trying a 'prompt' function to generate documentation for the object.
 #&gt; 	success: documentation generated using a 'prompt' function.
-#&gt; 	The Rd content was written to file  /tmp/RtmpBJduua/file26d9496f74fc </div><div class='output co'>#&gt; [1] "/tmp/RtmpBJduua/file26d9496f74fc"</div><div class='input'><span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/tools/parse_Rd.html'>parse_Rd</a></span>(<span class='no'>fn</span>)
+#&gt; 	The Rd content was written to file  /tmp/RtmpdJ5zIR/file687d62ea7fd3 </div><div class='output co'>#&gt; [1] "/tmp/RtmpdJ5zIR/file687d62ea7fd3"</div><div class='input'><span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/tools/parse_Rd.html'>parse_Rd</a></span>(<span class='no'>fn</span>)
 <span class='fu'>get_sig_text</span>(<span class='no'>rdo</span>)</div><div class='output co'>#&gt; [1] "signature(x = \"ANY\", y = \"ANY\")"        
 #&gt; [2] "signature(x = \"aRdpack\", y = \"bRdpack\")"
 #&gt; [3] "signature(x = \"aRdpack\", y = \"numeric\")"
@@ -235,18 +237,10 @@ head(get_sig_text(rdo))
 #&gt; [5] "signature(x = \"numeric\", y = \"numeric\")"</div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='no'>fn</span>)</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#note">Note</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>Georgi N. Boshnakov</p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -257,7 +251,7 @@ head(get_sig_text(rdo))
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
 </div>
 
       </footer>

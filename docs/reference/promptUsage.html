@@ -10,16 +10,20 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -41,7 +45,6 @@
 Generates usage text for a function, S3 method or S4 method.  The text
   is suitably formatted for inclusion in the usage section of Rd
   documentation." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -59,7 +62,7 @@ Generates usage text for a function, S3 method or S4 method.  The text
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -73,7 +76,7 @@ Generates usage text for a function, S3 method or S4 method.  The text
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rdpack</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11-2</span>
       </span>
     </div>
 
@@ -94,7 +97,7 @@ Generates usage text for a function, S3 method or S4 method.  The text
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/GeoBosh/Rdpack">
+  <a href="https://github.com/GeoBosh/Rdpack/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -192,29 +195,25 @@ Generates usage text for a function, S3 method or S4 method.  The text
   copying and pasting into Rd documentation or saving to a file
   (otherwise, if the usage text contains backslashes, they may appear
   duplicated).  Long text is wrapped on two or more lines. For example,
-  <pre>cat(get_usage(lm))
-##: lm(formula, data, subset, weights, na.action, method = "qr", 
-##:    model = TRUE, x = FALSE, y = FALSE, qr = TRUE, singular.ok = TRUE, 
-##:    contrasts = NULL, offset, \dots)
-</pre>
+  <pre><span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='fu'>get_usage</span>(<span class='no'>lm</span>))
+<span class='co'>##: lm(formula, data, subset, weights, na.action, method = "qr", </span>
+<span class='co'>##:    model = TRUE, x = FALSE, y = FALSE, qr = TRUE, singular.ok = TRUE, </span>
+<span class='co'>##:    contrasts = NULL, offset, \dots)</span></pre>
   Argument <code>"name"</code> can be used to specify a print name for the function.
   This is most often needed for S3 methods. Compare
-  <pre>cat(get_usage(summary.lm))
-##: summary.lm(object, correlation = FALSE, symbolic.cor = FALSE, \dots)
-</pre>
+  <pre><span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='fu'>get_usage</span>(<span class='no'>summary.lm</span>))
+<span class='co'>##: summary.lm(object, correlation = FALSE, symbolic.cor = FALSE, \dots)</span></pre>
   and
-  <pre>cat(get_usage(summary.lm, name = "summary"))
-##: summary(object, correlation = FALSE, symbolic.cor = FALSE, \dots)
-</pre>
+  <pre><span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='fu'>get_usage</span>(<span class='no'>summary.lm</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"summary"</span>))
+<span class='co'>##: summary(object, correlation = FALSE, symbolic.cor = FALSE, \dots)</span></pre>
   The call is just <code><a href='https://rdrr.io/r/base/summary.html'>summary()</a></code> in the latter. This fairly reflects
   the fact that S3 methods are normally called via the generic, but
   adding some explanatory text around the command is usually a good
   idea. For programmatically generated usage sections in help pages,
   argument <code>S3class</code> can be used to get the standard Rd markup for
   S3 methods.
-  <pre>cat(get_usage(summary.lm, "summary", S3class = "lm"))
-##: \method{summary}{lm}(object, correlation = FALSE, symbolic.cor = FALSE, \dots)
-</pre>
+  <pre><span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='fu'>get_usage</span>(<span class='no'>summary.lm</span>, <span class='st'>"summary"</span>, <span class='kw'>S3class</span> <span class='kw'>=</span> <span class='st'>"lm"</span>))
+<span class='co'>##: \method{summary}{lm}(object, correlation = FALSE, symbolic.cor = FALSE, \dots)</span></pre>
   (Note that <code>\method</code> can only be used in Usage sections.)</p>  
 <p>When <code>object</code> is an anonymous function, argument <code>name</code> is compulsory.
   For example,
@@ -228,30 +227,25 @@ Generates usage text for a function, S3 method or S4 method.  The text
   of functions located in other objects, such as environments and lists,
   see the examples.</p>
 <p>If a function is used as an infix operator, set <code>infix = TRUE</code>.
-  <pre>get_usage("+", infix = TRUE)
-##: [1] "e1 + e2"
-get_usage("%in%", infix = TRUE)
-##: [1] "x %in% table"
-</pre>
+  <pre><span class='fu'>get_usage</span>(<span class='st'>"+"</span>, <span class='kw'>infix</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'>##: [1] "e1 + e2"</span>
+<span class='fu'>get_usage</span>(<span class='st'>"%in%"</span>, <span class='kw'>infix</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'>##: [1] "x %in% table"</span></pre>
   The name of the operator may be in a variable:
-  <pre>op &lt;- "+"
-get_usage(op, infix = TRUE)
-##: [1] "e1 + e2"
-</pre></p>  
+  <pre><span class='no'>op</span> <span class='kw'>&amp;</span><span class='no'>lt</span>;- <span class='st'>"+"</span>
+<span class='fu'>get_usage</span>(<span class='no'>op</span>, <span class='kw'>infix</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'>##: [1] "e1 + e2"</span></pre></p>  
 <p>Backticks are ok, as well,
-  <pre>get_usage(`+`, infix = TRUE)
-##: [1] "e1 + e2"
-</pre>
+  <pre><span class='fu'>get_usage</span>(<span class='no'>`+`</span>, <span class='kw'>infix</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'>##: [1] "e1 + e2"</span></pre>
   But if a backticked operator is in a variable, surprise springs: 
-  <pre>op &lt;- `+`
-get_usage(op, infix = TRUE)
-##: [1] "e1 op e2"
-</pre>
+  <pre><span class='no'>op</span> <span class='kw'>&amp;</span><span class='no'>lt</span>;- <span class='no'>`+`</span>
+<span class='fu'>get_usage</span>(<span class='no'>op</span>, <span class='kw'>infix</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'>##: [1] "e1 op e2"</span></pre>
   In this case, don't use backticks  or, if you must, evaluate the argument:
-  <pre>op &lt;- `+`
-get_usage(eval(op), name = "+", infix = TRUE)
-##: [1] "e1 + e2"
-</pre></p>
+  <pre><span class='no'>op</span> <span class='kw'>&amp;</span><span class='no'>lt</span>;- <span class='no'>`+`</span>
+<span class='fu'>get_usage</span>(<span class='fu'><a href='https://rdrr.io/r/base/eval.html'>eval</a></span>(<span class='no'>op</span>), <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"+"</span>, <span class='kw'>infix</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'>##: [1] "e1 + e2"</span></pre></p>
 
 <p><!-- % \Sexpr[stage=build,results=hide]{wrap_percent &lt;- function(x) paste0("\%", x, "\%")} -->
   <!-- % \printExample{op &lt;- wrap_percent("in"); get_usage(op,  infix = TRUE)} -->
@@ -310,19 +304,10 @@ get_usage(eval(op), name = "+", infix = TRUE)
 #&gt; "xbar(x)" </div><div class='input'><span class='fu'>get_usage</span>(<span class='no'>esummaries</span>$<span class='no'>rho</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"rho"</span>)</div><div class='output co'>#&gt;         rho 
 #&gt; "rho(x, y)" </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#note">Note</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>Georgi N. Boshnakov</p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -333,7 +318,7 @@ get_usage(eval(op), name = "+", infix = TRUE)
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
 </div>
 
       </footer>
