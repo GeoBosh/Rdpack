@@ -1,5 +1,10 @@
 # Rdpack 0.11-2
 
+- `viewRd()` now loads also Rd macros declared by the package to which the
+  rendered Rd file belongs.  Previously only macros from `Rdpack` were loaded
+  but now there is at least one other package, `mathjaxr`, which defines Rd
+  macros.
+
 - corrected a typo in NEWS.md.
 
 - edited some documentation files.

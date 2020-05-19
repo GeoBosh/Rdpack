@@ -2,7 +2,7 @@
 \alias{reprompt}
 \title{Update the documentation of a topic}
 \description{Examine the documentation of functions, methods or classes and
-  update it with additional arguments, methods or slots, as
+  update it with additional arguments, aliases, methods or slots, as
   appropriate. This is an extention of the promptXXX() family of functions.
 }
 \usage{
@@ -224,9 +224,41 @@ reprompt(object, infile = NULL, Rdtext = NULL, final = TRUE,
   item, if it does not seem necessary any more (e.g. a removed argument
   from a function definition).
 
-  \code{reprompt} handles usage statements for S3 and S4  methods
+  \code{reprompt} handles usage statements for S3 and S4 methods
   introduced with any of the macros \verb{\method}, \verb{\S3method} and
-  \verb{\S4method}, as in \verb{\method{fun}{class}(args...)}.
+  \verb{\S4method}, as in
+  \verb{\method{fun}{class}(args...)}. \code{reprompt} understands also
+  subsetting ans subassignment operators.  For example, suppose that the
+  \code{\\arguments} section of file "bracket.Rd" contains these
+  directives (or any other wrong signatures):
+
+\preformatted{
+    \method{[}{ts}()
+    \method{[[}{Date}()
+}
+
+Then \code{reprompt("./bracket.Rd")} will change them to
+
+\preformatted{
+    \method{[}{ts}(x, i, j, drop = TRUE)
+    \method{[[}{Date}(x, \dots, drop = TRUE)
+}
+  
+  This works for the assignment operators and functions, as well. For
+  example, any of these
+
+\preformatted{
+    \method{`[<-`}{POSIXlt}()
+    \method{[}{POSIXlt}(x, j) <- value
+}
+
+will be converted by \code{reprompt} to the standard form
+
+\preformatted{
+    \method{[}{POSIXlt}(x, i, j) <- value
+}    
+
+Note that the quotes in \code{`[<-`} above. 
 
   Usage statements for functions are split over two or more lines if
   necessary. The user may edit them afterwards if the automatic

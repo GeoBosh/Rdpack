@@ -418,13 +418,43 @@ viewRd <- function(infile, type = "text", stages = NULL){
     else if(!is.character(stages) || !all(stages %in% c("build", "install", "render")))
         stop('stages must be a character vector containing one or more of the strings "build", "install", and "render"')
 
-    ## here we need to expand the Rd macros, so don't use permissive_parse_Rd()
-    ## TODO: (BUG) e is NULL under RStudio
-    e <- tools::loadPkgRdMacros(system.file(package = "Rdpack"))
-    ## Rdo <- parse_Rd(infile, macros = e)
-
     pkgname <- basename(dirname(dirname(infile)))
     outfile <- tempfile(fileext = paste0(".", type))
+    ## 2020-05-19: added pkgdir to read also current package macros, see below
+    pkgdir <- dirname(dirname(infile))
+
+    ## here we need to expand the Rd macros, so don't use permissive_parse_Rd()
+    ## 2020-05-19: read also the macros from pkgdir, 
+    ##             load those from Rdpack anyway, in case Rdpack is not in 'DESCRIPTION' yet
+    ##             TODO: could issue warning here but this could be intrusive here since 
+    ##             since the user may not need Rdpack for the current package.
+    e <- tools::loadPkgRdMacros(system.file(package = "Rdpack"))
+    e <- tools::loadPkgRdMacros(pkgdir, macros = e)
+    ## finally load the Rd system macros (though I haven't noticed errors without this step).
+    e <- tools::loadRdMacros(file.path(R.home("share"), "Rd", "macros", "system.Rd"), 
+                             macros = e)
+
+    ## check if mathjaxr is needed
+    descpath <- file.path(pkgdir, "DESCRIPTION")
+    need_mathjaxr <- 
+        if(file.exists(descpath)){
+            ## rdmac is NA if there is no RDMacros field in DESCRIPTION
+            rdmac <- as.character(read.dcf(descpath, fields = "RdMacros"))
+            grepl("mathjaxr", as.character(rdmac))
+        }else{
+            ## try installed package
+            pkgdesc <- packageDescription(pkgname)
+            !is.null(pkgdesc$RdMacros)  && grepl("mathjaxr",pkgdesc$RdMacros)
+        }
+    ## this loads mathjax from CDN, so internet connection needed
+    if(need_mathjaxr){
+        ## code borrowed from package "mathjaxr"
+        mjcdn <- Sys.getenv("MATHJAXR_USECDN")
+        on.exit(Sys.setenv(MATHJAXR_USECDN = mjcdn))
+        Sys.setenv(MATHJAXR_USECDN = "TRUE")
+    }
+
+    ## Rdo <- parse_Rd(infile, macros = e)
 
     ## can't do this, the file may be deleted before the browser opens it:
     ##        on.exit(unlink(outfile))

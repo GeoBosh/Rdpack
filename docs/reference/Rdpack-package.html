@@ -22,15 +22,15 @@
 <script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -142,10 +142,10 @@
 <tr><td>Package:</td><td>Rdpack</td></tr>
 <tr><td>Type:</td><td>Package</td></tr>
 <tr><td>Version:</td><td>0.11-2</td></tr>
-<tr><td>Date:</td><td>2019-12-15</td></tr>
+<tr><td>Date:</td><td>2020-05-19</td></tr>
 <tr><td>License:</td><td>GPL (&gt;= 2)</td></tr>
 <tr><td>LazyLoad:</td><td>yes</td></tr>
-<tr><td>Built:</td><td>R 3.6.1; ; 2020-03-26 22:39:17 UTC; unix</td></tr>
+<tr><td>Built:</td><td>R 3.6.1; ; 2020-05-19 09:45:02 UTC; unix</td></tr>
 </table>
 <p><!-- % -->
 <!-- % 2018-05-24 commenting out    -->
@@ -362,12 +362,12 @@ for anumber of examples produced mostly with <code>\printExample</code>.</p>
 of section <code>Examples</code>.
 For example, if the following code is put at the top level in an Rd file (i.e. not in a
 section):</p><pre>
-    \runExamples{2+2; a &lt;- 2*3; a}
+    \runExamples{2+2; a &amp;lt;- 2*3; a}
 </pre><p>then it will be evaluated and replaced by a normal section examples:</p><pre>
     \examples{
     2 + 2
     ##: 4
-    a &lt;- 2 * 3
+    a &amp;lt;- 2 * 3
     a
     ##: 6
     }
@@ -389,7 +389,7 @@ unknown <code>\Sexpr</code> section at top level.</p>
 plot produced by it (using <code>\figure</code>).  <code>\insertFig</code> takes
 three arguments: a filename, the package name and the code to evaluate
 to produce the figure.  For example,</p><pre>
-    \insertFig{cars.png}{mypackage}{x &lt;- cars$speed; y &lt;- cars$dist; plot(x,y)}
+    \insertFig{cars.png}{mypackage}{x &amp;lt;- cars$speed; y &amp;lt;- cars$dist; plot(x,y)}
 </pre><p>will evaluate the code, save the graph in file <code>"man/figures/cars.png"</code> subdirectory of
 package <code>"mypackage"</code>, and include the figure using <code>\figure</code>. 
 Subdirectory <code>"figures"</code> is created if it doesn't exist. 
@@ -522,7 +522,7 @@ This reference does not exist. It is a test/demo that simple formulas in BibTeX
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

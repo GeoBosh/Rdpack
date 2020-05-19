@@ -2,7 +2,7 @@ Package: Rdpack
 Type: Package
 Title: Update and Manipulate Rd Documentation Objects
 Version: 0.11-2
-Date: 2019-12-15
+Date: 2020-05-19
 Authors@R: c( person(given = c("Georgi", "N."), 
                      family = "Boshnakov", 
                      role = c("aut", "cre"), 
@@ -18,7 +18,7 @@ Description: Functions for manipulation of R documentation objects,
     inserting snippets of 'R' code and the results of its evaluation or
     creating graphics on the fly; and many functions for manipulation of
     references and Rd files.
-URL: https://github.com/GeoBosh/Rdpack https://geobosh.github.io/Rdpack/
+URL: https://github.com/GeoBosh/Rdpack (code) https://geobosh.github.io/Rdpack/ (website)
 BugReports: https://github.com/GeoBosh/Rdpack/issues
 Depends:
     R (>= 2.15.0),

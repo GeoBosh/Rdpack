@@ -22,15 +22,15 @@
 <script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="Update the documentation of a topic — reprompt" />
 <meta property="og:description" content="Examine the documentation of functions, methods or classes and
-  update it with additional arguments, methods or slots, as
+  update it with additional arguments, aliases, methods or slots, as
   appropriate. This is an extention of the promptXXX() family of functions." />
 
 
@@ -120,7 +120,7 @@
 
     <div class="ref-description">
     <p>Examine the documentation of functions, methods or classes and
-  update it with additional arguments, methods or slots, as
+  update it with additional arguments, aliases, methods or slots, as
   appropriate. This is an extention of the promptXXX() family of functions.</p>
     </div>
 
@@ -348,9 +348,37 @@
   removes existing content. It only issues a suggestion to remove an
   item, if it does not seem necessary any more (e.g. a removed argument
   from a function definition).</p>
-<p><code>reprompt</code> handles usage statements for S3 and S4  methods
+<p><code>reprompt</code> handles usage statements for S3 and S4 methods
   introduced with any of the macros <code>\method</code>, <code>\S3method</code> and
-  <code>\S4method</code>, as in <code>\method{fun}{class}(args...)</code>.</p>
+  <code>\S4method</code>, as in
+  <code>\method{fun}{class}(args...)</code>. <code>reprompt</code> understands also
+  subsetting ans subassignment operators.  For example, suppose that the
+  <code>\arguments</code> section of file "bracket.Rd" contains these
+  directives (or any other wrong signatures):</p>
+<pre>
+    \method{[}{ts}()
+    \method{[[}{Date}()
+</pre>
+
+<p>Then <code>reprompt("./bracket.Rd")</code> will change them to</p>
+<pre>
+    \method{[}{ts}(x, i, j, drop = TRUE)
+    \method{[[}{Date}(x, \dots, drop = TRUE)
+</pre>
+  
+<p>This works for the assignment operators and functions, as well. For
+  example, any of these</p>
+<pre>
+    \method{`[&amp;lt;-`}{POSIXlt}()
+    \method{[}{POSIXlt}(x, j) &amp;lt;- value
+</pre>
+
+<p>will be converted by <code>reprompt</code> to the standard form</p>
+<pre>
+    \method{[}{POSIXlt}(x, i, j) &amp;lt;- value
+</pre>    
+
+<p>Note that the quotes in <code>`[&lt;-`</code> above.</p>
 <p>Usage statements for functions are split over two or more lines if
   necessary. The user may edit them afterwards if the automatic
   splitting is not appropriate, see below.</p>
@@ -578,7 +606,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
