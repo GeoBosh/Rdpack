@@ -6,7 +6,7 @@ importFrom(utils, bibentry, browseURL, capture.output, cite, file.edit,
 
 importFrom(tools, parse_Rd, toRd, checkRd, Rd2txt,
            bibstyle, latexToUtf8, parseLatex, deparseLatex)
-importFrom(grDevices, dev.off, png)
+#importFrom(grDevices, dev.off, png)
 
 importFrom(gbRd, Rd_help2txt)
 importFrom(bibtex, read.bib)

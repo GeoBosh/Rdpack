@@ -5,7 +5,7 @@
   but now there is at least one other package, `mathjaxr`, which defines Rd
   macros.
 
-- corrected a typo in NEWS.md.
+- moved `grDevices` to `Suggests`.
 
 - edited some documentation files.
 
