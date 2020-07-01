@@ -194,10 +194,10 @@ insert_fig <- function(file, package, code, insert = TRUE){
   figpath <- file.path(dcur, "figures")
   if(!dir.exists(figpath))
       dir.create(figpath)
-  png(file.path(figpath, file))
+  grDevices::png(file.path(figpath, file))
   ## plot(cars)
   force(code)
-  dev.off()
+  grDevices::dev.off()
 
   if(insert)
       paste0("\\figure{", file, "}")

@@ -1,4 +1,4 @@
-# Rdpack 0.11-2
+# Rdpack 1.0.0
 
 - `viewRd()` now loads also Rd macros declared by the package to which the
   rendered Rd file belongs.  Previously only macros from `Rdpack` were loaded
