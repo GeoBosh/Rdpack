@@ -9,6 +9,12 @@
 #+END_EXPORT
 # Removing this, since doesn't seem to be updated anymore:
 # [![rpackages.io rank](http://www.rpackages.io/badge/Rdpack.svg)](http://www.rpackages.io/package/Rdpack)
+#
+# Saw these badges in Rcpp/README but they don't work for Rdpack
+# [![CRAN use](https://jangorecki.gitlab.io/rdeps/Rdpack/CRAN_usage.svg?sanitize=true)](https://cran.r-project.org/package=Rdpack)
+# [![CRAN indirect](https://jangorecki.gitlab.io/rdeps/Rdpack/indirect_usage.svg?sanitize=true)](https://cran.r-project.org/package=Rdpack)
+# [![BioConductor use](https://jangorecki.gitlab.io/rdeps/Rdpack/BioC_usage.svg?sanitize=true)](https://cran.r-project.org/package=Rdpack)
+
 
 Rdpack provides functions for manipulation of R documentation objects, including functions
 =reprompt()= and =ereprompt()= for updating existing Rd documentation for functions, methods

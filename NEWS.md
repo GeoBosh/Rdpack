@@ -1,3 +1,10 @@
+# Rdpack 1.0.1
+
+- removed a documentation link to a function in `gbutils`, which is not among
+  the dependencies of `Rdpack`. This was raising a NOTE on one of the CRAN
+  testing machines.
+
+
 # Rdpack 1.0.0
 
 - `viewRd()` now loads also Rd macros declared by the package to which the

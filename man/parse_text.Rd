@@ -44,9 +44,7 @@ parse_text(text, ..., keep = TRUE)
 
 \seealso{
   \code{\link{parse}},
-  \code{\link[gbutils]{parse_text}}
+  \code{parse_text} in package gbutils
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
 \keyword{programming}
 \keyword{internal}

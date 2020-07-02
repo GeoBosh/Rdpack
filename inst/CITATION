@@ -1,0 +1,14 @@
+citHeader("To cite the 'Rdpack' package in publications use:")
+
+
+year <- sub("-.*", "", meta$Date)
+vers = paste('R package version', meta$Version)
+
+bibentry(bibtype = "Misc",
+         title = "{Rdpack}: Update and Manipulate Rd Documentation Objects",
+         author = person(given = c("Georgi", "N."), family = "Boshnakov"),
+         year = year,
+         note = vers,
+         doi = "10.5281/zenodo.3925612"
+         #, url = "https://CRAN.R-project.org/package=Rdpack"
+         )
