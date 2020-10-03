@@ -42,7 +42,7 @@
   A set of functions and macros support inclusion of references and
   citations from BibTeX files in \R documentation (Rd and
   roxygen2). These tools use only facilities provided by base \R and
-  package \pkg{bibtex} \insertCite{Rpack:bibtex}{Rdpack}.
+  package \pkg{rbibutils} \insertCite{Rpack:bibtex}{Rdpack}.
 
   There are also convenience  macros for inclusion of evaluated examples
   and graphs, which hide some of the hassle of doing this directly with

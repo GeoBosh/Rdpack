@@ -58,8 +58,8 @@ insert_all_ref(refs, style = "")
 % %% ~~objects to See Also as \code{\link{help}}, ~~~
 % }
 \examples{
-bibs <- bibtex::read.bib(package = "tools")
-bibs
+## bibs <- bibtex::read.bib(package = "tools")
+## bibs
 
 
 ## a reference from package Rdpack

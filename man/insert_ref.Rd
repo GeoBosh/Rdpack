@@ -13,12 +13,16 @@
 
 }
 \usage{
-insert_ref(key, package = NULL, ...)
+insert_ref(key, package = NULL, \dots, cached_env = NULL)
 }
 \arguments{
   \item{key}{the bibtex key of the reference, a character string.}
   \item{package}{the package in which to look for the the bibtex file.}
   \item{\dots}{further arguments to pass on to \code{bibtex::read.bib}}
+  \item{cached_env}{
+    environment, used to avoid repeatedly pasing the bib
+    file from scratch, mainly useful by the Rd macros.
+  }
 }
 \details{
   \code{insert_ref} extracts a reference from a bibtex file, converts
@@ -160,7 +164,7 @@ references for \code{\\insertAllCited}.
 
   \insertRef{Rpack:bibtex}{Rdpack}
 
-  \insertRef{R}{bibtex}
+  % \insertRef{R}{bibtex}
 
     ---- 
 
@@ -173,8 +177,8 @@ references for \code{\\insertAllCited}.
   \code{\link{Rdpack-package}} for overview,
   the vignettes
 }
-\examples{
-cat(insert_ref("R", package = "bibtex"), sep = "\n")
-}
+% \examples{
+% cat(insert_ref("R", package = "bibtex"), sep = "\n")
+% }
 \keyword{documentation}
 \keyword{Rd}

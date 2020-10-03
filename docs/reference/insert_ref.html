@@ -78,7 +78,7 @@ Package Rdpack provides Rd macros for inserting references and
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rdpack</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
       </span>
     </div>
 
@@ -132,7 +132,7 @@ Package Rdpack provides Rd macros for inserting references and
   vignette.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>insert_ref</span>(<span class='no'>key</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>insert_ref</span>(<span class='no'>key</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>, <span class='kw'>cached_env</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,6 +148,11 @@ Package Rdpack provides Rd macros for inserting references and
     <tr>
       <th>...</th>
       <td><p>further arguments to pass on to <code><a href='https://rdrr.io/pkg/bibtex/man/read.bib.html'>bibtex::read.bib</a></code></p></td>
+    </tr>
+    <tr>
+      <th>cached_env</th>
+      <td><p>environment, used to avoid repeatedly pasing the bib
+    file from scratch, mainly useful by the Rd macros.</p></td>
     </tr>
     </table>
 
@@ -273,16 +278,13 @@ references for <code>\insertAllCited</code>.</p>
   each reference:</p>
 <p>Romain Francois (2014).
 <em>bibtex: bibtex parser</em>.
-R package version 0.4.0, <a href='https://CRAN.R-project.org/package=bibtex'>https://CRAN.R-project.org/package=bibtex</a>.</p>
-<p>R Development Core Team (2009).
-<em>R: A Language and Environment for Statistical Computing</em>.
-R Foundation for Statistical Computing, Vienna, Austria.
-ISBN 3-900051-07-0, <a href='https://www.R-project.org'>https://www.R-project.org</a>.</p>
+R package version 0.4.0.</p>
+<p><!-- % \insertRef{R}{bibtex} --></p>
 <p>----</p>
 <p>The following references are obtained with a single <code>\insertAllCited{}</code>:</p>
 <p>Romain Francois (2014).
 <em>bibtex: bibtex parser</em>.
-R package version 0.4.0, <a href='https://CRAN.R-project.org/package=bibtex'>https://CRAN.R-project.org/package=bibtex</a>.<br /><br /> Duncan Murdoch (2010).
+R package version 0.4.0.<br /><br /> Duncan Murdoch (2010).
 &#8220;Parsing Rd files.&#8221;
 <a href='https://developer.r-project.org/parseRd.pdf'>https://developer.r-project.org/parseRd.pdf</a>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -290,11 +292,6 @@ R package version 0.4.0, <a href='https://CRAN.R-project.org/package=bibtex'>htt
     <div class='dont-index'><p><code><a href='Rdpack-package.html'>Rdpack-package</a></code> for overview,
   the vignettes</p></div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='fu'>insert_ref</span>(<span class='st'>"R"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"bibtex"</span>), <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"\n"</span>)</div><div class='output co'>#&gt; R Development Core Team (2009).
-#&gt; \emph{R: A Language and Environment for Statistical Computing}.
-#&gt; R Foundation for Statistical Computing, Vienna, Austria.
-#&gt; ISBN 3-900051-07-0, \url{https://www.R-project.org}.</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -9,7 +9,8 @@ importFrom(tools, parse_Rd, toRd, checkRd, Rd2txt,
 #importFrom(grDevices, dev.off, png)
 
 importFrom(gbRd, Rd_help2txt)
-importFrom(bibtex, read.bib)
+#importFrom(bibtex, read.bib)
+importFrom(rbibutils, readBib)
 
 S3method(as.character, f_usage)
 S3method(print, f_usage)

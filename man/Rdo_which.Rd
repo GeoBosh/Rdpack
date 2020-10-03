@@ -62,20 +62,20 @@ rdo_seq[[ ind[1] ]]
 rdo_seq[ind]
 }
 
-db_bibtex <- tools::Rd_db("bibtex")
-names(db_bibtex)
-## Rdo object for read.bib()
-rdo_read.bib <- db_bibtex[["read.bib.Rd"]]
-Rdo_tags(rdo_read.bib)
-
-## which elements of read.bib are aliases?
-Rdo_which_tag_eq(rdo_read.bib, "\\alias")
-rdo_read.bib[[3]]
-
-## which elements of read.bib contain R code?
-Rdo_which(rdo_read.bib, function(x) any(Rdo_tags(x) == "RCODE") )
-rdo_read.bib[[5]]
-## which contain prose?
-Rdo_which(rdo_read.bib, function(x) any(Rdo_tags(x) == "TEXT") )
+## db_bibtex <- tools::Rd_db("bibtex")
+## names(db_bibtex)
+## ## Rdo object for read.bib()
+## rdo_read.bib <- db_bibtex[["read.bib.Rd"]]
+## Rdo_tags(rdo_read.bib)
+## 
+## ## which elements of read.bib are aliases?
+## Rdo_which_tag_eq(rdo_read.bib, "\\alias")
+## rdo_read.bib[[3]]
+## 
+## ## which elements of read.bib contain R code?
+## Rdo_which(rdo_read.bib, function(x) any(Rdo_tags(x) == "RCODE") )
+## rdo_read.bib[[5]]
+## ## which contain prose?
+## Rdo_which(rdo_read.bib, function(x) any(Rdo_tags(x) == "TEXT") )
 }
 \keyword{Rd}

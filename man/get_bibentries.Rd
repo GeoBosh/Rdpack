@@ -22,8 +22,10 @@ get_bibentries(\dots, package = NULL, bibfile = "REFERENCES.bib",
 }
 \details{
 
-  \code{get_bibentries} parses the specified file using \code{read.bib}
-  from package \pkg{bibtex} \insertCite{Rpack:bibtex}{Rdpack} and sets its
+  \code{get_bibentries} parses the specified file.
+  % using \code{read.bib} from package \pkg{bibtex}
+  % \insertCite{Rpack:bibtex}{Rdpack} 
+  and sets its
   \code{names} attribute to the keys of the bib elements
   (\code{read.bib()} does this since version version 0.4.0 of
   \pkg{bibtex}, as well). Here is what
@@ -90,9 +92,12 @@ r <- get_bibentries(package = "Rdpack")
 r
 print(r, style = "html")
 
-b <- get_bibentries(package = "stats")
-print(b[[1]], style = "R")
-print(b[[1]], style = "citation")
+## Bib from base R packages are disabled in Rdpack v2 (notify the
+## maintainer of Rdpack or raise an issue on github if you wish this back).
+##
+## b <- get_bibentries(package = "stats")
+## print(b[[1]], style = "R")
+## print(b[[1]], style = "citation")
 
 ## here the url field contains percent encoding
 fn_url <- system.file("examples", "url_with_percents.bib", package = "Rdpack") 

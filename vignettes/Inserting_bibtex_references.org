@@ -102,7 +102,6 @@ example, the help page ~?Rdpack::insertRef~ contains the following lines in sect
 ``References'' of the Rd file:
 #+BEGIN_EXAMPLE
     \insertRef{Rpack:bibtex}{Rdpack}
-    \insertRef{R}{bibtex}
 #+END_EXAMPLE
 The first line above inserts the reference labeled =Rpack:bibtex= in Rdpack's
 =REFERENCES.bib=. The second line inserts the reference labeled =R= in file
@@ -112,8 +111,6 @@ A roxygen2 documentation chunk might look like this:
 #+BEGIN_EXAMPLE
     #' @references
     #' \insertRef{Rpack:bibtex}{Rdpack}
-    #'
-    #' \insertRef{R}{bibtex}
 #+END_EXAMPLE
 
 

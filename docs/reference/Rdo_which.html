@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rdpack</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
       </span>
     </div>
 
@@ -176,44 +176,21 @@
 <span class='no'>rdo_seq</span>[<span class='no'>ind</span>]
 }
 
-<span class='no'>db_bibtex</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/tools/Rdutils.html'>Rd_db</a></span>(<span class='st'>"bibtex"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>db_bibtex</span>)</div><div class='output co'>#&gt; [1] "do_read_bib.Rd" "read.bib.Rd"    "write.bib.Rd"  </div><div class='input'><span class='co'>## Rdo object for read.bib()</span>
-<span class='no'>rdo_read.bib</span> <span class='kw'>&lt;-</span> <span class='no'>db_bibtex</span><span class='kw'>[[</span><span class='st'>"read.bib.Rd"</span>]]
-<span class='fu'><a href='Rdo_tags.html'>Rdo_tags</a></span>(<span class='no'>rdo_read.bib</span>)</div><div class='output co'>#&gt; [1] "\\title"       "\\name"        "\\alias"       "\\description"
-#&gt; [5] "\\usage"       "\\arguments"   "\\value"       "\\references" 
-#&gt; [9] "\\examples"   </div><div class='input'>
-<span class='co'>## which elements of read.bib are aliases?</span>
-<span class='fu'>Rdo_which_tag_eq</span>(<span class='no'>rdo_read.bib</span>, <span class='st'>"\alias"</span>)</div><div class='output co'>#&gt; integer(0)</div><div class='input'><span class='no'>rdo_read.bib</span><span class='kw'>[[</span><span class='fl'>3</span>]]</div><div class='output co'>#&gt; [[1]]
-#&gt; [1] "read.bib"
-#&gt; attr(,"Rd_tag")
-#&gt; [1] "VERB"
-#&gt; 
-#&gt; attr(,"Rd_tag")
-#&gt; [1] "\\alias"</div><div class='input'>
-<span class='co'>## which elements of read.bib contain R code?</span>
-<span class='fu'>Rdo_which</span>(<span class='no'>rdo_read.bib</span>, <span class='kw'>function</span>(<span class='no'>x</span>) <span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span>(<span class='fu'><a href='Rdo_tags.html'>Rdo_tags</a></span>(<span class='no'>x</span>) <span class='kw'>==</span> <span class='st'>"RCODE"</span>) )</div><div class='output co'>#&gt; [1] 5 9</div><div class='input'><span class='no'>rdo_read.bib</span><span class='kw'>[[</span><span class='fl'>5</span>]]</div><div class='output co'>#&gt; [[1]]
-#&gt; [1] "\n"
-#&gt; attr(,"Rd_tag")
-#&gt; [1] "RCODE"
-#&gt; 
-#&gt; [[2]]
-#&gt; [1] "read.bib(file = findBibFile(package), package = \"bibtex\",\n"
-#&gt; attr(,"Rd_tag")
-#&gt; [1] "RCODE"
-#&gt; 
-#&gt; [[3]]
-#&gt; [1] "  encoding = \"unknown\", header = if (length(preamble)) paste(preamble, sep =\n"
-#&gt; attr(,"Rd_tag")
-#&gt; [1] "RCODE"
-#&gt; 
-#&gt; [[4]]
-#&gt; [1] "  \"\\n\") else \"\", footer = \"\")\n"
-#&gt; attr(,"Rd_tag")
-#&gt; [1] "RCODE"
-#&gt; 
-#&gt; attr(,"Rd_tag")
-#&gt; [1] "\\usage"</div><div class='input'><span class='co'>## which contain prose?</span>
-<span class='fu'>Rdo_which</span>(<span class='no'>rdo_read.bib</span>, <span class='kw'>function</span>(<span class='no'>x</span>) <span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span>(<span class='fu'><a href='Rdo_tags.html'>Rdo_tags</a></span>(<span class='no'>x</span>) <span class='kw'>==</span> <span class='st'>"TEXT"</span>) )</div><div class='output co'>#&gt; [1] 1 4 6 7 8</div></pre>
+<span class='co'>## db_bibtex &lt;- tools::Rd_db("bibtex")</span>
+<span class='co'>## names(db_bibtex)</span>
+<span class='co'>## ## Rdo object for read.bib()</span>
+<span class='co'>## rdo_read.bib &lt;- db_bibtex[["read.bib.Rd"]]</span>
+<span class='co'>## Rdo_tags(rdo_read.bib)</span>
+<span class='co'>## </span>
+<span class='co'>## ## which elements of read.bib are aliases?</span>
+<span class='co'>## Rdo_which_tag_eq(rdo_read.bib, "\alias")</span>
+<span class='co'>## rdo_read.bib[[3]]</span>
+<span class='co'>## </span>
+<span class='co'>## ## which elements of read.bib contain R code?</span>
+<span class='co'>## Rdo_which(rdo_read.bib, function(x) any(Rdo_tags(x) == "RCODE") )</span>
+<span class='co'>## rdo_read.bib[[5]]</span>
+<span class='co'>## ## which contain prose?</span>
+<span class='co'>## Rdo_which(rdo_read.bib, function(x) any(Rdo_tags(x) == "TEXT") )</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -1,3 +1,15 @@
+# Rdpack 2.0.0 (CRAN)
+
+- removed `bibtex` from `Suggests` and elsewhere.
+
+
+# Rdpack 1.1.0
+
+- imported `rbibutils` and made suitable adjustments to the code.
+
+- moved `bibtex` to `Suggests` (since `bibtex` has been orphaned for several years).
+
+
 # Rdpack 1.0.1
 
 - removed a documentation link to a function in `gbutils`, which is not among
@@ -5,7 +17,7 @@
   testing machines.
 
 
-# Rdpack 1.0.0
+# Rdpack 1.0.0 (CRAN)
 
 - `viewRd()` now loads also Rd macros declared by the package to which the
   rendered Rd file belongs.  Previously only macros from `Rdpack` were loaded

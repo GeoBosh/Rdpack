@@ -73,11 +73,14 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib",
             ##    This is really for the case when system.file() is the one from devtools,
             ##    see the note above. TODO: check if this is the case?
             fn <- system.file("inst", ..., bibfile, package = package)
-        
-        if(length(fn) == 1  &&  fn == "")
-            ## if system.file() didn't find the bib file, check if file package.bib is
-            ## provided by package "bibtex" (it is for core R packages, such as "base")
-            fn <- system.file("bib", sprintf("%s.bib", package), package = "bibtex")
+
+        ## 2020-09-27 removing this functionality since package 'bibtex' ca no longer be
+        ##            relied upon and was dropped from the dependencies.
+        ##
+        ## if(length(fn) == 1  &&  fn == "")
+        ##     ## if system.file() didn't find the bib file, check if file package.bib is
+        ##     ## provided by package "bibtex" (it is for core R packages, such as "base")
+        ##     fn <- system.file("bib", sprintf("%s.bib", package), package = "bibtex")
     }
 
     if(length(fn) > 1){
@@ -109,7 +112,17 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib",
                 else
                     "UTF-8"
 
-    res <- read.bib(file = fn, encoding = encoding)
+    ## 2020-09-22 switching to 'rbibutils
+    ##      res <- read.bib(file = fn, encoding = encoding)
+        # rds <- tempfile(fileext = ".rds")
+        # if(encoding == "UTF-8")
+        #     encoding = "utf8"
+        # be <- bibConvert(fn, rds, "bibtex",
+        #         "bibentry", encoding = c(encoding, "utf8"), tex = "no_latex")
+        # res <- readRDS(rds)
+        # #print(res)
+        # unlink(rds)
+    res <- readBib(file = fn, encoding = encoding)
 
          # 2018-03-10 commenting out
          #      since bibtex v. >= 0.4.0 has been required for a long time in DESCRIPTION
@@ -120,33 +133,71 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib",
          #        names(res) <- sapply(1:length(res), function(x) bibentry_key(res[[x]][[1]]))
          #    }
 
-    for(nam in names(res)){
-        ## unconditionaly recode %'s in filed URL
-        if(!is.null(res[nam]$url))
-            res[nam]$url <- gsub("([^\\])%", "\\1\\\\%", res[nam]$url)
+        ## 2020-10-02 commenting out since taken care (hopefully) by readBib
+        ##
+        # for(nam in names(res)){
+        #     ## unconditionaly recode %'s in filed URL
+        #     if(!is.null(res[nam]$url)) {
+        #         res[nam]$url <- gsub("([^\\])%", "\\1\\\\%", res[nam]$url)
+        #     }
+        # 
+        #     if(url_only){  # process also other fields
+        #         ## TODO: currently all unescaped %'s in all fields are recoded;
+        #         ##       Maybe do it more selectively, e.g. only for %'s inside \url{},
+        #         ##       or matching something like http(s):// 
+        #         fields <- names(unclass(res[nam])[[1]])
+        # 
+        #         unclassed <- unclass(res[nam])
+        #         flag <- FALSE
+        #         for(field in fields){
+        #             wrk <- unclass(res[nam])[[1]][[field]]
+        #             if(is.character(wrk) && any(grepl("([^\\])%", wrk))){
+        #                 flag <- TRUE
+        #                 unclassed[[1]][[field]] <- gsub("([^\\])%", "\\1\\\\%", wrk)
+        #             }
+        #         }
+        #         if(flag){
+        #             class(unclassed) <- class(res[nam])
+        #             res[nam] <- unclassed
+        #         }
+        #     }
+        # }
 
-        if(url_only){  # process also other fields
-            ## TODO: currently all unescaped $'s in all fields are recoded;
-            ##       Maybe do it more selectively, e.g. only for %'s inside \url{},
-            ##       or matching something like http(s):// 
-            fields <- names(unclass(res[nam])[[1]])
-
-            unclassed <- unclass(res[nam])
-            flag <- FALSE
-            for(field in fields){
-                wrk <- unclass(res[nam])[[1]][[field]]
-                if(is.character(wrk) && any(grepl("([^\\])%", wrk))){
-                    flag <- TRUE
-                    unclassed[[1]][[field]] <- gsub("([^\\])%", "\\1\\\\%", wrk)
-                }
+        ## new 2020-10-02 - allow \% in url's and doi's in the bib file
+        for(nam in names(res)){
+#print(res[nam], style = "R")
+            ## unconditionaly recode %'s in filed URL
+            if(!is.null(res[nam]$doi)) {
+                res[nam]$doi <- gsub("([^\\\\])[\\\\]%", "\\1%", res[nam]$doi)
             }
-            if(flag){
-                class(unclassed) <- class(res[nam])
-                res[nam] <- unclassed
+        
+            if(!is.null(res[nam]$url)) {
+                res[nam]$url <- gsub("([^\\\\])[\\\\]%", "\\1%", res[nam]$url)
             }
+        
+            # if(url_only){  # process also other fields
+            #     ## TODO: currently all unescaped %'s in all fields are recoded;
+            #     ##       Maybe do it more selectively, e.g. only for %'s inside \url{},
+            #     ##       or matching something like http(s):// 
+            #     fields <- names(unclass(res[nam])[[1]])
+            # 
+            #     unclassed <- unclass(res[nam])
+            #     flag <- FALSE
+            #     for(field in fields){
+            #         wrk <- unclass(res[nam])[[1]][[field]]
+            #         if(is.character(wrk) && any(grepl("([^\\])%", wrk))){
+            #             flag <- TRUE
+            #             unclassed[[1]][[field]] <- gsub("([^\\])%", "\\1\\\\%", wrk)
+            #         }
+            #     }
+            #     if(flag){
+            #         class(unclassed) <- class(res[nam])
+            #         res[nam] <- unclassed
+            #     }
+            # }
         }
-    }
 
+    
     ## 2018-03-03 new:
     class(res) <- c("bibentryRd", class(res))
 
@@ -315,12 +366,53 @@ Rdo_flatinsert <- function(rdo, val, pos, before = TRUE){                       
     res
 }
 
-## TODO: auto-deduce 'package'?
-insert_ref <- function(key, package = NULL, ...) { # bibfile = "REFERENCES.bib"
-    if(is.null(package)) 
+
+.get_bibs0 <- function(package, ..., cached_env) { 
+    if(is.null(package))
         stop("argument 'package' must be provided")
 
-    bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
+    if(!is.null(cached_env)){
+        if(is.null(cached_env$refsmat))
+            cached_env$refsmat <- matrix(character(0), nrow = 0, ncol = 2)
+        if(is.null(cached_env$allbibs))
+            cached_env$allbibs <- list()
+    }
+
+    ## if(length(keys) > 1)
+    ##     stop("`keys' must be a character string")
+    ## 
+    ## if(!cite_only)
+    ##     cached_env$refsmat <- rbind(cached_env$refsmat, c(keys, package))
+    ## 
+    ## if(dont_cite)
+    ##     return(character(0))
+
+
+    if(is.null(cached_env)){
+        bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
+    }else{
+        bibs <- cached_env$allbibs[[package]]
+        if(is.null(bibs)){
+            bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
+            cached_env$allbibs[[package]] <- bibs
+        }
+    }
+
+    bibs
+}
+
+
+## TODO: auto-deduce 'package'?
+## 2020-09-30: changing to cache bib as \insertCite does (new arg. cached_env, etc)
+insert_ref <- function(key, package = NULL, ..., cached_env = NULL) { # bibfile = "REFERENCES.bib"
+
+        # 2020-09-30: replaced by a single call
+        # if(is.null(package)) 
+        #     stop("argument 'package' must be provided")
+        # 
+        # bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
+        #
+    bibs <- .get_bibs0(package, ..., cached_env = cached_env) 
 
     if(length(bibs) == 0){
         note <- paste0("\"Failed to insert reference with key = ", key, 

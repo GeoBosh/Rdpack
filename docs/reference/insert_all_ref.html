@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rdpack</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
       </span>
     </div>
 
@@ -168,32 +168,52 @@
 <p>There are no references for Rd macro <code>\insertAllCites</code> on this help page.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>bibs</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>bibtex</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/bibtex/man/read.bib.html'>read.bib</a></span>(<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"tools"</span>)
-<span class='no'>bibs</span></div><div class='output co'>#&gt; Murdoch D (2009). “Parsing Rd files.” &lt;URL:
-#&gt; http://developer.r-project.org/parseRd.pdf&gt;.</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='co'>## bibs &lt;- bibtex::read.bib(package = "tools")</span>
+<span class='co'>## bibs</span>
+
 
 <span class='co'>## a reference from package Rdpack</span>
-<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='fu'>insert_all_ref</span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Rpack:bibtex"</span>, <span class='st'>"Rdpack"</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>)), <span class='st'>"\n"</span>)</div><div class='output co'>#&gt; Romain Francois (2014).
+<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='fu'>insert_all_ref</span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Rpack:bibtex"</span>, <span class='st'>"Rdpack"</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>)), <span class='st'>"\n"</span>)</div><div class='output co'>#&gt; 
+#&gt; count_type:
+#&gt; 
+#&gt;  no_type not_char   Manual     Misc  Article 
+#&gt;        0        0        2        1        1 
+#&gt; 
+#&gt; 
+#&gt; Romain Francois (2014).
 #&gt; \emph{bibtex: bibtex parser}.
-#&gt; R package version 0.4.0, \url{https://CRAN.R-project.org/package=bibtex}. </div><div class='input'>
+#&gt; R package version 0.4.0. </div><div class='input'>
 <span class='co'>## more than one reference from package Rdpack, separate the keys with commas</span>
-<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='fu'>insert_all_ref</span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"parseRd,Rpack:bibtex"</span>, <span class='st'>"Rdpack"</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>)), <span class='st'>"\n"</span>)</div><div class='output co'>#&gt; Romain Francois (2014).
+<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='fu'>insert_all_ref</span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"parseRd,Rpack:bibtex"</span>, <span class='st'>"Rdpack"</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>)), <span class='st'>"\n"</span>)</div><div class='output co'>#&gt; 
+#&gt; count_type:
+#&gt; 
+#&gt;  no_type not_char   Manual     Misc  Article 
+#&gt;        0        0        2        1        1 
+#&gt; 
+#&gt; 
+#&gt; Romain Francois (2014).
 #&gt; \emph{bibtex: bibtex parser}.
-#&gt; R package version 0.4.0, \url{https://CRAN.R-project.org/package=bibtex}.\cr\cr Duncan Murdoch (2010).
+#&gt; R package version 0.4.0.\cr\cr Duncan Murdoch (2010).
 #&gt; \dQuote{Parsing Rd files.}
 #&gt; \url{https://developer.r-project.org/parseRd.pdf}. </div><div class='input'>
 <span class='co'>## all references from package Rdpack</span>
-<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='fu'>insert_all_ref</span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"*"</span>, <span class='st'>"Rdpack"</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>)), <span class='st'>"\n"</span>)</div><div class='output co'>#&gt; Romain Francois (2014).
+<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='fu'>insert_all_ref</span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"*"</span>, <span class='st'>"Rdpack"</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>)), <span class='st'>"\n"</span>)</div><div class='output co'>#&gt; 
+#&gt; count_type:
+#&gt; 
+#&gt;  no_type not_char   Manual     Misc  Article 
+#&gt;        0        0        2        1        1 
+#&gt; 
+#&gt; 
+#&gt; Romain Francois (2014).
 #&gt; \emph{bibtex: bibtex parser}.
-#&gt; R package version 0.4.0, \url{https://CRAN.R-project.org/package=bibtex}.\cr\cr Duncan Murdoch (2010).
+#&gt; R package version 0.4.0.\cr\cr Duncan Murdoch (2010).
 #&gt; \dQuote{Parsing Rd files.}
 #&gt; \url{https://developer.r-project.org/parseRd.pdf}.\cr\cr Hadley Wickham, Jim Hester, Winston Chang (2018).
 #&gt; \emph{devtools: Tools to Make Developing R Packages Easier}.
-#&gt; R package version 1.13.5, \url{https://CRAN.R-project.org/package=devtools}.\cr\cr A. ZZZ (2018).
+#&gt; R package version 1.13.5, \url{https://CRAN.R-project.org/package=devtools}.\cr\cr A ZZZ (2018).
 #&gt; \dQuote{A relation between several fundamental constants: \eqn{e^{i\pi}=-1}.}
 #&gt; \emph{A non-existent journal with the formula \eqn{L_2} in its name.}.
-#&gt; This reference does not exist. It is a test/demo that simple formulas in BibTeX
-#&gt;             files are OK. A formula in field 'note': \eqn{c^2 = a^2 + b^2}. </div></pre>
+#&gt; This reference does not exist. It is a test/demo that simple formulas in BibTeX files are OK. A formula in field 'note': \eqn{c^2 = a^2 + b^2}. </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

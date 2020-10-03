@@ -75,7 +75,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rdpack</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
       </span>
     </div>
 
@@ -152,11 +152,11 @@
 <span class='no'>rdo</span> <span class='kw'>&amp;</span><span class='no'>lt</span>;- <span class='kw pkg'>utils</span><span class='kw ns'>:::</span><span class='fu'>.getHelpFile</span>(<span class='no'>fn</span>)
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'>get_sig_text</span>(<span class='no'>rdo</span>))
 <span class='co'>##: [1] "signature(object = \"ANY\")"                   </span>
-<span class='co'>##: [2] "signature(object = \"C++Class\")"              </span>
-<span class='co'>##: [3] "signature(object = \"C++Function\")"           </span>
-<span class='co'>##: [4] "signature(object = \"C++Object\")"             </span>
-<span class='co'>##: [5] "signature(object = \"classGeneratorFunction\")"</span>
-<span class='co'>##: [6] "signature(object = \"classRepresentation\")"   </span></pre></p>
+<span class='co'>##: [2] "signature(object = \"classGeneratorFunction\")"</span>
+<span class='co'>##: [3] "signature(object = \"classRepresentation\")"   </span>
+<span class='co'>##: [4] "signature(object = \"envRefClass\")"           </span>
+<span class='co'>##: [5] "signature(object = \"externalRefMethod\")"     </span>
+<span class='co'>##: [6] "signature(object = \"genericFunction\")"       </span></pre></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A character vector with one element for each method.</p>
@@ -181,11 +181,11 @@
 <span class='co'>## this will find all methods for "show" in currently loaded packages</span>
 <span class='co'>## (print only some of them)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'>get_sig_text</span>(<span class='no'>rdo</span>))</div><div class='output co'>#&gt; [1] "signature(object = \"ANY\")"                   
-#&gt; [2] "signature(object = \"C++Class\")"              
-#&gt; [3] "signature(object = \"C++Function\")"           
-#&gt; [4] "signature(object = \"C++Object\")"             
-#&gt; [5] "signature(object = \"classGeneratorFunction\")"
-#&gt; [6] "signature(object = \"classRepresentation\")"   </div><div class='input'>
+#&gt; [2] "signature(object = \"classGeneratorFunction\")"
+#&gt; [3] "signature(object = \"classRepresentation\")"   
+#&gt; [4] "signature(object = \"envRefClass\")"           
+#&gt; [5] "signature(object = \"externalRefMethod\")"     
+#&gt; [6] "signature(object = \"genericFunction\")"       </div><div class='input'>
 <span class='co'>## this will select only the ones from package "stats4"</span>
 <span class='fu'>get_sig_text</span>(<span class='no'>rdo</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"stats4"</span>)</div><div class='output co'>#&gt; [1] "signature(object = \"mle\")"         "signature(object = \"summary.mle\")"</div><div class='input'>
 <span class='co'>## this is also fine (interactively) but need to choose</span>
@@ -214,7 +214,7 @@
 #&gt; Rd source not supplied and installed documentation not found.
 #&gt; Trying a 'prompt' function to generate documentation for the object.
 #&gt; 	success: documentation generated using a 'prompt' function.
-#&gt; 	The Rd content was written to file  /tmp/RtmpYaQyun/file1a37c3378299c </div><div class='output co'>#&gt; [1] "/tmp/RtmpYaQyun/file1a37c3378299c"</div><div class='input'><span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/tools/parse_Rd.html'>parse_Rd</a></span>(<span class='no'>fn</span>)
+#&gt; 	The Rd content was written to file  /tmp/RtmpNJZtUt/file1b5c4531a13cf7 </div><div class='output co'>#&gt; [1] "/tmp/RtmpNJZtUt/file1b5c4531a13cf7"</div><div class='input'><span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/tools/parse_Rd.html'>parse_Rd</a></span>(<span class='no'>fn</span>)
 <span class='fu'>get_sig_text</span>(<span class='no'>rdo</span>)</div><div class='output co'>#&gt; [1] "signature(x = \"ANY\")"</div><div class='input'>
 <span class='fu'>setClass</span>(<span class='st'>"aRdpack"</span>)
 <span class='fu'>setClass</span>(<span class='st'>"bRdpack"</span>)
@@ -229,7 +229,7 @@
 #&gt; Rd source not supplied and installed documentation not found.
 #&gt; Trying a 'prompt' function to generate documentation for the object.
 #&gt; 	success: documentation generated using a 'prompt' function.
-#&gt; 	The Rd content was written to file  /tmp/RtmpYaQyun/file1a37c3378299c </div><div class='output co'>#&gt; [1] "/tmp/RtmpYaQyun/file1a37c3378299c"</div><div class='input'><span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/tools/parse_Rd.html'>parse_Rd</a></span>(<span class='no'>fn</span>)
+#&gt; 	The Rd content was written to file  /tmp/RtmpNJZtUt/file1b5c4531a13cf7 </div><div class='output co'>#&gt; [1] "/tmp/RtmpNJZtUt/file1b5c4531a13cf7"</div><div class='input'><span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/tools/parse_Rd.html'>parse_Rd</a></span>(<span class='no'>fn</span>)
 <span class='fu'>get_sig_text</span>(<span class='no'>rdo</span>)</div><div class='output co'>#&gt; [1] "signature(x = \"ANY\", y = \"ANY\")"        
 #&gt; [2] "signature(x = \"aRdpack\", y = \"bRdpack\")"
 #&gt; [3] "signature(x = \"aRdpack\", y = \"numeric\")"
