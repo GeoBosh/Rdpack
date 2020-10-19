@@ -836,7 +836,7 @@ safe_cite <- function(keys, bib, ..., from.package = NULL){
     if(!all(wrk.keys %in% names(bib))){
         ok <- wrk.keys %in% names(bib)
         miss.keys <- wrk.keys[!ok]
-        warning("possibly non-existing key(s)", 
+        warning("possibly non-existing or duplicated key(s)", 
                 if(!is.null(from.package))
                     paste0(" in bib file from package '", from.package, "'"),
                 ":\n    ", paste(miss.keys, sep = ", "), "\n")

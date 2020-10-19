@@ -1,4 +1,9 @@
-# Rdpack 2.0.0 (CRAN)
+# Rdpack 2.0.1 (CRAN)
+
+- amend the warning message from  bibliography macros to mention duplicated keys.
+
+
+# Rdpack 2.0 (CRAN)
 
 - removed `bibtex` from `Suggests` and elsewhere.
 
