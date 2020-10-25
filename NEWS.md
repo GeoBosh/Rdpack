@@ -1,6 +1,10 @@
 # Rdpack 2.0.1 (CRAN)
 
-- amend the warning message from  bibliography macros to mention duplicated keys.
+- amended the warning message from  bibliography macros to mention duplicated keys.
+
+- added entry for `rbibutils` in REFERENCES.bib. 
+
+- corrected wrong citation of `rbibutils`.
 
 
 # Rdpack 2.0 (CRAN)
