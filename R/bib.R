@@ -122,6 +122,10 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib",
         # res <- readRDS(rds)
         # #print(res)
         # unlink(rds)
+
+## TODO: for test only!
+##    message("Reading ", fn)
+    
     res <- readBib(file = fn, encoding = encoding)
 
          # 2018-03-10 commenting out
@@ -393,9 +397,15 @@ Rdo_flatinsert <- function(rdo, val, pos, before = TRUE){                       
     }else{
         bibs <- cached_env$allbibs[[package]]
         if(is.null(bibs)){
+            ## TODO: only for testin!
+            ##    message("    bibs is NULL")
+            
             bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
             cached_env$allbibs[[package]] <- bibs
-        }
+        }   ## else
+            ##    message("    bibs is nonNULL")
+
+        
     }
 
     bibs
@@ -412,6 +422,17 @@ insert_ref <- function(key, package = NULL, ..., cached_env = NULL) { # bibfile 
         # 
         # bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
         #
+
+    ##  TODO: this is for testing only!
+    ##    message("\nkey is ", key)
+    
+    ## if(is.null(cached_env))
+    ##     message("    cached_env is NULL")
+    ## else
+    ##     message("    cached_env is nonNULL")
+        
+
+
     bibs <- .get_bibs0(package, ..., cached_env = cached_env) 
 
     if(length(bibs) == 0){
