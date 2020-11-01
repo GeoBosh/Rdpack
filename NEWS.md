@@ -1,4 +1,8 @@
-# Rdpack 2.0.1 (CRAN)
+# Rdpack 2.0.1
+
+- dramatic speed up of processing of bibliography references, most noticeable
+  for users with large number of help pages and large `REFERENCES.bib`.
+  (prompted by Kisung You, issue #17)
 
 - amended the warning message from  bibliography macros to mention duplicated keys.
 

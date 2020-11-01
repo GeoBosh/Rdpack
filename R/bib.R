@@ -370,46 +370,66 @@ Rdo_flatinsert <- function(rdo, val, pos, before = TRUE){                       
     res
 }
 
+## 2020-11-01: use local()
+.get_bibs0 <- local({
+    ## initialise the cache
+    refsmat <- matrix(character(0), nrow = 0, ncol = 2)
+    allbibs <- list()
+    ## TODO: time stamp for auto clearing
+    
+    function(package, ..., cached_env) { 
+        if(is.null(package))
+            stop("argument 'package' must be provided")
 
-.get_bibs0 <- function(package, ..., cached_env) { 
-    if(is.null(package))
-        stop("argument 'package' must be provided")
+        #### not needed with new caching
+        ####
+        #### if(!is.null(cached_env)){
+        ####     if(is.null(cached_env$refsmat))
+        ####         cached_env$refsmat <- matrix(character(0), nrow = 0, ncol = 2)
+        ####     if(is.null(cached_env$allbibs))
+        ####         cached_env$allbibs <- list()
+        #### }
 
-    if(!is.null(cached_env)){
-        if(is.null(cached_env$refsmat))
-            cached_env$refsmat <- matrix(character(0), nrow = 0, ncol = 2)
-        if(is.null(cached_env$allbibs))
-            cached_env$allbibs <- list()
-    }
-
-    ## if(length(keys) > 1)
-    ##     stop("`keys' must be a character string")
-    ## 
-    ## if(!cite_only)
-    ##     cached_env$refsmat <- rbind(cached_env$refsmat, c(keys, package))
-    ## 
-    ## if(dont_cite)
-    ##     return(character(0))
+        ## if(length(keys) > 1)
+        ##     stop("`keys' must be a character string")
+        ## 
+        ## if(!cite_only)
+        ##     cached_env$refsmat <- rbind(cached_env$refsmat, c(keys, package))
+        ## 
+        ## if(dont_cite)
+        ##     return(character(0))
 
 
-    if(is.null(cached_env)){
-        bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
-    }else{
-        bibs <- cached_env$allbibs[[package]]
+        #### if(is.null(cached_env)){
+        ####     bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
+        #### }else{
+        ####     bibs <- cached_env$allbibs[[package]]
+        ####     if(is.null(bibs)){
+        ####         ## TODO: only for testin!
+        ####         ##    message("    bibs is NULL")
+        ####     
+        ####         bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
+        ####         cached_env$allbibs[[package]] <- bibs
+        ####     }   ## else
+        ####     ##    message("    bibs is nonNULL")
+        ####     
+        #### 
+        #### }
+
+        bibs <- allbibs[[package]]
         if(is.null(bibs)){
             ## TODO: only for testin!
             ##    message("    bibs is NULL")
             
             bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
-            cached_env$allbibs[[package]] <- bibs
+            allbibs[[package]] <<- bibs
         }   ## else
             ##    message("    bibs is nonNULL")
-
+            
         
+        bibs
     }
-
-    bibs
-}
+})
 
 
 ## TODO: auto-deduce 'package'?
