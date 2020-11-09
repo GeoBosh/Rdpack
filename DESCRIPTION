@@ -1,9 +1,9 @@
 Package: Rdpack
 Type: Package
 Title: Update and Manipulate Rd Documentation Objects
-Version: 2.0.1
-Date: 2020-11-01
-Authors@R: c( person(given = c("Georgi", "N."), 
+Version: 2.1
+Date: 2020-11-09
+Authors@R: c( person(given = c("Georgi", "N."),
                      family = "Boshnakov", 
                      role = c("aut", "cre"), 
                      email = "georgi.boshnakov@manchester.ac.uk"), 
@@ -36,3 +36,4 @@ Suggests:
 License: GPL (>= 2)
 LazyLoad: yes
 RoxygenNote: 7.1.1
+Remotes: local::/home/georgi/repos/private/rbibutils

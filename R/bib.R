@@ -73,8 +73,8 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib",
             ##    This is really for the case when system.file() is the one from devtools,
             ##    see the note above. TODO: check if this is the case?
             fn <- system.file("inst", ..., bibfile, package = package)
-
-        ## 2020-09-27 removing this functionality since package 'bibtex' ca no longer be
+        
+## 2020-09-27 removing this functionality since package 'bibtex' ca no longer be
         ##            relied upon and was dropped from the dependencies.
         ##
         ## if(length(fn) == 1  &&  fn == "")
@@ -114,7 +114,7 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib",
 
     ## 2020-09-22 switching to 'rbibutils
     ##      res <- read.bib(file = fn, encoding = encoding)
-        # rds <- tempfile(fileext = ".rds")
+       # rds <- tempfile(fileext = ".rds")
         # if(encoding == "UTF-8")
         #     encoding = "utf8"
         # be <- bibConvert(fn, rds, "bibtex",
@@ -168,9 +168,9 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib",
         # }
 
         ## new 2020-10-02 - allow \% in url's and doi's in the bib file
-        for(nam in names(res)){
+    for(nam in names(res)){
 #print(res[nam], style = "R")
-            ## unconditionaly recode %'s in filed URL
+        ## unconditionaly recode %'s in filed URL
             if(!is.null(res[nam]$doi)) {
                 res[nam]$doi <- gsub("([^\\\\])[\\\\]%", "\\1%", res[nam]$doi)
             }
@@ -201,7 +201,7 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib",
             # }
         }
 
-    
+
     ## 2018-03-03 new:
     class(res) <- c("bibentryRd", class(res))
 
@@ -371,66 +371,35 @@ Rdo_flatinsert <- function(rdo, val, pos, before = TRUE){                       
 }
 
 ## 2020-11-01: use local()
-.get_bibs0 <- local({
+.bibs_cache <- local({
     ## initialise the cache
+    ##     TODO: remove remove refsmat, it is not needed here, maybe
     refsmat <- matrix(character(0), nrow = 0, ncol = 2)
     allbibs <- list()
     ## TODO: time stamp for auto clearing
     
-    function(package, ..., cached_env) { 
+    .get_bibs0 <- function(package, ..., cached_env) {
         if(is.null(package))
             stop("argument 'package' must be provided")
 
-        #### not needed with new caching
-        ####
-        #### if(!is.null(cached_env)){
-        ####     if(is.null(cached_env$refsmat))
-        ####         cached_env$refsmat <- matrix(character(0), nrow = 0, ncol = 2)
-        ####     if(is.null(cached_env$allbibs))
-        ####         cached_env$allbibs <- list()
-        #### }
-
-        ## if(length(keys) > 1)
-        ##     stop("`keys' must be a character string")
-        ## 
-        ## if(!cite_only)
-        ##     cached_env$refsmat <- rbind(cached_env$refsmat, c(keys, package))
-        ## 
-        ## if(dont_cite)
-        ##     return(character(0))
-
-
-        #### if(is.null(cached_env)){
-        ####     bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
-        #### }else{
-        ####     bibs <- cached_env$allbibs[[package]]
-        ####     if(is.null(bibs)){
-        ####         ## TODO: only for testin!
-        ####         ##    message("    bibs is NULL")
-        ####     
-        ####         bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
-        ####         cached_env$allbibs[[package]] <- bibs
-        ####     }   ## else
-        ####     ##    message("    bibs is nonNULL")
-        ####     
-        #### 
-        #### }
-
         bibs <- allbibs[[package]]
         if(is.null(bibs)){
-            ## TODO: only for testin!
-            ##    message("    bibs is NULL")
+            ## message("    bibs is NULL")
             
             bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
             allbibs[[package]] <<- bibs
         }   ## else
             ##    message("    bibs is nonNULL")
-            
         
         bibs
     }
-})
 
+    .get_all_bibs <- function(){
+        allbibs
+    }
+
+    list(.get_bibs0 = .get_bibs0, .get_all_bibs = .get_all_bibs)
+})
 
 ## TODO: auto-deduce 'package'?
 ## 2020-09-30: changing to cache bib as \insertCite does (new arg. cached_env, etc)
@@ -453,7 +422,7 @@ insert_ref <- function(key, package = NULL, ..., cached_env = NULL) { # bibfile 
         
 
 
-    bibs <- .get_bibs0(package, ..., cached_env = cached_env) 
+    bibs <- .bibs_cache$.get_bibs0(package, ..., cached_env = cached_env) 
 
     if(length(bibs) == 0){
         note <- paste0("\"Failed to insert reference with key = ", key, 
@@ -729,8 +698,8 @@ insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
     if(!is.null(cached_env)){
         if(is.null(cached_env$refsmat))
             cached_env$refsmat <- matrix(character(0), nrow = 0, ncol = 2)
-        if(is.null(cached_env$allbibs))
-            cached_env$allbibs <- list()
+        ## if(is.null(cached_env$allbibs))
+        ##     cached_env$allbibs <- list()
     }
 
     if(is.null(package))
@@ -763,16 +732,19 @@ insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
         }
     }
 
-
-    if(is.null(cached_env)){
-        bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
-    }else{
-        bibs <- cached_env$allbibs[[package]]
-        if(is.null(bibs)){
-            bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
-            cached_env$allbibs[[package]] <- bibs
-        }
-    }
+    ## 2020-11-05 was:
+    ##
+    ## if(is.null(cached_env)){
+    ##     bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
+    ## }else{
+    ##     bibs <- cached_env$allbibs[[package]]
+    ##     if(is.null(bibs)){
+    ##         bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
+    ##         cached_env$allbibs[[package]] <- bibs
+    ##     }
+    ## }
+    ##
+    bibs <- .bibs_cache$.get_bibs0(package, ..., cached_env = cached_env) 
 
 
 
@@ -892,9 +864,9 @@ safe_cite <- function(keys, bib, ..., from.package = NULL){
 insert_all_ref <- function(refs, style = ""){
     if(is.environment(refs)){
         refsmat <- refs$refsmat
-        allbibs <- refs$allbibs
-        if(is.null(allbibs))
-            allbibs <- list()
+        allbibs <- .bibs_cache$.get_all_bibs()  # 2020-11-05 was: refs$allbibs
+        if(is.null(allbibs))  ## TODO: this can be removed, since .get_all_bibs()
+            allbibs <- list() ##       returns an initialised list()
     }else{
         refsmat <- refs
         allbibs <- list()

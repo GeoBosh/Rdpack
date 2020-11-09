@@ -1,4 +1,4 @@
-# Rdpack 2.0.1
+# Rdpack 2.1 (CRAN)
 
 - dramatic speed up of processing of bibliography references, most noticeable
   for users with large number of help pages and large `REFERENCES.bib`.
