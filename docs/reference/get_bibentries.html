@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rdpack</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1</span>
       </span>
     </div>
 
@@ -203,13 +203,8 @@
     <p>There are no references for Rd macro <code>\insertAllCites</code> on this help page.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='fu'>get_bibentries</span>(<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"Rdpack"</span>)</div><div class='output co'>#&gt; 
-#&gt; count_type:
-#&gt; 
-#&gt;  no_type not_char   Manual     Misc  Article 
-#&gt;        0        0        3        1        1 
-#&gt; 
-#&gt; </div><div class='input'><span class='no'>r</span></div><div class='output co'>#&gt; Francois R (2014). _bibtex: bibtex parser_. R package version 0.4.0.
+    <pre class="examples"><div class='input'><span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='fu'>get_bibentries</span>(<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"Rdpack"</span>)
+<span class='no'>r</span></div><div class='output co'>#&gt; Francois R (2014). _bibtex: bibtex parser_. R package version 0.4.0.
 #&gt; 
 #&gt; Boshnakov GN, Putman C (2020). _rbibutils: Convert Between Bibliography
 #&gt; Formats_. &lt;URL: https://CRAN.R-project.org/package=rbibutils&gt;.
@@ -259,13 +254,8 @@
 
 <span class='co'>## here the url field contains percent encoding</span>
 <span class='no'>fn_url</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"examples"</span>, <span class='st'>"url_with_percents.bib"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"Rdpack"</span>)
-<span class='no'>u</span> <span class='kw'>&lt;-</span> <span class='fu'>get_bibentries</span>(<span class='kw'>bibfile</span> <span class='kw'>=</span> <span class='no'>fn_url</span>)</div><div class='output co'>#&gt; 
-#&gt; count_type:
-#&gt; 
-#&gt;  no_type not_char  Article 
-#&gt;        0        0        1 
-#&gt; 
-#&gt; </div><div class='input'>
+<span class='no'>u</span> <span class='kw'>&lt;-</span> <span class='fu'>get_bibentries</span>(<span class='kw'>bibfile</span> <span class='kw'>=</span> <span class='no'>fn_url</span>)
+
 <span class='co'>## the links produced by all of the following are valid</span>
 <span class='co'>## and can be put in a browser</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>u</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"html"</span>)</div><div class='output co'>#&gt; &lt;p&gt;Boshnakov GN (2018).
@@ -275,26 +265,21 @@
 #&gt; &lt;/p&gt;</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>u</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"bibtex"</span>)</div><div class='output co'>#&gt; @Article{urlWithPercents,
 #&gt;   author = {Georgi N Boshnakov},
 #&gt;   title = {Dummy example of {URL} with percents},
-#&gt;   year = {2018},
-#&gt;   genre = {academic journal},
 #&gt;   journal = {Example bibtex file},
-#&gt;   citekey = {urlWithPercents},
-#&gt;   url = {https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib},
+#&gt;   year = {2018},
 #&gt;   volume = {51},
 #&gt;   pages = {1--1},
+#&gt;   url = {https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib},
 #&gt; }</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>u</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"R"</span>)</div><div class='output co'>#&gt; bibentry(bibtype = "Article",
 #&gt;          key = "urlWithPercents",
 #&gt;          author = person(given = c("Georgi", "N"),
-#&gt;                          family = "Boshnakov",
-#&gt;                          role = "aut"),
+#&gt;                          family = "Boshnakov"),
 #&gt;          title = "Dummy example of {URL} with percents",
-#&gt;          year = "2018",
-#&gt;          genre = "academic journal",
 #&gt;          journal = "Example bibtex file",
-#&gt;          citekey = "urlWithPercents",
-#&gt;          url = "https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib",
+#&gt;          year = "2018",
 #&gt;          volume = "51",
-#&gt;          pages = "1--1")</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>u</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"text"</span>)</div><div class='output co'>#&gt; Boshnakov GN (2018). “Dummy example of URL with percents.” _Example
+#&gt;          pages = "1--1",
+#&gt;          url = "https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib")</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>u</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"text"</span>)</div><div class='output co'>#&gt; Boshnakov GN (2018). “Dummy example of URL with percents.” _Example
 #&gt; bibtex file_, *51*, 1-1. &lt;URL:
 #&gt; https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib&gt;.</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>u</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"citation"</span>)</div><div class='output co'>#&gt; 
 #&gt; Boshnakov GN (2018). “Dummy example of URL with percents.” _Example
@@ -306,13 +291,11 @@
 #&gt;   @Article{urlWithPercents,
 #&gt;     author = {Georgi N Boshnakov},
 #&gt;     title = {Dummy example of {URL} with percents},
-#&gt;     year = {2018},
-#&gt;     genre = {academic journal},
 #&gt;     journal = {Example bibtex file},
-#&gt;     citekey = {urlWithPercents},
-#&gt;     url = {https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib},
+#&gt;     year = {2018},
 #&gt;     volume = {51},
 #&gt;     pages = {1--1},
+#&gt;     url = {https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib},
 #&gt;   }
 #&gt; </div><div class='input'>
 <span class='co'>## The link here contains escapes but when put in a LaTeX document</span>
@@ -324,39 +307,29 @@
 #&gt; \url{https://github.com/GeoBosh/zzfiles/blob/master/url\%20with\%20percents.bib}.</div><div class='input'>
 <span class='co'>## here the journal field contains percent encoding</span>
 <span class='no'>fn_other</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"examples"</span>, <span class='st'>"journal_with_percents.bib"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"Rdpack"</span>)
-<span class='no'>j</span> <span class='kw'>&lt;-</span> <span class='fu'>get_bibentries</span>(<span class='kw'>bibfile</span> <span class='kw'>=</span> <span class='no'>fn_url</span>)</div><div class='output co'>#&gt; 
-#&gt; count_type:
-#&gt; 
-#&gt;  no_type not_char  Article 
-#&gt;        0        0        1 
-#&gt; 
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>j</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"html"</span>)</div><div class='output co'>#&gt; &lt;p&gt;Boshnakov GN (2018).
+<span class='no'>j</span> <span class='kw'>&lt;-</span> <span class='fu'>get_bibentries</span>(<span class='kw'>bibfile</span> <span class='kw'>=</span> <span class='no'>fn_url</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>j</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"html"</span>)</div><div class='output co'>#&gt; &lt;p&gt;Boshnakov GN (2018).
 #&gt; &amp;ldquo;Dummy example of URL with percents.&amp;rdquo;
 #&gt; &lt;em&gt;Example bibtex file&lt;/em&gt;, &lt;b&gt;51&lt;/b&gt;, 1&amp;ndash;1.
 #&gt; &lt;a href="https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib"&gt;https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib&lt;/a&gt;. 
 #&gt; &lt;/p&gt;</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>j</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"bibtex"</span>)</div><div class='output co'>#&gt; @Article{urlWithPercents,
 #&gt;   author = {Georgi N Boshnakov},
 #&gt;   title = {Dummy example of {URL} with percents},
-#&gt;   year = {2018},
-#&gt;   genre = {academic journal},
 #&gt;   journal = {Example bibtex file},
-#&gt;   citekey = {urlWithPercents},
-#&gt;   url = {https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib},
+#&gt;   year = {2018},
 #&gt;   volume = {51},
 #&gt;   pages = {1--1},
+#&gt;   url = {https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib},
 #&gt; }</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>j</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"R"</span>)</div><div class='output co'>#&gt; bibentry(bibtype = "Article",
 #&gt;          key = "urlWithPercents",
 #&gt;          author = person(given = c("Georgi", "N"),
-#&gt;                          family = "Boshnakov",
-#&gt;                          role = "aut"),
+#&gt;                          family = "Boshnakov"),
 #&gt;          title = "Dummy example of {URL} with percents",
-#&gt;          year = "2018",
-#&gt;          genre = "academic journal",
 #&gt;          journal = "Example bibtex file",
-#&gt;          citekey = "urlWithPercents",
-#&gt;          url = "https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib",
+#&gt;          year = "2018",
 #&gt;          volume = "51",
-#&gt;          pages = "1--1")</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>j</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"text"</span>)</div><div class='output co'>#&gt; Boshnakov GN (2018). “Dummy example of URL with percents.” _Example
+#&gt;          pages = "1--1",
+#&gt;          url = "https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib")</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>j</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"text"</span>)</div><div class='output co'>#&gt; Boshnakov GN (2018). “Dummy example of URL with percents.” _Example
 #&gt; bibtex file_, *51*, 1-1. &lt;URL:
 #&gt; https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib&gt;.</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>j</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"citation"</span>)</div><div class='output co'>#&gt; 
 #&gt; Boshnakov GN (2018). “Dummy example of URL with percents.” _Example
@@ -368,13 +341,11 @@
 #&gt;   @Article{urlWithPercents,
 #&gt;     author = {Georgi N Boshnakov},
 #&gt;     title = {Dummy example of {URL} with percents},
-#&gt;     year = {2018},
-#&gt;     genre = {academic journal},
 #&gt;     journal = {Example bibtex file},
-#&gt;     citekey = {urlWithPercents},
-#&gt;     url = {https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib},
+#&gt;     year = {2018},
 #&gt;     volume = {51},
 #&gt;     pages = {1--1},
+#&gt;     url = {https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib},
 #&gt;   }
 #&gt; </div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>j</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"latex"</span>)</div><div class='output co'>#&gt; Boshnakov GN (2018).
