@@ -190,8 +190,10 @@ The Rd section may look something like:
 or, in roxygen2, the references chunk might look like this:
 #+BEGIN_EXAMPLE
     #' @references
-    #'     \insertAllCited{}
+    #'   \insertAllCited{}
 #+END_EXAMPLE
+Don't align the backslash with the second 'e' of =@references=, since roxygen2 may
+interpret it as verbatim text, not macro.
 
 To mix the citations with other text, such as ``see also'' and ``chapter 3'',
 write the list of keys as a free text, starting it with the symbol =@= and

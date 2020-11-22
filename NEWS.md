@@ -1,3 +1,13 @@
+# Rdpack 2.1.1
+
+- for `roxygen2` users, add a note in README not to indent by exactly four
+  spaces `\insertAllCited{}` relative to `@references`. This is to avoid it
+  being translated by `roxygen2` as verbatim (`\preformatted`) text, see issue
+  (#18). This looks like a recent feature in `roxygen2`, since the example in
+  README contained exactly four spaces for years (and copied as is by users,
+  including me).
+
+
 # Rdpack 2.1 (CRAN)
 
 - dramatic speed up of processing of bibliography references, most noticeable
