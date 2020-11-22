@@ -145,7 +145,7 @@
 <tr><td>Date:</td><td>2020-11-22</td></tr>
 <tr><td>License:</td><td>GPL (&gt;= 2)</td></tr>
 <tr><td>LazyLoad:</td><td>yes</td></tr>
-<tr><td>Built:</td><td>R 4.0.3; ; 2020-11-22 16:09:05 UTC; unix</td></tr>
+<tr><td>Built:</td><td>R 4.0.3; ; 2020-11-22 17:16:11 UTC; unix</td></tr>
 </table>
 <p><!-- % -->
 <!-- % 2018-05-24 commenting out    -->
@@ -278,10 +278,13 @@
   <code>\insertNoCite</code>. It is usually put in section
   &#8220;References&#8221;, something like:</p><pre>  
     \references{
-        \insertAllCited{}
+      \insertAllCited{}
     }
-</pre><p>in an Rd file.
-    The analogous documentation chunk in roxygen2 might look like this:</p><pre>  
+</pre><p>in an Rd file. Don't align the backslash with the second 'e' of
+    <code>@references</code>, since roxygen2 may interpret it as verbatim text, 
+    not macro.</p>
+
+<p>The analogous documentation chunk in roxygen2 might look like this:</p><pre>  
     #' @references
     #'     \insertAllCited{}
 </pre>  
