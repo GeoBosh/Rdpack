@@ -189,10 +189,14 @@
   \dQuote{References}, something like:
 \preformatted{  
     \references{
-        \insertAllCited{}
+      \insertAllCited{}
     }
 }
-    in an Rd file.
+    in an Rd file. Don't align the backslash with the second 'e' of
+    \code{@references}, since roxygen2 may interpret it as verbatim text, 
+    not macro.
+
+
     The analogous documentation chunk in roxygen2 might look like this:
 \preformatted{  
     #' @references
