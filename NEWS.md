@@ -1,11 +1,11 @@
 # Rdpack 2.1.1
 
 - for `roxygen2` users, added a note in README and `Rdpack-package.Rd` not to
-  indent by exactly four spaces `\insertAllCited{}` relative to
-  `@references`. This is to avoid it being translated by `roxygen2` as verbatim
-  (`\preformatted`) text, see issue (#18). This looks like a recent feature in
-  `roxygen2`, since the example in README contained exactly four spaces for
-  years (and copied as is by users, including me).
+  indent by exactly four spaces `\insertAllCited{}` relative to `@references`
+  when markdown mode is activated. This is to avoid it being translated by
+  `roxygen2` as verbatim (`\preformatted`) text, see issue (#18). 
+
+- moved package `gbRd` to Suggests.
 
 
 # Rdpack 2.1 (CRAN)

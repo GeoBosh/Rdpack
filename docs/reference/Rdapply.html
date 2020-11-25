@@ -239,7 +239,7 @@
 <span class='co'>#   (reprompt() takes care of this too as it uses Rdo2Rdf for saving)</span>
 
 <span class='no'>fn</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='st'>"u1"</span>, <span class='kw'>fileext</span><span class='kw'>=</span><span class='st'>"Rd"</span>)
-<span class='fu'><a href='Rdo2Rdf.html'>Rdo2Rdf</a></span>(<span class='no'>u1</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>fn</span>)</div><div class='output co'>#&gt; 	The Rd content was written to file  /tmp/RtmpaW1Fhe/u1ad5217827940Rd </div><div class='input'>
+<span class='fu'><a href='Rdo2Rdf.html'>Rdo2Rdf</a></span>(<span class='no'>u1</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>fn</span>)</div><div class='output co'>#&gt; 	The Rd content was written to file  /tmp/Rtmp8qr1Lo/u182f87eeba76aRd </div><div class='input'>
 <span class='co'># the saved file contains escaped percents but they disappear in parsing:</span>
 <span class='fu'><a href='https://rdrr.io/r/base/file.show.html'>file.show</a></span>(<span class='no'>fn</span>)
 <span class='fu'><a href='Rdo_show.html'>Rdo_show</a></span>(<span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/tools/parse_Rd.html'>parse_Rd</a></span>(<span class='no'>fn</span>))
@@ -250,7 +250,7 @@
 <span class='co'># todo: additional arg. for list_Rd for this?</span>
 
 <span class='no'>u2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>Rdpack</span><span class='kw ns'>:::</span><span class='fu'>.Rd_tidy</span>(<span class='no'>u1</span>)
-<span class='fu'><a href='Rdo2Rdf.html'>Rdo2Rdf</a></span>(<span class='no'>u2</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>fn</span>)</div><div class='output co'>#&gt; 	The Rd content was written to file  /tmp/RtmpaW1Fhe/u1ad5217827940Rd </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/file.show.html'>file.show</a></span>(<span class='no'>fn</span>)
+<span class='fu'><a href='Rdo2Rdf.html'>Rdo2Rdf</a></span>(<span class='no'>u2</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>fn</span>)</div><div class='output co'>#&gt; 	The Rd content was written to file  /tmp/Rtmp8qr1Lo/u182f87eeba76aRd </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/file.show.html'>file.show</a></span>(<span class='no'>fn</span>)
 
 <span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='no'>fn</span>)</div></pre>
   </div>

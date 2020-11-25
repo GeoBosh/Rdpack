@@ -18,10 +18,12 @@ test_that("c_Rd works fine", {
     a3 <- char2Rdpiece("Dummy title", "title")
     a4 <- char2Rdpiece("Dummy description", "description")
 
-    b1 <- c_Rd(gbRd::Rdo_empty(), list(a1), list(a2), list(a3), list(a4))
-    b1a <- c_Rd(list(a1), gbRd::Rdo_empty(), list(a2), list(a3), list(a4))
-    expect_identical(class(b1), "Rd")
-    expect_identical(class(b1a), "Rd")
+    if(requireNamespace("gbRd")){
+        b1 <- c_Rd(gbRd::Rdo_empty(), list(a1), list(a2), list(a3), list(a4))
+        b1a <- c_Rd(list(a1), gbRd::Rdo_empty(), list(a2), list(a3), list(a4))
+        expect_identical(class(b1), "Rd")
+        expect_identical(class(b1a), "Rd")
+    }
 
     b2 <- c_Rd(list(a1), list(a2), list(a3), list(a4))
     expect_identical(class(b2), "list")

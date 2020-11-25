@@ -47,6 +47,7 @@ a4 <- char2Rdpiece("Dummy description", "description")
 
 ## The following are equivalent
 ## (gbRd::Rdo_empty() creates an empty list of class 'Rd')
+if(requireNamespace("gbRd")){
 b1 <- c_Rd(gbRd::Rdo_empty(), list(a1), list(a2), list(a3), list(a4))
 c1 <- c_Rd(gbRd::Rdo_empty(), list(a1, a2, a3, a4))
 d1 <- c_Rd(gbRd::Rdo_empty(), list(a1, a2), list(a3, a4))
@@ -57,6 +58,7 @@ Rdo_show(b1)
 ## insert a newline
 d1n <- c_Rd(gbRd::Rdo_empty(), list(a1, a2), Rdo_newline(), list(a3, a4))
 str(d1n)
+}
 
 ## When most of the arguments are character strings
 ## the function 'list_Rd' may be more convenient.

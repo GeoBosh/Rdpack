@@ -8,7 +8,8 @@ importFrom(tools, parse_Rd, toRd, checkRd, Rd2txt,
            bibstyle, latexToUtf8, parseLatex, deparseLatex)
 #importFrom(grDevices, dev.off, png)
 
-importFrom(gbRd, Rd_help2txt)
+#importFrom(gbRd, Rd_help2txt) # commented out 2020-11-25
+
 #importFrom(bibtex, read.bib)
 importFrom(rbibutils, readBib)
 

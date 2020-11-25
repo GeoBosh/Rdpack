@@ -2,7 +2,7 @@ Package: Rdpack
 Type: Package
 Title: Update and Manipulate Rd Documentation Objects
 Version: 2.1.1
-Date: 2020-11-22
+Date: 2020-11-25
 Authors@R: c( person(given = c("Georgi", "N."),
                      family = "Boshnakov", 
                      role = c("aut", "cre"), 
@@ -26,13 +26,13 @@ Depends:
 Imports:
     tools,
     utils,
-    gbRd,
     rbibutils (>= 1.3)
 Suggests:
     grDevices,
     testthat,
     rstudioapi,
-    rprojroot
+    rprojroot,
+    gbRd
 License: GPL (>= 2)
 LazyLoad: yes
 RoxygenNote: 7.1.1
