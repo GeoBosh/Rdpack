@@ -3,7 +3,7 @@
 \title{View Rd files in a source package}
 \description{View Rd files in a source package.}
 \usage{
-viewRd(infile, type = "text", stages = NULL)
+viewRd(infile, type = getOption("help_type"), stages = NULL)
 }
 \arguments{
   \item{infile}{name of an Rd file, a character string.}

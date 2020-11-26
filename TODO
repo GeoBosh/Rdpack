@@ -1,7 +1,3 @@
-* in RStudio, if the package is in development mode, viewRd() just drops the
-  references.  It seems that something goes wrong in the "install" stage for
-  parse_Rd.
-
 * vignette for reprompt/ereprompt/RStudio_reprompt
 
 * pcDst.Rd gives an error, it was produced by Roxygen.

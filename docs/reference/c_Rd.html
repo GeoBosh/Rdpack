@@ -169,17 +169,36 @@
 <span class='co'>## The following are equivalent</span>
 <span class='co'>## (gbRd::Rdo_empty() creates an empty list of class 'Rd')</span>
 <span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"gbRd"</span>)){
-<span class='no'>b1</span> <span class='kw'>&lt;-</span> <span class='fu'>c_Rd</span>(<span class='kw pkg'>gbRd</span><span class='kw ns'>::</span><span class='fu'>Rdo_empty</span>(), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>a1</span>), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>a2</span>), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>a3</span>), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>a4</span>))
-<span class='no'>c1</span> <span class='kw'>&lt;-</span> <span class='fu'>c_Rd</span>(<span class='kw pkg'>gbRd</span><span class='kw ns'>::</span><span class='fu'>Rdo_empty</span>(), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>a1</span>, <span class='no'>a2</span>, <span class='no'>a3</span>, <span class='no'>a4</span>))
-<span class='no'>d1</span> <span class='kw'>&lt;-</span> <span class='fu'>c_Rd</span>(<span class='kw pkg'>gbRd</span><span class='kw ns'>::</span><span class='fu'>Rdo_empty</span>(), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>a1</span>, <span class='no'>a2</span>), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>a3</span>, <span class='no'>a4</span>))
+<span class='no'>b1</span> <span class='kw'>&lt;-</span> <span class='fu'>c_Rd</span>(<span class='kw pkg'>gbRd</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/gbRd/man/Rdo_create.html'>Rdo_empty</a></span>(), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>a1</span>), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>a2</span>), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>a3</span>), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>a4</span>))
+<span class='no'>c1</span> <span class='kw'>&lt;-</span> <span class='fu'>c_Rd</span>(<span class='kw pkg'>gbRd</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/gbRd/man/Rdo_create.html'>Rdo_empty</a></span>(), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>a1</span>, <span class='no'>a2</span>, <span class='no'>a3</span>, <span class='no'>a4</span>))
+<span class='no'>d1</span> <span class='kw'>&lt;-</span> <span class='fu'>c_Rd</span>(<span class='kw pkg'>gbRd</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/gbRd/man/Rdo_create.html'>Rdo_empty</a></span>(), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>a1</span>, <span class='no'>a2</span>), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>a3</span>, <span class='no'>a4</span>))
 <span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span>(<span class='no'>c1</span>, <span class='no'>b1</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span>(<span class='no'>c1</span>, <span class='no'>d1</span>)
 <span class='fu'><a href='Rdo_show.html'>Rdo_show</a></span>(<span class='no'>b1</span>)
 
 <span class='co'>## insert a newline</span>
-<span class='no'>d1n</span> <span class='kw'>&lt;-</span> <span class='fu'>c_Rd</span>(<span class='kw pkg'>gbRd</span><span class='kw ns'>::</span><span class='fu'>Rdo_empty</span>(), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>a1</span>, <span class='no'>a2</span>), <span class='fu'><a href='Rdo_tag.html'>Rdo_newline</a></span>(), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>a3</span>, <span class='no'>a4</span>))
+<span class='no'>d1n</span> <span class='kw'>&lt;-</span> <span class='fu'>c_Rd</span>(<span class='kw pkg'>gbRd</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/gbRd/man/Rdo_create.html'>Rdo_empty</a></span>(), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>a1</span>, <span class='no'>a2</span>), <span class='fu'><a href='Rdo_tag.html'>Rdo_newline</a></span>(), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>a3</span>, <span class='no'>a4</span>))
 <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>d1n</span>)
-}</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: gbRd</span></div><div class='input'>
+}</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: gbRd</span></div><div class='output co'>#&gt; List of 5
+#&gt;  $ :List of 1
+#&gt;   ..$ : chr "Dummyname"
+#&gt;   .. ..- attr(*, "Rd_tag")= chr "VERB"
+#&gt;   ..- attr(*, "Rd_tag")= chr "\\name"
+#&gt;  $ :List of 1
+#&gt;   ..$ : chr "Dummyallias1"
+#&gt;   .. ..- attr(*, "Rd_tag")= chr "VERB"
+#&gt;   ..- attr(*, "Rd_tag")= chr "\\alias"
+#&gt;  $ : chr "\n"
+#&gt;   ..- attr(*, "Rd_tag")= chr "TEXT"
+#&gt;  $ :List of 1
+#&gt;   ..$ : chr "Dummy title"
+#&gt;   .. ..- attr(*, "Rd_tag")= chr "TEXT"
+#&gt;   ..- attr(*, "Rd_tag")= chr "\\title"
+#&gt;  $ :List of 1
+#&gt;   ..$ : chr "Dummy description"
+#&gt;   .. ..- attr(*, "Rd_tag")= chr "TEXT"
+#&gt;   ..- attr(*, "Rd_tag")= chr "\\description"
+#&gt;  - attr(*, "class")= chr "Rd"</div><div class='input'>
 <span class='co'>## When most of the arguments are character strings</span>
 <span class='co'>## the function 'list_Rd' may be more convenient.</span>
 <span class='no'>u1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='list_Rd.html'>list_Rd</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Dummyname"</span>, <span class='kw'>alias</span> <span class='kw'>=</span> <span class='st'>"Dummyallias1"</span>,

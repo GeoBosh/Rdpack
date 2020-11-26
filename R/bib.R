@@ -510,9 +510,14 @@ insert_ref <- function(key, package = NULL, ..., cached_env = NULL) { # bibfile 
 
 ## 2017-11-25 new
 ## see utils:::print.help_files_with_topic()
-viewRd <- function(infile, type = "text", stages = NULL){
+viewRd <- function(infile, type = getOption("help_type"), stages = NULL){
     infile <- normalizePath(infile)
 
+    if(is.null(type))
+       type <- "text"
+    else if(!is.character(type) || length(type) != 1)
+        stop("'type' should be 'html' or 'text'")
+        
     if(is.null(stages))
         # stages <- c("install", "render")
         stages <- c("build", "install", "render")

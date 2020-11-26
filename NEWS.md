@@ -1,5 +1,8 @@
 # Rdpack 2.1.1
 
+- In `viewRd`, the default for the help type now is `options("help_type")`
+  (previously the default was `"text"`).
+
 - for `roxygen2` users, added a note in README and `Rdpack-package.Rd` not to
   indent by exactly four spaces `\insertAllCited{}` relative to `@references`
   when markdown mode is activated. This is to avoid it being translated by
