@@ -42,7 +42,8 @@ rdo <- tools::parse_Rd(fn)
 ## add documentation for arguments
 ## that are not in the signature of 'dummyfun()'
 dottext <- "further arguments to be passed on."
-rdo2 <- Rdo_append_argument(rdo, "\\dots", dottext, create = TRUE)
+dots <- paste0("\\\\", "dots")
+rdo2 <- Rdo_append_argument(rdo, dots, dottext, create = TRUE)
 rdo2 <- Rdo_append_argument(rdo2, "z", "a numeric vector")
 
 ## reprompt() warns to remove documentation for non-existing arguments:

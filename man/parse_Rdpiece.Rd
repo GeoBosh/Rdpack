@@ -87,7 +87,8 @@ rdoa <- append_to_Rd_list(rdo, newarg, iarg)
 Rdo_show(rdoa)
 
 # for arguments and other frequent tasks, there are specialised functions
-rdob <- Rdo_append_argument(rdo, "\\dots", "further arguments to be passed on.")
+dots <- paste0("\\\\", "dots")
+rdob <- Rdo_append_argument(rdo, dots, "further arguments to be passed on.")
 
 Rdo_show(reprompt(rdob, filename = fn))
 

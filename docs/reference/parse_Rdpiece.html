@@ -159,7 +159,30 @@
     <p>a parsed Rd piece or its textual representation as described in Details</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"></pre>
+    <pre class="examples"><div class='input'><span class='co'># the following creates Rd object rdo</span>
+<span class='no'>dummyfun</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) <span class='no'>x</span>
+<span class='no'>u1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='list_Rd.html'>list_Rd</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Dummyname"</span>, <span class='kw'>alias</span> <span class='kw'>=</span> <span class='st'>"dummyfun"</span>,
+              <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Dummy title"</span>, <span class='kw'>description</span> <span class='kw'>=</span> <span class='st'>"Dummy description"</span>,
+              <span class='kw'>usage</span> <span class='kw'>=</span> <span class='st'>"dummyfun(x,y)"</span>,
+              <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"numeric vector"</span>,
+              <span class='kw'>author</span> <span class='kw'>=</span> <span class='st'>"A. Author"</span>,
+              <span class='kw'>Rd_class</span> <span class='kw'>=</span> <span class='fl'>TRUE</span> )
+<span class='no'>fn</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='st'>"dummyfun"</span>, <span class='kw'>fileext</span> <span class='kw'>=</span> <span class='st'>"Rd"</span>)
+<span class='fu'><a href='reprompt.html'>reprompt</a></span>(<span class='no'>dummyfun</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='no'>fn</span>)</div><div class='output co'>#&gt; Rd source not supplied, looking for installed documentation.
+#&gt; Rd source not supplied and installed documentation not found.
+#&gt; Trying a 'prompt' function to generate documentation for the object.</div><div class='output co'>#&gt; <span class='error'>Error in reprompt(dummyfun, filename = fn): unsuccessful attempt to create Rd doc. using a 'prompt' function.</span></div><div class='input'><span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/tools/parse_Rd.html'>parse_Rd</a></span>(<span class='no'>fn</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot open file '/tmp/RtmphXaz3b/dummyfun2eedf11c3fbfRd': No such file or directory</span></div><div class='output co'>#&gt; <span class='error'>Error in file(con, "r"): cannot open the connection</span></div><div class='input'>
+<span class='co'># let's prepare a new item</span>
+<span class='no'>rd</span> <span class='kw'>&lt;-</span> <span class='st'>"\\item{...}{further arguments to be passed on.}"</span>
+<span class='no'>newarg</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='parse_Rdtext.html'>parse_Rdtext</a></span>(<span class='no'>rd</span>, <span class='kw'>section</span> <span class='kw'>=</span> <span class='st'>"\\arguments"</span>)
+
+<span class='co'># now append 'newarg' to the arguments section of rdo</span>
+<span class='no'>iarg</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span>(<span class='kw pkg'>tools</span><span class='kw ns'>:::</span><span class='fu'>RdTags</span>(<span class='no'>rdo</span>) <span class='kw'>==</span> <span class='st'>"\\arguments"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in lapply(Rd, attr, "Rd_tag"): object 'rdo' not found</span></div><div class='input'><span class='no'>rdoa</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='append_to_Rd_list.html'>append_to_Rd_list</a></span>(<span class='no'>rdo</span>, <span class='no'>newarg</span>, <span class='no'>iarg</span>)</div><div class='output co'>#&gt; <span class='error'>Error in structure(c(rdo[[pos]], x), Rd_tag = attr(rdo[[pos]], "Rd_tag")): object 'rdo' not found</span></div><div class='input'>
+<span class='fu'><a href='Rdo_show.html'>Rdo_show</a></span>(<span class='no'>rdoa</span>)</div><div class='output co'>#&gt; <span class='error'>Error in prepare_Rd(Rd, defines = defines, stages = stages, fragment = fragment,     ...): object 'rdoa' not found</span></div><div class='input'>
+<span class='co'># for arguments and other frequent tasks, there are specialised functions</span>
+<span class='no'>dots</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"\\"</span>, <span class='st'>"dots"</span>)
+<span class='no'>rdob</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='Rdo_append_argument.html'>Rdo_append_argument</a></span>(<span class='no'>rdo</span>, <span class='no'>dots</span>, <span class='st'>"further arguments to be passed on."</span>)</div><div class='output co'>#&gt; <span class='error'>Error in Rdo_modify(rdo, wrk, create = TRUE): object 'rdo' not found</span></div><div class='input'>
+<span class='fu'><a href='Rdo_show.html'>Rdo_show</a></span>(<span class='fu'><a href='reprompt.html'>reprompt</a></span>(<span class='no'>rdob</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='no'>fn</span>))</div><div class='output co'>#&gt; <span class='error'>Error in reprompt(rdob, filename = fn): object 'rdob' not found</span></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='no'>fn</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -1,4 +1,4 @@
-# Rdpack 2.1.1
+# Rdpack 2.1.1 (CRAN)
 
 - In `viewRd`, the default for the help type now is `options("help_type")`
   (previously the default was `"text"`).
@@ -9,6 +9,9 @@
   `roxygen2` as verbatim (`\preformatted`) text, see issue (#18). 
 
 - moved package `gbRd` to Suggests.
+
+- fixed uses of \dots in several examples (necessitated by a change in R-devel
+  circa February 2021).
 
 
 # Rdpack 2.1 (CRAN)

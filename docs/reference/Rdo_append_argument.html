@@ -161,7 +161,20 @@
     <p>an Rd object</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"></pre>
+    <pre class="examples"><div class='input'><span class='co'>## the following creates Rd object rdo</span>
+<span class='no'>dummyfun</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) <span class='no'>x</span>
+<span class='no'>fn</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='st'>"dummyfun"</span>, <span class='kw'>fileext</span> <span class='kw'>=</span> <span class='st'>".Rd"</span>)
+<span class='fu'><a href='reprompt.html'>reprompt</a></span>(<span class='no'>dummyfun</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='no'>fn</span>)</div><div class='output co'>#&gt; Rd source not supplied, looking for installed documentation.
+#&gt; Rd source not supplied and installed documentation not found.
+#&gt; Trying a 'prompt' function to generate documentation for the object.</div><div class='output co'>#&gt; <span class='error'>Error in reprompt(dummyfun, filename = fn): unsuccessful attempt to create Rd doc. using a 'prompt' function.</span></div><div class='input'><span class='no'>rdo</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tools</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/tools/parse_Rd.html'>parse_Rd</a></span>(<span class='no'>fn</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot open file '/tmp/RtmphXaz3b/dummyfun2eedf9c741e4.Rd': No such file or directory</span></div><div class='output co'>#&gt; <span class='error'>Error in file(con, "r"): cannot open the connection</span></div><div class='input'>
+<span class='co'>## add documentation for arguments</span>
+<span class='co'>## that are not in the signature of 'dummyfun()'</span>
+<span class='no'>dottext</span> <span class='kw'>&lt;-</span> <span class='st'>"further arguments to be passed on."</span>
+<span class='no'>dots</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"\\"</span>, <span class='st'>"dots"</span>)
+<span class='no'>rdo2</span> <span class='kw'>&lt;-</span> <span class='fu'>Rdo_append_argument</span>(<span class='no'>rdo</span>, <span class='no'>dots</span>, <span class='no'>dottext</span>, <span class='kw'>create</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in Rdo_modify(rdo, wrk, create = TRUE): object 'rdo' not found</span></div><div class='input'><span class='no'>rdo2</span> <span class='kw'>&lt;-</span> <span class='fu'>Rdo_append_argument</span>(<span class='no'>rdo2</span>, <span class='st'>"z"</span>, <span class='st'>"a numeric vector"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in Rdo_modify(rdo, wrk, create = TRUE): object 'rdo2' not found</span></div><div class='input'>
+<span class='co'>## reprompt() warns to remove documentation for non-existing arguments:</span>
+<span class='fu'><a href='Rdo_show.html'>Rdo_show</a></span>(<span class='fu'><a href='reprompt.html'>reprompt</a></span>(<span class='no'>rdo2</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='no'>fn</span>))</div><div class='output co'>#&gt; <span class='error'>Error in reprompt(rdo2, filename = fn): object 'rdo2' not found</span></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='no'>fn</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
