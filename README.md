@@ -1,7 +1,10 @@
-[![CRANStatusBadge](http://www.r-pkg.org/badges/version/Rdpack)](https://cran.r-project.org/package=Rdpack)
-[![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/Rdpack)](https://www.r-pkg.org/pkg/Rdpack)
-[![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/Rdpack?color=blue)](https://r-pkg.org/pkg/Rdpack)
-[![DOI](https://zenodo.org/badge/100482670.svg)](https://zenodo.org/badge/latestdoi/100482670)
+<!-- badges: start -->
+  [![CRANStatusBadge](http://www.r-pkg.org/badges/version/Rdpack)](https://cran.r-project.org/package=Rdpack)
+  [![R-CMD-check](https://github.com/GeoBosh/Rdpack/workflows/R-CMD-check/badge.svg)](https://github.com/GeoBosh/Rdpack/actions)
+  [![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/Rdpack)](https://www.r-pkg.org/pkg/Rdpack)
+  [![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/Rdpack?color=blue)](https://r-pkg.org/pkg/Rdpack)
+  [![DOI](https://zenodo.org/badge/100482670.svg)](https://zenodo.org/badge/latestdoi/100482670)
+<!-- badges: end -->
 
 Rdpack provides functions for manipulation of R documentation objects, including functions
 `reprompt()` and `ereprompt()` for updating existing Rd documentation for functions, methods

@@ -15,3 +15,4 @@
 ^NAMESPACEsav$
 ^_pkgdown\.yml$
 ^docs$
+^\.github$
