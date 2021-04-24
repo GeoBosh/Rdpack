@@ -76,6 +76,7 @@ jobs:
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
           remotes::install_cran("tinytex")
+          tinytex::parse_install(text = "! LaTeX Error: File `ae.sty' not found.")
         shell: Rscript {0}
 
       - name: Check
