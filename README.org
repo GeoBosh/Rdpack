@@ -3,13 +3,10 @@
 #+TITLE: Inserting references in Rd and roxygen2 documentation
 
 #+BEGIN_EXPORT html
-<!-- badges: start -->
-  [![CRANStatusBadge](http://www.r-pkg.org/badges/version/Rdpack)](https://cran.r-project.org/package=Rdpack)
-  [![R-CMD-check](https://github.com/GeoBosh/Rdpack/workflows/R-CMD-check/badge.svg)](https://github.com/GeoBosh/Rdpack/actions)
-  [![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/Rdpack)](https://www.r-pkg.org/pkg/Rdpack)
-  [![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/Rdpack?color=blue)](https://r-pkg.org/pkg/Rdpack)
-  [![DOI](https://zenodo.org/badge/100482670.svg)](https://zenodo.org/badge/latestdoi/100482670)
-<!-- badges: end -->
+[![CRANStatusBadge](http://www.r-pkg.org/badges/version/Rdpack)](https://cran.r-project.org/package=Rdpack)
+[![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/Rdpack)](https://www.r-pkg.org/pkg/Rdpack)
+[![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/Rdpack?color=blue)](https://r-pkg.org/pkg/Rdpack)
+[![DOI](https://zenodo.org/badge/100482670.svg)](https://zenodo.org/badge/latestdoi/100482670)
 #+END_EXPORT
 # Removing this, since doesn't seem to be updated anymore:
 # [![rpackages.io rank](http://www.rpackages.io/badge/Rdpack.svg)](http://www.rpackages.io/package/Rdpack)
