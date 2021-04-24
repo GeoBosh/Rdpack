@@ -1,3 +1,8 @@
+# Rdpack 2.1.2
+
+- now references with identical authors are sorted by year.
+
+
 # Rdpack 2.1.1 (CRAN)
 
 - In `viewRd`, the default for the help type now is `options("help_type")`

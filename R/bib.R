@@ -6,15 +6,6 @@
     gsub("\\bsl{}", "", txt, fixed=TRUE)
 }
 
-## extract `key' from a bibentry object. I used this to set the 'names' attribute of objects
-##     produced by bibtex (< 0.4.0). Don't remember why I didn't use unlist(x$key).
-##
-## not used anymore
-bibentry_key <- function(x){                                                     # 2013-03-29
-    .Deprecated("x[[1]]$key or unlist(x$key)")
-    attr(unclass(x[[1]][[1]])[[1]], "key")
-}
-
 ## maybe add to package `gbutils'?
 ##
 ## if `wd' is a subdirectory of `string' return the path upto and including `string',
@@ -40,7 +31,6 @@ in_subdirectory <- function(string, wd = getwd()){
 
 get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib", 
                            url_only = FALSE, stop_on_error = TRUE){
-
     if(is.null(package)){
         fn <- file.path(..., bibfile)
         ## check for existence of fn (and length(fn) == 1)? (but see below)
@@ -74,13 +64,13 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib",
             ##    see the note above. TODO: check if this is the case?
             fn <- system.file("inst", ..., bibfile, package = package)
         
-## 2020-09-27 removing this functionality since package 'bibtex' ca no longer be
-        ##            relied upon and was dropped from the dependencies.
-        ##
-        ## if(length(fn) == 1  &&  fn == "")
-        ##     ## if system.file() didn't find the bib file, check if file package.bib is
-        ##     ## provided by package "bibtex" (it is for core R packages, such as "base")
-        ##     fn <- system.file("bib", sprintf("%s.bib", package), package = "bibtex")
+	    ## 2020-09-27 removing this functionality since package 'bibtex' ca no longer be
+            ##            relied upon and was dropped from the dependencies.
+            ##
+            ## if(length(fn) == 1  &&  fn == "")
+            ##     ## if system.file() didn't find the bib file, check if file package.bib is
+            ##     ## provided by package "bibtex" (it is for core R packages, such as "base")
+            ##     fn <- system.file("bib", sprintf("%s.bib", package), package = "bibtex")
     }
 
     if(length(fn) > 1){
@@ -98,15 +88,14 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib",
             class(res) <- c("bibentryRd", class(res))
             return(res)
         }
-            
     }
 
     ## 2018-10-03
-    ## use package encoding if specified.
-    ## TODO: maybe this function should have argument 'encoding'
-    ## TODO: in principle the  Rd file may have its own encoding,
-    ##       but my current understanding is that parse_Rd() first converts it to UTF-8.
-    ##   BUT what is the encoding of the strings in the object returned by read.bib?
+    ##     use package's encoding if specified.
+    ##     TODO: maybe this function should have argument 'encoding'
+    ##     TODO: in principle the  Rd file may have its own encoding,
+    ##           but my current understanding is that parse_Rd() first converts it to UTF-8.
+    ##           BUT what is the encoding of the strings in the object returned by read.bib?
     encoding <- if(!is.null(package) && !is.null(utils::packageDescription(package)$Encoding))
                     utils::packageDescription(package)$Encoding
                 else
@@ -114,18 +103,6 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib",
 
     ## 2020-09-22 switching to 'rbibutils
     ##      res <- read.bib(file = fn, encoding = encoding)
-       # rds <- tempfile(fileext = ".rds")
-        # if(encoding == "UTF-8")
-        #     encoding = "utf8"
-        # be <- bibConvert(fn, rds, "bibtex",
-        #         "bibentry", encoding = c(encoding, "utf8"), tex = "no_latex")
-        # res <- readRDS(rds)
-        # #print(res)
-        # unlink(rds)
-
-## TODO: for test only!
-##    message("Reading ", fn)
-    
     res <- readBib(file = fn, encoding = encoding)
 
          # 2018-03-10 commenting out
@@ -167,17 +144,16 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib",
         #     }
         # }
 
-        ## new 2020-10-02 - allow \% in url's and doi's in the bib file
-    for(nam in names(res)){
-#print(res[nam], style = "R")
+    ## new 2020-10-02 - allow \% in url's and doi's in the bib file
+    for(nam in names(res)){                                    # print(res[nam], style = "R")
         ## unconditionaly recode %'s in filed URL
-            if(!is.null(res[nam]$doi)) {
-                res[nam]$doi <- gsub("([^\\\\])[\\\\]%", "\\1%", res[nam]$doi)
-            }
+        if(!is.null(res[nam]$doi)) {
+            res[nam]$doi <- gsub("([^\\\\])[\\\\]%", "\\1%", res[nam]$doi)
+        }
         
-            if(!is.null(res[nam]$url)) {
-                res[nam]$url <- gsub("([^\\\\])[\\\\]%", "\\1%", res[nam]$url)
-            }
+        if(!is.null(res[nam]$url)) {
+            res[nam]$url <- gsub("([^\\\\])[\\\\]%", "\\1%", res[nam]$url)
+        }
         
             # if(url_only){  # process also other fields
             #     ## TODO: currently all unescaped %'s in all fields are recoded;
@@ -199,8 +175,7 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib",
             #         res[nam] <- unclassed
             #     }
             # }
-        }
-
+    }
 
     ## 2018-03-03 new:
     class(res) <- c("bibentryRd", class(res))
@@ -373,7 +348,7 @@ Rdo_flatinsert <- function(rdo, val, pos, before = TRUE){                       
 ## 2020-11-01: use local()
 .bibs_cache <- local({
     ## initialise the cache
-    ##     TODO: remove remove refsmat, it is not needed here, maybe
+    ##     TODO: remove refsmat, it is not needed here, maybe
     refsmat <- matrix(character(0), nrow = 0, ncol = 2)
     allbibs <- list()
     ## TODO: time stamp for auto clearing
@@ -403,7 +378,7 @@ Rdo_flatinsert <- function(rdo, val, pos, before = TRUE){                       
 
 ## TODO: auto-deduce 'package'?
 ## 2020-09-30: changing to cache bib as \insertCite does (new arg. cached_env, etc)
-insert_ref <- function(key, package = NULL, ..., cached_env = NULL) { # bibfile = "REFERENCES.bib"
+insert_ref <- function(key, package = NULL, ..., cached_env = NULL) {
 
         # 2020-09-30: replaced by a single call
         # if(is.null(package)) 
@@ -412,15 +387,13 @@ insert_ref <- function(key, package = NULL, ..., cached_env = NULL) { # bibfile 
         # bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
         #
 
-    ##  TODO: this is for testing only!
-    ##    message("\nkey is ", key)
-    
-    ## if(is.null(cached_env))
-    ##     message("    cached_env is NULL")
-    ## else
-    ##     message("    cached_env is nonNULL")
+        #  TODO: this is for testing only!
+        #    message("\nkey is ", key)
         
-
+        # if(is.null(cached_env))
+        #     message("    cached_env is NULL")
+        # else
+        #     message("    cached_env is nonNULL")
 
     bibs <- .bibs_cache$.get_bibs0(package, ..., cached_env = cached_env) 
 
@@ -471,13 +444,13 @@ insert_ref <- function(key, package = NULL, ..., cached_env = NULL) { # bibfile 
             #     #     I don't know why toRd() doesn't do this...
             #     #
             #     # escape percents that are not preceded by backslash
-            #     #  (the `if' is because in case of error above, item will be simply a string)
+            #     #  (`if' is because in case of error above, item will be simply a string)
             #
             # Commenting out since get_bibentries() does it.
             #     if(inherits(item, "bibentry")  &&  !is.null(item$url))
             #         item$url <- gsub("([^\\])%", "\\1\\\\%", item$url)
 
-# if(interactive()) browser()
+            # if(interactive()) browser()
 
             # wrk <- .toRd_styled(item, package) # TODO: add styles? (doesn't seem feasible here)
             # fn <- tempfile()
@@ -534,7 +507,7 @@ viewRd <- function(infile, type = getOption("help_type"), stages = NULL){
     ## 2020-05-19: read also the macros from pkgdir, 
     ##             load those from Rdpack anyway, in case Rdpack is not in 'DESCRIPTION' yet
     ##             TODO: could issue warning here but this could be intrusive here since 
-    ##             since the user may not need Rdpack for the current package.
+    ##                   the user may not need Rdpack for the current package.
     e <- tools::loadPkgRdMacros(system.file(package = "Rdpack"))
     e <- tools::loadPkgRdMacros(pkgdir, macros = e)
     ## finally load the Rd system macros (though I haven't noticed errors without this step).
@@ -563,7 +536,7 @@ viewRd <- function(infile, type = getOption("help_type"), stages = NULL){
 
     ## Rdo <- parse_Rd(infile, macros = e)
 
-    ## can't do this, the file may be deleted before the browser opens it:
+    ## can't do this (the file may be deleted before the browser opens it):
     ##        on.exit(unlink(outfile))
     switch(type,
            text = {
@@ -579,7 +552,6 @@ viewRd <- function(infile, type = getOption("help_type"), stages = NULL){
                                       , macros = e)
                browseURL(temp)
                ## html file is not deleted
-#browser()
            },
            stop("'type' should be one of 'text' or 'html'")
            )
@@ -634,16 +606,16 @@ makeVignetteReference <- function(package, vig = 1, verbose = TRUE,
         if(length(vig) == 1  &&  !is.na(vig)){
             wrk <- vigs$results[vig, "Title"]
         }else
-            stop(paste0("'vig' must (partially) match one of:\n",
-                        paste0("\t", 1:nrow(vigs$results), " ", vigs$results[ , "Item"], "\n",
-                               collapse = "\n"),
-                        "Alternatively, 'vig' can be the index printed in front of the name above."))
+            stop(paste0(
+                "'vig' must (partially) match one of:\n",
+                paste0("\t", 1:nrow(vigs$results), " ", vigs$results[ , "Item"], "\n",
+                       collapse = "\n"),
+                "Alternatively, 'vig' can be the index printed in front of the name above."))
     }else if(1 <= vig  && vig <= nrow(vigs$results)){
         wrk <- vigs$results[vig, "Title"]
     }else{
         stop("not ready yet, should return all vigs in the package.")
     }
-
 
     if(missing(author))
         author <- desc$Author
@@ -698,8 +670,7 @@ makeVignetteReference <- function(package, vig = 1, verbose = TRUE,
 ## 2018-03-13 new
 insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
                             bibpunct = NULL, ..., 
-       cached_env = NULL, cite_only = FALSE, dont_cite = FALSE) { # bibfile = "REFERENCES.bib"
-
+                            cached_env = NULL, cite_only = FALSE, dont_cite = FALSE) {
     if(!is.null(cached_env)){
         if(is.null(cached_env$refsmat))
             cached_env$refsmat <- matrix(character(0), nrow = 0, ncol = 2)
@@ -737,31 +708,29 @@ insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
         }
     }
 
-    ## 2020-11-05 was:
-    ##
-    ## if(is.null(cached_env)){
-    ##     bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
-    ## }else{
-    ##     bibs <- cached_env$allbibs[[package]]
-    ##     if(is.null(bibs)){
-    ##         bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
-    ##         cached_env$allbibs[[package]] <- bibs
-    ##     }
-    ## }
-    ##
+        # 2020-11-05 was:
+        #
+        # if(is.null(cached_env)){
+        #     bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
+        # }else{
+        #     bibs <- cached_env$allbibs[[package]]
+        #     if(is.null(bibs)){
+        #         bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
+        #         cached_env$allbibs[[package]] <- bibs
+        #     }
+        # }
+        #
     bibs <- .bibs_cache$.get_bibs0(package, ..., cached_env = cached_env) 
 
-
-
-       ## This wouldn't work since roxygen2 will change it to citation
-       ##    TODO: check
-       ## if(substr(keys, 1, 1) == "["){ # rmarkdown syntax (actually roxygen2?)
-       ##     keys <- substr(keys, 2, nchar(keys) - 1) # drop "[" and the closing "]"
-       ##     splitkeys <- strsplit(keys, ";", fixed = TRUE)[[1]] # note: [[1]]
-       ##
-       ##
-       ##
-       ## }
+        # This wouldn't work since roxygen2 will change it to citation
+        #    TODO: check
+        # if(substr(keys, 1, 1) == "["){ # rmarkdown syntax (actually roxygen2?)
+        #     keys <- substr(keys, 2, nchar(keys) - 1) # drop "[" and the closing "]"
+        #     splitkeys <- strsplit(keys, ";", fixed = TRUE)[[1]] # note: [[1]]
+        #
+        #
+        #
+        # }
 
     refch <-  "@"
     refchpat <- paste0("^[", refch, "]")
@@ -936,34 +905,35 @@ insert_all_ref <- function(refs, style = ""){
                 key = paste0(cur, collapse = ":")
             )
         }else if(all(cur != "*")){
-            be <- tryCatch(be[cur],
-                           warning = function(c) {
-                               if(grepl("subscript out of bounds", c$message)){
-                                   ## tell the user the offending keys.
-                                   c$message <- paste0(c$message, " (",
-                                                       paste(cur, collapse = " "),
-                                                       "' from package '", package, "'", ")"
-                                                       )
-                               }
-                               warning(c)
-                               ## setup a dummy entry
-                               dummy <- bibentry(
-                                   bibtype = "Misc",
-                                   title = paste0("Some keys from package ", package,
-                                                  " are not avalable"), 
-                                   author = person("A", "Adummy"),
-                                   year = format(Sys.time(), "%Y"),
-                                   note = paste0("Failed to insert reference with keys:\n    ",
-                                                 paste0(cur, collapse = ", "), "\n",
-                                                 "from package = '", package, "'.",
-                                                 " Possible cause --- missing REFERENCES.bib in package '",
-                                                 package, "' or '", package, "' not installed."
-                                                 ),
-                                   key = paste0(cur, collapse = ":")
-                               )
+            be <- tryCatch(
+                be[cur],
+                warning = function(c) {
+                    if(grepl("subscript out of bounds", c$message)){
+                        ## tell the user the offending keys.
+                        c$message <- paste0(c$message, " (",
+                                            paste(cur, collapse = " "),
+                                            "' from package '", package, "'", ")"
+                                            )
+                    }
+                    warning(c)
+                    ## setup a dummy entry
+                    dummy <- bibentry(
+                        bibtype = "Misc",
+                        title = paste0("Some keys from package ", package,
+                                       " are not avalable"), 
+                        author = person("A", "Adummy"),
+                        year = format(Sys.time(), "%Y"),
+                        note = paste0("Failed to insert reference with keys:\n    ",
+                                      paste0(cur, collapse = ", "), "\n",
+                                      "from package = '", package, "'.",
+                                      " Possible cause - missing REFERENCES.bib in package '",
+                                      package, "' or '", package, "' not installed."
+                                      ),
+                        key = paste0(cur, collapse = ":")
+                    )
 
-                               c(be[cur], dummy)
-                           })
+                    c(be[cur], dummy)
+                })
         }
 
         if(is.null(bibs))
@@ -972,32 +942,31 @@ insert_all_ref <- function(refs, style = ""){
             bibs <- c(bibs, be) # TODO: duplicate keys in different packages?
     }
 
-    bibs <- sort(bibs)
+    bibs <- sort(bibs, .bibstyle = "JSSRd") # 2021-04-24 was: sort(bibs)
 
     pkgs <- names(all.keys)
-          # \Sexpr[stage=build,results=hide]{requireNamespace("cvar")}
+        # \Sexpr[stage=build,results=hide]{requireNamespace("cvar")}
  
-    ## 2016-06-02 was:    
-    ##     if(length(pkgs) > 0){
-    ##         pkg <- pkgs[1] ## TODO: for now should do
-    ##         if(!isNamespaceLoaded(pkg) && !requireNamespace(pkg) )
-    ##             sty <- NULL
-    ##         else{
-    ##             sty <- Rdpack_bibstyles(pkg)
-    ##         }
-    ##     }else
-    ##         sty <- NULL
-    ##     
-    ##     if(!is.null(sty))
-    ##         res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSLongNames"))
-    ##     else {
-    ##         if(style == "")
-    ##             res <- sapply(bibs, function(x) tools::toRd(x))
-    ##         else{
-    ##             res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSLongNames"))
-    ##         }
-    ##     }
-    
+        # 2016-06-02 was:    
+        #     if(length(pkgs) > 0){
+        #         pkg <- pkgs[1] ## TODO: for now should do
+        #         if(!isNamespaceLoaded(pkg) && !requireNamespace(pkg) )
+        #             sty <- NULL
+        #         else{
+        #             sty <- Rdpack_bibstyles(pkg)
+        #         }
+        #     }else
+        #         sty <- NULL
+        #     
+        #     if(!is.null(sty))
+        #         res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSLongNames"))
+        #     else {
+        #         if(style == "")
+        #             res <- sapply(bibs, function(x) tools::toRd(x))
+        #         else{
+        #             res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSLongNames"))
+        #         }
+        #     }
     pkg <- if(length(pkgs) > 0)  ## TODO: for now should do
                pkgs[1]
            else character(0)
@@ -1007,25 +976,12 @@ insert_all_ref <- function(refs, style = ""){
         #     TODO: needs further thought
         # was: 
         #  (for now restoring the old one, to check if pkgdown would consider this as a bug)
-#browser()
-    # paste0(res, collapse = "\n\n")
+
+        # paste0(res, collapse = "\n\n")
     paste0(res, collapse = "\\cr\\cr ")
 }
 
-# Clean up LaTeX accents and braces
-#     this is a copy of unexported  tools:::cleanupLatex by Duncan Murdoch.
-cleanupLatex <- function(x) {
-    if (!length(x)) return(x)
-    latex <- tryCatch(parseLatex(x), error = function(e)e)
-    if (inherits(latex, "error")) {
-    	x
-    } else {
-    	deparseLatex(latexToUtf8(latex), dropBraces=TRUE)
-    }
-}
-
-#+BEGIN_SRC R
-deparseLatexToRd = function(x, dropBraces = FALSE)
+deparseLatexToRd <- function(x, dropBraces = FALSE)
 {
     result <- character()
     lastTag <- "TEXT"
@@ -1066,12 +1022,12 @@ Rdpack_bibstyles <- local({
 })
 
 .toRd_styled <- function(bibs, package, style = ""){
-    if(length(package) == 0)
-        sty <- NULL
-    else if(!isNamespaceLoaded(package) && !requireNamespace(package) )
-        sty <- NULL
-    else
-        sty <- Rdpack_bibstyles(package)
+    sty <- if(length(package) == 0)
+               NULL
+           else if(!isNamespaceLoaded(package) && !requireNamespace(package) )
+               NULL
+           else
+               Rdpack_bibstyles(package)
     
     ## TODO: check if these 'sapply()'s preserve encodings, if set.
     if(!is.null(sty))
@@ -1087,136 +1043,135 @@ Rdpack_bibstyles <- local({
         }
     }
     ## 2018-10-08
-    ## TODO: this is risky but read.bib, bibentry, toRd and similar seem to work internally with UTF-8
+
+    ## TODO: this is risky but read.bib, bibentry, toRd and similar seem to work
+    ##       internally with UTF-8
+    ##
     ##     if(!all(Encoding(res) == "UTF-8")){
-    ##         ## warning(paste("encoding is: ", paste0(Encoding(res), collapse = ", "), "\n"))
+    ##         # warning(paste("encoding is: ", paste0(Encoding(res), collapse = ", "), "\n"))
     ##         Encoding(res) <- "UTF-8"
     ##     }
     
     res
 }
 
-## bibstyle_JSSRd <- function(){
-##     tools::bibstyle("JSSRd", .init = TRUE, .default = FALSE,
-##                     cleanupLatex = function(x) {
-##                         if (!length(x)) return(x)
-##                         latex <- tryCatch(tools::parseLatex(x), error = function(e)e)
-##                         if (inherits(latex, "error")) {
-##                             x
-##                         } else {
-##                             deparseLatexToRd(latexToUtf8(latex), dropBraces=TRUE)
-##                         }
-##                     }
-##                     
-##                     )
-## }
-
-set_Rdpack_bibstyle <- function(bibstyle = "JSSRd"){
+set_Rdpack_bibstyle <- local({
     ## from /tools/R/bibstyle.R makeJSS()
     collapse <- function(strings)
         paste(strings, collapse="\n")
     emph <- function(s)
         if (length(s)) paste0("\\emph{", collapse(s), "}")
+    authorList <- function (paper) {
+        names <- sapply(paper$author, shortName)
+        if (length(names) > 1L) 
+            result <- paste(names, collapse = ", ")
+        else result <- names
+        result
+    }
+    editorList <- function (paper) {
+        names <- sapply(paper$editor, shortName)
+        if (length(names) > 1L) 
+            result <- paste(paste(names, collapse = ", "), "(eds.)")
+        else if (length(names)) 
+            result <- paste(names, "(ed.)")
+        else result <- NULL
+        result
+    }
+    shortName <- function (person) {
+        if (length(person$family)) {
+            result <- cleanupLatex(person$family)
+            if (length(person$given)) 
+                paste(result, paste(substr(sapply(person$given, cleanupLatex), 
+                                           1, 1), collapse = ""))
+            else result
+        }
+        else paste(cleanupLatex(person$given), collapse = " ")
+    }
+    ## Clean up LaTeX accents and braces
+    ## this is a copy of unexported  tools:::cleanupLatex by Duncan Murdoch.
+    cleanupLatex <- function(x) {
+        if (!length(x))
+            return(x)
+        latex <- tryCatch(tools::parseLatex(x), error = function(e)e)
+        if (inherits(latex, "error")) {
+            x
+        } else {
+            deparseLatexToRd(latexToUtf8(latex), dropBraces=TRUE)
+        }
+    }
 
-
-    switch(bibstyle,
-    "JSSRd" = tools::bibstyle("JSSRd", .init = TRUE, .default = FALSE,
-                    cleanupLatex = function(x) {
-                        if (!length(x)) return(x)
-                        latex <- tryCatch(tools::parseLatex(x), error = function(e)e)
-                        if (inherits(latex, "error")) {
-                            x
-                        } else {
-                            deparseLatexToRd(latexToUtf8(latex), dropBraces=TRUE)
-                        }
-                    },
-
-                    ## modified from tools::makeJSS()
-                    ## TODO: report on R-devel?.
-                    bookVolume = function(book) {
-                        result <- ""
-                        if (length(book$volume)){
-                            result <- paste("volume", collapse(book$volume))
-                            if (length(book$number))
-                                result <- paste0(result, "(", collapse(book$number), ")")
-                            if (length(book$series))
-                                result <- paste(result, "of", emph(collapse(book$series)))
-                        }else if (length(book$number)){
-                            ## todo: in JSS style and others the title end with '.' and 
-                            ##       'number' is 'Number', but don't want to fiddle with this now. 
-                            result <- paste(result, "number", collapse(book$number))
-                            if (length(book$series))
-                                result <- paste(result, "in", collapse(book$series))
-                        }else if (length(book$series))
-                            result <- paste(result, collapse(book$series))
-                        if (nzchar(result)) result
-                    }
-
-
-                    ),
-
-    "JSSLongNames" = tools::bibstyle("JSSLongNames", .init = TRUE, .default = FALSE,
-                    cleanupLatex = function(x) {
-                        if (!length(x)) return(x)
-                        latex <- tryCatch(tools::parseLatex(x), error = function(e)e)
-                        if (inherits(latex, "error")) {
-                            x
-                        } else {
-                            deparseLatexToRd(latexToUtf8(latex), dropBraces=TRUE)
-                        }
-                    },
-                    
-                    bookVolume = function(book) {
-                        result <- ""
-                        if (length(book$volume)){
-                            result <- paste("volume", collapse(book$volume))
-                            if (length(book$number))
-                                result <- paste0(result, "(", collapse(book$number), ")")
-                            if (length(book$series))
-                                result <- paste(result, "of", emph(collapse(book$series)))
-                        }else if (length(book$number)){
-                            ## todo: in JSS style and others the title end with '.' and 
-                            ##       'number' is 'Number', but don't want to fiddle with this now. 
-                            result <- paste(result, "number", collapse(book$number))
-                            if (length(book$series))
-                                result <- paste(result, "in", collapse(book$series))
-                        }else if (length(book$series))
-                            result <- paste(result, collapse(book$series))
-                        if (nzchar(result)) result
-                    },
-
-                    shortName = function(person) {
-                        paste(paste(cleanupLatex(person$given), collapse=" "),
-                              cleanupLatex(person$family), sep = " ")
-                    }
-                    ),
-    ## default
-    stop("Unknown bibstyle ", bibstyle)
-    )
-}
-
-## ls(environment(bibstyle)$styles$JSS)
-.onLoad <- function(lib, pkg){
-    ## tools::bibstyle("JSSLongNames", .init = TRUE, .default = FALSE,
-    ##     shortName = function(person) {
-    ##         paste(paste(cleanupLatex(person$given), collapse=" "),
-    ##               cleanupLatex(person$family), sep = " ")
-    ##     },
-    ## 
-    ##     cleanupLatex = function(x) {
-    ##         if (!length(x)) return(x)
-    ##         latex <- tryCatch(tools::parseLatex(x), error = function(e)e)
-    ##         if (inherits(latex, "error")) {
-    ##             x
-    ##         } else {
-    ##             Rdpack:::deparseLatexToRd(latexToUtf8(latex), dropBraces=TRUE)
-    ##         }
-    ##     }
-    ##     
-    ##     )
-
-    set_Rdpack_bibstyle("JSSLongNames")
+    ## modified from tools::makeJSS()
+    ## TODO: report on R-devel?.
+    bookVolume <- function(book) {
+        result <- ""
+        if (length(book$volume)){
+            result <- paste("volume", collapse(book$volume))
+            if (length(book$number))
+                result <- paste0(result, "(", collapse(book$number), ")")
+            if (length(book$series))
+                result <- paste(result, "of", emph(collapse(book$series)))
+        }else if (length(book$number)){
+            ## todo: in JSS style and others the title end with '.' and 
+            ##       'number' is 'Number', but don't want to fiddle with this now. 
+            result <- paste(result, "number", collapse(book$number))
+            if (length(book$series))
+                result <- paste(result, "in", collapse(book$series))
+        }else if (length(book$series))
+            result <- paste(result, collapse(book$series))
+        if (nzchar(result)) result
+    }
+   
+    ## new 2021-04-23
+    sortKeys <- function (bib) {
+        result <- character(length(bib))
+        for (i in seq_along(bib)) {
+            authors <- authorList(bib[[i]])
+            if (!length(authors)) 
+                authors <- editorList(bib[[i]])
+            if (!length(authors)) 
+                authors <- ""
+            year <- collapse(bib[[i]]$year)
+            authyear <- if(authors != "" )
+                            paste0(authors, ", ", year)
+                        else
+                            year
+            result[i] <- authyear
+        }
+        result
+    }
     
+    function(bibstyle = "JSSRd"){
+        switch(bibstyle,
+               "JSSRd" =
+                   tools::bibstyle("JSSRd", .init = TRUE, .default = FALSE,
+                                   cleanupLatex = cleanupLatex,
+                                   bookVolume = bookVolume,
+                                   sortKeys = sortKeys
+                                   ),
+
+               "JSSLongNames" =
+                   tools::bibstyle("JSSLongNames", .init = TRUE, .default = FALSE,
+                                   cleanupLatex = cleanupLatex,
+                                   bookVolume = bookVolume,
+                                   sortKeys = sortKeys,
+
+                                   shortName = function(person) {
+                                       paste(paste(cleanupLatex(person$given), collapse=" "),
+                                             cleanupLatex(person$family), sep = " ")
+                                   }
+                                   ),
+               ## default
+               stop("Unknown bibstyle ", bibstyle)
+               )
+    }
+})
+
+.onLoad <- function(lib, pkg){
+    ## define the styles but not set any of them as default
+    set_Rdpack_bibstyle("JSSRd")
+    set_Rdpack_bibstyle("JSSLongNames")
+
+    ## set "LongNames" style for this package (Rdpack)
     Rdpack_bibstyles(package = pkg, authors = "LongNames")
     invisible(NULL)
 }

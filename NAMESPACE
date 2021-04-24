@@ -20,7 +20,7 @@ S3method(print, bibentryRd)
 export(
   append_to_Rd_list
 , as.character.f_usage
-, bibentry_key
+# , bibentry_key
 , c_Rd
 , char2Rdpiece
 , compare_usage1
