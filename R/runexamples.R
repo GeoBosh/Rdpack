@@ -102,13 +102,22 @@ run_examples <- function(excontent,     # package = NULL, lib.loc = NULL, charac
         on.exit(options(op), add = TRUE)
     }
 
+    ## TODO: argument 'spaced' (and maybe others?) were introduced in R-3.4.0.
     wrk <- capture.output(
-        source(tf, local, echo = echo,
-               prompt.echo = prompt.echo,     # paste0(prompt.prefix, getOption("prompt")),
-               continue.echo = continue.echo, # paste0(prompt.prefix, getOption("continue")),
-               spaced = FALSE, # do not print empty line before each source line
-               verbose = verbose, max.deparse.length = Inf,
-               encoding = "UTF-8", skip.echo = skips, keep.source = TRUE)
+        if(getRversion() >= '3.4.0')
+            source(tf, local, echo = echo,
+                   prompt.echo = prompt.echo,     # paste0(prompt.prefix, getOption("prompt")),
+                   continue.echo = continue.echo, # paste0(prompt.prefix, getOption("continue")),
+                   spaced = FALSE, # do not print empty line before each source line
+                   verbose = verbose, max.deparse.length = Inf,
+                   encoding = "UTF-8", skip.echo = skips, keep.source = TRUE)
+        else
+            source(tf, local, echo = echo,
+                   prompt.echo = prompt.echo,     # paste0(prompt.prefix, getOption("prompt")),
+                   continue.echo = continue.echo, # paste0(prompt.prefix, getOption("continue")),
+                   # spaced = FALSE, - no such argument before R-3.4.0
+                   verbose = verbose, max.deparse.length = Inf,
+                   encoding = "UTF-8", skip.echo = skips, keep.source = TRUE)
     )
 
 
