@@ -25,6 +25,7 @@ jobs:
           - {os: windows-latest, r: 'release'}
           - {os: windows-latest, r: 'devel'}
           - {os: windows-latest, r: 'oldrel'}
+          - {os: windows-latest, r: '3.3'}
           - {os: macOS-latest, r: 'release'}
           - {os: macOS-latest, r: 'devel'}
           - {os: macOS-latest, r: 'oldrel'}
