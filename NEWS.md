@@ -2,6 +2,9 @@
 
 - now references with identical authors are sorted by year.
 
+- now checks on github (using github actions) are done on the three major
+  platforms for the following versions of R: release, devel, oldrel, and 3.3.
+  
 
 # Rdpack 2.1.1 (CRAN)
 
