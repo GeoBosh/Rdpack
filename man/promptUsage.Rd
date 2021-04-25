@@ -1,7 +1,10 @@
 \name{promptUsage}
 \alias{promptUsage}
 \alias{get_usage}
-\title{Generate usage text for functions and methods}
+\title{
+  Generate usage text for functions and methods
+  \Sexpr[stage=build,results=hide]{require(Rdpack)}
+}
 \description{
   
   Generates usage text for a function, S3 method or S4 method.  The text

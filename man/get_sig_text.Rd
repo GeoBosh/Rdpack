@@ -7,6 +7,7 @@
 \title{
   Produce the textual form of the  signatures of available methods for
   an S4 generic function
+  \Sexpr[stage=build,results=hide]{require(Rdpack)}
 }
 
 \description{

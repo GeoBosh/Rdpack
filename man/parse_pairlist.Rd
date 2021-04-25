@@ -2,7 +2,10 @@
 \alias{parse_pairlist}
 %\alias{pairlist2f_usage}
 \alias{pairlist2f_usage1}
-\title{Parse formal arguments of functions}
+\title{
+  Parse formal arguments of functions
+  \Sexpr[stage=build,results=hide]{require(Rdpack)}
+}
 \description{Parse formal arguments of functions and convert them to
   f_usage objects.}
 \usage{

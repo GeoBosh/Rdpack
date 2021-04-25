@@ -4,6 +4,7 @@
 \alias{as.character.f_usage}
 \title{Convert f_usage objects to text appropriate for usage sections in
   Rd files
+  \Sexpr[stage=build,results=hide]{require(Rdpack)}
 }
 \description{Converts f_usage objects to text appropriate for usage sections in
   Rd files. Handles S3 methods.
