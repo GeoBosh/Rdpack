@@ -269,9 +269,19 @@ inspect_Rdbib <- function(rdo, force = FALSE, ...){               # 2013-03-29
     else if(any(poskeys == "bibentry:all")){
         poskey <- posbibs[[ which(poskeys == "bibentry:all") ]]$pos
 
-        bibstxt <- capture.output(print(bibs, "latex"))
-
-        bibstxt <- .patch_latex(bibstxt)  # TODO: krapka!
+            ## 2021-04-29 TODO: the following line(s) needs to be replaced with 
+            ##                      .toRd_styled(bibs[poskeys[i], ???)
+            ##   For testing use REFERENCES.bib in rbibutils 
+            ##     (the doi's are currently rendered horribly)  
+	    ## DONE! was: 
+                # bibstxt <- capture.output(print(bibs, "latex"))
+	        # 
+                # bibstxt <- .patch_latex(bibstxt)  # TODO: krapka!
+        ## TODO: the bibstyles used beloww should probably be arguments
+        bibs <- sort(bibs, .bibstyle = "JSSRd")
+        bibstxt <- .toRd_styled(bibs, "Rdpack")
+            # bibstxt <- paste0(bibstxt, collapse = "\\cr\\cr ")
+        bibstxt <- paste0(bibstxt, collapse = "\n\n ")
 
         bibstxt <- paste(c("", bibstxt), "\n", sep="")
         endbibline <- Rdo_comment("% end:bibentry:all")
@@ -293,9 +303,15 @@ inspect_Rdbib <- function(rdo, force = FALSE, ...){               # 2013-03-29
             bibkey <- posbibs[[i]]$value
             poskey <- posbibs[[i]]$pos
 
-            bibstxt <- capture.output(print(bibs[poskeys[i]],"latex"))
-
-            bibstxt <- .patch_latex(bibstxt)  # TODO: krapka!
+            ## 2021-04-29 TODO: the following line(s) needs to be replaced with 
+            ##                        .toRd_styled(bibs[poskeys[i], ???)
+            ##   For testing use REFERENCES.bib in rbibutils 
+            ##     (the doi's are currently rendered horribly)  
+	    ## DONE! was:
+                # bibstxt <- capture.output(print(bibs[poskeys[i]],"latex"))
+	        # 
+                # bibstxt <- .patch_latex(bibstxt)  # TODO: krapka!
+            bibstxt <- .toRd_styled(bibs[poskeys[i]], "Rdpack")
 
             bibstxt <- list( paste( c("", bibstxt), "\n", sep="") )
             endbibline <- Rdo_comment(paste("% end:bibentry: ", bibkey))
@@ -1029,19 +1045,36 @@ Rdpack_bibstyles <- local({
            else
                Rdpack_bibstyles(package)
     
-    ## TODO: check if these 'sapply()'s preserve encodings, if set.
-    if(!is.null(sty))
-        res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSLongNames"))
-    else { # check style
-        if(style == ""){
-            if(!("JSSRd" %in% tools::getBibstyle(all = TRUE)))
-                ## bibstyle_JSSRd()
-                set_Rdpack_bibstyle("JSSRd")
-            res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSRd"))
-        }else{
-            res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSLongNames"))
-        }
+        # if(!is.null(sty))
+        #     res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSLongNames"))
+        # else { # check style
+        #     if(style == ""){
+        #         if(!("JSSRd" %in% tools::getBibstyle(all = TRUE)))
+        #             ## bibstyle_JSSRd()
+        #             set_Rdpack_bibstyle("JSSRd")
+        #         res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSRd"))
+        #     }else{
+        #         res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSLongNames"))
+        #     }
+        # }
+
+    sty <- if(is.null(sty) && style == ""){
+               if(!("JSSRd" %in% tools::getBibstyle(all = TRUE)))
+                   set_Rdpack_bibstyle("JSSRd")
+               "JSSRd"
+           }else
+               "JSSLongNames"
+
+    f <- function(x){
+        if(!is.null(x$doi) && !is.null(x$url) &&
+                              grepl(paste0("https?://doi.org/", x$doi), x$url))
+            x$url <- NULL
+        tools::toRd(x, style = sty)
     }
+
+    ## TODO: check if these 'sapply()' preserves encodings, if set.
+    res <- sapply(bibs, f)
+
     ## 2018-10-08
 
     ## TODO: this is risky but read.bib, bibentry, toRd and similar seem to work
