@@ -119,11 +119,12 @@
 <a href="#rdpack-212" class="anchor"></a>Rdpack 2.1.2<small> Unreleased </small>
 </h1>
 <ul>
-<li><p>Rdmacros generating references now drop an <code>URL</code> field if a <code>doi</code> field generating the same URL is present. This avoids repetition of the URL since rendering the <code>doi</code> field produces the URL anyway.</p></li>
+<li><p>Rdmacros generating references now drop the <code>URL</code> field if a <code>doi</code> field generating the same URL is present. This avoids repetition of the URL since rendering the <code>doi</code> field produces the URL anyway.</p></li>
 <li><p>now references with identical authors are sorted by year.</p></li>
 <li><p>fixed rebib() to process doi’s properly.</p></li>
 <li><p>now checks on github (using github actions) are done on the three major platforms for the following versions of R: release, devel, oldrel, and 3.3.</p></li>
 <li><p>now a warning (rather than error) is issued if package ‘testthat’ is not available for tests.</p></li>
+<li><p>now bibtex files are parsed with option <code>direct = TRUE</code> when the version of <code>rbibutils</code> is &gt;= ‘2.1.2’. This fixes GeoBosh/rbibutils<a href='https://github.com/GeoBosh/Rdpack/issues/3'>#3</a> for Rdpack users (although that needs fixing also for <code>direct = FALSE</code>).</p></li>
 </ul>
 </div>
     <div id="rdpack-211-cran" class="section level1">
