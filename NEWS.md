@@ -1,6 +1,6 @@
 # Rdpack 2.1.2
 
-- Rdmacros generating references now drop an `URL` field if a `doi` field
+- Rdmacros generating references now drop the `URL` field if a `doi` field
   generating the same URL is present. This avoids repetition of the URL since
   rendering the `doi` field produces the URL anyway.
 
@@ -14,6 +14,9 @@
 - now a warning (rather than error) is issued if package 'testthat' is not
   available for tests.
 
+- now bibtex files are parsed with option `direct = TRUE` when the version of
+  `rbibutils` is >= ‘2.1.2’. This fixes GeoBosh/rbibutils#3 for Rdpack users
+  (although that needs fixing also for `direct = FALSE`).
 
 
 # Rdpack 2.1.1 (CRAN)

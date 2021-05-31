@@ -103,7 +103,12 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib",
 
     ## 2020-09-22 switching to 'rbibutils
     ##      res <- read.bib(file = fn, encoding = encoding)
-    res <- readBib(file = fn, encoding = encoding)
+    ## current: res <- readBib(file = fn, encoding = encoding)
+    ## test:
+    res <- if(packageVersion("rbibutils") >= '2.1.2')
+               readBib(file = fn, encoding = encoding, direct = TRUE)
+           else
+               readBib(file = fn, encoding = encoding)
 
          # 2018-03-10 commenting out
          #      since bibtex v. >= 0.4.0 has been required for a long time in DESCRIPTION
