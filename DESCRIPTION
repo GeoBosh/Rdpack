@@ -1,7 +1,7 @@
 Package: Rdpack
 Type: Package
 Title: Update and Manipulate Rd Documentation Objects
-Version: 2.1.2
+Version: 2.1.3
 Date: 2021-06-01
 Authors@R: c( person(given = c("Georgi", "N."),
                      family = "Boshnakov", 
@@ -36,3 +36,4 @@ Suggests:
 License: GPL (>= 2)
 LazyLoad: yes
 RoxygenNote: 7.1.1
+Remotes: local::/home/georgi/repos/private/rbibutils
