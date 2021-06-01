@@ -1,4 +1,4 @@
-# Rdpack 2.1.2
+# Rdpack 2.1.2 (CRAN)
 
 - Rdmacros generating references now drop the `URL` field if a `doi` field
   generating the same URL is present. This avoids repetition of the URL since
