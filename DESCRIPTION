@@ -36,3 +36,4 @@ Suggests:
 License: GPL (>= 2)
 LazyLoad: yes
 RoxygenNote: 7.1.1
+Remotes: https://github.com/GeoBosh/rbibutils
