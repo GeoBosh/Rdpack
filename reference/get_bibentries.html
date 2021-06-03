@@ -211,7 +211,7 @@
 </div><div class='output co'>#&gt; Francois R (2014). _bibtex: bibtex parser_. R package version 0.4.0.
 #&gt; 
 #&gt; Boshnakov GN, Putman C (2020). _rbibutils: Convert Between Bibliography
-#&gt; Formats_. https://CRAN.R-project.org/package=rbibutils.
+#&gt; Formats_. &lt;URL: https://CRAN.R-project.org/package=rbibutils&gt;.
 #&gt; 
 #&gt; Murdoch D (2010). “Parsing Rd files.” &lt;URL:
 #&gt; https://developer.r-project.org/parseRd.pdf&gt;.
@@ -232,7 +232,7 @@
 #&gt; 
 #&gt; &lt;p&gt;Boshnakov GN, Putman C (2020).
 #&gt; &lt;em&gt;rbibutils: Convert Between Bibliography Formats&lt;/em&gt;.
-#&gt; https://CRAN.R-project.org/package=rbibutils. 
+#&gt; &lt;a href="https://CRAN.R-project.org/package=rbibutils"&gt;https://CRAN.R-project.org/package=rbibutils&lt;/a&gt;. 
 #&gt; &lt;/p&gt;
 #&gt; 
 #&gt; &lt;p&gt;Murdoch D (2010).
@@ -270,24 +270,24 @@
 #&gt; &lt;a href="https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib"&gt;https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib&lt;/a&gt;. 
 #&gt; &lt;/p&gt;</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>u</span>, style <span class='op'>=</span> <span class='st'>"bibtex"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; @Article{urlWithPercents,
-#&gt;   author = {Georgi N. Boshnakov},
+#&gt;   author = {Georgi N Boshnakov},
 #&gt;   title = {Dummy example of {URL} with percents},
-#&gt;   volume = {51},
-#&gt;   url = {https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib},
 #&gt;   journal = {Example bibtex file},
 #&gt;   year = {2018},
+#&gt;   volume = {51},
 #&gt;   pages = {1--1},
+#&gt;   url = {https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib},
 #&gt; }</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>u</span>, style <span class='op'>=</span> <span class='st'>"R"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; bibentry(bibtype = "Article",
 #&gt;          key = "urlWithPercents",
-#&gt;          author = person(given = c("Georgi", "N."),
+#&gt;          author = person(given = c("Georgi", "N"),
 #&gt;                          family = "Boshnakov"),
 #&gt;          title = "Dummy example of {URL} with percents",
-#&gt;          volume = "51",
-#&gt;          url = "https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib",
 #&gt;          journal = "Example bibtex file",
 #&gt;          year = "2018",
-#&gt;          pages = "1--1")</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>u</span>, style <span class='op'>=</span> <span class='st'>"text"</span><span class='op'>)</span>
+#&gt;          volume = "51",
+#&gt;          pages = "1--1",
+#&gt;          url = "https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib")</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>u</span>, style <span class='op'>=</span> <span class='st'>"text"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Boshnakov GN (2018). “Dummy example of URL with percents.” _Example
 #&gt; bibtex file_, *51*, 1-1. &lt;URL:
 #&gt; https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib&gt;.</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>u</span>, style <span class='op'>=</span> <span class='st'>"citation"</span><span class='op'>)</span>
@@ -299,13 +299,13 @@
 #&gt; A BibTeX entry for LaTeX users is
 #&gt; 
 #&gt;   @Article{urlWithPercents,
-#&gt;     author = {Georgi N. Boshnakov},
+#&gt;     author = {Georgi N Boshnakov},
 #&gt;     title = {Dummy example of {URL} with percents},
-#&gt;     volume = {51},
-#&gt;     url = {https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib},
 #&gt;     journal = {Example bibtex file},
 #&gt;     year = {2018},
+#&gt;     volume = {51},
 #&gt;     pages = {1--1},
+#&gt;     url = {https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib},
 #&gt;   }
 #&gt; </div><div class='input'>
 <span class='co'>## The link here contains escapes but when put in a LaTeX document</span>
@@ -326,24 +326,24 @@
 #&gt; &lt;a href="https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib"&gt;https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib&lt;/a&gt;. 
 #&gt; &lt;/p&gt;</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>j</span>, style <span class='op'>=</span> <span class='st'>"bibtex"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; @Article{urlWithPercents,
-#&gt;   author = {Georgi N. Boshnakov},
+#&gt;   author = {Georgi N Boshnakov},
 #&gt;   title = {Dummy example of {URL} with percents},
-#&gt;   volume = {51},
-#&gt;   url = {https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib},
 #&gt;   journal = {Example bibtex file},
 #&gt;   year = {2018},
+#&gt;   volume = {51},
 #&gt;   pages = {1--1},
+#&gt;   url = {https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib},
 #&gt; }</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>j</span>, style <span class='op'>=</span> <span class='st'>"R"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; bibentry(bibtype = "Article",
 #&gt;          key = "urlWithPercents",
-#&gt;          author = person(given = c("Georgi", "N."),
+#&gt;          author = person(given = c("Georgi", "N"),
 #&gt;                          family = "Boshnakov"),
 #&gt;          title = "Dummy example of {URL} with percents",
-#&gt;          volume = "51",
-#&gt;          url = "https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib",
 #&gt;          journal = "Example bibtex file",
 #&gt;          year = "2018",
-#&gt;          pages = "1--1")</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>j</span>, style <span class='op'>=</span> <span class='st'>"text"</span><span class='op'>)</span>
+#&gt;          volume = "51",
+#&gt;          pages = "1--1",
+#&gt;          url = "https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib")</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>j</span>, style <span class='op'>=</span> <span class='st'>"text"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Boshnakov GN (2018). “Dummy example of URL with percents.” _Example
 #&gt; bibtex file_, *51*, 1-1. &lt;URL:
 #&gt; https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib&gt;.</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>j</span>, style <span class='op'>=</span> <span class='st'>"citation"</span><span class='op'>)</span>
@@ -355,13 +355,13 @@
 #&gt; A BibTeX entry for LaTeX users is
 #&gt; 
 #&gt;   @Article{urlWithPercents,
-#&gt;     author = {Georgi N. Boshnakov},
+#&gt;     author = {Georgi N Boshnakov},
 #&gt;     title = {Dummy example of {URL} with percents},
-#&gt;     volume = {51},
-#&gt;     url = {https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib},
 #&gt;     journal = {Example bibtex file},
 #&gt;     year = {2018},
+#&gt;     volume = {51},
 #&gt;     pages = {1--1},
+#&gt;     url = {https://github.com/GeoBosh/zzfiles/blob/master/url%20with%20percents.bib},
 #&gt;   }
 #&gt; </div><div class='input'>      
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>j</span>, style <span class='op'>=</span> <span class='st'>"latex"</span><span class='op'>)</span>
