@@ -1,3 +1,9 @@
+# Rdpack 2.1.3
+
+- fixed a test that was failing with versions of rbibutils before v2.1.1
+  (issue reported by Andreas Tille).
+
+
 # Rdpack 2.1.2 (CRAN)
 
 - Rdmacros generating references now drop the `URL` field if a `doi` field

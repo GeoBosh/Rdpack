@@ -44,16 +44,15 @@ Rd_combo(rd, f, ..., .MORE)
 \dontrun{
 rdnames <- dir(path = "./man", pattern=".*[.]Rd$", full.names=TRUE)
 
+## which Rd files don't have a value section?
+counts <- unlist(Rd_combo(rdnames, function(x) length(Rdo_locate_core_section(x, "\\value"))))
+rdnames[counts == 0]
+
+## reprompt all files
 Rd_combo(rdnames, reprompt)
 for(nam in rdnames) try(reprompt(nam))
 for(nam in rdnames) try(reprompt(nam, sec_copy=FALSE))
-
 }
 }
-
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-
-% R documentation directory.
-
 \keyword{Rd}
 %\keyword{Rdprocessing}

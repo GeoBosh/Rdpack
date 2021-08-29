@@ -2,7 +2,8 @@ context("bib")
 
 test_that("bib works fine", {
     fn_rb <- system.file("REFERENCES.bib", package = "rbibutils")
-    bibs_rb <- readBib(fn_rb)
+    bibs_rb <- if(packageVersion("rbibutils") >= '2.1.1')
+        readBib(fn_rb) else readBib(fn_rb, encoding = "UTF-8")
     
     .toRd_styled(bibs_rb, "Rdpack")
     .toRd_styled(bibs_rb[["Rpackage:Rdpack"]], "Rdpack")    
