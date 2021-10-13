@@ -105,7 +105,10 @@ get_bibentries <- function(..., package = NULL, bibfile = "REFERENCES.bib",
     ##      res <- read.bib(file = fn, encoding = encoding)
     ## current: res <- readBib(file = fn, encoding = encoding)
     ## test:
-    res <- if(packageVersion("rbibutils") >= '2.1.2')
+    res <- if(packageVersion("rbibutils") > '2.2.4')
+               ## issue #7 in rbibutils
+               readBib(file = fn, encoding = encoding, direct = TRUE, texChars = "Rdpack")
+           else if(packageVersion("rbibutils") >= '2.1.2')
                readBib(file = fn, encoding = encoding, direct = TRUE)
            else
                readBib(file = fn, encoding = encoding)
@@ -1074,6 +1077,21 @@ Rdpack_bibstyles <- local({
         if(!is.null(x$doi) && !is.null(x$url) &&
                               grepl(paste0("https?://doi.org/", x$doi), x$url))
             x$url <- NULL
+        
+        ## (2021-10-13) TODO: regarding issue #7 in rbibutils
+        ##     to fix temporarilly, add here processing of author and editor fields
+        ##     to change  \'i to \'\i, if any, see
+        ##     https://github.com/GeoBosh/rbibutils/issues/7#issuecomment-939852743
+        ##
+        ## But 'author' fields are of class "person", so the following will not work:
+        ##
+        ##   if(!is.null(x$author) && grepl("\\\\'i", x$author))
+        ##       x$author <- gsub("\\\\'i", "\\\\'\\\\i", x$author),
+        ##
+        ## Processing the person field in each reference is not appealing.
+        ##     Maybe rbibutils should get texChars = "Rdpack" option and do whatever specific
+        ##     for Rdpack is needed.
+
         tools::toRd(x, style = sty)
     }
 
