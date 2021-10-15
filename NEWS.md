@@ -3,6 +3,8 @@
 - fixed a test that was failing with versions of rbibutils before v2.1.1
   (issue reported by Andreas Tille).
 
+- added a patch related to GeoBosh/bibutils#7 (see NEWS.md for rbibutils v2.4.4).
+
 
 # Rdpack 2.1.2 (CRAN)
 
