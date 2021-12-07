@@ -1,9 +1,13 @@
-# Rdpack 2.1.3
+# Rdpack 2.1.3 (CRAN)
 
 - fixed a test that was failing with versions of rbibutils before v2.1.1
   (issue reported by Andreas Tille).
 
-- added a patch related to GeoBosh/bibutils#7 (see NEWS.md for rbibutils v2.4.4).
+- if the version of rbibutils is greater than v2.2.5, parsing bib files with
+  `rbibutils::readBib` uses `texChars = "Rdpack"`. This ensures proper rendering
+  of `\'i' in references (by converting `\'i` to `\'\i` which base R renders
+  correctly).  For detailed discussion of this see issue GeoBosh/bibutils#7 and
+  NEWS.md in rbibutils v2.2.4 and v2.2.5.
 
 
 # Rdpack 2.1.2 (CRAN)
