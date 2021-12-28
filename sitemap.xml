@@ -1,228 +1,228 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/404.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/authors.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/index.html</loc>
   </url>
   <url>
-    <loc>/news/index.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/RStudio_reprompt.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/RStudio_reprompt.html</loc>
   </url>
   <url>
-    <loc>/reference/Rd_combo.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rd_combo.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdapply.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdapply.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo2Rdf.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo2Rdf.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_append_argument.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_append_argument.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_collect_metadata.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_collect_metadata.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_empty_sections.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_empty_sections.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_fetch.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_fetch.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_flatinsert.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_flatinsert.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_get_argument_names.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_get_argument_names.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_get_insert_pos.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_get_insert_pos.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_get_item_labels.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_get_item_labels.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_insert.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_insert.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_insert_element.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_insert_element.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_is_newline.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_is_newline.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_locate.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_locate.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_locate_leaves.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_locate_leaves.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_macro.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_macro.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_modify.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_modify.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_modify_simple.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_modify_simple.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_piecetag.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_piecetag.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_remove_srcref.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_remove_srcref.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_reparse.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_reparse.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_sections.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_sections.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_set_section.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_set_section.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_show.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_show.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_tag.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_tag.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_tags.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_tags.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdo_which.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdo_which.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdpack-package.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdpack-package.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdpack_bibstyles.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdpack_bibstyles.html</loc>
   </url>
   <url>
-    <loc>/reference/Rdreplace_section.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/Rdreplace_section.html</loc>
   </url>
   <url>
-    <loc>/reference/S4formals.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/S4formals.html</loc>
   </url>
   <url>
-    <loc>/reference/append_to_Rd_list.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/append_to_Rd_list.html</loc>
   </url>
   <url>
-    <loc>/reference/c_Rd.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/c_Rd.html</loc>
   </url>
   <url>
-    <loc>/reference/char2Rdpiece.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/char2Rdpiece.html</loc>
   </url>
   <url>
-    <loc>/reference/compare_usage1.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/compare_usage1.html</loc>
   </url>
   <url>
-    <loc>/reference/deparse_usage.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/deparse_usage.html</loc>
   </url>
   <url>
-    <loc>/reference/ereprompt.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/ereprompt.html</loc>
   </url>
   <url>
-    <loc>/reference/format_funusage.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/format_funusage.html</loc>
   </url>
   <url>
-    <loc>/reference/get_bibentries.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/get_bibentries.html</loc>
   </url>
   <url>
-    <loc>/reference/get_sig_text.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/get_sig_text.html</loc>
   </url>
   <url>
-    <loc>/reference/get_usage_text.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/get_usage_text.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/insert_all_ref.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/insert_all_ref.html</loc>
   </url>
   <url>
-    <loc>/reference/insert_ref.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/insert_ref.html</loc>
   </url>
   <url>
-    <loc>/reference/inspect_Rd.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/inspect_Rd.html</loc>
   </url>
   <url>
-    <loc>/reference/inspect_args.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/inspect_args.html</loc>
   </url>
   <url>
-    <loc>/reference/inspect_signatures.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/inspect_signatures.html</loc>
   </url>
   <url>
-    <loc>/reference/inspect_slots.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/inspect_slots.html</loc>
   </url>
   <url>
-    <loc>/reference/inspect_usage.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/inspect_usage.html</loc>
   </url>
   <url>
-    <loc>/reference/list_Rd.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/list_Rd.html</loc>
   </url>
   <url>
-    <loc>/reference/makeVignetteReference.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/makeVignetteReference.html</loc>
   </url>
   <url>
-    <loc>/reference/parse_Rdname.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/parse_Rdname.html</loc>
   </url>
   <url>
-    <loc>/reference/parse_Rdpiece.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/parse_Rdpiece.html</loc>
   </url>
   <url>
-    <loc>/reference/parse_Rdtext.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/parse_Rdtext.html</loc>
   </url>
   <url>
-    <loc>/reference/parse_pairlist.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/parse_pairlist.html</loc>
   </url>
   <url>
-    <loc>/reference/parse_text.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/parse_text.html</loc>
   </url>
   <url>
-    <loc>/reference/parse_usage_text.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/parse_usage_text.html</loc>
   </url>
   <url>
-    <loc>/reference/predefined.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/predefined.html</loc>
   </url>
   <url>
-    <loc>/reference/promptPackageSexpr.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/promptPackageSexpr.html</loc>
   </url>
   <url>
-    <loc>/reference/promptUsage.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/promptUsage.html</loc>
   </url>
   <url>
-    <loc>/reference/rdo_text_restore.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/rdo_text_restore.html</loc>
   </url>
   <url>
-    <loc>/reference/rebib.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/rebib.html</loc>
   </url>
   <url>
-    <loc>/reference/reprompt.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/reprompt.html</loc>
   </url>
   <url>
-    <loc>/reference/set_Rdpack_bibstyle.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/set_Rdpack_bibstyle.html</loc>
   </url>
   <url>
-    <loc>/reference/update_aliases_tmp.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/update_aliases_tmp.html</loc>
   </url>
   <url>
-    <loc>/reference/viewRd.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/viewRd.html</loc>
   </url>
   <url>
-    <loc>/reference/zzasym_compare.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/zzasym_compare.html</loc>
   </url>
   <url>
-    <loc>/reference/zzbsdup.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/zzbsdup.html</loc>
   </url>
   <url>
-    <loc>/reference/zzcapture_promptany.html</loc>
+    <loc>https://geobosh.github.io/Rdpack/reference/zzcapture_promptany.html</loc>
   </url>
 </urlset>
