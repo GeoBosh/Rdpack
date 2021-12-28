@@ -1,3 +1,10 @@
+url: https://geobosh.github.io/Rdpack
+
+template:
+  bootstrap: 5
+  
+search:
+  exclude: ['news/index.html']
 
 reference:
   - title: "Rdpack overview"
