@@ -60,7 +60,8 @@ jobs:
       - run: tlmgr --version
 
       - name: Install additional LaTeX packages
-        run: | tlmgr search --file --global "/ae.sty"
+        run: |
+	  tlmgr search --file --global "/ae.sty"
           tlmgr install ae
 	  
       - uses: r-lib/actions/check-r-package@v2
