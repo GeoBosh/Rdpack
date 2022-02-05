@@ -1,4 +1,4 @@
-% Created 2022-02-05 Sat 14:36
+% Created 2022-02-05 Sat 20:49
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper,twoside,11pt,nojss,article]{jss}
 	       \usepackage[T1]{fontenc}
@@ -50,7 +50,7 @@ This vignette is part of package Rdpack, version~\Sexpr{pd$Version}.
 %\VignettePackage{Rdpack}
 
 \section{Setup}
-\label{sec:org387d332}
+\label{sec:org985340a}
 
 To prepare a package for importing BibTeX references it is necessary to tell the
 package management tools that package \pkg{Rdpack} and its Rd macros are
@@ -82,7 +82,7 @@ the bibtex references in it.
 
 
 \section{Inserting references in package documentation}
-\label{sec:orga48d177}
+\label{sec:org30fe476}
 
 Once the steps outlined in the previous section are done, references can be
 inserted in the documentation as \texttt{\textbackslash{}insertRef\{key\}\{package\}},
@@ -116,7 +116,7 @@ A roxygen2 documentation chunk might look like this:
 
 
 \section{Inserting citations}
-\label{sec:org329f7ee}
+\label{sec:org9601ff6}
 
 From version 0.7 of \pkg{Rdpack}, additional Rd macros are available for
 citations\footnote{They were introduced in the development version 0.6-1, but 0.7
@@ -125,7 +125,7 @@ using these, it will be prudent to require at least this version of Rdpack in
 the ``Imports:'' directive in file DESCRIPTION: \texttt{Rdpack (>= 0.7)}.
 
 \subsection{Macros for citations}
-\label{sec:orgab0155d}
+\label{sec:org9454f29}
 \label{sec:macros-citations}
 
 \texttt{\textbackslash{}insertCite\{key\}\{package\}} cites the key and records it for use by
@@ -157,7 +157,7 @@ as textual citations:
 
 \begin{center}
 \begin{tabular}{ll}
-Documentation source & \\
+Documentation source & rendered\\
 \hline
 \texttt{\textbackslash{}insertCite\{parseRd;textual\}\{Rdpack\}} & Murdoch (2010)\\
 \texttt{\textbackslash{}insertCite\{Rpack:bibtex;textual\}\{Rdpack\}} & Francois (2014)\\
@@ -166,12 +166,6 @@ Documentation source & \\
 \end{center}
 
 The last line in the table demonstrates that this also works with several citations.
-
-The macro \texttt{\textbackslash{}insertNoCite\{key\}\{package\}} records one or more references for
-\texttt{\textbackslash{}insertAllCited} but does not cite it. Setting \texttt{key} to \texttt{*} will record all
-references from the specified package. For example, \texttt{\textbackslash{}insertNoCite\{R\}\{bibtex\}} records
-the reference whose key is \texttt{R}, while \texttt{\textbackslash{}insertNoCite\{*\}\{utils\}} records all
-references from package ``utils'' for inclusion by \texttt{\textbackslash{}insertAllCited}.
 
 To mix the citations with other text, such as ``see also'' and ``chapter 3'', write the list
 of keys as a free text, starting it with the symbol \texttt{@} and prefixing each key with it.
@@ -185,17 +179,40 @@ produces:
 
 \qquad
 \begin{tabular}{l}
+Rendered\\
+\hline
 \Sexpr{insert_citeOnly("@see also @parseRd and @Rpack:bibtex", "Rdpack")}\\
 \Sexpr{insert_citeOnly("@see also @parseRd; @Rpack:bibtex", "Rdpack")}\\
 \Sexpr{insert_citeOnly("@see also @parseRd and @Rpack:bibtex;textual", "Rdpack")}\\
 \end{tabular}
 
+The text of the arguments of the macro in this free form should have no markup. For example,
+if you want to put the phrase \texttt{see also} in italic, enclosing it with \texttt{\textbackslash{}emph\{...\}} (in Rd) or
+the equivalent \texttt{\_...\_} (in markdown) will not work\footnote{For details see \href{https://github.com/GeoBosh/Rdpack/issues/23}{Github issue \#23} raised by  Martin R. Smith.}. For textual citations a
+workaround is to invoke \texttt{\textbackslash{}insertCite} for each key and type the markup outside the macro
+arguments. For parenthetical citations the solutions is to ask \texttt{\textbackslash{}insertCite} to omit the
+parentheses by putting \texttt{;nobrackets} at the end of the argument\footnote{With \pkg{Rdpack} versions greater than 2.1.3.}. The
+parentheses can then be put manually where needed.  For example,
+
+\begin{verbatim}
+  (\emph{see also} \insertCite{@@parseRd and @Rpack:bibtex;nobrackets}{Rdpack})
+\end{verbatim}
+produces: (\emph{see also} \Sexpr{insert_citeOnly("@@parseRd and @Rpack:bibtex;nobrackets", "Rdpack")}).
+
+\subsubsection{Further macros for citations}
+\label{sec:orgb8b5f68}
+
+The macro \texttt{\textbackslash{}insertNoCite\{key\}\{package\}} records one or more references for
+\texttt{\textbackslash{}insertAllCited} but does not cite it. Setting \texttt{key} to \texttt{*} will record all
+references from the specified package. For example, \texttt{\textbackslash{}insertNoCite\{R\}\{bibtex\}} records
+the reference whose key is \texttt{R}, while \texttt{\textbackslash{}insertNoCite\{*\}\{utils\}} records all
+references from package ``utils'' for inclusion by \texttt{\textbackslash{}insertAllCited}.
 
 \texttt{\textbackslash{}insertCiteOnly\{key\}\{package\}} is as \texttt{\textbackslash{}insertCite} but does not record the key 
 for the list of references assembled by \texttt{\textbackslash{}insertAllCited}.
 
 \subsection{Automatically generating lists of references}
-\label{sec:orgc507011}
+\label{sec:org9550879}
 
 The macro \texttt{\textbackslash{}insertAllCited\{\}} can be used to insert all references cited with
 \texttt{\textbackslash{}insertCite} or \texttt{\textbackslash{}insertNoCite}. A natural place to put this macro is the
@@ -213,7 +230,7 @@ The analogous documentation chunk in roxygen2 might look like this:
 
 
 \subsection{Changing the style of references}
-\label{sec:orged68951}
+\label{sec:org9be8049}
 
 Package \texttt{Rdpack} supports bibliography styles for lists of references\footnote{Support for styles is available since \texttt{Rdpack (>= 0.8)}.}.
 Currently the only alternative offered is to use long names (Georgi
@@ -237,10 +254,10 @@ After installling/reloading your package the lists of references should appear
 with long author names. "Rdpack" itself now uses this style.
 
 \section{Possible issues}
-\label{sec:org89c951a}
+\label{sec:orgbf633c1}
 
 \subsection{Warning from 'R CMD build'}
-\label{sec:orgab7498b}
+\label{sec:org73ebe35}
 
 If 'R CMD build' or \texttt{devtools::build()} gives a warning along the lines of:
 \begin{verbatim}
@@ -251,7 +268,7 @@ then check the syntax in file DESCRIPTION --- the most common cause of this is m
 
 
 \subsection{Development using `devtools'}
-\label{sec:org0766478}
+\label{sec:orgf96b5aa}
 
 The described procedure works transparently in `roxygen2' chunks and with Hadley Wickham's
 `devtools'.  Packages are built and installed properly with the `devtools' commands and the
@@ -279,11 +296,11 @@ function \texttt{viewRd()}, discussed below, for viewing Rd files.
 
 
 \subsection{Latex markup in BibTeX entries}
-\label{sec:orgedcaef9}
+\label{sec:org7310075}
 
 In principle, BibTeX entries may contain arbitrary Latex markup, while the Rd format
 supports only a subset. As a consequence, some BibTeX entries may need some editing when
-included in REFERENCES.bib\footnote{Thanks to Michael Dewey for suggesting the discussion of this.\label{orge2ba763}}. Only do this for entries that do not render properly or
+included in REFERENCES.bib\footnote{Thanks to Michael Dewey for suggesting the discussion of this.}. Only do this for entries that do not render properly or
 cause errors, since most of the time this should not be necessary. For encoding related
 issues of REFERENCES.bib see the dedicated subsection below.
 
@@ -299,12 +316,13 @@ Among other things, it contains some dummy references which illustrate the above
 
 
 \subsection{Encoding of file REFERENCES.bib}
-\label{sec:orgedf4a03}
+\label{sec:org9cfdd04}
 
 If a package has a declared encoding (in file \texttt{DESCRIPTION}), \texttt{REFERENCES.bib} is read-in
 with that encoding\footnote{From \texttt{Rdpack (>=0.9-1)} The issue of not handling the encoding was raised by
 Professor Brian Ripley.}.  Otherwise, the encoding of \texttt{REFERENCES.bib} is assumed to be
 UTF-8 (which includes ASCII as a subset).
+
 
 Note that BibTeX entries downloaded from online databases and similar sources may contain
 unexpected characters in other encodings, e.g. 'latin1'. In such cases the check tools in
@@ -319,19 +337,24 @@ which are normally not included in lists of references and can be deleted from R
 
 One way to check for non-ASCII symbols in a file is \texttt{tools::showNonASCIIfile()}.
 
-Internally, \LaTeX{} sequences standing for accented Latin characters, such as \texttt{\textbackslash{}'e} and \texttt{\textbackslash{}"o},
-are converted to UTF-8.  So, even if the file REFERENCES.bib is pure ASCII, it may implicitly
-give raise to non-ASCII characters. This may cause R's checking tools to complain about
-non-ASCII characters even after it has been verified that there are none. If this happens,
-add the encoding declaration to file DESCRIPTION\footnote{Admittedly, this is not ideal since the user should not need to care how things are
+Since \pkg{Rdpack} switched to the bibtex parser in package \pkg{rbibutils}, if the bib file
+contains Latex escape sequences standing for accented Latin characters, such as \texttt{\textbackslash{}'e} and
+\texttt{\textbackslash{}"o}, they are imported as is. They are converted to UTF-8 only when the text is rendered
+for output. If R's checking tools complain about non-ASCII characters add the following
+encoding declaration to file DESCRIPTION\footnote{Admittedly, this is not ideal since the user should not need to care how things are
 processed internally but I haven't pinpointed the exact cause for this.}:
 \begin{verbatim}
 Encoding: UTF-8
 \end{verbatim}
 Needless to say, make sure that there are really no characters from encodings like 'latin1'.
 
+With the previous bibtex parser (before Rdpack version 1.1.0) the conversion was done
+earlier, which resulted in confusing messages about non-ASCII characters, even when the file
+REFERENCES.bib was pure ASCII. This should no longer happen.
+
+
 \section{Viewing Rd files}
-\label{sec:org7de7eb3}
+\label{sec:org4a228d2}
 
 
 A function, \code{viewRd}, to view Rd files in the source directory of a package was
@@ -345,5 +368,7 @@ set argument \code{type} to \code{"html"}:
     Rdpack::viewRd("./man/filename.Rd", type = "html")
 \end{verbatim}
 
-Users of 'devtools' can use \code{viewRd()} in place of \code{help()} to view Rd sources\textsuperscript{\ref{orge2ba763}}.
+Users of 'devtools' can use \code{viewRd()} in place of \code{help()} to view Rd sources\footnote{Yes, your real sources are the \texttt{*.R} files but
+\code{devtools::document()} transfers the roxygen2 documentation chunks to Rd
+files (and a few others), which are then rendered by \pkg{R} tools.}.
 \end{document}

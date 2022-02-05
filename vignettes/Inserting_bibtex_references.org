@@ -202,7 +202,7 @@ put the string
 =;textual= at the end of the key. Here are the examples from the table above, rendered
 as textual citations:
 
-| Documentation source                                |                                 |
+| Documentation source                                | rendered                        |
 |-----------------------------------------------------+---------------------------------|
 | ~\insertCite{parseRd;textual}{Rdpack}~              | Murdoch (2010)                  |
 | ~\insertCite{Rpack:bibtex;textual}{Rdpack}~         | Francois (2014)                 |
@@ -210,12 +210,6 @@ as textual citations:
 #+TBLFM: @2$2='(org-sbe "R-inscite" (x "\"parseRd\"") (textual 1))::@3$2='(org-sbe "R-inscite" (x "\"Rpack:bibtex\"") (textual 1))::@4$2='(org-sbe "R-inscite" (x "\"parseRd,Rpack:bibtex\"") (textual 1))
 
 The last line in the table demonstrates that this also works with several citations.
-
-The macro ~\insertNoCite{key}{package}~ records one or more references for
-~\insertAllCited~ but does not cite it. Setting =key= to =*= will record all
-references from the specified package. For example, ~\insertNoCite{R}{bibtex}~ records
-the reference whose key is =R=, while ~\insertNoCite{*}{utils}~ records all
-references from package ``utils'' for inclusion by ~\insertAllCited~.
 
 To mix the citations with other text, such as ``see also'' and ``chapter 3'', write the list
 of keys as a free text, starting it with the symbol =@= and prefixing each key with it.
@@ -229,13 +223,41 @@ produces:
 
 \qquad
 #+ATTR_LATEX: :center nil
+| Rendered                                                                          |
+|-----------------------------------------------------------------------------------|
 | \Sexpr{insert_citeOnly("@see also @parseRd and @Rpack:bibtex", "Rdpack")}         |
 | \Sexpr{insert_citeOnly("@see also @parseRd; @Rpack:bibtex", "Rdpack")}            |
 | \Sexpr{insert_citeOnly("@see also @parseRd and @Rpack:bibtex;textual", "Rdpack")} |
-    
 
-~\insertCiteOnly{key}{package}~ is as ~\insertCite~ but does not record the key 
-for the list of references assembled by ~\insertAllCited~.
+The text of the arguments of the macro in this free form should have no markup. For example,
+if you want to put the phrase =see also= in italic, enclosing it with =\emph{...}= (in Rd) or
+the equivalent =_..._= (in markdown) will not work[fn:noparen]. For textual citations a
+workaround is to invoke =\insertCite= for each key and type the markup outside the macro
+arguments. For parenthetical citations the solutions is to ask =\insertCite= to omit the
+parentheses by putting =;nobrackets= at the end of the argument[fn:nobracket]. The
+parentheses can then be put manually where needed.  For example,
+
+[fn:nobracket] With \pkg{Rdpack} versions greater than 2.1.3.
+
+
+[fn:noparen] For details see [[https://github.com/GeoBosh/Rdpack/issues/23][Github issue #23]] raised by  Martin R. Smith.
+
+
+#+BEGIN_EXAMPLE
+  (\emph{see also} \insertCite{@@parseRd and @Rpack:bibtex;nobrackets}{Rdpack})
+#+END_EXAMPLE
+produces: (/see also/ \Sexpr{insert_citeOnly("@@parseRd and @Rpack:bibtex;nobrackets", "Rdpack")}).
+                                                                                       
+*** Further macros for citations
+
+The macro =\insertNoCite{key}{package}= records one or more references for
+=\insertAllCited= but does not cite it. Setting =key= to =*= will record all
+references from the specified package. For example, =\insertNoCite{R}{bibtex}= records
+the reference whose key is =R=, while =\insertNoCite{*}{utils}= records all
+references from package ``utils'' for inclusion by =\insertAllCited=.
+
+=\insertCiteOnly{key}{package}= is as =\insertCite= but does not record the key 
+for the list of references assembled by =\insertAllCited=.
 
 ** Automatically generating lists of references 
 
@@ -350,6 +372,11 @@ If a package has a declared encoding (in file =DESCRIPTION=), =REFERENCES.bib= i
 with that encoding[fn:enc].  Otherwise, the encoding of =REFERENCES.bib= is assumed to be
 UTF-8 (which includes ASCII as a subset).
 
+
+[fn:enc] From =Rdpack (>=0.9-1)= The issue of not handling the encoding was raised by
+Professor Brian Ripley.
+
+
 Note that BibTeX entries downloaded from online databases and similar sources may contain
 unexpected characters in other encodings, e.g. 'latin1'. In such cases the check tools in
 R-devel (since about 2018-10-01) may give warnings like:
@@ -363,22 +390,24 @@ which are normally not included in lists of references and can be deleted from R
 
 One way to check for non-ASCII symbols in a file is =tools::showNonASCIIfile()=.
 
-Internally, LaTeX sequences standing for accented Latin characters, such as =\'e= and =\"o=,
-are converted to UTF-8.  So, even if the file REFERENCES.bib is pure ASCII, it may implicitly
-give raise to non-ASCII characters. This may cause R's checking tools to complain about
-non-ASCII characters even after it has been verified that there are none. If this happens,
-add the encoding declaration to file DESCRIPTION[fn:enc2]:
+Since \pkg{Rdpack} switched to the bibtex parser in package \pkg{rbibutils}, if the bib file
+contains Latex escape sequences standing for accented Latin characters, such as =\'e= and
+=\"o=, they are imported as is. They are converted to UTF-8 only when the text is rendered
+for output. If R's checking tools complain about non-ASCII characters add the following
+encoding declaration to file DESCRIPTION[fn:enc2]:
 #+BEGIN_EXAMPLE
 Encoding: UTF-8
 #+END_EXAMPLE
 Needless to say, make sure that there are really no characters from encodings like 'latin1'.
 
+With the previous bibtex parser (before Rdpack version 1.1.0) the conversion was done
+earlier, which resulted in confusing messages about non-ASCII characters, even when the file
+REFERENCES.bib was pure ASCII. This should no longer happen.
 
-[fn:enc] From =Rdpack (>=0.9-1)= The issue of not handling the encoding was raised by
-Professor Brian Ripley.
 
 [fn:enc2] Admittedly, this is not ideal since the user should not need to care how things are
 processed internally but I haven't pinpointed the exact cause for this.
+
 
 * Viewing Rd files 
 
@@ -394,9 +423,9 @@ set argument \code{type} to \code{"html"}:
     Rdpack::viewRd("./man/filename.Rd", type = "html")
 #+END_EXAMPLE
 
-Users of 'devtools' can use \code{viewRd()} in place of \code{help()} to view Rd sources[fn:6].
+Users of 'devtools' can use \code{viewRd()} in place of \code{help()} to view Rd sources[fn:7].
 
-[fn:6] Yes, your real sources are the \texttt{*.R} files but
+[fn:7] Yes, your real sources are the \texttt{*.R} files but
   \code{devtools::document()} transfers the roxygen2 documentation chunks to Rd
   files (and a few others), which are then rendered by \pkg{R} tools.
 
@@ -418,6 +447,7 @@ Users of 'devtools' can use \code{viewRd()} in place of \code{help()} to view Rd
 # % #+END_EXAMPLE
 # % 
 # % For a different approach, see the documentation of function ={Rdpack::rebib()}=.
+
 
 
 
