@@ -1,4 +1,4 @@
-% Created 2019-04-14 Sun 12:05
+% Created 2022-02-05 Sat 14:36
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper,twoside,11pt,nojss,article]{jss}
 	       \usepackage[T1]{fontenc}
@@ -37,7 +37,7 @@ This vignette is part of package Rdpack, version~\Sexpr{pd$Version}.
  pdftitle={Inserting references in Rd and roxygen2 documentation},
  pdfkeywords={bibliographic references, Rd, bibtex, citations, R},
  pdfsubject={},
- pdfcreator={Emacs 25.3.1 (Org mode 9.1.6)}, 
+ pdfcreator={Emacs 26.3 (Org mode 9.1.9)}, 
  pdflang={English}}
 \begin{document}
 
@@ -50,7 +50,7 @@ This vignette is part of package Rdpack, version~\Sexpr{pd$Version}.
 %\VignettePackage{Rdpack}
 
 \section{Setup}
-\label{sec:org848e2e4}
+\label{sec:org387d332}
 
 To prepare a package for importing BibTeX references it is necessary to tell the
 package management tools that package \pkg{Rdpack} and its Rd macros are
@@ -82,7 +82,7 @@ the bibtex references in it.
 
 
 \section{Inserting references in package documentation}
-\label{sec:orge601e7c}
+\label{sec:orga48d177}
 
 Once the steps outlined in the previous section are done, references can be
 inserted in the documentation as \texttt{\textbackslash{}insertRef\{key\}\{package\}},
@@ -102,7 +102,6 @@ example, the help page \texttt{?Rdpack::insertRef} contains the following lines 
 ``References'' of the Rd file:
 \begin{verbatim}
     \insertRef{Rpack:bibtex}{Rdpack}
-    \insertRef{R}{bibtex}
 \end{verbatim}
 The first line above inserts the reference labeled \texttt{Rpack:bibtex} in Rdpack's
 \texttt{REFERENCES.bib}. The second line inserts the reference labeled \texttt{R} in file
@@ -112,14 +111,12 @@ A roxygen2 documentation chunk might look like this:
 \begin{verbatim}
     #' @references
     #' \insertRef{Rpack:bibtex}{Rdpack}
-    #'
-    #' \insertRef{R}{bibtex}
 \end{verbatim}
 
 
 
 \section{Inserting citations}
-\label{sec:orgb780a37}
+\label{sec:org329f7ee}
 
 From version 0.7 of \pkg{Rdpack}, additional Rd macros are available for
 citations\footnote{They were introduced in the development version 0.6-1, but 0.7
@@ -128,7 +125,7 @@ using these, it will be prudent to require at least this version of Rdpack in
 the ``Imports:'' directive in file DESCRIPTION: \texttt{Rdpack (>= 0.7)}.
 
 \subsection{Macros for citations}
-\label{sec:orgbaabdbb}
+\label{sec:orgab0155d}
 \label{sec:macros-citations}
 
 \texttt{\textbackslash{}insertCite\{key\}\{package\}} cites the key and records it for use by
@@ -198,7 +195,7 @@ produces:
 for the list of references assembled by \texttt{\textbackslash{}insertAllCited}.
 
 \subsection{Automatically generating lists of references}
-\label{sec:org5309182}
+\label{sec:orgc507011}
 
 The macro \texttt{\textbackslash{}insertAllCited\{\}} can be used to insert all references cited with
 \texttt{\textbackslash{}insertCite} or \texttt{\textbackslash{}insertNoCite}. A natural place to put this macro is the
@@ -216,7 +213,7 @@ The analogous documentation chunk in roxygen2 might look like this:
 
 
 \subsection{Changing the style of references}
-\label{sec:orgefd3695}
+\label{sec:orged68951}
 
 Package \texttt{Rdpack} supports bibliography styles for lists of references\footnote{Support for styles is available since \texttt{Rdpack (>= 0.8)}.}.
 Currently the only alternative offered is to use long names (Georgi
@@ -240,10 +237,10 @@ After installling/reloading your package the lists of references should appear
 with long author names. "Rdpack" itself now uses this style.
 
 \section{Possible issues}
-\label{sec:org4871d85}
+\label{sec:org89c951a}
 
 \subsection{Warning from 'R CMD build'}
-\label{sec:org2375713}
+\label{sec:orgab7498b}
 
 If 'R CMD build' or \texttt{devtools::build()} gives a warning along the lines of:
 \begin{verbatim}
@@ -254,7 +251,7 @@ then check the syntax in file DESCRIPTION --- the most common cause of this is m
 
 
 \subsection{Development using `devtools'}
-\label{sec:org657ff99}
+\label{sec:org0766478}
 
 The described procedure works transparently in `roxygen2' chunks and with Hadley Wickham's
 `devtools'.  Packages are built and installed properly with the `devtools' commands and the
@@ -282,11 +279,11 @@ function \texttt{viewRd()}, discussed below, for viewing Rd files.
 
 
 \subsection{Latex markup in BibTeX entries}
-\label{sec:org2606b37}
+\label{sec:orgedcaef9}
 
 In principle, BibTeX entries may contain arbitrary Latex markup, while the Rd format
 supports only a subset. As a consequence, some BibTeX entries may need some editing when
-included in REFERENCES.bib\footnote{Thanks to Michael Dewey for suggesting the discussion of this.\label{org0aff802}}. Only do this for entries that do not render properly or
+included in REFERENCES.bib\footnote{Thanks to Michael Dewey for suggesting the discussion of this.\label{orge2ba763}}. Only do this for entries that do not render properly or
 cause errors, since most of the time this should not be necessary. For encoding related
 issues of REFERENCES.bib see the dedicated subsection below.
 
@@ -302,7 +299,7 @@ Among other things, it contains some dummy references which illustrate the above
 
 
 \subsection{Encoding of file REFERENCES.bib}
-\label{sec:orgb642964}
+\label{sec:orgedf4a03}
 
 If a package has a declared encoding (in file \texttt{DESCRIPTION}), \texttt{REFERENCES.bib} is read-in
 with that encoding\footnote{From \texttt{Rdpack (>=0.9-1)} The issue of not handling the encoding was raised by
@@ -334,7 +331,7 @@ Encoding: UTF-8
 Needless to say, make sure that there are really no characters from encodings like 'latin1'.
 
 \section{Viewing Rd files}
-\label{sec:org5f9a745}
+\label{sec:org7de7eb3}
 
 
 A function, \code{viewRd}, to view Rd files in the source directory of a package was
@@ -348,5 +345,5 @@ set argument \code{type} to \code{"html"}:
     Rdpack::viewRd("./man/filename.Rd", type = "html")
 \end{verbatim}
 
-Users of 'devtools' can use \code{viewRd()} in place of \code{help()} to view Rd sources\textsuperscript{\ref{org0aff802}}.
+Users of 'devtools' can use \code{viewRd()} in place of \code{help()} to view Rd sources\textsuperscript{\ref{orge2ba763}}.
 \end{document}

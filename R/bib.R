@@ -714,6 +714,9 @@ insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
     if(dont_cite)
         return(character(0))
 
+    nobrackets <- grepl(";nobrackets$", keys)  # new 2022-02-05; related to issue #23
+    if(nobrackets)
+        keys <- gsub(";nobrackets$", "", keys)
 
     textual <- grepl(";textual$", keys)
     if(textual)
@@ -820,20 +823,25 @@ insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
         text <- keys
         regmatches(text, m) <- list(refs)
 
-        if(!textual) # 2018-03-28 don't put patentheses in textual mode
+        ## parentheses around the whole cite; 2022-02-05: also if !nobrackets
+        if(!textual && !nobrackets) # 2018-03-28 don't put parentheses in textual mode
             text <- paste0("(", text, ")")
     }else{
-        if(is.null(bibpunct))
-            text <- safe_cite(keys, bibs, textual = textual, before = before, after = after
-                            , from.package = package)
-        else{
+        if(is.null(bibpunct)){
+            if(!textual && nobrackets) # 2022-02-05
+                bibpunct0 = c("", "", ";", "a", "", ",")
+            else
+                bibpunct0 = c("(", ")", ";", "a", "", ",")
+                    
+            text <- safe_cite(keys, bibs, textual = textual, before = before, after = after,
+                              bibpunct = bibpunct0, from.package = package)
+        }else{
             bibpunct0 = c("(", ")", ";", "a", "", ",")
             if(length(bibpunct) < length(bibpunct0))
                 bibpunct <- c(bibpunct, bibpunct0[-seq_len(length(bibpunct))])
             ind <- which(is.na(bibpunct))
             if(length(ind) > 0)
                 bibpunct[ind] <- bibpunct0[ind]
-
             text <- safe_cite(keys, bibs, textual = textual, before = before, after = after,
                               bibpunct = bibpunct, from.package = package)
         }
@@ -880,6 +888,10 @@ insert_all_ref <- function(refs, style = ""){
     all.keys <- list()
     for(i in 1:nrow(refsmat)){
         keys <- refsmat[i, 1]
+
+        nobrackets <- grepl(";nobrackets$", keys)  # new 2022-02-05; related to issue #23
+        if(nobrackets)
+            keys <- gsub(";nobrackets$", "", keys)
 
         textual <- grepl(";textual$", keys)
         if(any(textual))

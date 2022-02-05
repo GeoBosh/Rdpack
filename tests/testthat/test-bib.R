@@ -1,9 +1,13 @@
 context("bib")
 
 test_that("bib works fine", {
+    fn_Rdpack <- system.file("REFERENCES.bib", package = "Rdpack")
+    bibs_Rdpack <- if(packageVersion("rbibutils") >= '2.1.1')
+                       readBib(fn_Rdpack) else readBib(fn_Rdpack, encoding = "UTF-8")
+
     fn_rb <- system.file("REFERENCES.bib", package = "rbibutils")
     bibs_rb <- if(packageVersion("rbibutils") >= '2.1.1')
-        readBib(fn_rb) else readBib(fn_rb, encoding = "UTF-8")
+                   readBib(fn_rb) else readBib(fn_rb, encoding = "UTF-8")
     
     .toRd_styled(bibs_rb, "Rdpack")
     .toRd_styled(bibs_rb[["Rpackage:Rdpack"]], "Rdpack")    
@@ -12,19 +16,88 @@ test_that("bib works fine", {
     set_Rdpack_bibstyle("JSSRd")
     set_Rdpack_bibstyle("JSSLongNames")
 
-    expect_equal(insert_citeOnly(names(bibs_rb)[2], package = "rbibutils"),
+    ## parenthesised
+    expect_equal(insert_citeOnly("Rpackage:Rdpack", package = "rbibutils"),
                  "(Boshnakov 2020)")
-    expect_equal(insert_citeOnly(paste0(names(bibs_rb)[2], ";textual"), package = "rbibutils"),
+    expect_equal(insert_citeOnly("Rpackage:Rdpack;nobrackets", package = "rbibutils"),
+                 "Boshnakov 2020")
+    ## using @
+    expect_equal(insert_citeOnly("@see also @Rpackage:Rdpack", package = "rbibutils"),
+                 "(see also Boshnakov 2020)")
+    expect_equal(insert_citeOnly("@see also @Rpackage:Rdpack;nobrackets", package = "rbibutils"),
+                 "see also Boshnakov 2020")
+    
+    expect_equal(insert_citeOnly("@see also @Rpackage:Rdpack among others;nobrackets", package = "rbibutils"),
+                 "see also Boshnakov 2020 among others")
+
+    ## textual
+    expect_equal(insert_citeOnly("Rpackage:Rdpack;textual", package = "rbibutils"),
+                 "Boshnakov (2020)")
+    expect_equal(insert_citeOnly("@@Rpackage:Rdpack;textual", package = "rbibutils"),
                  "Boshnakov (2020)")
 
-    insert_ref(names(bibs_rb)[2], package = "rbibutils")
-    expect_warning(insert_ref("xxx", package = "rbibutils"))
+    ## more than one key
+    expect_equal(insert_citeOnly(
+        "@see also @Rpackage:rbibutils and @parseRd;textual", package = "Rdpack"),
+        "see also Boshnakov and Putman (2020) and Murdoch (2010)")
+    
+    ## commenting out since not sure if the ')' is on purpose after  "among others" (:TODO:)
+    ##
+    ## expect_equal(insert_citeOnly("@see also @Rpackage:rbibutils and @parseRd, among others;textual", package = "Rdpack"),
+    ##              "see also Boshnakov and Putman (2020) and Murdoch (2010, among others)")
 
+    expect_equal(insert_citeOnly(
+        "@see also @Rpackage:rbibutils and @parseRd", package = "Rdpack"),
+        "(see also Boshnakov and Putman 2020 and Murdoch 2010)")
+    expect_equal(insert_citeOnly(
+        "@see also @Rpackage:rbibutils and @parseRd;nobrackets", package = "Rdpack"),
+        "see also Boshnakov and Putman 2020 and Murdoch 2010")
+    
+    expect_equal(insert_citeOnly(
+        "@see also @Rpackage:rbibutils and @parseRd;nobrackets", package = "Rdpack"),
+        "see also Boshnakov and Putman 2020 and Murdoch 2010")
+
+    ## use brackets instead of parentheses
+    expect_equal(insert_citeOnly("Rpackage:Rdpack;textual", package = "rbibutils",
+                                 bibpunct = c("[", "]")),
+                 "Boshnakov [2020]")
+    expect_equal(insert_citeOnly("Rpackage:Rdpack", package = "rbibutils",
+                                 bibpunct = c("[", "]")),
+                 "[Boshnakov 2020]")
+    
+    
+    insert_ref("Rpackage:Rdpack", package = "rbibutils")
+
+    ## missing keys
+    expect_warning(insert_ref("xxx", package = "rbibutils"))
+    expect_warning(insert_citeOnly(
+       "@see also @Rpackage:rbibutils and @parseRd;nobrackets @kikiriki", package = "Rdpack"))
+        ## "possibly non-existing or duplicated key(s) in bib file from package ..."
+
+    ## TODO: this tries to load package "xxx" and gives error but finishes ok and returns a 
+    ##       dummy reference, as expected.
+    ##  
+    ##     Why and which instruction tries to load package "yyy"? Maybe in .Rd_styled?
+    ##    It is sufficient that the package is installed, it doesn't need to be loadable.
+    ## expect_warning(insert_ref("xxx", package = "yyy")) # missing package
+    expect_warning(insert_ref("xxx", package = "yyy"))
+
+    insert_all_ref(matrix(c("parseRd,Rpack:bibtex", "Rdpack"), ncol = 2))
+
+    
     class(bibs_rb) <- c("bibentryRd", class(bibs_rb))
     expect_output(print(bibs_rb))
+   
 
-    # makeVignetteReference("Rdpack", 1)
+    ## makeVignetteReference("Rdpack", 1)
+
+    tmpfn <- tempfile(fileext = rep(".Rd",  2))
+    on.exit(unlink(tmpfn))
+    reprompt("viewRd", filename = tmpfn[1])
+    reprompt(infile = tmpfn[1], filename = tmpfn[2])
+
+    fn1  <- system.file("examples/reprompt.Rd", package = "Rdpack")
+    reprompt(fn1, filename = tmpfn[2])
     
-    expect_true(TRUE)
 })
 

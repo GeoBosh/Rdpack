@@ -1,3 +1,4 @@
+^bug_*
 .rsync_exclude
 ^docs/
 ^vignettes/.RData

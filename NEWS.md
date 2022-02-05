@@ -1,5 +1,10 @@
 # Rdpack 2.1.3.9000
 
+- Rdmacro `\insertCite` gets a new feature allowing to drop parentheses for
+  parenthesised citations, analogous to natbib's `\citealp` in latex. This makes
+  it possible to use markup around the citations outside the arguments of the
+  macro. This provides a workaround github issue #23 by @ms609.
+
 - the pkgdown site now has a `Search` button on the navigation bar.  This is a
   consequence of switching the site to Bootstrap 5.
 

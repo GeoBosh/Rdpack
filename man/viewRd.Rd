@@ -18,7 +18,8 @@ viewRd(infile, type = getOption("help_type"), stages = NULL)
 
   This function can be used to view Rd files from the source directory
   of a package. The page is presented in text format or in html browser,
-  according to the setting of argument \code{type}. The default is text.
+  according to the setting of argument \code{type}. The default is
+  \code{getOption("help_type")}.
 
 }
 \value{
@@ -36,7 +37,7 @@ viewRd(infile, type = getOption("help_type"), stages = NULL)
   as \code{insertRef}, see vignette:
 
   \code{vignette("Inserting_bibtex_references", package = "Rdpack")}.
-  
+
 }
 %\seealso{
 %%% ~~objects to See Also as \code{\link{help}}, ~~~
