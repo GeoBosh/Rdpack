@@ -58,10 +58,6 @@ insert_all_ref(refs, style = "")
 % %% ~~objects to See Also as \code{\link{help}}, ~~~
 % }
 \examples{
-## bibs <- bibtex::read.bib(package = "tools")
-## bibs
-
-
 ## a reference from package Rdpack
 cat(insert_all_ref(matrix(c("Rpack:bibtex", "Rdpack"), ncol = 2)), "\n")
 
@@ -70,6 +66,10 @@ cat(insert_all_ref(matrix(c("parseRd,Rpack:bibtex", "Rdpack"), ncol = 2)), "\n")
 
 ## all references from package Rdpack
 cat(insert_all_ref(matrix(c("*", "Rdpack"), ncol = 2)), "\n")
+
+## all references from package Rdpack and rbibutils
+m <- matrix(c("*", "Rdpack",  "*", "rbibutils"), ncol = 2, byrow = TRUE)
+cat(insert_all_ref(m), "\n")
 }
 \keyword{documentation}
 % use one of  RShowDoc("KEYWORDS")

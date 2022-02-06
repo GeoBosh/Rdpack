@@ -91,13 +91,5 @@ test_that("bib works fine", {
 
     ## makeVignetteReference("Rdpack", 1)
 
-    tmpfn <- tempfile(fileext = rep(".Rd",  2))
-    on.exit(unlink(tmpfn))
-    reprompt("viewRd", filename = tmpfn[1])
-    reprompt(infile = tmpfn[1], filename = tmpfn[2])
-
-    fn1  <- system.file("examples/reprompt.Rd", package = "Rdpack")
-    reprompt(fn1, filename = tmpfn[2])
-    
 })
 
