@@ -102,11 +102,7 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">## bibs &lt;- bibtex::read.bib(package = "tools")</span></span>
-<span class="r-in"><span class="co">## bibs</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## a reference from package Rdpack</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">## a reference from package Rdpack</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu">insert_all_ref</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Rpack:bibtex"</span>, <span class="st">"Rdpack"</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span>, <span class="st">"\n"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Romain Francois (2014).</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> \emph{bibtex: bibtex parser}.</span>
@@ -125,11 +121,41 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Georgi</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> N. Boshnakov, Chris Putman (2020).</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> \emph{rbibutils: Convert Between Bibliography Formats}.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://CRAN.R-project.org/package=rbibutils.\cr\cr Romain Francois (2014).</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> \url{https://CRAN.R-project.org/package=rbibutils}.\cr\cr Romain Francois (2014).</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> \emph{bibtex: bibtex parser}.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> R package version 0.4.0.\cr\cr Duncan Murdoch (2010).</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> \dQuote{Parsing Rd files.}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> \url{https://developer.r-project.org/parseRd.pdf}.\cr\cr Hadley Wickham, Jim Hester, Winston Chang (2018).</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> \emph{devtools: Tools to Make Developing R Packages Easier}.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> R package version 1.13.5, \url{https://CRAN.R-project.org/package=devtools}.\cr\cr A. ZZZ (2018).</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> \dQuote{A relation between several fundamental constants: \eqn{e^{i\pi}=-1}.}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> \emph{A non-existent journal with the formula \eqn{L_2} in its name.}.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> This reference does not exist. It is a test/demo that simple formulas in BibTeX files are OK. A formula in field 'note': \eqn{c^2 = a^2 + b^2}. </span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co">## all references from package Rdpack and rbibutils</span></span>
+<span class="r-in"><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"*"</span>, <span class="st">"Rdpack"</span>,  <span class="st">"*"</span>, <span class="st">"rbibutils"</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu">insert_all_ref</span><span class="op">(</span><span class="va">m</span><span class="op">)</span>, <span class="st">"\n"</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Georgi</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N. Boshnakov (2020).</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> \dQuote{Rdpack: Update and Manipulate Rd Documentation Objects.}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> \doi{10.5281/zenodo.3925612}, R package version 2.0.0.\cr\cr Georgi</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N. Boshnakov, Chris Putman (2020).</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> \emph{rbibutils: Convert Between Bibliography Formats}.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> \url{https://CRAN.R-project.org/package=rbibutils}.\cr\cr Damiano Fantini (2019).</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> \dQuote{easyPubMed: Search and Retrieve Scientific Publication Records from PubMed.}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> R package version 2.13, \url{https://CRAN.R-project.org/package=easyPubMed}.\cr\cr Romain Francois (2014).</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> \emph{bibtex: bibtex parser}.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> R package version 0.4.0.\cr\cr Romain Francois (2014).</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> \emph{bibtex: bibtex parser}.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> R package version 0.4.0.\cr\cr Mathew</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> William McLean (2017).</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> \dQuote{RefManageR: Import and Manage BibTeX and BibLaTeX References in R.}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> \emph{The Journal of Open Source Software}.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> \doi{10.21105/joss.00338}.\cr\cr Duncan Murdoch (2010).</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> \dQuote{Parsing Rd files.}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> \url{https://developer.r-project.org/parseRd.pdf}.\cr\cr Chris Putnam (2020).</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> \dQuote{Library bibutils, version 6.10.}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> \url{https://sourceforge.net/projects/bibutils/}.\cr\cr Hadley Wickham, Jim Hester, Winston Chang (2018).</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> \emph{devtools: Tools to Make Developing R Packages Easier}.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> R package version 1.13.5, \url{https://CRAN.R-project.org/package=devtools}.\cr\cr A. ZZZ (2018).</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> \dQuote{A relation between several fundamental constants: \eqn{e^{i\pi}=-1}.}</span>
