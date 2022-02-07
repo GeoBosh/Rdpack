@@ -123,12 +123,12 @@ something like:
 The equivalent =roxygen2= documentation chunk would be:
 #+BEGIN_SRC R
 #' @references
-#' \insertRef{Rpack:bibtex}{Rdpack}
+#' \insertRef{Rpackage:rbibutils}{Rdpack}
 #'
 #' \insertRef{R}{bibtex}
 #+END_SRC
 
-The first line above inserts the reference with key =Rpack:bibtex= in Rdpack's
+The first line above inserts the reference with key =Rpackage:rbibutils= in Rdpack's
 REFERENCES.bib. The second line inserts the reference labeled =R= in file
 REFERENCES.bib from package =bibtex=. 
 
@@ -152,17 +152,18 @@ vignette("Inserting_bibtex_references", package = "Rdpack")
 
 ** Inserting citations
 
-From version 0.6-1 of "Rdpack", additional Rd macros are available for
-citations.  They can be used in both Rd and roxygen2 documentation.
+
+Additional Rd macros are available for citations.  They also can be used in both Rd and
+roxygen2 documentation.
 
 =\insertCite{key}{package}= cites =key= and records it for use by
 =\insertAllCited=, see below. =key= can contain more keys separated by commas.
   
-=\insertCite{parseRd,Rpack:bibtex}{Rdpack}= produces 
-src_R[:exports results :results value raw]{insert_citeOnly("parseRd,Rpack:bibtex", "Rdpack")}
+=\insertCite{parseRd,Rpackage:rbibutils}{Rdpack}= produces 
+src_R[:exports results :results value raw]{insert_citeOnly("parseRd,Rpackage:rbibutils", "Rdpack")}
 and 
-=\insertCite{Rpack:bibtex}{Rdpack}=         gives
-src_R[:exports results :results value raw]{insert_citeOnly("Rpack:bibtex", "Rdpack")}.
+=\insertCite{Rpackage:rbibutils}{Rdpack}=         gives
+src_R[:exports results :results value raw]{insert_citeOnly("Rpackage:rbibutils", "Rdpack")}.
 
 
 By default the citations are parenthesised: =\insertCite{parseRd}{Rdpack}= produces
@@ -174,8 +175,8 @@ would be produced with =\insertCite{parseRd}{Rdpack}= and
 =\insertCite{parseRd;textual}{Rdpack}=, respectively.  This also works with several
 citations, e.g.
 
-=\insertCite{parseRd,Rpack:bibtex;textual}{Rdpack}= produces:
-src_R[:exports results :results value raw]{insert_citeOnly("parseRd,Rpack:bibtex;textual", "Rdpack")}.
+=\insertCite{parseRd,Rpackage:rbibutils;textual}{Rdpack}= produces:
+src_R[:exports results :results value raw]{insert_citeOnly("parseRd,Rpackage:rbibutils;textual", "Rdpack")}.
 
 The macro =\insertNoCite{key}{package}= records one or more
 references for =\insertAllCited= but does not cite it. Setting
@@ -204,17 +205,30 @@ write the list of keys as a free text, starting it with the symbol =@= and
 prefixing each key with it.  The =@= symbol will not appear in the output. For
 example, the following code
 #+BEGIN_EXAMPLE
-  \insertCite{@see also @parseRd and @Rpack:bibtex}{Rdpack}
-  \insertCite{@see also @parseRd; @Rpack:bibtex}{Rdpack}
-  \insertCite{@see also @parseRd and @Rpack:bibtex;textual}{Rdpack}
+  \insertCite{@see also @parseRd and @Rpackage:rbibutils}{Rdpack}
+  \insertCite{@see also @parseRd; @Rpackage:rbibutils}{Rdpack}
+  \insertCite{@see also @parseRd and @Rpackage:rbibutils;textual}{Rdpack}
 #+END_EXAMPLE
 produces:
 
-  src_R[:exports results :results value raw]{insert_citeOnly("@see also @parseRd and @Rpack:bibtex", "Rdpack")} 
+  src_R[:exports results :results value raw]{insert_citeOnly("@see also @parseRd and @Rpackage:rbibutils", "Rdpack")} 
 
-  src_R[:exports results :results value raw]{insert_citeOnly("@see also @parseRd; @Rpack:bibtex", "Rdpack")} 
+  src_R[:exports results :results value raw]{insert_citeOnly("@see also @parseRd; @Rpackage:rbibutils", "Rdpack")} 
 
-  src_R[:exports results :results value raw]{insert_citeOnly("@see also @parseRd and @Rpack:bibtex;textual", "Rdpack")}
+  src_R[:exports results :results value raw]{insert_citeOnly("@see also @parseRd and @Rpackage:rbibutils;textual", "Rdpack")}
+
+
+With the parenthesised citations, if you need markup for the text before or after the
+citations, say =see also= in italic, put =;nobrackets= at the end of the first argument of
+the Rd macro, take out the part containing markup, and put the parentheses were suitable. For
+example,
+#+BEGIN_EXAMPLE
+  (\emph{see also} \insertCite{@@parseRd and @Rpackage:rbibutils;nobrackets}{Rdpack})
+#+END_EXAMPLE
+(in markdown, use =_see also_= in place of =\emph{see also})=. This gives:
+
+(/see also/ src_R[:exports results :results value raw]{insert_citeOnly("@@parseRd and @Rpackage:rbibutils;nobrackets", "Rdpack")}) 
+
 
 ---
 
