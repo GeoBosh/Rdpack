@@ -104,7 +104,7 @@ Rdo2Rdf(rdo, deparse = FALSE, ex_restore = FALSE, file = NULL,
 # # this keeps the backslashes in "author" (see Note above)
 # reprompt(infile="./man/Rdo2Rdf.Rd")
 
-# # this output "author" preceded by one backslash only.
+# # this outputs "author" preceded by one backslash only.
 # reprompt(infile="./man/Rdo2Rdf.Rd", sec_copy = FALSE)
 }
 \keyword{Rd}

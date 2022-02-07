@@ -22,6 +22,7 @@ reference:
       - viewRd
       - promptPackageSexpr
       - Rdo_show
+      - Rdo2Rdf
   - title: "Bibtex references and citations"
     desc: >
       Bibtex references and citations
@@ -29,6 +30,7 @@ reference:
       - matches("bib")
       - insert_all_ref
       - insert_ref
+      - insert_citeOnly
   - title: "Replacing parts of Rd objects"
     desc: >
       Functions to change Rd contents programmatically
@@ -40,20 +42,34 @@ reference:
     desc: >
       Getting specific parts of Rd objects
     contents:
-      - matches("get")
       - Rdo_tags
       - S4formals
-      - -get_bibentries      
+      - predefined         
   - title: "Inspecting Rd objects"
     desc: >
       Functions for inspection of Rd objects
     contents:
-      - matches("inspect")
+      - inspect_Rd
+      - inspect_Rdfun
+      - inspect_Rdmethods
+      - inspect_Rdclass
+      - inspect_args
+      - inspect_clmethods
+      - inspect_signatures
+      - inspect_slots
+      - inspect_usage
   - title: "Programming with Rd objects"
     desc: >
       Functions for use in programmatic manipulation of Rd objects
     contents:
-      - matches("get")
+      - Rdo_get_argument_names
+      - Rdo_get_insert_pos
+      - Rdo_get_item_labels
+      - get_bibentries
+      - get_sig_text
+      - get_usage_text
+      - get_usage
+      - promptUsage
   - title: "Parsing Rd objects"
     desc: >
       Functions for parsing Rd objects
@@ -69,11 +85,26 @@ reference:
   - title: "Other"
     desc: "Other functions for manipulation of Rd objects"
     contents:
-      - matches("^Rdo")
-      - -Rdo_show
-      
       - compare_usage1
       - format_funusage
       - rdo_text_restore
       - update_aliases_tmp      
-
+      - Rdo_append_argument
+      - Rdo_collect_aliases
+      - Rdo_empty_sections 
+      - Rdo_fetch          
+      - Rdo_flatinsert     
+      - Rdo_insert         
+      - Rdo_insert_element 
+      - Rdo_is_newline     
+      - Rdo_locate         
+      - Rdo_locate_leaves  
+      - Rdo_macro          
+      - Rdo_modify         
+      - Rdo_modify_simple  
+      - Rdo_piecetag       
+      - Rdo_remove_srcref  
+      - Rdo_sections       
+      - Rdo_set_section    
+      - Rdo_tag            
+      - Rdo_which          
