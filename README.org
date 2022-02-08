@@ -219,7 +219,7 @@ produces:
 
 
 With the parenthesised citations, if you need markup for the text before or after the
-citations, say =see also= in italic, put =;nobrackets= at the end of the first argument of
+citations, say =see also= in italic, put =;nobrackets=[fn:nobrackets] at the end of the first argument of
 the Rd macro, take out the part containing markup, and put the parentheses were suitable. For
 example,
 #+BEGIN_EXAMPLE
@@ -235,6 +235,8 @@ example,
 =\insertCiteOnly{key}{package}= is as =\insertCite= but does not include the key
 in the list of references for =\insertAllCited=.
 
+
+[fn:nobrackets]  From =Rdpack (> 2.1.3)= (prompted by Martin R. Smith, issue #23).
 
 
 ** Changing the style of references
@@ -377,30 +379,32 @@ processed internally but I haven't pinpointed the exact cause for this.
 
 * Viewing Rd files
 
-A function, =viewRd()=, to view Rd files in the source directory of a package
-was introduced in version 0.4-23 of =Rdpack=. A typical user call would look
-something like:
+The function =viewRd()= can be used to view Rd files in the source directory of a
+package[fn:viewRd].  A typical user call would look something like:
 #+BEGIN_EXAMPLE
 Rdpack::viewRd("./man/filename.Rd")
 #+END_EXAMPLE
-By default the requested help page is shown in text format. To open the page in
-a browser, set argument 'type' to "html":
+The requested help page is shown in the default format for the current R session (taken from
+=getOption("help_type")=). To request a specific format set ~type~ to ="html"= or ="text"=,
+as in:
 #+BEGIN_EXAMPLE
-    Rdpack::viewRd("./man/filename.Rd", type = "html")
+    Rdpack::viewRd("./man/filename.Rd", type = "html") # open in a browser
+    Rdpack::viewRd("./man/filename.Rd", type = "text") # text
 #+END_EXAMPLE
-=viewRd()= renders references and citations correctly, since it understands Rd macros.
+=viewRd()= renders references and citations correctly, since it processes Rd macros.
 
 Users of 'devtools' can use =viewRd= in place of =help()= to view rendered Rd
 sources in development mode. This should work also in development mode on any
-platform (e.g. RStudio, Emacs/ESS, Rgui).
+platform (e.g. RStudio, Emacs/ESS, Rgui)[fn:viewRdRstudio].
 # (Yes, the real roxygen2 sources are the **.R** files but
 # =devtools::document()= transfers the roxygen2 documentation chunks to Rd files,
 # and a few others, which are then rendered by =R='s tools.)
 
  
+[fn:viewRd] From ~Rdpack (>= 0.4-23)~.
 
-
-
+[fn:viewRdRstudio] In recent versions of Rstudio this function is no longer needed, since
+~?fun~ now handles the macros.
 
 
 
@@ -524,17 +528,3 @@ will evaluate the code, save the graph in file ~"man/figures/cars.png"~ subdirec
 package ~"mypackage"~, and include the figure using ~\figure~. 
 
 See vignette [[https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf][=Inserting_figures_and_evaluated_examples=]] for more details.
-
-* Versions of Rdpack
-
-Versions of ~Rdpack~ on Github are almost always fully functional (at least
-passing =R CMD check --as-cran=), and so use a three-part version number. If a
-version is really unstable, I would use the conventional fourth part
-=.9000=. For release on CRAN, the version is incremented to
-=x.x.0=[fn:versions].
-
-Note that if ~Rdpack (>= x.x.0)~ is required, it can be abbreviated to 
-~Rdpack (>= x.x)~. 
-
-[fn:versions] I adopted this versionning scheme from ~Rdpack 0.7.0~.
-
