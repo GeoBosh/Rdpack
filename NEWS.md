@@ -1,9 +1,15 @@
-# Rdpack 2.1.3.9000
+# Rdpack 2.2 (CRAN)
+
+- a change in R-devel (around built r81914, March 2022) in the processing of
+  `\doi` Rd macros resulted in warnings from R's checks for packages (that use
+  Rdpack) built with the released versions of R. This fixes it.
+
+# Rdpack 2.1.4 (CRAN)
 
 - Rdmacro `\insertCite` gets a new feature allowing to drop parentheses for
   parenthesised citations, analogous to natbib's `\citealp` in latex. This makes
   it possible to use markup around the citations outside the arguments of the
-  macro. This provides a workaround github issue #23 by @ms609.
+  macro. This fixes github issue #23 by @ms609.
 
 - updated vignette "Inserting_bibtex_references" and other documentation.
 

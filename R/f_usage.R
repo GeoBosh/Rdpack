@@ -133,7 +133,7 @@ as.character.f_usage <- function(x,...){
 }
 
 deparse_usage <- function (x){
-    if(class(x) == "f_usage")
+    if(inherits(x, "f_usage"))
         return(deparse_usage1(x))
 
     nams <- names(x)
