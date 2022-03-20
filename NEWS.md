@@ -2,7 +2,9 @@
 
 - a change in R-devel (around built r81914, March 2022) in the processing of
   `\doi` Rd macros resulted in warnings from R's checks for packages (that use
-  Rdpack) built with the released versions of R. This fixes it.
+  Rdpack) built with the released versions of R. This fixes it. Developers
+  should require `Rdpack >= 2.2` in the `Imports field` in file DESCRIPTION.
+  (fixes #24)
 
 # Rdpack 2.1.4 (CRAN)
 
