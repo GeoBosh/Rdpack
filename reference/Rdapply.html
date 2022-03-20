@@ -12,7 +12,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">Rdpack</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.2.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -162,7 +162,7 @@
 <span class="r-in"></span>
 <span class="r-in"><span class="va">fn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="st">"u1"</span>, fileext<span class="op">=</span><span class="st">"Rd"</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="Rdo2Rdf.html">Rdo2Rdf</a></span><span class="op">(</span><span class="va">u1</span>, file <span class="op">=</span> <span class="va">fn</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	The Rd content was written to file  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpvtC5w7/u1b576b522fb7Rd </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	The Rd content was written to file  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpZ7k2NQ/u1b30266dc6e6Rd </span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># the saved file contains escaped percents but they disappear in parsing:</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/file.show.html" class="external-link">file.show</a></span><span class="op">(</span><span class="va">fn</span><span class="op">)</span></span>
@@ -175,7 +175,7 @@
 <span class="r-in"></span>
 <span class="r-in"><span class="va">u2</span> <span class="op">&lt;-</span> <span class="fu">Rdpack</span><span class="fu">:::</span><span class="fu">.Rd_tidy</span><span class="op">(</span><span class="va">u1</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="Rdo2Rdf.html">Rdo2Rdf</a></span><span class="op">(</span><span class="va">u2</span>, file <span class="op">=</span> <span class="va">fn</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	The Rd content was written to file  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpvtC5w7/u1b576b522fb7Rd </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	The Rd content was written to file  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpZ7k2NQ/u1b30266dc6e6Rd </span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/file.show.html" class="external-link">file.show</a></span><span class="op">(</span><span class="va">fn</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">fn</span><span class="op">)</span></span>
