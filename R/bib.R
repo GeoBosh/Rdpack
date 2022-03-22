@@ -1085,9 +1085,19 @@ Rdpack_bibstyles <- local({
            }else
                "JSSLongNames"
 
+    ## 2022-03-20 This removes a url for a doi when there is also a doi field with the same
+    ##     doi. However, the url's of doi's ending in -X (dash followed by X or digit) lose
+    ##     the dash in the url and the below function will not remove them (see for example
+    ##     the rendered 'pcts-package.Rd').
+    ##
+    ##     This explains the mistery that sometimes the doi gets duplicated by an url.
+    ##
+    ## 2022-03-20 TODO: 
+    ##        given that 'R CMD check' is not happy, just remove a URL if it has
+    ##       "https?://doi.org/"? (i.e., don't check that the doi is the same?
+    ## DONE:  2022-03-21 was: grepl(paste0("https?://doi.org/", x$doi), x$url)
     f <- function(x){
-        if(!is.null(x$doi) && !is.null(x$url) &&
-                              grepl(paste0("https?://doi.org/", x$doi), x$url))
+        if(!is.null(x$doi) && !is.null(x$url) && grepl("https?://doi.org/", x$url))
             x$url <- NULL
         
         ## (2021-10-13) TODO: regarding issue #7 in rbibutils
