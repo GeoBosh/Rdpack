@@ -45,8 +45,12 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.2.0.9000" id="rdpack-2209000">Rdpack 2.2.0.9000<a class="anchor" aria-label="anchor" href="#rdpack-2209000"></a></h2>
+<ul><li>reverted the change in v2.2, since a further fix in R-devel, <a href="https://stat.ethz.ch/pipermail/r-devel/2022-March/081570.html" class="external-link uri">https://stat.ethz.ch/pipermail/r-devel/2022-March/081570.html</a>, made it unnecessary. and dependent on the versions of R used to build and install a package. This concerns developers who use the Bibtex related macros - they should not build their package with v2.2 of <code>Rdpack</code> and could require <code>Rdpack &gt; 2.2</code> to ensure that users installing their package don’t do that with Rdpack 22.2 either.</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.2" id="rdpack-22-cran">Rdpack 2.2 (CRAN)<a class="anchor" aria-label="anchor" href="#rdpack-22-cran"></a></h2><p class="text-muted">CRAN release: 2022-03-19</p>
-<ul><li>a change in R-devel (around built r81914, March 2022) in the processing of <code>\doi</code> Rd macros resulted in warnings from R’s checks for packages (that use Rdpack) built with the released versions of R. This fixes it. Developers should require <code>Rdpack &gt;= 2.2</code> in the <code>Imports field</code> in file DESCRIPTION. (fixes <a href="https://github.com/GeoBosh/Rdpack/issues/24" class="external-link">#24</a>)</li>
+<ul><li>a change in R-devel (around built r81914, March 2022) in the processing of <code>\doi</code> Rd macros resulted in warnings from R-devel’s checks for packages that use Rdpack built with the released versions of R. This fixes it. (fixes <a href="https://github.com/GeoBosh/Rdpack/issues/24" class="external-link">#24</a>)</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.1.4" id="rdpack-214-cran">Rdpack 2.1.4 (CRAN)<a class="anchor" aria-label="anchor" href="#rdpack-214-cran"></a></h2><p class="text-muted">CRAN release: 2022-02-18</p>
