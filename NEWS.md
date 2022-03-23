@@ -1,12 +1,12 @@
-# Rdpack 2.2.0.9000
+# Rdpack 2.3
 
 - reverted the change in v2.2, since a further fix in R-devel,
   https://stat.ethz.ch/pipermail/r-devel/2022-March/081570.html, made it
-  unnecessary.  and dependent on the versions of R used to build and install a
-  package. This concerns developers who use the Bibtex related macros - they
+  unnecessary and dependent on the versions of R used to build and install a
+  package.  This concerns developers who use the Bibtex related macros - they
   should not build their package with v2.2 of `Rdpack` and could require `Rdpack
-  > 2.2` to ensure that users installing their package don't do that with Rdpack
-  22.2 either.
+  >= 2.3` to ensure that users installing their package don't do that
+  accidentally with `Rdpack 2.2`.
 
 
 # Rdpack 2.2 (CRAN)
