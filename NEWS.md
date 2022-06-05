@@ -1,4 +1,12 @@
-# Rdpack 2.3
+# Rdpack 2.3.0.9000
+
+- in Rd macro `\insertCite`, two or more accented Latin characters were rendered
+  with superfluous curly braces. These superfluous braces are inserted by
+  `tools:::cleanupLatex`, see the comments on issue#25 on github (reported by
+  Manuel López-Ibáñez).
+  
+
+# Rdpack 2.3 (CRAN)
 
 - reverted the change in v2.2, since a further fix in R-devel,
   https://stat.ethz.ch/pipermail/r-devel/2022-March/081570.html, made it
@@ -12,9 +20,8 @@
 # Rdpack 2.2 (CRAN)
 
 - a change in R-devel (around built r81914, March 2022) in the processing of
-  `\doi` Rd macros resulted in warnings from R-devel's checks for packages that use
-  Rdpack built with the released versions of R. This fixes it. 
-  (fixes #24)
+  `\doi` Rd macros resulted in warnings from R-devel's checks for packages that
+  use Rdpack built with the released versions of R. This fixes it.  (fixes #24)
 
 
 # Rdpack 2.1.4 (CRAN)

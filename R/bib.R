@@ -847,8 +847,22 @@ insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
         }
     }
     
-    toRd(text)
+    ## 2022-06-05: was: toRd(text)
+    ##    workaround for issue #25; effectively assumes that citation text
+    ##    doesn't contain braces that need escaping 
+    .toRd_cite(text)
 }
+
+## modified tools:::toRd.default
+.toRd_cite <- function (obj, ...) {
+    fsub <- function(from, to, x)
+        gsub(from, to, x, fixed = TRUE)
+    fsub("%", "\\%",
+         # fsub("}", "\\}",
+              # fsub("{", "\\{",
+                   fsub("\\", "\\\\", as.character(obj))) # ))
+}
+
 
 safe_cite <- function(keys, bib, ..., from.package = NULL){
     wrk.keys <- unlist(strsplit(keys, ","))

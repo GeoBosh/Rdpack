@@ -43,7 +43,7 @@ Rdo2Rdf <- function(rdo, deparse = FALSE, ex_restore = FALSE, file = NULL, rcode
     if(is.character(rdo))                # otherwise print(rdo) may go into infinite recursion
         rdo <- list(rdo)
 
-    if(class(rdo) != "Rd")                  # to force using print.Rd()
+    if(class(rdo)[1] != "Rd")                  # to force using print.Rd()
         class(rdo) <- "Rd"
 
     if(is.character(srcfile)){          # remember which sections have not changed

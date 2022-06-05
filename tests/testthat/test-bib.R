@@ -87,7 +87,12 @@ test_that("bib works fine", {
     
     class(bibs_rb) <- c("bibentryRd", class(bibs_rb))
     expect_output(print(bibs_rb))
-   
+
+    ## after the fix of issue #25:
+    ##    (Diaz and López-Ibá{ñ}ez 2021) and Diaz and López-Ibá{ñ}ez (2021)
+    ## (before the fix the braces were escaped and appeared in the rendered citation)
+    expect_false(grepl("\\\\", insert_citeOnly("DiaLop2020ejor", "Rdpack")))
+    expect_false(grepl("\\\\", insert_citeOnly("DiaLop2020ejor;textual", "Rdpack")))
 
     ## makeVignetteReference("Rdpack", 1)
 
