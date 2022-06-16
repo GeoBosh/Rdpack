@@ -12,7 +12,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">Rdpack</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.3.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.3.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,23 +66,31 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>x</dt>
 <dd><p>the Rd object on which to apply a function.</p></dd>
-<dt>object</dt>
+
+  <dt>object</dt>
 <dd><p>the Rd object on which to apply a function.</p></dd>
-<dt>FUN</dt>
+
+  <dt>FUN</dt>
 <dd><p>The function to apply, see details</p></dd>
-<dt>rdtag</dt>
+
+  <dt>rdtag</dt>
 <dd><p>apply FUN only to elements whose <code>Rd_tag</code> attribute
     is <code>rdtag</code>.</p></dd>
-<dt>y</dt>
+
+  <dt>y</dt>
 <dd><p>an Rd object with the same structure as <code>x</code>, see `Details'.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>arguments to pass to <code>rapply</code>, see `Details'.</p></dd>
-<dt>classes</dt>
+
+  <dt>classes</dt>
 <dd><p>a character vector, passed on to <code><a href="https://rdrr.io/r/base/rapply.html" class="external-link">rapply</a></code>,
     see `Details'.</p></dd>
-<dt>how</dt>
+
+  <dt>how</dt>
 <dd><p>a character string, passed on to <code><a href="https://rdrr.io/r/base/rapply.html" class="external-link">rapply</a></code>,
     see `Details'.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -115,9 +123,14 @@
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>For <code>Rdapply</code> and <code>Rdtagapply</code>, an Rd object with some of
-  its leaves replaced as specified above.
-  For <code>rattr</code>, the object <code>x</code> with attributes of any list
+    
+  
+
+<p>For <code>Rdapply</code> and <code>Rdtagapply</code>, an Rd object with some of
+  its leaves replaced as specified above.</p>
+
+
+<p>For <code>rattr</code>, the object <code>x</code> with attributes of any list
   elements of it set to the corresponding attributes of <code>y</code>.</p>
     </div>
     <div class="section level2">
@@ -162,7 +175,7 @@
 <span class="r-in"></span>
 <span class="r-in"><span class="va">fn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="st">"u1"</span>, fileext<span class="op">=</span><span class="st">"Rd"</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="Rdo2Rdf.html">Rdo2Rdf</a></span><span class="op">(</span><span class="va">u1</span>, file <span class="op">=</span> <span class="va">fn</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	The Rd content was written to file  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmpg7sooW/u19be1c15db7Rd </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	The Rd content was written to file  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmpo3q7q0/u1cc44f5d9716Rd </span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># the saved file contains escaped percents but they disappear in parsing:</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/file.show.html" class="external-link">file.show</a></span><span class="op">(</span><span class="va">fn</span><span class="op">)</span></span>
@@ -175,7 +188,7 @@
 <span class="r-in"></span>
 <span class="r-in"><span class="va">u2</span> <span class="op">&lt;-</span> <span class="fu">Rdpack</span><span class="fu">:::</span><span class="fu">.Rd_tidy</span><span class="op">(</span><span class="va">u1</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="Rdo2Rdf.html">Rdo2Rdf</a></span><span class="op">(</span><span class="va">u2</span>, file <span class="op">=</span> <span class="va">fn</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	The Rd content was written to file  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmpg7sooW/u19be1c15db7Rd </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	The Rd content was written to file  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmpo3q7q0/u1cc44f5d9716Rd </span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/file.show.html" class="external-link">file.show</a></span><span class="op">(</span><span class="va">fn</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">fn</span><span class="op">)</span></span>
@@ -190,7 +203,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">Rdpack</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.3.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.3.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,25 +61,34 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>package</dt>
 <dd><p>a character string, the name of an installed package.</p></dd>
-<dt>vig</dt>
+ 
+  <dt>vig</dt>
 <dd><p>an integer number or a character string identifying a vignette.</p></dd>
-<dt>verbose</dt>
+
+  <dt>verbose</dt>
 <dd><p>if <code>TRUE</code>, print the references in Bibtex format.</p></dd>
-<dt>title</dt>
+
+  <dt>title</dt>
 <dd><p>a character string, title of the vignette, see Details.</p></dd>
-<dt>author</dt>
+
+  <dt>author</dt>
 <dd><p>a character string, title of the vignette, see Details.</p></dd>
-<dt>type</dt>
+
+  <dt>type</dt>
 <dd><p>a character string, type of the vignette, such as
     <code>"pdf"</code> or <code>"html"</code>. Currently ignored.</p></dd>
-<dt>bibtype</dt>
+
+  <dt>bibtype</dt>
 <dd><p>a character string, Bibtex type for the reference,
     defaults to <code>"Article"</code>.</p></dd>
-<dt>key</dt>
+
+  <dt>key</dt>
 <dd><p>a character string specifying a key for the Bibtex entry.
     If missing, suitable key is generated automatically.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>arguments passed by <code>vigbib()</code> to <code>makeVignetteReference()</code>.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -117,7 +126,9 @@
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>a bibentry object containing the generated references
+    
+
+<p>a bibentry object containing the generated references
   (the Bibtex entries are also printed, so that they can be copied to a
   bib file)</p>
     </div>
@@ -157,7 +168,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> @Article{vigutils:Sweave,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   title = {Sweave User Manual},</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   author = {R Core Team and contributors worldwide},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   journal = {URL https://CRAN.R-Project.org. Vignette included in R package utils (Part of R 4.1.3)},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   journal = {URL https://CRAN.R-Project.org. Vignette included in R package utils (Part of R 4.2.0)},</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   year = {2022},</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   publisher = {CRAN},</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   url = {https://CRAN.R-Project.org},</span>
@@ -166,7 +177,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> @Article{vigutils:Sweave,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   title = {Sweave User Manual},</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   author = {R Core Team and contributors worldwide},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   journal = {URL https://CRAN.R-Project.org. Vignette included in R package utils (Part of R 4.1.3)},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   journal = {URL https://CRAN.R-Project.org. Vignette included in R package utils (Part of R 4.2.0)},</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   year = {2022},</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   publisher = {CRAN},</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   url = {https://CRAN.R-Project.org},</span>
@@ -174,7 +185,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Team RC, worldwide c (2022). “Sweave User Manual.” _URL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> https://CRAN.R-Project.org. Vignette included in R package utils (Part</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> of R 4.1.3)_. &lt;URL: https://CRAN.R-Project.org&gt;.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> of R 4.2.0)_. &lt;https://CRAN.R-Project.org&gt;.</span>
 <span class="r-in"><span class="co">## commented out since can be slow:</span></span>
 <span class="r-in"><span class="co">## high &lt;- installed.packages(priority = "high")</span></span>
 <span class="r-in"><span class="co">## highbib &lt;- lapply(rownames(high), function(x) try(Rdpack:::vigbib(x, verbose = FALSE)))</span></span>
@@ -189,7 +200,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

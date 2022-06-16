@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">Rdpack</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.3.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.3.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,8 +58,10 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>rdo</dt>
 <dd><p>an Rd object describing functions.</p></dd>
-<dt>i_usage</dt>
+
+  <dt>i_usage</dt>
 <dd><p>see Details.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -74,19 +76,27 @@
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>TRUE if the arguments in the documentation match the (union of) the
-  actual arguments of the described functions, FALSE otherwise.
-  The returned logical value has attribute `details' which is a list
+    
+
+<p>TRUE if the arguments in the documentation match the (union of) the
+  actual arguments of the described functions, FALSE otherwise.</p>
+
+
+<p>The returned logical value has attribute `details' which is a list
   with the following components.</p>
 <dl><dt>rdo_argnames</dt>
 <dd><p>arguments described in the documentation object, <code>rdo</code>.</p></dd>
-<dt>cur_argnames</dt>
+
+  <dt>cur_argnames</dt>
 <dd><p>arguments in the current definitions of the
     described functions.</p></dd>
-<dt>added_argnames</dt>
+
+  <dt>added_argnames</dt>
 <dd><p>new arguments</p></dd>
-<dt>removed_argnames</dt>
+
+  <dt>removed_argnames</dt>
 <dd><p>removed (dropped) arguments.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
@@ -102,7 +112,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>
