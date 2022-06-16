@@ -1,9 +1,16 @@
-# Rdpack 2.3.0.9000
+# Rdpack 2.3.1.9000
+
+- fixed warnings like `checkRd: (-1) pcts-package.Rd:287: Escaped LaTeX
+  specials: \&` from `R CMD check` (starting June 2022). Previously the
+  backslash was appearing in the pdf manual. This could be avoiding by removing
+  the superfluous backslash in the bib file but this is annoying since this is
+  proper syntax for the latter.
+
+# Rdpack 2.3.1 (CRAN)
 
 - in Rd macro `\insertCite`, two or more accented Latin characters were rendered
-  with superfluous curly braces. These superfluous braces are inserted by
-  `tools:::cleanupLatex`, see the comments on issue#25 on github (reported by
-  Manuel López-Ibáñez).
+  with superfluous curly braces, see issue#25 (reported by Manuel López-Ibáñez)
+  and https://stat.ethz.ch/pipermail/r-devel/2022-April/081604.html.
   
 
 # Rdpack 2.3 (CRAN)

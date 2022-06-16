@@ -1042,8 +1042,17 @@ deparseLatexToRd <- function(x, dropBraces = FALSE)
         switch(tag,
         VERB = ,
         TEXT = ,
-        MACRO = ,
         COMMENT = result <- c(result, a),
+        MACRO = {
+            ## regex in r-devel/R/src/library/tools/R/RdConv2.R:
+            ##     pat <- "([^\\]|^)\\\\[#$&_^~]"
+            ## here we add grouping for substitution
+            pat <- "([^\\]|^)(\\\\)([#$&_^~])"  # with more grouping
+            if(grepl(pat, a)){
+                a <- gsub(pat, "\\1\\3", a)
+            }
+            result <- c(result, a)
+        },
         BLOCK = result <- c(result, if (dropBraces && lastTag == "TEXT") Recall(a) else c("{", Recall(a), "}")),
         ENVIRONMENT = result <- c(result,
         	"\\begin{", a[[1L]], "}",
