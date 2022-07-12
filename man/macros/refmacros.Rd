@@ -10,6 +10,8 @@
 
 \newcommand{\insertAllCited}{\Sexpr[results=rd,stage=build]{if(!exists(".Rdpack.currefs")) .Rdpack.currefs <- new.env();Rdpack::insert_all_ref(.Rdpack.currefs)}}
 
+\newcommand{\insertCited}{\Sexpr[results=rd,stage=build]{if(!exists(".Rdpack.currefs")) .Rdpack.currefs <- new.env();Rdpack::insert_all_ref(.Rdpack.currefs, empty_cited = TRUE)}}
+
 % insert reference #1 - key, #2 - package
 %\newcommand{\runExamples}{\Sexpr[results=rd,stage=build]{deparse({#1})}}
 \newcommand{\runExamples}{\Sexpr[results=rd,stage=build]{Rdpack:::run_examples(quote({#1}))}}

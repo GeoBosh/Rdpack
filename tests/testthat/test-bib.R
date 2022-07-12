@@ -94,6 +94,13 @@ test_that("bib works fine", {
     expect_false(grepl("\\\\", insert_citeOnly("DiaLop2020ejor", "Rdpack")))
     expect_false(grepl("\\\\", insert_citeOnly("DiaLop2020ejor;textual", "Rdpack")))
 
+
+    ## after fix of issue #26
+    ##     before the fix it was necessary to manually remove the backslash from \&, \_, etc.
+    ##     in the bib file. Now the backslashes are removed by Rdpack
+    expect_known_value(insert_all_ref(matrix(c("dummyArticle", "Rdpack"), ncol = 2)),
+                       "dummyArticle.rds", update = FALSE)
+    
     ## makeVignetteReference("Rdpack", 1)
 
 })

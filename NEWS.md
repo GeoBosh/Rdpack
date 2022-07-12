@@ -1,10 +1,17 @@
 # Rdpack 2.3.1.9000
 
+- new Rd macro `\insertCited` works like `\insertAllCited` but empties the
+  references list after finishing its work. This means that the second and
+  subsequent `\insertCited` in the same help page will list only citations done
+  since the preceding `\insertCited`. Prompted by issue #27 to allow separate
+  references lists for each method and the class in R6 documentation.
+
 - fixed warnings like `checkRd: (-1) pcts-package.Rd:287: Escaped LaTeX
   specials: \&` from `R CMD check` (starting June 2022). Previously the
   backslash was appearing in the pdf manual. This could be avoiding by removing
   the superfluous backslash in the bib file but this is annoying since this is
-  proper syntax for the latter.
+  proper syntax for the latter. (issue #26)
+  
 
 # Rdpack 2.3.1 (CRAN)
 

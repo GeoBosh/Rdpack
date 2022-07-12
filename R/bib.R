@@ -393,9 +393,8 @@ Rdo_flatinsert <- function(rdo, val, pos, before = TRUE){                       
         bibs
     }
 
-    .get_all_bibs <- function(){
+    .get_all_bibs <- function()
         allbibs
-    }
 
     list(.get_bibs0 = .get_bibs0, .get_all_bibs = .get_all_bibs)
 })
@@ -881,7 +880,7 @@ safe_cite <- function(keys, bib, ..., from.package = NULL){
     cite(keys = keys, bib = bib, longnamesfirst = FALSE, ...)
 }
 
-insert_all_ref <- function(refs, style = ""){
+insert_all_ref <- function(refs, style = "", empty_cited = FALSE){
     if(is.environment(refs)){
         refsmat <- refs$refsmat
         allbibs <- .bibs_cache$.get_all_bibs()  # 2020-11-05 was: refs$allbibs
@@ -1028,6 +1027,10 @@ insert_all_ref <- function(refs, style = ""){
         #  (for now restoring the old one, to check if pkgdown would consider this as a bug)
 
         # paste0(res, collapse = "\n\n")
+
+    if(empty_cited)
+        refs$refsmat <- matrix(character(0), nrow = 0, ncol = 2)
+    
     paste0(res, collapse = "\\cr\\cr ")
 }
 
@@ -1044,6 +1047,7 @@ deparseLatexToRd <- function(x, dropBraces = FALSE)
         TEXT = ,
         COMMENT = result <- c(result, a),
         MACRO = {
+            ## see issue #26
             ## regex in r-devel/R/src/library/tools/R/RdConv2.R:
             ##     pat <- "([^\\]|^)\\\\[#$&_^~]"
             ## here we add grouping for substitution
