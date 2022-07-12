@@ -51,7 +51,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">Rdpack_bibstyles</span><span class="op">(</span><span class="va">package</span>, <span class="va">authors</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">Rdpack_bibstyles</span><span class="op">(</span><span class="va">package</span>, <span class="va">authors</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -74,11 +74,13 @@
   to appear with full names, eg John Smith rather than in the default
   Smith J style.</p>
 <p>Package authors can request this feature by adding the following line
-  to their <code>.onLoad</code> function (if their package has one):</p><div class="sourceCode"><pre><code><span class="fu">Rdpack</span><span class="fu">::</span><span class="fu"><a href="../reference/Rdpack_bibstyles.html">Rdpack_bibstyles</a></span><span class="op">(</span>package <span class="op">=</span> <span class="va">pkg</span>, authors <span class="op">=</span> <span class="st">"LongNames"</span><span class="op">)</span></code></pre></div><p>of just copy the following definition in a package that does not have
-  <code>.onLoad</code>  :</p><div class="sourceCode"><pre><code><span class="va">.onLoad</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">lib</span>, <span class="va">pkg</span><span class="op">)</span><span class="op">{</span>
-        <span class="fu">Rdpack</span><span class="fu">::</span><span class="fu"><a href="../reference/Rdpack_bibstyles.html">Rdpack_bibstyles</a></span><span class="op">(</span>package <span class="op">=</span> <span class="va">pkg</span>, authors <span class="op">=</span> <span class="st">"LongNames"</span><span class="op">)</span>
-        <span class="fu"><a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span>
-    <span class="op">}</span></code></pre></div><p>After building and installing the package the references should be
+  to their <code>.onLoad</code> function (if their package has one):</p><div class="sourceCode"><pre><code><span></span>
+<span>    <span class="fu">Rdpack</span><span class="fu">::</span><span class="fu"><a href="../reference/Rdpack_bibstyles.html">Rdpack_bibstyles</a></span><span class="op">(</span>package <span class="op">=</span> <span class="va">pkg</span>, authors <span class="op">=</span> <span class="st">"LongNames"</span><span class="op">)</span></span></code></pre></div><p>of just copy the following definition in a package that does not have
+  <code>.onLoad</code>  :</p><div class="sourceCode"><pre><code><span></span>
+<span>    <span class="va">.onLoad</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">lib</span>, <span class="va">pkg</span><span class="op">)</span><span class="op">{</span></span>
+<span>        <span class="fu">Rdpack</span><span class="fu">::</span><span class="fu"><a href="../reference/Rdpack_bibstyles.html">Rdpack_bibstyles</a></span><span class="op">(</span>package <span class="op">=</span> <span class="va">pkg</span>, authors <span class="op">=</span> <span class="st">"LongNames"</span><span class="op">)</span></span>
+<span>        <span class="fu"><a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span></code></pre></div><p>After building and installing the package the references should be
   using long names.</p>
     </div>
     <div class="section level2">
@@ -112,7 +114,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

@@ -63,11 +63,11 @@ Generates usage text for a function, S3 method or S4 method.  The text
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">get_usage</span><span class="op">(</span><span class="va">object</span>, name <span class="op">=</span> <span class="cn">NULL</span>, force.function <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span>,
-          S3class <span class="op">=</span> <span class="st">""</span>, S4sig <span class="op">=</span> <span class="st">""</span>, infix <span class="op">=</span> <span class="cn">FALSE</span>, fu <span class="op">=</span> <span class="cn">TRUE</span>,
-          out.format <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span>
-
-<span class="fu">promptUsage</span><span class="op">(</span><span class="va">...</span>, <span class="va">usage</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_usage</span><span class="op">(</span><span class="va">object</span>, name <span class="op">=</span> <span class="cn">NULL</span>, force.function <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span>,</span>
+<span>          S3class <span class="op">=</span> <span class="st">""</span>, S4sig <span class="op">=</span> <span class="st">""</span>, infix <span class="op">=</span> <span class="cn">FALSE</span>, fu <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>          out.format <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">promptUsage</span><span class="op">(</span><span class="va">...</span>, <span class="va">usage</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -119,25 +119,25 @@ Generates usage text for a function, S3 method or S4 method.  The text
   copying and pasting into Rd documentation or saving to a file
   (otherwise, if the usage text contains backslashes, they may appear
   duplicated).  Long text is wrapped on two or more lines. For example,
-  </p><div class="sourceCode"><pre><code><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="va">lm</span><span class="op">)</span><span class="op">)</span>
-<span class="co">##: lm(formula, data, subset, weights, na.action, method = "qr", </span>
-<span class="co">##:    model = TRUE, x = FALSE, y = FALSE, qr = TRUE, singular.ok = TRUE, </span>
-<span class="co">##:    contrasts = NULL, offset, \dots)</span></code></pre></div>
+  </p><div class="sourceCode"><pre><code><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="va">lm</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">##: lm(formula, data, subset, weights, na.action, method = "qr", </span></span>
+<span><span class="co">##:    model = TRUE, x = FALSE, y = FALSE, qr = TRUE, singular.ok = TRUE, </span></span>
+<span><span class="co">##:    contrasts = NULL, offset, \dots)</span></span></code></pre></div>
   Argument <code>"name"</code> can be used to specify a print name for the function.
   This is most often needed for S3 methods. Compare
-  <div class="sourceCode"><pre><code><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="va">summary.lm</span><span class="op">)</span><span class="op">)</span>
-<span class="co">##: summary.lm(object, correlation = FALSE, symbolic.cor = FALSE, \dots)</span></code></pre></div>
+  <div class="sourceCode"><pre><code><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="va">summary.lm</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">##: summary.lm(object, correlation = FALSE, symbolic.cor = FALSE, \dots)</span></span></code></pre></div>
   and
-  <div class="sourceCode"><pre><code><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="va">summary.lm</span>, name <span class="op">=</span> <span class="st">"summary"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">##: summary(object, correlation = FALSE, symbolic.cor = FALSE, \dots)</span></code></pre></div>
+  <div class="sourceCode"><pre><code><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="va">summary.lm</span>, name <span class="op">=</span> <span class="st">"summary"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">##: summary(object, correlation = FALSE, symbolic.cor = FALSE, \dots)</span></span></code></pre></div>
   The call is just <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> in the latter. This fairly reflects
   the fact that S3 methods are normally called via the generic, but
   adding some explanatory text around the command is usually a good
   idea. For programmatically generated usage sections in help pages,
   argument <code>S3class</code> can be used to get the standard Rd markup for
   S3 methods.
-  <div class="sourceCode"><pre><code><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="va">summary.lm</span>, <span class="st">"summary"</span>, S3class <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">##: \method{summary}{lm}(object, correlation = FALSE, symbolic.cor = FALSE, \dots)</span></code></pre></div>
+  <div class="sourceCode"><pre><code><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="va">summary.lm</span>, <span class="st">"summary"</span>, S3class <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">##: \method{summary}{lm}(object, correlation = FALSE, symbolic.cor = FALSE, \dots)</span></span></code></pre></div>
   (Note that <code>\method</code> can only be used in Usage sections.)  
 <p>When <code>object</code> is an anonymous function, argument <code>name</code> is compulsory.
   For example,
@@ -151,25 +151,25 @@ Generates usage text for a function, S3 method or S4 method.  The text
   of functions located in other objects, such as environments and lists,
   see the examples.</p>
 <p>If a function is used as an infix operator, set <code>infix = TRUE</code>.
-  </p><div class="sourceCode"><pre><code><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="st">"+"</span>, infix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">##: [1] "e1 + e2"</span>
-<span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="st">"%in%"</span>, infix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">##: [1] "x %in% table"</span></code></pre></div>
+  </p><div class="sourceCode"><pre><code><span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="st">"+"</span>, infix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">##: [1] "e1 + e2"</span></span>
+<span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="st">"%in%"</span>, infix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">##: [1] "x %in% table"</span></span></code></pre></div>
   The name of the operator may be in a variable:
-  <div class="sourceCode"><pre><code><span class="va">op</span> <span class="op">&lt;-</span> <span class="st">"+"</span>
-<span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="va">op</span>, infix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">##: [1] "e1 + e2"</span></code></pre></div>  
+  <div class="sourceCode"><pre><code><span><span class="va">op</span> <span class="op">&lt;-</span> <span class="st">"+"</span></span>
+<span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="va">op</span>, infix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">##: [1] "e1 + e2"</span></span></code></pre></div>  
 <p>Backticks are ok, as well,
-  </p><div class="sourceCode"><pre><code><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="va">`+`</span>, infix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">##: [1] "e1 + e2"</span></code></pre></div>
+  </p><div class="sourceCode"><pre><code><span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="va">`+`</span>, infix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">##: [1] "e1 + e2"</span></span></code></pre></div>
   But if a backticked operator is in a variable, surprise springs: 
-  <div class="sourceCode"><pre><code><span class="va">op</span> <span class="op">&lt;-</span> <span class="va">`+`</span>
-<span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="va">op</span>, infix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">##: [1] "e1 op e2"</span></code></pre></div>
+  <div class="sourceCode"><pre><code><span><span class="va">op</span> <span class="op">&lt;-</span> <span class="va">`+`</span></span>
+<span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="va">op</span>, infix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">##: [1] "e1 op e2"</span></span></code></pre></div>
   In this case, don't use backticks  or, if you must, evaluate the argument:
-  <div class="sourceCode"><pre><code><span class="va">op</span> <span class="op">&lt;-</span> <span class="va">`+`</span>
-<span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/eval.html" class="external-link">eval</a></span><span class="op">(</span><span class="va">op</span><span class="op">)</span>, name <span class="op">=</span> <span class="st">"+"</span>, infix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">##: [1] "e1 + e2"</span></code></pre></div>
+  <div class="sourceCode"><pre><code><span><span class="va">op</span> <span class="op">&lt;-</span> <span class="va">`+`</span></span>
+<span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/eval.html" class="external-link">eval</a></span><span class="op">(</span><span class="va">op</span><span class="op">)</span>, name <span class="op">=</span> <span class="st">"+"</span>, infix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">##: [1] "e1 + e2"</span></span></code></pre></div>
 
 <p><!-- % \Sexpr[stage=build,results=hide]{wrap_percent &lt;- function(x) paste0("\%", x, "\%")} -->
   <!-- % \printExample{op &lt;- wrap_percent("in"); get_usage(op,  infix = TRUE)} -->
@@ -215,42 +215,42 @@ Generates usage text for a function, S3 method or S4 method.  The text
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">u</span> <span class="op">&lt;-</span> <span class="fu">get_usage</span><span class="op">(</span><span class="va">lm</span><span class="op">)</span>    <span class="co"># a long usage text</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="va">u</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">u</span> <span class="op">&lt;-</span> <span class="fu">get_usage</span><span class="op">(</span><span class="va">lm</span><span class="op">)</span>    <span class="co"># a long usage text</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="va">u</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> lm(formula, data, subset, weights, na.action, method = "qr", </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    model = TRUE, x = FALSE, y = FALSE, qr = TRUE, singular.ok = TRUE, </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    contrasts = NULL, offset, \dots)</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># if there are additional arguments in S3 methods,</span></span>
-<span class="r-in"><span class="co"># use names of the functions, not the objects, e.g.</span></span>
-<span class="r-in"><span class="fu">get_usage</span><span class="op">(</span><span class="st">"droplevels"</span>, S3class <span class="op">=</span> <span class="st">"data.frame"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># if there are additional arguments in S3 methods,</span></span></span>
+<span class="r-in"><span><span class="co"># use names of the functions, not the objects, e.g.</span></span></span>
+<span class="r-in"><span><span class="fu">get_usage</span><span class="op">(</span><span class="st">"droplevels"</span>, S3class <span class="op">=</span> <span class="st">"data.frame"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                            droplevels </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> "\\method{droplevels}{data.frame}(x, except = NULL, exclude, \\dots)" </span>
-<span class="r-in"><span class="fu">get_usage</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"droplevels"</span>, S3class <span class="op">=</span> <span class="st">"data.frame"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">get_usage</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"droplevels"</span>, S3class <span class="op">=</span> <span class="st">"data.frame"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                            droplevels </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> "\\method{droplevels}{data.frame}(x, except = NULL, exclude, \\dots)" </span>
-<span class="r-in"><span class="co"># (both give "\method{droplevels}{data.frame}(x, except = NULL, \dots)")</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># but this gives the args of the generic:  "\method{droplevels}{data.frame}(x, \dots)"</span></span>
-<span class="r-in"><span class="fu">get_usage</span><span class="op">(</span><span class="va">droplevels</span>, S3class <span class="op">=</span> <span class="st">"data.frame"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># (both give "\method{droplevels}{data.frame}(x, except = NULL, \dots)")</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># but this gives the args of the generic:  "\method{droplevels}{data.frame}(x, \dots)"</span></span></span>
+<span class="r-in"><span><span class="fu">get_usage</span><span class="op">(</span><span class="va">droplevels</span>, S3class <span class="op">=</span> <span class="st">"data.frame"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                    droplevels </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> "\\method{droplevels}{data.frame}(x, \\dots)" </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## a list containing some functions</span></span>
-<span class="r-in"><span class="va">summaries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>xbar <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, rho <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">x</span>,<span class="va">y</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">get_usage</span><span class="op">(</span><span class="va">summaries</span><span class="op">$</span><span class="va">xbar</span>, name <span class="op">=</span> <span class="st">"xbar"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## a list containing some functions</span></span></span>
+<span class="r-in"><span><span class="va">summaries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>xbar <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, rho <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">x</span>,<span class="va">y</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">get_usage</span><span class="op">(</span><span class="va">summaries</span><span class="op">$</span><span class="va">xbar</span>, name <span class="op">=</span> <span class="st">"xbar"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      xbar </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> "xbar(x)" </span>
-<span class="r-in"><span class="fu">get_usage</span><span class="op">(</span><span class="va">summaries</span><span class="op">$</span><span class="va">rho</span>, name <span class="op">=</span> <span class="st">"rho"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">get_usage</span><span class="op">(</span><span class="va">summaries</span><span class="op">$</span><span class="va">rho</span>, name <span class="op">=</span> <span class="st">"rho"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         rho </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> "rho(x, y)" </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## functions in an environment</span></span>
-<span class="r-in"><span class="va">esummaries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list2env.html" class="external-link">list2env</a></span><span class="op">(</span><span class="va">summaries</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">get_usage</span><span class="op">(</span><span class="va">esummaries</span><span class="op">$</span><span class="va">xbar</span>, name <span class="op">=</span> <span class="st">"xbar"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## functions in an environment</span></span></span>
+<span class="r-in"><span><span class="va">esummaries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list2env.html" class="external-link">list2env</a></span><span class="op">(</span><span class="va">summaries</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">get_usage</span><span class="op">(</span><span class="va">esummaries</span><span class="op">$</span><span class="va">xbar</span>, name <span class="op">=</span> <span class="st">"xbar"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      xbar </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> "xbar(x)" </span>
-<span class="r-in"><span class="fu">get_usage</span><span class="op">(</span><span class="va">esummaries</span><span class="op">$</span><span class="va">rho</span>, name <span class="op">=</span> <span class="st">"rho"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">get_usage</span><span class="op">(</span><span class="va">esummaries</span><span class="op">$</span><span class="va">rho</span>, name <span class="op">=</span> <span class="st">"rho"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         rho </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> "rho(x, y)" </span>
 </code></pre></div>
@@ -264,7 +264,7 @@ Generates usage text for a function, S3 method or S4 method.  The text
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

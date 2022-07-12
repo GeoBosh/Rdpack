@@ -46,7 +46,9 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.3.1.9000" id="rdpack-2319000">Rdpack 2.3.1.9000<a class="anchor" aria-label="anchor" href="#rdpack-2319000"></a></h2>
-<ul><li>fixed warnings like <code>checkRd: (-1) pcts-package.Rd:287: Escaped LaTeX specials: \&amp;</code> from <code>R CMD check</code> (starting June 2022). Previously the backslash was appearing in the pdf manual. This could be avoiding by removing the superfluous backslash in the bib file but this is annoying since this is proper syntax for the latter.</li></ul></div>
+<ul><li><p>new Rd macro <code>\insertCited</code> works like <code>\insertAllCited</code> but empties the references list after finishing its work. This means that the second and subsequent <code>\insertCited</code> in the same help page will list only citations done since the preceding <code>\insertCited</code>. Prompted by issue <a href="https://github.com/GeoBosh/Rdpack/issues/27" class="external-link">#27</a> to allow separate references lists for each method and the class in R6 documentation.</p></li>
+<li><p>fixed warnings like <code>checkRd: (-1) pcts-package.Rd:287: Escaped LaTeX specials: \&amp;</code> from <code>R CMD check</code> (starting June 2022). Previously the backslash was appearing in the pdf manual. This could be avoiding by removing the superfluous backslash in the bib file but this is annoying since this is proper syntax for the latter. (issue <a href="https://github.com/GeoBosh/Rdpack/issues/26" class="external-link">#26</a>)</p></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.3.1" id="rdpack-231-cran">Rdpack 2.3.1 (CRAN)<a class="anchor" aria-label="anchor" href="#rdpack-231-cran"></a></h2><p class="text-muted">CRAN release: 2022-06-07</p>
 <ul><li>in Rd macro <code>\insertCite</code>, two or more accented Latin characters were rendered with superfluous curly braces, see issue#25 (reported by Manuel López-Ibáñez) and <a href="https://stat.ethz.ch/pipermail/r-devel/2022-April/081604.html" class="external-link uri">https://stat.ethz.ch/pipermail/r-devel/2022-April/081604.html</a>.</li></ul></div>
@@ -79,7 +81,7 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.1.1" id="rdpack-211-cran">Rdpack 2.1.1 (CRAN)<a class="anchor" aria-label="anchor" href="#rdpack-211-cran"></a></h2><p class="text-muted">CRAN release: 2021-02-23</p>
 <ul><li><p>In <code>viewRd</code>, the default for the help type now is <code>options("help_type")</code> (previously the default was <code>"text"</code>).</p></li>
-<li><p>for <code>roxygen2</code> users, added a note in README and <code>Rdpack-package.Rd</code> not to indent by exactly four spaces <code>\insertAllCited{}</code> relative to <code><a href="https://github.com/references" class="external-link">@references</a></code> when markdown mode is activated. This is to avoid it being translated by <code>roxygen2</code> as verbatim (<code>\preformatted</code>) text, see issue (<a href="https://github.com/GeoBosh/Rdpack/issues/18" class="external-link">#18</a>).</p></li>
+<li><p>for <code>roxygen2</code> users, added a note in README and <code>Rdpack-package.Rd</code> not to indent by exactly four spaces <code>\insertAllCited{}</code> relative to <code>@references</code> when markdown mode is activated. This is to avoid it being translated by <code>roxygen2</code> as verbatim (<code>\preformatted</code>) text, see issue (<a href="https://github.com/GeoBosh/Rdpack/issues/18" class="external-link">#18</a>).</p></li>
 <li><p>moved package <code>gbRd</code> to Suggests.</p></li>
 <li><p>fixed uses of in several examples (necessitated by a change in R-devel circa February 2021).</p></li>
 </ul></div>
@@ -145,7 +147,7 @@
 <h2 class="pkg-version" data-toc-text="0.9-1" id="rdpack-09-1">Rdpack 0.9-1<a class="anchor" aria-label="anchor" href="#rdpack-09-1"></a></h2>
 <ul><li><p>now <code>REFERENCES.bib</code> is read-in using the declared encoding for the corresponding package. If there is no declared encoding, “UTF-8” is assumed.</p></li>
 <li><p>Now macros <code>\insertCite</code> and <code>\insertCiteOnly</code> use the correct <code>results=rd</code> instead of <code>results=Rd</code>. This was not catched by <code>R</code>s building tools but caused errors when processed with <code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code>. Fixes issue#8. Also fixes r-lib/pkgdown#784. Thanks to <a href="https://github.com/jayhesselberth" class="external-link">Jay Hesselberth</a> for uncovering this.</p></li>
-<li><p>now references produced by the citation macros for BibTeX entries of type <code><a href="https://github.com/book" class="external-link">@book</a></code> and <code><a href="https://github.com/incollection" class="external-link">@incollection</a></code> treat field ‘series’ similarly to other BibTeX styles, including JSS (issue#7 raised by Kisung You). Note that even though the underlying base R tools are based on JSS, they treat this field differently.</p></li>
+<li><p>now references produced by the citation macros for BibTeX entries of type <code>@book</code> and <code>@incollection</code> treat field ‘series’ similarly to other BibTeX styles, including JSS (issue#7 raised by Kisung You). Note that even though the underlying base R tools are based on JSS, they treat this field differently.</p></li>
 <li><p>Bugfix: now Rd macro <code>\printExample</code> evaluates the expressions in the correct environment.</p></li>
 <li><p>help page of <code>get_usage</code> gets a fairly complete Details section with numerous evaluated examples.</p></li>
 <li><p>now <code>run_examples()</code> escapes <code>%</code> by default, before returning the text. This is needed for text that is to be included in an Rd file. It can be turned off by setting the new argument <code>escape</code> to <code>FALSE</code>.</p></li>
@@ -154,7 +156,7 @@
 <li><p>Many features of Rdpack are best demonstrated on a package. The new package RdpackTester under <code>./inst/examples</code> now makes this easier.</p></li>
 <li><p>now the help page “predefined.Rd” does not print some tables twice in the pdf manual. (This was due to using <code>\if{latex}{}{}' instead of</code>’ for those tables.)</p></li>
 <li><p>also in “predefined.Rd”, removed illegal use of vertical bars (in column specifications of tabular environments) from the pure LaTeX code in the <code>\ifelse</code> clause(s) and wrapped them in <code>\out{}</code>.</p></li>
-<li><p>in “get_sig_text.Rd”, replace <code>help()</code> with <code>utils::help()</code> to avoid warnings from more stringent <code>R CMD check</code>. Similarly, in “Rdpack-package.Rd” replace <code><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">packageDescription()</a></code> with <code><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">utils::packageDescription()</a></code>. This may be needed in <code>\Sexpr</code>’s more generally (<strong>TODO:</strong> check if these would still be needed if the symbols are imported by the package.)</p></li>
+<li><p>in “get_sig_text.Rd”, replace <code><a href="https://rdrr.io/r/utils/help.html" class="external-link">help()</a></code> with <code><a href="https://rdrr.io/r/utils/help.html" class="external-link">utils::help()</a></code> to avoid warnings from more stringent <code>R CMD check</code>. Similarly, in “Rdpack-package.Rd” replace <code><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">packageDescription()</a></code> with <code><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">utils::packageDescription()</a></code>. This may be needed in <code>\Sexpr</code>’s more generally (<strong>TODO:</strong> check if these would still be needed if the symbols are imported by the package.)</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.9-0" id="rdpack-09-0-cran">Rdpack 0.9-0 (CRAN)<a class="anchor" aria-label="anchor" href="#rdpack-09-0-cran"></a></h2><p class="text-muted">CRAN release: 2018-08-04</p>
@@ -166,8 +168,8 @@
 <h2 class="pkg-version" data-toc-text="0.8-3" id="rdpack-08-3">Rdpack 0.8-3<a class="anchor" aria-label="anchor" href="#rdpack-08-3"></a></h2>
 <ul><li>
 <p>new macro <code>\printExample</code> for inclusion of example computations in narrative sections, such as <code>Details</code>. The code is evaluated and printed similarly to <code>R</code> sessions but the code is not prefixed and the output is prefixed with comment symbols, eg.</p>
-<pre><code><span class="fl">2</span><span class="op">+</span><span class="fl">2</span>
-<span class="co">##: 4</span></code></pre>
+<pre><code><span><span class="fl">2</span><span class="op">+</span><span class="fl">2</span></span>
+<span><span class="co">##: 4</span></span></code></pre>
 </li>
 <li>
 <p>new experimental macro <code>\runExamples</code> for use as top level section in an Rd file as a replacement of section <code>\examples</code>. <code>\runExamples{code}</code> evaluates the code and creates section <code>\examples</code> containing the code and the results (similarly to <code>\printExample</code>). So, <code>\runExamples{2 + 2}</code> produces</p>
@@ -275,7 +277,7 @@ May be particularly helpful for devtools developers.</p></li>
 <h2 class="pkg-version" data-toc-text="0.4-22" id="rdpack-04-22-cran">Rdpack 0.4-22 (CRAN)<a class="anchor" aria-label="anchor" href="#rdpack-04-22-cran"></a></h2><p class="text-muted">CRAN release: 2017-10-02</p>
 <ul><li><p>Added the requirement to <strong>Import Rdpack</strong> to the help page of <code><a href="../reference/insert_ref.html">insert_ref()</a></code>. (It was out of sync with the vignette.)</p></li>
 <li><p>Updated Description in DESCRIPTION, which was also out of sync with the vignette.</p></li>
-<li><p>Bug fix in the vignette: changed <code>\@references</code> to <code><a href="https://github.com/references" class="external-link">@references</a></code> in the roxygen2 example.</p></li>
+<li><p>Bug fix in the vignette: changed <code>\@references</code> to <code>@references</code> in the roxygen2 example.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.4-21" id="rdpack-04-21-cran">Rdpack 0.4-21 (CRAN)<a class="anchor" aria-label="anchor" href="#rdpack-04-21-cran"></a></h2><p class="text-muted">CRAN release: 2017-08-06</p>
@@ -356,7 +358,7 @@ May be particularly helpful for devtools developers.</p></li>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

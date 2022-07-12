@@ -206,12 +206,12 @@
 <h2 id="changing-the-style-of-references">Changing the style of references<a class="anchor" aria-label="anchor" href="#changing-the-style-of-references"></a>
 </h2>
 <p>Bibliography styles for lists of references are supported from <span class="underline">Rdpack (&gt;= 0.8)</span>. Currently the only alternative offered is to use long names (Georgi N. Boshnakov) in place of the default style (Boshnakov GN). More comprehensive alternatives can be included if needed or requested.</p>
-<p>To cause all lists of references produced by <code>\insertAllCited</code> in a package to appear with full names, add <code><a href="https://rdrr.io/r/base/ns-hooks.html" class="external-link">.onLoad()</a></code> function to your package. If you don’t have <code><a href="https://rdrr.io/r/base/ns-hooks.html" class="external-link">.onLoad()</a></code>, just copy the following definition:</p>
+<p>To cause all lists of references produced by <code>\insertAllCited</code> in a package to appear with full names, add <code>.onLoad()</code> function to your package. If you don’t have <code>.onLoad()</code>, just copy the following definition:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>.onLoad &lt;-<span class="st"> </span><span class="cf">function</span>(lib, pkg){</span>
 <span id="cb14-2"><a href="#cb14-2"></a>    Rdpack<span class="op">::</span><span class="kw">Rdpack_bibstyles</span>(<span class="dt">package =</span> pkg, <span class="dt">authors =</span> <span class="st">"LongNames"</span>)</span>
 <span id="cb14-3"><a href="#cb14-3"></a>    <span class="kw">invisible</span>(<span class="ot">NULL</span>)</span>
 <span id="cb14-4"><a href="#cb14-4"></a>}</span></code></pre></div>
-<p>If you already have <code><a href="https://rdrr.io/r/base/ns-hooks.html" class="external-link">.onLoad()</a></code>, add the line containing the <code><a href="reference/Rdpack_bibstyles.html">Rdpack::Rdpack_bibstyles</a></code> call to it.</p>
+<p>If you already have <code>.onLoad()</code>, add the line containing the <code><a href="reference/Rdpack_bibstyles.html">Rdpack::Rdpack_bibstyles</a></code> call to it.</p>
 <p>After installling/reloading your package the lists of references should appear with long author names. “Rdpack” itself now uses this style.</p>
 <p><a id="orgd2f96f4"></a></p>
 </div>
@@ -274,7 +274,7 @@
 <div class="sourceCode" id="cb19"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>Rdpack<span class="op">::</span><span class="kw">viewRd</span>(<span class="st">"./man/filename.Rd"</span>, <span class="dt">type =</span> <span class="st">"html"</span>) <span class="co"># open in a browser</span></span>
 <span id="cb19-2"><a href="#cb19-2"></a>Rdpack<span class="op">::</span><span class="kw">viewRd</span>(<span class="st">"./man/filename.Rd"</span>, <span class="dt">type =</span> <span class="st">"text"</span>) <span class="co"># text</span></span></code></pre></div>
 <p><code><a href="reference/viewRd.html">viewRd()</a></code> renders references and citations correctly, since it processes Rd macros.</p>
-<p>Users of ‘devtools’ can use <code>viewRd</code> in place of <code>help()</code> to view rendered Rd sources in development mode. This should work also in development mode on any platform (e.g. RStudio, Emacs/ESS, Rgui)<sup><a id="fnr.7" class="footref" href="#fn.7">7</a></sup>.</p>
+<p>Users of ‘devtools’ can use <code>viewRd</code> in place of <code><a href="https://rdrr.io/r/utils/help.html" class="external-link">help()</a></code> to view rendered Rd sources in development mode. This should work also in development mode on any platform (e.g. RStudio, Emacs/ESS, Rgui)<sup><a id="fnr.7" class="footref" href="#fn.7">7</a></sup>.</p>
 <p><a id="orgf51067b"></a></p>
 </div>
 <div class="section level1">
@@ -405,7 +405,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer>

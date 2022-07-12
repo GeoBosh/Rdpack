@@ -57,7 +57,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">get_sig_text</span><span class="op">(</span><span class="va">rdo</span>, package <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_sig_text</span><span class="op">(</span><span class="va">rdo</span>, package <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -77,15 +77,15 @@
 
 <p>Here we find all methods for <code>show()</code> defined in package
   <code>"methods"</code> and print the first few of them: 
-  </p><div class="sourceCode"><pre><code><span class="va">fn</span> <span class="op">&lt;-</span> <span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/help.html" class="external-link">help</a></span><span class="op">(</span><span class="st">"show-methods"</span>, package <span class="op">=</span> <span class="st">"methods"</span><span class="op">)</span>
-<span class="va">rdo</span> <span class="op">&lt;-</span> <span class="fu">utils</span><span class="fu">:::</span><span class="fu">.getHelpFile</span><span class="op">(</span><span class="va">fn</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/get_sig_text.html">get_sig_text</a></span><span class="op">(</span><span class="va">rdo</span><span class="op">)</span><span class="op">)</span>
-<span class="co">##: [1] "signature(object = \"ANY\")"                   </span>
-<span class="co">##: [2] "signature(object = \"classGeneratorFunction\")"</span>
-<span class="co">##: [3] "signature(object = \"classRepresentation\")"   </span>
-<span class="co">##: [4] "signature(object = \"envRefClass\")"           </span>
-<span class="co">##: [5] "signature(object = \"externalRefMethod\")"     </span>
-<span class="co">##: [6] "signature(object = \"genericFunction\")"       </span></code></pre></div>
+  </p><div class="sourceCode"><pre><code><span><span class="va">fn</span> <span class="op">&lt;-</span> <span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/help.html" class="external-link">help</a></span><span class="op">(</span><span class="st">"show-methods"</span>, package <span class="op">=</span> <span class="st">"methods"</span><span class="op">)</span></span>
+<span><span class="va">rdo</span> <span class="op">&lt;-</span> <span class="fu">utils</span><span class="fu">:::</span><span class="fu">.getHelpFile</span><span class="op">(</span><span class="va">fn</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/get_sig_text.html">get_sig_text</a></span><span class="op">(</span><span class="va">rdo</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">##: [1] "signature(object = \"ANY\")"                   </span></span>
+<span><span class="co">##: [2] "signature(object = \"classGeneratorFunction\")"</span></span>
+<span><span class="co">##: [3] "signature(object = \"classRepresentation\")"   </span></span>
+<span><span class="co">##: [4] "signature(object = \"envRefClass\")"           </span></span>
+<span><span class="co">##: [5] "signature(object = \"externalRefMethod\")"     </span></span>
+<span><span class="co">##: [6] "signature(object = \"genericFunction\")"       </span></span></code></pre></div>
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -109,96 +109,96 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">## load another package with some S4 methods ("methods" is already loaded)</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st">"stats4"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">rdo</span> <span class="op">&lt;-</span> <span class="fu"><a href="Rdo_fetch.html">Rdo_fetch</a></span><span class="op">(</span><span class="st">"show"</span>, package <span class="op">=</span> <span class="st">"methods"</span><span class="op">)</span></span>
-<span class="r-in"><span class="co">## alternatively:</span></span>
-<span class="r-in"><span class="co">#fn &lt;- help("show-methods", package = "methods")</span></span>
-<span class="r-in"><span class="co">#rdo &lt;- utils:::.getHelpFile(fn)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## this will find all methods for "show" in currently loaded packages</span></span>
-<span class="r-in"><span class="co">## (print only some of them)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">get_sig_text</span><span class="op">(</span><span class="va">rdo</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## load another package with some S4 methods ("methods" is already loaded)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st">"stats4"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">rdo</span> <span class="op">&lt;-</span> <span class="fu"><a href="Rdo_fetch.html">Rdo_fetch</a></span><span class="op">(</span><span class="st">"show"</span>, package <span class="op">=</span> <span class="st">"methods"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">## alternatively:</span></span></span>
+<span class="r-in"><span><span class="co">#fn &lt;- help("show-methods", package = "methods")</span></span></span>
+<span class="r-in"><span><span class="co">#rdo &lt;- utils:::.getHelpFile(fn)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## this will find all methods for "show" in currently loaded packages</span></span></span>
+<span class="r-in"><span><span class="co">## (print only some of them)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">get_sig_text</span><span class="op">(</span><span class="va">rdo</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "signature(object = \"ANY\")"                      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [2] "signature(object = \"MethodDefinition\")"         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [3] "signature(object = \"MethodDefinitionWithTrace\")"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [4] "signature(object = \"MethodSelectionReport\")"    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [5] "signature(object = \"MethodWithNext\")"           </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [6] "signature(object = \"MethodWithNextWithTrace\")"  </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## this will select only the ones from package "stats4"</span></span>
-<span class="r-in"><span class="fu">get_sig_text</span><span class="op">(</span><span class="va">rdo</span>, package <span class="op">=</span> <span class="st">"stats4"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## this will select only the ones from package "stats4"</span></span></span>
+<span class="r-in"><span><span class="fu">get_sig_text</span><span class="op">(</span><span class="va">rdo</span>, package <span class="op">=</span> <span class="st">"stats4"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "signature(object = \"mle\")"         "signature(object = \"summary.mle\")"</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## this is also fine (interactively) but need to choose</span></span>
-<span class="r-in"><span class="co">## the appropriate element of "fn" if length(fn) &gt; 1</span></span>
-<span class="r-in"><span class="co">#fn &lt;- help("show-methods")</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## this finds nothing</span></span>
-<span class="r-in"><span class="co">#fn &lt;- help("logLik-methods", package = "methods")</span></span>
-<span class="r-in"><span class="co">#fn</span></span>
-<span class="r-in"><span class="fu"><a href="Rdo_fetch.html">Rdo_fetch</a></span><span class="op">(</span><span class="st">"logLik-methods"</span>, package <span class="op">=</span> <span class="st">"methods"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## this is also fine (interactively) but need to choose</span></span></span>
+<span class="r-in"><span><span class="co">## the appropriate element of "fn" if length(fn) &gt; 1</span></span></span>
+<span class="r-in"><span><span class="co">#fn &lt;- help("show-methods")</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## this finds nothing</span></span></span>
+<span class="r-in"><span><span class="co">#fn &lt;- help("logLik-methods", package = "methods")</span></span></span>
+<span class="r-in"><span><span class="co">#fn</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="Rdo_fetch.html">Rdo_fetch</a></span><span class="op">(</span><span class="st">"logLik-methods"</span>, package <span class="op">=</span> <span class="st">"methods"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## this does</span></span>
-<span class="r-in"><span class="co">#fn &lt;- help("logLik-methods", package = "stats4")</span></span>
-<span class="r-in"><span class="co">#rdo &lt;- utils:::.getHelpFile(fn)</span></span>
-<span class="r-in"><span class="va">rdo2</span> <span class="op">&lt;-</span> <span class="fu"><a href="Rdo_fetch.html">Rdo_fetch</a></span><span class="op">(</span><span class="st">"logLik-methods"</span>, package <span class="op">=</span> <span class="st">"stats4"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">get_sig_text</span><span class="op">(</span><span class="va">rdo2</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## this does</span></span></span>
+<span class="r-in"><span><span class="co">#fn &lt;- help("logLik-methods", package = "stats4")</span></span></span>
+<span class="r-in"><span><span class="co">#rdo &lt;- utils:::.getHelpFile(fn)</span></span></span>
+<span class="r-in"><span><span class="va">rdo2</span> <span class="op">&lt;-</span> <span class="fu"><a href="Rdo_fetch.html">Rdo_fetch</a></span><span class="op">(</span><span class="st">"logLik-methods"</span>, package <span class="op">=</span> <span class="st">"stats4"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">get_sig_text</span><span class="op">(</span><span class="va">rdo2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "signature(object = \"ANY\")" "signature(object = \"mle\")"</span>
-<span class="r-in"><span class="fu">get_sig_text</span><span class="op">(</span><span class="va">rdo2</span>, package <span class="op">=</span> <span class="st">"stats4"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">get_sig_text</span><span class="op">(</span><span class="va">rdo2</span>, package <span class="op">=</span> <span class="st">"stats4"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "signature(object = \"ANY\")" "signature(object = \"mle\")"</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## only default method defined</span></span>
-<span class="r-in"><span class="co">## using this:</span></span>
-<span class="r-in"><span class="kw">setGeneric</span><span class="op">(</span><span class="st">"f1"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span><span class="cn">NULL</span><span class="op">}</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## only default method defined</span></span></span>
+<span class="r-in"><span><span class="co">## using this:</span></span></span>
+<span class="r-in"><span><span class="kw">setGeneric</span><span class="op">(</span><span class="st">"f1"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span><span class="cn">NULL</span><span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "f1"</span>
-<span class="r-in"><span class="co">## since the following gives error in pkgdown:</span></span>
-<span class="r-in"><span class="co">#f1 &lt;- function(x, y){NULL}</span></span>
-<span class="r-in"><span class="co">#setGeneric("f1")</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">fn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="reprompt.html">reprompt</a></span><span class="op">(</span><span class="st">"f1"</span>, filename <span class="op">=</span> <span class="va">fn</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co">## since the following gives error in pkgdown:</span></span></span>
+<span class="r-in"><span><span class="co">#f1 &lt;- function(x, y){NULL}</span></span></span>
+<span class="r-in"><span><span class="co">#setGeneric("f1")</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">fn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="reprompt.html">reprompt</a></span><span class="op">(</span><span class="st">"f1"</span>, filename <span class="op">=</span> <span class="va">fn</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rd source not supplied, looking for installed documentation.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rd source not supplied and installed documentation not found.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Trying a 'prompt' function to generate documentation for the object.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	success: documentation generated using a 'prompt' function.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	The Rd content was written to file  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmpo3q7q0/filecc436ba27fb </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmpo3q7q0/filecc436ba27fb"</span>
-<span class="r-in"><span class="va">rdo</span> <span class="op">&lt;-</span> <span class="fu">tools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/tools/parse_Rd.html" class="external-link">parse_Rd</a></span><span class="op">(</span><span class="va">fn</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">get_sig_text</span><span class="op">(</span><span class="va">rdo</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	The Rd content was written to file  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpoTumpi/file8bc473902d8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpoTumpi/file8bc473902d8"</span>
+<span class="r-in"><span><span class="va">rdo</span> <span class="op">&lt;-</span> <span class="fu">tools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/tools/parse_Rd.html" class="external-link">parse_Rd</a></span><span class="op">(</span><span class="va">fn</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">get_sig_text</span><span class="op">(</span><span class="va">rdo</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "signature(x = \"ANY\")"</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="kw">setClass</span><span class="op">(</span><span class="st">"aRdpack"</span><span class="op">)</span></span>
-<span class="r-in"><span class="kw">setClass</span><span class="op">(</span><span class="st">"bRdpack"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## several methods defined</span></span>
-<span class="r-in"><span class="kw">setGeneric</span><span class="op">(</span><span class="st">"f4"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span><span class="cn">NULL</span><span class="op">}</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">setClass</span><span class="op">(</span><span class="st">"aRdpack"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw">setClass</span><span class="op">(</span><span class="st">"bRdpack"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## several methods defined</span></span></span>
+<span class="r-in"><span><span class="kw">setGeneric</span><span class="op">(</span><span class="st">"f4"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span><span class="cn">NULL</span><span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "f4"</span>
-<span class="r-in"><span class="kw">setMethod</span><span class="op">(</span><span class="st">"f4"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"numeric"</span>, <span class="st">"numeric"</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span><span class="cn">NULL</span><span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"><span class="kw">setMethod</span><span class="op">(</span><span class="st">"f4"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"aRdpack"</span>, <span class="st">"numeric"</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span><span class="cn">NULL</span><span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"><span class="kw">setMethod</span><span class="op">(</span><span class="st">"f4"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bRdpack"</span>, <span class="st">"numeric"</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span><span class="cn">NULL</span><span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"><span class="kw">setMethod</span><span class="op">(</span><span class="st">"f4"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"aRdpack"</span>, <span class="st">"bRdpack"</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span><span class="cn">NULL</span><span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="reprompt.html">reprompt</a></span><span class="op">(</span><span class="st">"f4"</span>, filename <span class="op">=</span> <span class="va">fn</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="kw">setMethod</span><span class="op">(</span><span class="st">"f4"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"numeric"</span>, <span class="st">"numeric"</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span><span class="cn">NULL</span><span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw">setMethod</span><span class="op">(</span><span class="st">"f4"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"aRdpack"</span>, <span class="st">"numeric"</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span><span class="cn">NULL</span><span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw">setMethod</span><span class="op">(</span><span class="st">"f4"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bRdpack"</span>, <span class="st">"numeric"</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span><span class="cn">NULL</span><span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw">setMethod</span><span class="op">(</span><span class="st">"f4"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"aRdpack"</span>, <span class="st">"bRdpack"</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span><span class="cn">NULL</span><span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="reprompt.html">reprompt</a></span><span class="op">(</span><span class="st">"f4"</span>, filename <span class="op">=</span> <span class="va">fn</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rd source not supplied, looking for installed documentation.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rd source not supplied and installed documentation not found.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Trying a 'prompt' function to generate documentation for the object.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	success: documentation generated using a 'prompt' function.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	The Rd content was written to file  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmpo3q7q0/filecc436ba27fb </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmpo3q7q0/filecc436ba27fb"</span>
-<span class="r-in"><span class="va">rdo</span> <span class="op">&lt;-</span> <span class="fu">tools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/tools/parse_Rd.html" class="external-link">parse_Rd</a></span><span class="op">(</span><span class="va">fn</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">get_sig_text</span><span class="op">(</span><span class="va">rdo</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	The Rd content was written to file  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpoTumpi/file8bc473902d8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpoTumpi/file8bc473902d8"</span>
+<span class="r-in"><span><span class="va">rdo</span> <span class="op">&lt;-</span> <span class="fu">tools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/tools/parse_Rd.html" class="external-link">parse_Rd</a></span><span class="op">(</span><span class="va">fn</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">get_sig_text</span><span class="op">(</span><span class="va">rdo</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "signature(x = \"ANY\", y = \"ANY\")"        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [2] "signature(x = \"aRdpack\", y = \"bRdpack\")"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [3] "signature(x = \"aRdpack\", y = \"numeric\")"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [4] "signature(x = \"bRdpack\", y = \"numeric\")"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [5] "signature(x = \"numeric\", y = \"numeric\")"</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">fn</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">fn</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -210,7 +210,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

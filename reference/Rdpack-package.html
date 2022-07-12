@@ -73,7 +73,7 @@
 
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p></p><table class="table table"><tr><td>Package:</td><td>Rdpack</td></tr><tr><td>Type:</td><td>Package</td></tr><tr><td>Version:</td><td>2.3.1.9000</td></tr><tr><td>Date:</td><td></td></tr><tr><td>License:</td><td>GPL (&gt;= 2)</td></tr><tr><td>LazyLoad:</td><td>yes</td></tr><tr><td>Built:</td><td>R 4.2.0; ; 2022-06-16 13:12:36 UTC; unix</td></tr></table><p><!-- % -->
+    <p></p><table class="table table"><tr><td>Package:</td><td>Rdpack</td></tr><tr><td>Type:</td><td>Package</td></tr><tr><td>Version:</td><td>2.3.1.9000</td></tr><tr><td>Date:</td><td></td></tr><tr><td>License:</td><td>GPL (&gt;= 2)</td></tr><tr><td>LazyLoad:</td><td>yes</td></tr><tr><td>Built:</td><td>R 4.2.1; ; 2022-07-12 19:53:17 UTC; unix</td></tr></table><p><!-- % -->
 <!-- % 2018-05-24 commenting out    -->
 <!-- %    Index: -->
 <!-- %  -->
@@ -116,9 +116,10 @@
   function, all descriptions are updated.  Basically,
   <code><a href="reprompt.html">reprompt</a></code> updates things that are generated
   automatically, leaving manual editing untouched.</p>
-<p>The typical use of <code>reprompt</code> is with one argument, as in</p><div class="sourceCode"><pre><code><span class="fu"><a href="../reference/reprompt.html">reprompt</a></span><span class="op">(</span>infile <span class="op">=</span> <span class="st">"./Rdpack/man/reprompt.Rd"</span><span class="op">)</span>
-    <span class="fu"><a href="../reference/reprompt.html">reprompt</a></span><span class="op">(</span><span class="va">reprompt</span><span class="op">)</span>
-    <span class="fu"><a href="../reference/reprompt.html">reprompt</a></span><span class="op">(</span><span class="st">"reprompt"</span><span class="op">)</span></code></pre></div><p><code>reprompt</code> updates the documentation of all objects described in
+<p>The typical use of <code>reprompt</code> is with one argument, as in</p><div class="sourceCode"><pre><code><span></span>
+<span>    <span class="fu"><a href="../reference/reprompt.html">reprompt</a></span><span class="op">(</span>infile <span class="op">=</span> <span class="st">"./Rdpack/man/reprompt.Rd"</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="../reference/reprompt.html">reprompt</a></span><span class="op">(</span><span class="va">reprompt</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="../reference/reprompt.html">reprompt</a></span><span class="op">(</span><span class="st">"reprompt"</span><span class="op">)</span></span></code></pre></div><p><code>reprompt</code> updates the documentation of all objects described in
   the Rd object or file, and writes the updated Rd file in the current
   working directory, see <code><a href="reprompt.html">reprompt</a></code> for details. To describe
   a new function in an existing Rd file, just add something like
@@ -150,7 +151,8 @@
   with verbatim strings (<code>promptPackage</code> used to insert verbatim
   strings but in recent versions of <span style="R">R</span> it also uses macros.).</p>
 <p>For example, the source of this help page is file
-  `Rdpack-package.Rd'. It was initially produced using</p><div class="sourceCode"><pre><code><span class="fu"><a href="../reference/promptPackageSexpr.html">promptPackageSexpr</a></span><span class="op">(</span><span class="st">"Rdpack"</span><span class="op">)</span></code></pre></div><p>The factual information at the beginning of this help topic (the index
+  `Rdpack-package.Rd'. It was initially produced using</p><div class="sourceCode"><pre><code><span></span>
+<span>    <span class="fu"><a href="../reference/promptPackageSexpr.html">promptPackageSexpr</a></span><span class="op">(</span><span class="st">"Rdpack"</span><span class="op">)</span></span></code></pre></div><p>The factual information at the beginning of this help topic (the index
   above, the version and other stuff that can be determined
   automatically) is kept automatically up to date.</p>
 </div>
@@ -177,10 +179,12 @@
 <li><p>Add <span class="pkg">Rdpack</span> to the list of imports (<code>Imports:</code>
       field) in file `DESCRIPTION'.</p></li>
 <li><p>Add the following line to file `NAMESPACE':
-</p><div class="sourceCode"><pre><code><span class="fu">importFrom</span><span class="op">(</span><span class="va">Rdpack</span>,<span class="va">reprompt</span><span class="op">)</span></code></pre></div>
+</p><div class="sourceCode"><pre><code><span>  </span>
+<span>    <span class="fu">importFrom</span><span class="op">(</span><span class="va">Rdpack</span>,<span class="va">reprompt</span><span class="op">)</span></span></code></pre></div>
       Alternatively, if <span class="pkg">devtools</span> is managing your NAMESPACE file,
       the equivalent <span class="pkg">roxygen2</span> line is:
-<div class="sourceCode"><pre><code><span class="co">#' @importFrom Rdpack reprompt</span></code></pre></div></li>
+<div class="sourceCode"><pre><code><span>  </span>
+<span>    <span class="co">#' @importFrom Rdpack reprompt</span></span></code></pre></div></li>
 <li><p>Create file <code>"REFERENCES.bib"</code> in subdirectory
       <code>"inst/"</code> of the package and put the BibTeX references in
       that file.</p></li>
@@ -206,8 +210,9 @@
     <code>@references</code>, since roxygen2 may interpret it as verbatim text, 
     not macro.</p>
 
-<p>The analogous documentation chunk in roxygen2 might look like this:</p><div class="sourceCode"><pre><code><span class="co">#' @references</span>
-    <span class="co">#'     \insertAllCited{}</span></code></pre></div>  
+<p>The analogous documentation chunk in roxygen2 might look like this:</p><div class="sourceCode"><pre><code><span>  </span>
+<span>    <span class="co">#' @references</span></span>
+<span>    <span class="co">#'     \insertAllCited{}</span></span></code></pre></div>  
 
 <p>Bibliography styles for lists of references are supported as
   well. Currently the only alternative offered is to use long names
@@ -273,11 +278,11 @@ console output but the code is not prefixed and the results are prefixed with co
 symbols.
 For example, <code>\printExample{2+2; a &lt;- 2*3; a}</code> produces the
 following in the rendered documentation:</p>
-<p></p><div class="sourceCode"><pre><code><span class="fl">2</span> <span class="op">+</span> <span class="fl">2</span>
-<span class="co">##: [1] 4</span>
-<span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">2</span> <span class="op">*</span> <span class="fl">3</span>
-<span class="va">a</span>
-<span class="co">##: [1] 6</span></code></pre></div>
+<p></p><div class="sourceCode"><pre><code><span><span class="fl">2</span> <span class="op">+</span> <span class="fl">2</span></span>
+<span><span class="co">##: [1] 4</span></span>
+<span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">2</span> <span class="op">*</span> <span class="fl">3</span></span>
+<span><span class="va">a</span></span>
+<span><span class="co">##: [1] 6</span></span></code></pre></div>
 <p>The help page of <code><a href="promptUsage.html">promptUsage</a></code> contains a number of examples created with
 <code>\printExample</code>. The corresponding Rd file can be obtained from the package tarball or from
 <a href="https://github.com/GeoBosh/Rdpack/blob/master/man/promptUsage.Rd" class="external-link">https://github.com/GeoBosh/Rdpack/blob/master/man/promptUsage.Rd</a>.</p>
@@ -403,53 +408,53 @@ N. Boshnakov, Chris Putman (2020).
 <em>devtools: Tools to Make Developing R Packages Easier</em>.
 R package version 1.13.5, <a href="https://CRAN.R-project.org/package=devtools" class="external-link">https://CRAN.R-project.org/package=devtools</a>.<br><br> A. ZZZ (2018).
 “A relation between several fundamental constants: \(e^{i\pi}=-1\).”
-<em>A non-existent journal with the formula \(L_2\) in its name.</em>.
-This reference does not exist. It is a test/demo that simple formulas in BibTeX files are OK. A formula in field 'note': \(c^2 = a^2 + b^2\).</p>
+<em>A non-existent journal with the formula \(L_2\) in its name &amp; an ampersand which is preceded by a backslash in the bib file.</em>.
+This reference does not exist. It is a test/demo that simple formulas in BibTeX files are OK. A formula in field 'note': \(c^2 = a^2 + b^2\). .</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">## The examples below show typical use but are not executable.</span></span>
-<span class="r-in"><span class="co">## For executable examples see the help pages of </span></span>
-<span class="r-in"><span class="co">## reprompt, promptPackageSexpr, and rebib.</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## To make the examples executable, replace "myfun" with a real</span></span>
-<span class="r-in"><span class="co">## function, and similarly for classes and paths to files.</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="co">## update the doc. from the Rd source and save myfun.Rd</span></span>
-<span class="r-in"><span class="co">##     in the current directory (like prompt)</span></span>
-<span class="r-in"><span class="fu"><a href="reprompt.html">reprompt</a></span><span class="op">(</span>infile<span class="op">=</span><span class="st">"path/to/mypackage/man/myfun.Rd"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## update doc of myfun() from the installed doc (if any);</span></span>
-<span class="r-in"><span class="co">##     if none is found, create it like prompt</span></span>
-<span class="r-in"><span class="fu"><a href="reprompt.html">reprompt</a></span><span class="op">(</span><span class="st">"myfun"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="reprompt.html">reprompt</a></span><span class="op">(</span><span class="va">myfun</span><span class="op">)</span>      <span class="co"># same</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## update doc. for S4 methods from Rd source</span></span>
-<span class="r-in"><span class="fu"><a href="reprompt.html">reprompt</a></span><span class="op">(</span>infile<span class="op">=</span><span class="st">"path/to/mypackage/man/myfun-methods.Rd"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## update doc. for S4 methods from installed doc (if any);</span></span>
-<span class="r-in"><span class="co">##     if none is found, create it like promptMethods</span></span>
-<span class="r-in"><span class="fu"><a href="reprompt.html">reprompt</a></span><span class="op">(</span><span class="st">"myfun"</span>, type <span class="op">=</span> <span class="st">"methods"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="reprompt.html">reprompt</a></span><span class="op">(</span><span class="st">"myfun-methods"</span><span class="op">)</span>  <span class="co"># same</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## update doc. for S4 class from Rd source</span></span>
-<span class="r-in"><span class="fu"><a href="reprompt.html">reprompt</a></span><span class="op">(</span>infile<span class="op">=</span><span class="st">"path/to/mypackage/man/myclass-class.Rd"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## update doc. of S4 class from installed doc.</span></span>
-<span class="r-in"><span class="co">##     if none is found, create it like promptClass</span></span>
-<span class="r-in"><span class="fu"><a href="reprompt.html">reprompt</a></span><span class="op">(</span><span class="st">"myclass-class"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="reprompt.html">reprompt</a></span><span class="op">(</span><span class="st">"myclass"</span>, type <span class="op">=</span> <span class="st">"class"</span><span class="op">)</span>  <span class="co"># same</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## create a skeleton "mypackage-package.Rd"</span></span>
-<span class="r-in"><span class="fu"><a href="promptPackageSexpr.html">promptPackageSexpr</a></span><span class="op">(</span><span class="st">"mypackage"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## update the references in "mypackage-package.Rd"</span></span>
-<span class="r-in"><span class="fu"><a href="rebib.html">rebib</a></span><span class="op">(</span>infile<span class="op">=</span><span class="st">"path/to/mypackage/man/mypackage-package.Rd"</span>, force<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## The examples below show typical use but are not executable.</span></span></span>
+<span class="r-in"><span><span class="co">## For executable examples see the help pages of </span></span></span>
+<span class="r-in"><span><span class="co">## reprompt, promptPackageSexpr, and rebib.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## To make the examples executable, replace "myfun" with a real</span></span></span>
+<span class="r-in"><span><span class="co">## function, and similarly for classes and paths to files.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co">## update the doc. from the Rd source and save myfun.Rd</span></span></span>
+<span class="r-in"><span><span class="co">##     in the current directory (like prompt)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="reprompt.html">reprompt</a></span><span class="op">(</span>infile<span class="op">=</span><span class="st">"path/to/mypackage/man/myfun.Rd"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## update doc of myfun() from the installed doc (if any);</span></span></span>
+<span class="r-in"><span><span class="co">##     if none is found, create it like prompt</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="reprompt.html">reprompt</a></span><span class="op">(</span><span class="st">"myfun"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="reprompt.html">reprompt</a></span><span class="op">(</span><span class="va">myfun</span><span class="op">)</span>      <span class="co"># same</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## update doc. for S4 methods from Rd source</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="reprompt.html">reprompt</a></span><span class="op">(</span>infile<span class="op">=</span><span class="st">"path/to/mypackage/man/myfun-methods.Rd"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## update doc. for S4 methods from installed doc (if any);</span></span></span>
+<span class="r-in"><span><span class="co">##     if none is found, create it like promptMethods</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="reprompt.html">reprompt</a></span><span class="op">(</span><span class="st">"myfun"</span>, type <span class="op">=</span> <span class="st">"methods"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="reprompt.html">reprompt</a></span><span class="op">(</span><span class="st">"myfun-methods"</span><span class="op">)</span>  <span class="co"># same</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## update doc. for S4 class from Rd source</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="reprompt.html">reprompt</a></span><span class="op">(</span>infile<span class="op">=</span><span class="st">"path/to/mypackage/man/myclass-class.Rd"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## update doc. of S4 class from installed doc.</span></span></span>
+<span class="r-in"><span><span class="co">##     if none is found, create it like promptClass</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="reprompt.html">reprompt</a></span><span class="op">(</span><span class="st">"myclass-class"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="reprompt.html">reprompt</a></span><span class="op">(</span><span class="st">"myclass"</span>, type <span class="op">=</span> <span class="st">"class"</span><span class="op">)</span>  <span class="co"># same</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## create a skeleton "mypackage-package.Rd"</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="promptPackageSexpr.html">promptPackageSexpr</a></span><span class="op">(</span><span class="st">"mypackage"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## update the references in "mypackage-package.Rd"</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="rebib.html">rebib</a></span><span class="op">(</span>infile<span class="op">=</span><span class="st">"path/to/mypackage/man/mypackage-package.Rd"</span>, force<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -461,7 +466,7 @@ This reference does not exist. It is a test/demo that simple formulas in BibTeX 
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

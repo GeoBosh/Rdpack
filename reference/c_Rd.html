@@ -51,7 +51,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">c_Rd</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">c_Rd</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -101,25 +101,25 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">a1</span> <span class="op">&lt;-</span> <span class="fu"><a href="char2Rdpiece.html">char2Rdpiece</a></span><span class="op">(</span><span class="st">"Dummyname"</span>, <span class="st">"name"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">a2</span> <span class="op">&lt;-</span> <span class="fu"><a href="char2Rdpiece.html">char2Rdpiece</a></span><span class="op">(</span><span class="st">"Dummyallias1"</span>, <span class="st">"alias"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">a3</span> <span class="op">&lt;-</span> <span class="fu"><a href="char2Rdpiece.html">char2Rdpiece</a></span><span class="op">(</span><span class="st">"Dummy title"</span>, <span class="st">"title"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">a4</span> <span class="op">&lt;-</span> <span class="fu"><a href="char2Rdpiece.html">char2Rdpiece</a></span><span class="op">(</span><span class="st">"Dummy description"</span>, <span class="st">"description"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## The following are equivalent</span></span>
-<span class="r-in"><span class="co">## (gbRd::Rdo_empty() creates an empty list of class 'Rd')</span></span>
-<span class="r-in"><span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"gbRd"</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span class="r-in"><span class="va">b1</span> <span class="op">&lt;-</span> <span class="fu">c_Rd</span><span class="op">(</span><span class="fu">gbRd</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gbRd/man/Rdo_create.html" class="external-link">Rdo_empty</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">a1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">a2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">a3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">a4</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">c1</span> <span class="op">&lt;-</span> <span class="fu">c_Rd</span><span class="op">(</span><span class="fu">gbRd</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gbRd/man/Rdo_create.html" class="external-link">Rdo_empty</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">a1</span>, <span class="va">a2</span>, <span class="va">a3</span>, <span class="va">a4</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">d1</span> <span class="op">&lt;-</span> <span class="fu">c_Rd</span><span class="op">(</span><span class="fu">gbRd</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gbRd/man/Rdo_create.html" class="external-link">Rdo_empty</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">a1</span>, <span class="va">a2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">a3</span>, <span class="va">a4</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">c1</span>, <span class="va">b1</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">c1</span>, <span class="va">d1</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="Rdo_show.html">Rdo_show</a></span><span class="op">(</span><span class="va">b1</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## insert a newline</span></span>
-<span class="r-in"><span class="va">d1n</span> <span class="op">&lt;-</span> <span class="fu">c_Rd</span><span class="op">(</span><span class="fu">gbRd</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gbRd/man/Rdo_create.html" class="external-link">Rdo_empty</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">a1</span>, <span class="va">a2</span><span class="op">)</span>, <span class="fu"><a href="Rdo_tag.html">Rdo_newline</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">a3</span>, <span class="va">a4</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">d1n</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">a1</span> <span class="op">&lt;-</span> <span class="fu"><a href="char2Rdpiece.html">char2Rdpiece</a></span><span class="op">(</span><span class="st">"Dummyname"</span>, <span class="st">"name"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">a2</span> <span class="op">&lt;-</span> <span class="fu"><a href="char2Rdpiece.html">char2Rdpiece</a></span><span class="op">(</span><span class="st">"Dummyallias1"</span>, <span class="st">"alias"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">a3</span> <span class="op">&lt;-</span> <span class="fu"><a href="char2Rdpiece.html">char2Rdpiece</a></span><span class="op">(</span><span class="st">"Dummy title"</span>, <span class="st">"title"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">a4</span> <span class="op">&lt;-</span> <span class="fu"><a href="char2Rdpiece.html">char2Rdpiece</a></span><span class="op">(</span><span class="st">"Dummy description"</span>, <span class="st">"description"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## The following are equivalent</span></span></span>
+<span class="r-in"><span><span class="co">## (gbRd::Rdo_empty() creates an empty list of class 'Rd')</span></span></span>
+<span class="r-in"><span><span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"gbRd"</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span></span>
+<span class="r-in"><span><span class="va">b1</span> <span class="op">&lt;-</span> <span class="fu">c_Rd</span><span class="op">(</span><span class="fu">gbRd</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gbRd/man/Rdo_create.html" class="external-link">Rdo_empty</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">a1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">a2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">a3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">a4</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">c1</span> <span class="op">&lt;-</span> <span class="fu">c_Rd</span><span class="op">(</span><span class="fu">gbRd</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gbRd/man/Rdo_create.html" class="external-link">Rdo_empty</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">a1</span>, <span class="va">a2</span>, <span class="va">a3</span>, <span class="va">a4</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d1</span> <span class="op">&lt;-</span> <span class="fu">c_Rd</span><span class="op">(</span><span class="fu">gbRd</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gbRd/man/Rdo_create.html" class="external-link">Rdo_empty</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">a1</span>, <span class="va">a2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">a3</span>, <span class="va">a4</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">c1</span>, <span class="va">b1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">c1</span>, <span class="va">d1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="Rdo_show.html">Rdo_show</a></span><span class="op">(</span><span class="va">b1</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## insert a newline</span></span></span>
+<span class="r-in"><span><span class="va">d1n</span> <span class="op">&lt;-</span> <span class="fu">c_Rd</span><span class="op">(</span><span class="fu">gbRd</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gbRd/man/Rdo_create.html" class="external-link">Rdo_empty</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">a1</span>, <span class="va">a2</span><span class="op">)</span>, <span class="fu"><a href="Rdo_tag.html">Rdo_newline</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">a3</span>, <span class="va">a4</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">d1n</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required namespace: gbRd</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> List of 5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ :List of 1</span>
@@ -141,13 +141,13 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..- attr(*, "Rd_tag")= chr "TEXT"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "Rd_tag")= chr "\\description"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "class")= chr "Rd"</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## When most of the arguments are character strings</span></span>
-<span class="r-in"><span class="co">## the function 'list_Rd' may be more convenient.</span></span>
-<span class="r-in"><span class="va">u1</span> <span class="op">&lt;-</span> <span class="fu"><a href="list_Rd.html">list_Rd</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Dummyname"</span>, alias <span class="op">=</span> <span class="st">"Dummyallias1"</span>,</span>
-<span class="r-in">              title <span class="op">=</span> <span class="st">"Dummy title"</span>, description <span class="op">=</span> <span class="st">"Dummy description"</span>,</span>
-<span class="r-in">              Rd_class <span class="op">=</span> <span class="cn">TRUE</span> <span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="Rdo_show.html">Rdo_show</a></span><span class="op">(</span><span class="va">u1</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## When most of the arguments are character strings</span></span></span>
+<span class="r-in"><span><span class="co">## the function 'list_Rd' may be more convenient.</span></span></span>
+<span class="r-in"><span><span class="va">u1</span> <span class="op">&lt;-</span> <span class="fu"><a href="list_Rd.html">list_Rd</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Dummyname"</span>, alias <span class="op">=</span> <span class="st">"Dummyallias1"</span>,</span></span>
+<span class="r-in"><span>              title <span class="op">=</span> <span class="st">"Dummy title"</span>, description <span class="op">=</span> <span class="st">"Dummy description"</span>,</span></span>
+<span class="r-in"><span>              Rd_class <span class="op">=</span> <span class="cn">TRUE</span> <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="Rdo_show.html">Rdo_show</a></span><span class="op">(</span><span class="va">u1</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -159,7 +159,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>
