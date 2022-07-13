@@ -83,6 +83,7 @@ test_that("bib works fine", {
     expect_warning(insert_ref("xxx", package = "yyy"))
 
     insert_all_ref(matrix(c("parseRd,Rpack:bibtex", "Rdpack"), ncol = 2))
+    insert_all_ref(matrix(c("parseRd,Rpack:bibtex", "Rdpack"), ncol = 2), empty_cited = TRUE)
 
     
     class(bibs_rb) <- c("bibentryRd", class(bibs_rb))

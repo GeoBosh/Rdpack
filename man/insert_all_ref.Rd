@@ -3,7 +3,7 @@
 \title{Insert references cited in packages}
 \description{Insert references cited in packages. }
 \usage{
-insert_all_ref(refs, style = "")
+insert_all_ref(refs, style = "", empty_cited = FALSE)
 }
 \arguments{
   \item{refs}{
@@ -12,6 +12,9 @@ insert_all_ref(refs, style = "")
     Can also be a cached environment, see Details.
   }
   \item{style}{a bibstyle, see Details.}
+  \item{empty_cited}{
+    if \code{TRUE}, empty the list of currently cited items.
+  }
 }
 \details{
 
