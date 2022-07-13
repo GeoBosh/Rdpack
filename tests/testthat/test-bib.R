@@ -50,6 +50,27 @@ test_that("bib works fine", {
         "@see also @Rpackage:rbibutils and @parseRd", package = "Rdpack"),
         "(see also Boshnakov and Putman 2020 and Murdoch 2010)")
     expect_equal(insert_citeOnly(
+        "@see also @Rpackage:rbibutils and @parseRd;textual", package = "Rdpack"),
+        "see also Boshnakov and Putman (2020) and Murdoch (2010)")
+
+    insert_citeOnly(
+        "@see also @Rpackage:rbibutils and @parseRd;textual", package = "Rdpack",
+                                                              bibpunct = c("[", "]"))
+        
+    ## TODO: bug here:
+    ##
+    ## expect_equal(insert_citeOnly(
+    ##     "@see also @Rpackage:rbibutils and @parseRd;textual", package = "Rdpack",
+    ##                                                           bibpunct = c("[", "]")),
+    ##     "see also Boshnakov and Putman [2020] and Murdoch [2010]")
+    ##
+    ## produces:
+    ##   "see also Boshnakov and Putman [2020) and Murdoch [2010)"
+    ## (note the closing parentheses)
+    ## Uncomment the print comments in insertCite() to see more details.
+
+
+    expect_equal(insert_citeOnly(
         "@see also @Rpackage:rbibutils and @parseRd;nobrackets", package = "Rdpack"),
         "see also Boshnakov and Putman 2020 and Murdoch 2010")
     
@@ -64,7 +85,17 @@ test_that("bib works fine", {
     expect_equal(insert_citeOnly("Rpackage:Rdpack", package = "rbibutils",
                                  bibpunct = c("[", "]")),
                  "[Boshnakov 2020]")
+
+    expect_equal(insert_citeOnly("Rpackage:Rdpack", package = "rbibutils",
+                                 bibpunct = c("[", "]"), dont_cite = TRUE),
+                 character(0))
+
+
+    expect_error(insert_citeOnly("Rpackage:Rdpack;textual", bibpunct = c("[", "]")),
+                 "argument 'package' must be provided")
     
+    expect_error(insert_citeOnly(c("Rpackage:Rdpack;textual", "xxxxx"), 
+                 "`keys' must be a character string"))
     
     insert_ref("Rpackage:Rdpack", package = "rbibutils")
 

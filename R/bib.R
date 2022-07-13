@@ -801,6 +801,7 @@ insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
                 ind <- which(is.na(bibpunct))
                 if(length(ind) > 0)
                     bibpunct[ind] <- bibpunct0[ind]
+#cat("bibpunct is: ", bibpunct, "\n")
             }else
                 bibpunct <- bibpunct0
         }else{
@@ -813,11 +814,12 @@ insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
                            safe_cite(key, bibs, textual = textual, bibpunct = bibpunct,
                                      from.package = package)
                        )
+#print(refs)
         if(textual){
             ## drop ")" - strong assumption that that is the last char
             refs <- sapply(refs, function(s) substr(s, 1, nchar(s) - 1))
         }
-
+#print(refs)
         ## replace keys with citations
         text <- keys
         regmatches(text, m) <- list(refs)
@@ -1026,11 +1028,10 @@ insert_all_ref <- function(refs, style = "", empty_cited = FALSE){
         # was: 
         #  (for now restoring the old one, to check if pkgdown would consider this as a bug)
 
-        # paste0(res, collapse = "\n\n")
-
     if(empty_cited)
         refs$refsmat <- matrix(character(0), nrow = 0, ncol = 2)
     
+        # paste0(res, collapse = "\n\n")
     paste0(res, collapse = "\\cr\\cr ")
 }
 
