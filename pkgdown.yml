@@ -1,8 +1,8 @@
 pandoc: 2.7.3
-pkgdown: 2.0.5
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-07-13T08:53Z
+last_built: 2022-07-20T16:29Z
 urls:
   reference: https://geobosh.github.io/Rdpack/reference
   article: https://geobosh.github.io/Rdpack/articles

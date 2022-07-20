@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">Rdpack</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.3.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,9 +45,9 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="2.3.1.9000" id="rdpack-2319000">Rdpack 2.3.1.9000<a class="anchor" aria-label="anchor" href="#rdpack-2319000"></a></h2>
-<ul><li><p>new Rd macro <code>\insertCited</code> works like <code>\insertAllCited</code> but empties the references list after finishing its work. This means that the second and subsequent <code>\insertCited</code> in the same help page will list only citations done since the preceding <code>\insertCited</code>. Prompted by issue <a href="https://github.com/GeoBosh/Rdpack/issues/27" class="external-link">#27</a> to allow separate references lists for each method and the class in R6 documentation.</p></li>
-<li><p>fixed warnings like <code>checkRd: (-1) pcts-package.Rd:287: Escaped LaTeX specials: \&amp;</code> from <code>R CMD check</code> (starting June 2022). Previously the backslash was appearing in the pdf manual. This could be avoiding by removing the superfluous backslash in the bib file but this is annoying since this is proper syntax for the latter. (issue <a href="https://github.com/GeoBosh/Rdpack/issues/26" class="external-link">#26</a>)</p></li>
+<h2 class="pkg-version" data-toc-text="2.4" id="rdpack-24">Rdpack 2.4<a class="anchor" aria-label="anchor" href="#rdpack-24"></a></h2><p class="text-muted">CRAN release: 2022-07-20</p>
+<ul><li><p>new Rd macro <code>\insertCited{}</code> works like <code>\insertAllCited</code> but empties the references list after finishing its work. This means that the second and subsequent <code>\insertCited</code> in the same help page will list only citations done since the preceding <code>\insertCited</code>. Prompted by issue <a href="https://github.com/GeoBosh/Rdpack/issues/27" class="external-link">#27</a> to allow separate references lists for each method and the class in R6 documentation.</p></li>
+<li><p>It is no longer necessary to remove backslashes from <code>\&amp;</code> in similar in bibtex files (e.g. in “John Wiley &amp; Sons”). The backslash was appearing in the rendered pdf manual but R-devel’s checks started to warn about it recently with something like <code>checkRd: (-1) pcts-package.Rd:287: Escaped LaTeX specials: \&amp;</code> (starting June 2022). This could be avoided by removing the superfluous backslash in the bib file but this is annoying since this is proper syntax for the latter. Concerned packages should rebuild the tarball with Rdpack (&gt; 2.3.1) or remove the offending backslashes from their bib files. (addresses issue <a href="https://github.com/GeoBosh/Rdpack/issues/26" class="external-link">#26</a>)</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.3.1" id="rdpack-231-cran">Rdpack 2.3.1 (CRAN)<a class="anchor" aria-label="anchor" href="#rdpack-231-cran"></a></h2><p class="text-muted">CRAN release: 2022-06-07</p>
@@ -358,7 +358,7 @@ May be particularly helpful for devtools developers.</p></li>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer></div>
