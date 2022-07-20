@@ -266,15 +266,22 @@ The macro ~\insertAllCited{}~ can be used to insert all references cited with
 references section.  The Rd section may look something like:
 #+BEGIN_EXAMPLE
     \references{
-        \insertAllCited{}
+      \insertAllCited{}
     }
 #+END_EXAMPLE
 The analogous documentation chunk in roxygen2 might look like this:
 #+BEGIN_EXAMPLE
     #' @references
-    #'     \insertAllCited{}
+    #'   insertAllCited{}
 #+END_EXAMPLE
+Don't align the backslash with the second 'e' of =@references=, since roxygen2 may interpret
+it as verbatim text, not macro.
 
+Rd macro =\insertCited{}= works like =\insertAllCited= but empties the references list after
+finishing its work. This means that the second and subsequent =\insertCited= in the same help
+page will list only citations done since the preceding =\insertCited=. Prompted by issue 27
+on github to allow separate references lists for each method and the class in R6
+documentation.
 
 ** Changing the style of references
 

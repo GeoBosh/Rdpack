@@ -157,7 +157,8 @@ Additional Rd macros are available for citations.  They also can be used in both
 roxygen2 documentation.
 
 =\insertCite{key}{package}= cites =key= and records it for use by
-=\insertAllCited=, see below. =key= can contain more keys separated by commas.
+=\insertAllCited= and =\insertCited=, see below. =key= can contain more keys separated by
+commas.
   
 =\insertCite{parseRd,Rpackage:rbibutils}{Rdpack}= produces 
 src_R[:exports results :results value raw]{insert_citeOnly("parseRd,Rpackage:rbibutils", "Rdpack")}
@@ -199,6 +200,12 @@ or, in roxygen2, the references chunk might look like this:
 #+END_EXAMPLE
 Don't align the backslash with the second 'e' of =@references=, since roxygen2 may
 interpret it as verbatim text, not macro.
+
+=\insertCited{}= works like =\insertAllCited= but empties the reference list after
+finishing its work. This means that the second and subsequent =\insertCited= in the same help
+page will list only citations done since the preceding =\insertCited=. Prompted by issue 27
+on github to allow separate reference lists for each method and the class in R6
+documentation.
 
 To mix the citations with other text, such as ``see also'' and ``chapter 3'',
 write the list of keys as a free text, starting it with the symbol =@= and

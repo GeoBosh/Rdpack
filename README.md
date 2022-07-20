@@ -17,27 +17,27 @@ manipulation of references and Rd files.
 
 # Table of Contents
 
-1.  [Installing Rdpack](#orgf584c04)
-2.  [Inserting Bibtex references and citations](#orgf30ad1f)
-    1.  [Preparation](#org80c11b1)
-    2.  [Inserting references](#org897b48d)
-    3.  [Inserting citations](#orgb9f6370)
-    4.  [Changing the style of references](#org1b75b58)
-    5.  [Troubleshooting](#orgd2f96f4)
-        1.  [A puzzling message in devtools development mode](#org66b8dba)
-        2.  [Typical errors](#orgad19cb1)
-    6.  [Latex markup in BibTeX entries](#org5de9f59)
-    7.  [Encoding of file REFERENCES.bib](#org2c6587a)
-3.  [Viewing Rd files](#orgb3ff34b)
-4.  [Using Rdpack::reprompt()](#orgf51067b)
-    1.  [What it does](#orge33c662)
-    2.  [Reprompt and open in an editor](#org77a357c)
-5.  [Inserting evaluated examples](#orgf18a03b)
-    1.  [Evaluating the examples in section Examples](#orgd535d8a)
-6.  [Inserting figures/graphs/plots](#org77efc36)
+1.  [Installing Rdpack](#org8a647c9)
+2.  [Inserting Bibtex references and citations](#org4e77937)
+    1.  [Preparation](#org766760b)
+    2.  [Inserting references](#orgf0b8e07)
+    3.  [Inserting citations](#orgbff7de3)
+    4.  [Changing the style of references](#orge63a829)
+    5.  [Troubleshooting](#org35439dc)
+        1.  [A puzzling message in devtools development mode](#orgc0ddf98)
+        2.  [Typical errors](#orge94900c)
+    6.  [Latex markup in BibTeX entries](#org7490870)
+    7.  [Encoding of file REFERENCES.bib](#org5fd3efd)
+3.  [Viewing Rd files](#orgb41e139)
+4.  [Using Rdpack::reprompt()](#orgcdf91db)
+    1.  [What it does](#orge44c86a)
+    2.  [Reprompt and open in an editor](#org975854d)
+5.  [Inserting evaluated examples](#orgb77362a)
+    1.  [Evaluating the examples in section Examples](#org3bee793)
+6.  [Inserting figures/graphs/plots](#org9b84bd5)
 
 
-<a id="orgf584c04"></a>
+<a id="org8a647c9"></a>
 
 # Installing Rdpack
 
@@ -51,7 +51,7 @@ You can also install the [development version](https://github.com/GeoBosh/Rdpack
     install_github("GeoBosh/Rdpack")
 
 
-<a id="orgf30ad1f"></a>
+<a id="org4e77937"></a>
 
 # Inserting Bibtex references and citations
 
@@ -65,7 +65,7 @@ the `DESCRIPTION` file of the package needs to be amended, see below the full
 details. 
 
 
-<a id="org80c11b1"></a>
+<a id="org766760b"></a>
 
 ## Preparation
 
@@ -96,7 +96,7 @@ enumerated below in somewhat more detail, see also the vignette
     put the BibTeX references in it.
 
 
-<a id="org897b48d"></a>
+<a id="orgf0b8e07"></a>
 
 ## Inserting references
 
@@ -144,7 +144,7 @@ or open it from `R`:
 [`Inserting_bibtex_references (development version on github)`](https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_bibtex_references.pdf).)
 
 
-<a id="orgb9f6370"></a>
+<a id="orgbff7de3"></a>
 
 ## Inserting citations
 
@@ -152,7 +152,8 @@ Additional Rd macros are available for citations.  They also can be used in both
 roxygen2 documentation.
 
 `\insertCite{key}{package}` cites `key` and records it for use by
-`\insertAllCited`, see below. `key` can contain more keys separated by commas.
+`\insertAllCited` and `\insertCited`, see below. `key` can contain more keys separated by
+commas.
 
 `\insertCite{parseRd,Rpackage:rbibutils}{Rdpack}` produces 
 (Murdoch 2010; Boshnakov and Putman 2020)
@@ -194,6 +195,12 @@ or, in roxygen2, the references chunk might look like this:
 Don't align the backslash with the second 'e' of `@references`, since roxygen2 may
 interpret it as verbatim text, not macro.
 
+`\insertCited{}` works like `\insertAllCited` but empties the reference list after
+finishing its work. This means that the second and subsequent `\insertCited` in the same help
+page will list only citations done since the preceding `\insertCited`. Prompted by issue 27
+on github to allow separate reference lists for each method and the class in R6
+documentation.
+
 To mix the citations with other text, such as \`\`see also'' and \`\`chapter 3'',
 write the list of keys as a free text, starting it with the symbol `@` and
 prefixing each key with it.  The `@` symbol will not appear in the output. For
@@ -228,7 +235,7 @@ example,
 in the list of references for `\insertAllCited`.
 
 
-<a id="org1b75b58"></a>
+<a id="orge63a829"></a>
 
 ## Changing the style of references
 
@@ -253,12 +260,12 @@ After installling/reloading your package the lists of references should appear
 with long author names. "Rdpack" itself now uses this style.
 
 
-<a id="orgd2f96f4"></a>
+<a id="org35439dc"></a>
 
 ## Troubleshooting
 
 
-<a id="org66b8dba"></a>
+<a id="orgc0ddf98"></a>
 
 ### A puzzling message in devtools development mode
 
@@ -279,7 +286,7 @@ session<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>. Even better,
 below to view the required help file.
 
 
-<a id="orgad19cb1"></a>
+<a id="orge94900c"></a>
 
 ### Typical errors
 
@@ -305,7 +312,7 @@ These errors occur during parsing of the Rd files, before the control is passed
 to the `Rdpack`'s macros. 
 
 
-<a id="org5de9f59"></a>
+<a id="org7490870"></a>
 
 ## Latex markup in BibTeX entries
 
@@ -325,7 +332,7 @@ See also the overview help page, `help("Rdpack-package")`, of package `"Rdpack"`
 Among other things, it contains some dummy references which illustrate the above.
 
 
-<a id="org2c6587a"></a>
+<a id="org5fd3efd"></a>
 
 ## Encoding of file REFERENCES.bib
 
@@ -357,7 +364,7 @@ add the encoding declaration to file DESCRIPTION<sup><a id="fnr.5" class="footre
 Needless to say, make sure that there are really no characters from encodings like 'latin1'.
 
 
-<a id="orgb3ff34b"></a>
+<a id="orgb41e139"></a>
 
 # Viewing Rd files
 
@@ -380,12 +387,12 @@ sources in development mode. This should work also in development mode on any
 platform (e.g. RStudio, Emacs/ESS, Rgui)<sup><a id="fnr.7" class="footref" href="#fn.7">7</a></sup>.
 
 
-<a id="orgf51067b"></a>
+<a id="orgcdf91db"></a>
 
 # Using Rdpack::reprompt()
 
 
-<a id="orge33c662"></a>
+<a id="orge44c86a"></a>
 
 ## What it does
 
@@ -415,7 +422,7 @@ but it alerts the user to remove aliases, methods, and descriptions of arguments
 that have been removed. 
 
 
-<a id="org77a357c"></a>
+<a id="org975854d"></a>
 
 ## Reprompt and open in an editor
 
@@ -438,7 +445,7 @@ Elisp code), for example to be invoked on the currently edited file. Such a
 function and example key binding can be found at [georgisemacs](https://github.com/GeoBosh/georgisemacs).
 
 
-<a id="orgf18a03b"></a>
+<a id="orgb77362a"></a>
 
 # Inserting evaluated examples
 
@@ -464,7 +471,7 @@ The help page of `?Rdpack::promptUsage` contains a number of examples created wi
 Vignette [`Inserting_figures_and_evaluated_examples`](https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf) gives further details.
 
 
-<a id="orgd535d8a"></a>
+<a id="org3bee793"></a>
 
 ## Evaluating the examples in section Examples
 
@@ -489,7 +496,7 @@ and tangled along with examples in other documentation files<sup><a id="fnr.8" c
 using this feature is at [runExamplesCheck](https://github.com/GeoBosh/reprexes/tree/master/runExamplesCheck).
 
 
-<a id="org77efc36"></a>
+<a id="org9b84bd5"></a>
 
 # Inserting figures/graphs/plots
 
