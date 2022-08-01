@@ -1,3 +1,10 @@
+# Rdpack 2.4.0.9000
+
+- Rd macros `insertCite` and friends were calling `insert_citeOnly` with
+  argument `key` instead of `keys`. This was not an error since partial matching
+  is ok here but not good practice. Fixes issue #28 reported by Marcel Ramos.
+  
+
 # Rdpack 2.4
 
 - new Rd macro `\insertCited{}` works like `\insertAllCited` but empties the

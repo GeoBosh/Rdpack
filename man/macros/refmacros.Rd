@@ -3,10 +3,10 @@
 \newcommand{\insertRef}{\Sexpr[results=rd,stage=build]{Rdpack::insert_ref(key="#1",package="#2")}}
 %\newcommand{\insertRef}{\Sexpr[results=rd,stage=install]{if(!exists(".Rdpack.currefs")) .Rdpack.currefs <- new.env(); Rdpack::insert_ref(key="#1",package="#2", cached_env=.Rdpack.currefs)}}
 
-% insert reference #1 - key, #2 - package
-\newcommand{\insertCiteOnly}{\Sexpr[results=rd,stage=build]{if(!exists(".Rdpack.currefs")) .Rdpack.currefs <- new.env();Rdpack::insert_citeOnly(key="#1",package="#2", cached_env=.Rdpack.currefs,cite_only=TRUE)}}
-\newcommand{\insertCite}{\Sexpr[results=rd,stage=build]{if(!exists(".Rdpack.currefs")) .Rdpack.currefs <- new.env();Rdpack::insert_citeOnly(key="#1",package="#2", cached_env=.Rdpack.currefs)}}
-\newcommand{\insertNoCite}{\Sexpr[results=hide,stage=build]{if(!exists(".Rdpack.currefs")) .Rdpack.currefs <- new.env();Rdpack::insert_citeOnly(key="#1",package="#2", cached_env=.Rdpack.currefs,dont_cite=TRUE)}}
+% insert reference #1 - keys, #2 - package
+\newcommand{\insertCiteOnly}{\Sexpr[results=rd,stage=build]{if(!exists(".Rdpack.currefs")) .Rdpack.currefs <- new.env();Rdpack::insert_citeOnly(keys="#1",package="#2", cached_env=.Rdpack.currefs,cite_only=TRUE)}}
+\newcommand{\insertCite}{\Sexpr[results=rd,stage=build]{if(!exists(".Rdpack.currefs")) .Rdpack.currefs <- new.env();Rdpack::insert_citeOnly(keys="#1",package="#2", cached_env=.Rdpack.currefs)}}
+\newcommand{\insertNoCite}{\Sexpr[results=hide,stage=build]{if(!exists(".Rdpack.currefs")) .Rdpack.currefs <- new.env();Rdpack::insert_citeOnly(keys="#1",package="#2", cached_env=.Rdpack.currefs,dont_cite=TRUE)}}
 
 \newcommand{\insertAllCited}{\Sexpr[results=rd,stage=build]{if(!exists(".Rdpack.currefs")) .Rdpack.currefs <- new.env();Rdpack::insert_all_ref(.Rdpack.currefs)}}
 
