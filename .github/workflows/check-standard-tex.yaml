@@ -1,3 +1,10 @@
+## Georgi:
+##   (1) amended with instructions to setup tinytex,
+##          see https://github.com/r-lib/actions/tree/v2/run-rchk
+##
+##   (2) build with --compact-vignettes=gs+qpdf, syntax copied from 
+##       https://github.com/aursiber/nlstools/commit/869cc47fa43a2ded10a079c3af0edf5694bd6a95
+
 # Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
@@ -56,4 +63,5 @@ jobs:
 
       - uses: r-lib/actions/check-r-package@v2
         with:
+          build_args: 'c("--compact-vignettes=gs+qpdf")'
           upload-snapshots: true
