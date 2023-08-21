@@ -691,6 +691,9 @@ makeVignetteReference <- function(package, vig = 1, verbose = TRUE,
 }
 
 ## 2018-03-13 new
+
+## 2023-08-19 TODO: this function was patched and its functionality extended via patches so
+##     many times that it needs consolidation.
 insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
                             bibpunct = NULL, ..., 
                             cached_env = NULL, cite_only = FALSE, dont_cite = FALSE) {
@@ -765,14 +768,23 @@ insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
         keys <- substr(keys, 2, nchar(keys)) # drop refch
         ## TODO: check if there are still @'s at this point
 
-        refpat <- paste0("(", refch, "[^;,()[:space:]]+)")  #  "(@[^;,[:space:]]+)"
+        refpat  <- paste0("(", refch, "[^;,()[:space:]]+)")  #  "(@[^;,[:space:]]+)"
+        refpat2 <- paste0(     refch, "[^;,()[:space:]]+\\)")
         if(textual){
             wrkkeys <- strsplit(keys, "@")[[1]] # note [[1]] !!!
 
-            ## the last key is special, since there is none after it
+            ## 2023-08-19 Note:
+            ##
+            ##     The code until the assignment to 'keys' puts a ')' at the end of each key.
+            ##     presumably to designate the end of the key for gregexpr below. But these ')'
+            ##     need to be removed later. 
+            ##
+            ## first process the last key - it is special, since there is none after it
             nk <- length(wrkkeys)
             wrkkeys[nk] <- if(grepl("[;,]$", wrkkeys[nk]))
                                sub("([;,])$", ")\\1", wrkkeys[nk])
+                           else if(grepl("[;,]", wrkkeys[nk]))
+                               sub("([;,][^;,]*)$", ")\\1" , wrkkeys[nk])
                            else
                                paste0(wrkkeys[nk], ")")
 
@@ -789,6 +801,7 @@ insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
             keys <- paste0(wrkkeys, collapse = refch)
         }
 
+        ## find the positions of the keys (used further below to replace them with the cites
         m <- gregexpr(refpat, keys)
         allkeys <- regmatches(keys, m)[[1]] # note: [[1]]
         allkeys <- gsub(refch, "", allkeys)
@@ -814,16 +827,20 @@ insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
                            safe_cite(key, bibs, textual = textual, bibpunct = bibpunct,
                                      from.package = package)
                        )
-#print(refs)
+
         if(textual){
-            ## drop ")" - strong assumption that that is the last char
-            refs <- sapply(refs, function(s) substr(s, 1, nchar(s) - 1))
+            ## 2023-08-19 Note: need to drop the ')' added above. The commented out solution
+            ##    below drop the last symbol in the prepared cites instead, which is
+            ##    equivalent but only if bibpunct is missing or specifies ')' as closing for
+            ##    the likes of Boshnakov (2020). The new solution matches again with a
+            ##    pattern including the ')' at the end of the key, so that ')' gets replaced
+            ##    along with the key.
+            ## was: refs <- sapply(refs, function(s) substr(s, 1, nchar(s) - 1))
+            m <- gregexpr(refpat2, keys)
         }
-#print(refs)
         ## replace keys with citations
         text <- keys
         regmatches(text, m) <- list(refs)
-
         ## parentheses around the whole cite; 2022-02-05: also if !nobrackets
         if(!textual && !nobrackets) # 2018-03-28 don't put parentheses in textual mode
             text <- paste0("(", text, ")")
@@ -850,7 +867,7 @@ insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
     
     ## 2022-06-05: was: toRd(text)
     ##    workaround for issue #25; effectively assumes that citation text
-    ##    doesn't contain braces that need escaping 
+    ##    doesn't contain braces that need escaping
     .toRd_cite(text)
 }
 

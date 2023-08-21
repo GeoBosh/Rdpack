@@ -1,9 +1,19 @@
-# Rdpack 2.4.0.9000
+# Rdpack 2.5
 
 - Rd macros `insertCite` and friends were calling `insert_citeOnly` with
   argument `key` instead of `keys`. This was not an error since partial matching
   is ok here but not good practice. Fixes issue #28 reported by Marcel Ramos.
-  
+
+- changed the saved value in "tests/testthat/dummyArticle.rds" used in
+  'test-bib.R' with a value obtained with R-devel r84896 n previu versins of R
+  there wasasuperfluous final ' .').
+
+- in some cases when square brackets were requested, rather than round ones,
+  `insertCiteOnly` was using closing round parenthesis.
+
+- in some cases `insertCiteOnly` was not handling well the last cite when it was
+  followed by free text.
+
 
 # Rdpack 2.4
 
@@ -13,7 +23,7 @@
   since the preceding `\insertCited`. Prompted by issue #27 to allow separate
   references lists for each method and the class in R6 documentation.
 
-- It is no longer necessary to remove backslashes from `\&` in similar in bibtex
+- It is no longer necessary to remove backslashes from `\&` and similar in bibtex
   files (e.g. in "John Wiley \& Sons"). The backslash was appearing in the
   rendered pdf manual but R-devel's checks started to warn about it recently
   with something like `checkRd: (-1) pcts-package.Rd:287: Escaped LaTeX

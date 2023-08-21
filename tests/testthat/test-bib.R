@@ -41,10 +41,9 @@ test_that("bib works fine", {
         "@see also @Rpackage:rbibutils and @parseRd;textual", package = "Rdpack"),
         "see also Boshnakov and Putman (2020) and Murdoch (2010)")
     
-    ## commenting out since not sure if the ')' is on purpose after  "among others" (:TODO:)
-    ##
-    ## expect_equal(insert_citeOnly("@see also @Rpackage:rbibutils and @parseRd, among others;textual", package = "Rdpack"),
-    ##              "see also Boshnakov and Putman (2020) and Murdoch (2010, among others)")
+    expect_equal(insert_citeOnly(
+        "@see also @Rpackage:rbibutils and @parseRd, among others;textual", package = "Rdpack"),
+        "see also Boshnakov and Putman (2020) and Murdoch (2010), among others")
 
     expect_equal(insert_citeOnly(
         "@see also @Rpackage:rbibutils and @parseRd", package = "Rdpack"),
@@ -53,22 +52,10 @@ test_that("bib works fine", {
         "@see also @Rpackage:rbibutils and @parseRd;textual", package = "Rdpack"),
         "see also Boshnakov and Putman (2020) and Murdoch (2010)")
 
-    insert_citeOnly(
+    expect_equal(insert_citeOnly(
         "@see also @Rpackage:rbibutils and @parseRd;textual", package = "Rdpack",
-                                                              bibpunct = c("[", "]"))
-        
-    ## TODO: bug here:
-    ##
-    ## expect_equal(insert_citeOnly(
-    ##     "@see also @Rpackage:rbibutils and @parseRd;textual", package = "Rdpack",
-    ##                                                           bibpunct = c("[", "]")),
-    ##     "see also Boshnakov and Putman [2020] and Murdoch [2010]")
-    ##
-    ## produces:
-    ##   "see also Boshnakov and Putman [2020) and Murdoch [2010)"
-    ## (note the closing parentheses)
-    ## Uncomment the print comments in insertCite() to see more details.
-
+                                                              bibpunct = c("[", "]")),
+        "see also Boshnakov and Putman [2020] and Murdoch [2010]")
 
     expect_equal(insert_citeOnly(
         "@see also @Rpackage:rbibutils and @parseRd;nobrackets", package = "Rdpack"),
@@ -127,11 +114,29 @@ test_that("bib works fine", {
     expect_false(grepl("\\\\", insert_citeOnly("DiaLop2020ejor;textual", "Rdpack")))
 
 
-    ## after fix of issue #26
+    ## after fix of issue #26:
     ##     before the fix it was necessary to manually remove the backslash from \&, \_, etc.
     ##     in the bib file. Now the backslashes are removed by Rdpack
-    expect_known_value(insert_all_ref(matrix(c("dummyArticle", "Rdpack"), ncol = 2)),
-                       "dummyArticle.rds", update = FALSE)
+    ##
+    ## fix in August 2023 for a change in R-devel (citation.R):
+    ##     resaved 'dummyArticle.rds' and conditioned on R-devel r84986.
+    ##
+    ##     Previously the rendered version of the 'note' field contained a superfluous ' .'.
+    ##     This was fixed in R-devel r84986 (or somewhat earlier). 
+    ##     After the change in R-devel, we get with the old dummyArticle.rds:
+    ##       > waldo::compare(readRDS("tests/testthat/dummyArticle.rds"),
+    ##                        insert_all_ref(matrix(c("dummyArticle", "Rdpack"), ncol = 2)))
+    ##      lines(old) vs lines(new)
+    ##      "A. ZZZ (2018)."
+    ##      "\\dQuote{A relation between several fundamental constants: \\eqn{e^{i\\pi}=-1}.}"
+    ##      "\\emph{A non-existent journal with the formula \\eqn{L_2} in its name & an ampersand which is preceded by a backslash in the bib file.}."
+    ##      - "This reference does not exist. It is a test/demo that simple formulas in BibTeX files are OK. A formula in field 'note': \\eqn{c^2 = a^2 + b^2}. ."
+    ##      + "This reference does not exist. It is a test/demo that simple formulas in BibTeX files are OK. A formula in field 'note': \\eqn{c^2 = a^2 + b^2}."
+    ##
+    ##     (notice '. .' at the end of the old string)
+    if(is.numeric(svnrev <- R.Version()$'svn rev')  &&  svnrev >= 84986)
+        expect_known_value(insert_all_ref(matrix(c("dummyArticle", "Rdpack"), ncol = 2)),
+                           "dummyArticle.rds", update = FALSE)
     
     ## makeVignetteReference("Rdpack", 1)
 
