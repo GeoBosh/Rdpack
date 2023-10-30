@@ -1089,6 +1089,69 @@ deparseLatexToRd <- function(x, dropBraces = FALSE)
     paste(result, collapse="")
 }
 
+
+
+`%notin%` <-
+function(x, y)
+    is.na(match(x, y))
+
+## This converts a latex object into a single element character vector
+deparseLatexToRd <- function(x, dropBraces = FALSE)
+{
+    specials <- c("\\", "#", "$", "%", "&", "~", "_", "^", "{", "}")
+    result <- character()
+    lastTag <- "TEXT"
+    expectArg <- FALSE
+    for (i in seq_along(x)) {
+        a <- x[[i]]
+        tag <- attr(a, "latex_tag")
+        if (is.null(tag)) tag <- "NULL"
+        result <- c(result,
+        switch(tag,
+        VERB = ,
+        COMMENT = a,
+        TEXT = c(if (lastTag == "MACRO" && expectArg && grepl("^[[:alpha:]]", a))
+                     ## restore space that the parser has eaten ('\item text')
+                     " ",
+                 a),
+        MACRO = {
+            ## see issue #26
+            ## regex in r-devel/R/src/library/tools/R/RdConv2.R:
+            ##     pat <- "([^\\]|^)\\\\[#$&_^~]"
+            ## here we add grouping for substitution
+            pat <- "([^\\]|^)(\\\\)([#$&_^~])"  # with more grouping
+            if(grepl(pat, a)){
+                a <- gsub(pat, "\\1\\3", a)
+            }
+            c(if (lastTag == "MACRO" && expectArg && grepl("^[[:alpha:]]", a))
+                ## restore space that the parser has eaten ('\item text')
+                " ",            
+              a)
+        },
+        BLOCK = if (dropBraces && !expectArg)
+                    Recall(a)
+                else
+                    c("{", Recall(a), "}"),
+        ENVIRONMENT = c(
+        	"\\begin{", a[[1L]], "}",
+        	Recall(a[[2L]]),
+        	"\\end{", a[[1L]], "}"),
+        ## enclose maths in \eqn{...}, not $ ... $; # \( and \) parse as MACRO
+        MATH = c("\\eqn{", Recall(a), "}"),
+        NULL = stop("Internal error, no tag", domain = NA)
+        ))
+        lastTag <- tag
+        expectArg <-
+            if (tag == "MACRO")
+                a %notin% paste0("\\", c(specials, "(", ")"))
+            else
+                expectArg &&
+                    tag %in% c("BLOCK", "COMMENT") # \cmd{}{}, \cmd%
+                    ## currently ignoring \cmd  {}, \cmd[]{}, \cmd*{}
+    }
+    paste(result, collapse="")
+}
+
 Rdpack_bibstyles <- local({
     styles <- list()
     function(package, authors){
