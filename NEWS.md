@@ -4,7 +4,7 @@
   checks in R-devel occuring with some accented LaTeX characters. These NOTEs
   are not yet activated on CRAN but if/when they do, developers using Rd macros
   `\insertRef` and `\insertCite` can eliminate them by building their packages
-  with Rdpack (> 2.5) and rbibutils (>= 2.2.16).  Thanks to Sebastian Meyer for
+  with Rdpack (>= 2.6) and rbibutils (>= 2.2.16).  Thanks to Sebastian Meyer for
   tracing down the issues.
 
 - fixed a `Sweave` expression in 'man/predefined.Rd' to not emit unnecessary
@@ -13,7 +13,7 @@
 
 # Rdpack 2.5
 
-- Rd macros `insertCite` and friends were calling `insert_citeOnly` with
+- Rd macros `insertCite` and friends were calling `\insert_citeOnly()` with
   argument `key` instead of `keys`. This was not an error since partial matching
   is ok here but not good practice. Fixes issue #28 reported by Marcel Ramos.
 
@@ -22,10 +22,10 @@
   there wasasuperfluous final ' .').
 
 - in some cases when square brackets were requested, rather than round ones,
-  `insertCiteOnly` was using closing round parenthesis.
+  `\insertCiteOnly` was using closing round parenthesis.
 
-- in some cases `insertCiteOnly` was not handling well the last cite when it was
-  followed by free text.
+- in some cases `\insertCiteOnly` was not handling well the last cite when it
+  was followed by free text.
 
 
 # Rdpack 2.4
@@ -36,14 +36,14 @@
   since the preceding `\insertCited`. Prompted by issue #27 to allow separate
   references lists for each method and the class in R6 documentation.
 
-- It is no longer necessary to remove backslashes from `\&` and similar in bibtex
-  files (e.g. in "John Wiley \& Sons"). The backslash was appearing in the
-  rendered pdf manual but R-devel's checks started to warn about it recently
+- It is no longer necessary to remove backslashes from `\&` and similar in
+  bibtex files (e.g. in "John Wiley \& Sons"). The backslash was appearing in
+  the rendered pdf manual but R-devel's checks started to warn about it recently
   with something like `checkRd: (-1) pcts-package.Rd:287: Escaped LaTeX
   specials: \&` (starting June 2022). This could be avoided by removing the
   superfluous backslash in the bib file but this is annoying since this is
   proper syntax for the latter. Concerned packages should rebuild the tarball
-  with Rdpack (> 2.3.1) or remove the offending backslashes from their bib
+  with Rdpack (>= 2.4) or remove the offending backslashes from their bib
   files. (addresses issue #26)
   
 
@@ -91,8 +91,8 @@
 
 - if the version of rbibutils is greater than v2.2.5, parsing bib files with
   `rbibutils::readBib` now uses `texChars = "Rdpack"`. This ensures proper
-  rendering of `\'i' in references (by converting `\'i` to `\'\i` which base R
-  renders correctly).  For detailed discussion of this see issue
+  rendering of `\'i` in references (by converting `\'i` to `\'\i` which base
+  R renders correctly).  For detailed discussion of this see issue
   GeoBosh/bibutils#7 and NEWS.md in rbibutils v2.2.4 and v2.2.5.
 
 
@@ -279,8 +279,8 @@
 * Bugfix: now Rd macro `\printExample` evaluates the expressions in the correct
   environment. 
   
-* help page of `get_usage` gets a fairly complete Details section with numerous
-  evaluated examples. 
+* help page of `get_usage()` gets a fairly complete Details section with
+  numerous evaluated examples.
   
 * now `run_examples()` escapes `%` by default, before returning the text. This is
   needed for text that is to be included in an Rd file. It can be turned off by
@@ -298,8 +298,8 @@
   RdpackTester under `./inst/examples` now makes this easier.
 
 * now the help page "predefined.Rd" does not print some tables twice in the pdf
-  manual. (This was due to using `\if{latex}{}{}' instead of
-  `\ifelse{latex}{}{}' for those tables.)
+  manual. (This was due to using `\if{latex}{}{}` instead of
+  `\ifelse{latex}{}{}` for those tables.)
 
 * also in "predefined.Rd", removed illegal use of vertical bars (in column
   specifications of tabular environments) from the pure LaTeX code in the
@@ -468,7 +468,7 @@
 
 * Streamlined the help page of `reprompt()` and `Rdpack-package`.
 
-* new argument, `edit', in `reprompt()` opens the Rd file after updating it.
+* new argument, `edit`, in `reprompt()` opens the Rd file after updating it.
 
 * new function `ereprompt()` (`e' for _edit_)* opens `reprompt()` with suitable
   defaults to replace the original Rd file and open it in an editor, otherwise
@@ -490,12 +490,8 @@
 * `viewRd()` now works also when the file is from a package under devtools'
   development mode on any platform (e.g. RStudio, Emacs/ESS, Rgui).
 
-
-# Rdpack 0.5-4.9000
-
-* new RStudio add-in 'Reprompt`, contributed by Duncan Murdoch.
-
-  If the file being edited in the code editor is an Rd file it calls
+* new RStudio add-in `Reprompt`, contributed by Duncan Murdoch.  If the file
+  being edited in the RStudio's code editor is an Rd file it calls
   `reprompt()`. If the file is as R source file, it looks for the help page of a
   selected object name and works on it if found, otherwise creates one.
 
@@ -613,9 +609,9 @@
 * corrected bug in reprompt for S4 classes - new slots were not handled
   correctly (see `slots.R` for details).
 
-* reprompt for S4 methods* if the methods documentation describes methods that
-  do not exist, print an informative message for the user. (Such methods are
-  also printed for debugging purposes but in non-user friendly form.)
+* in reprompt for S4 methods: if the methods documentation describes methods
+  that do not exist, print an informative message for the user. (Such methods
+  are also printed for debugging purposes but in non-user friendly form.)
 
 - included `methods` in `Imports:` - around R-devel version 2015-07-01 r68620
   not including it triggers warnings)
@@ -682,7 +678,7 @@
 
 # Rdpack 0.3-10
 
-* `Depends` field in DESCRIPTION file updated to require R 2.15.0 or later.
+* `Depends` field in DESCRIPTION file updated to require R 2.15.0 or later
    (because of a few uses of `paste0()` in recent code.)
 
 # Rdpack 0.3-8 (CRAN)
