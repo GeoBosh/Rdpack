@@ -1,3 +1,16 @@
+# Rdpack 2.6
+
+- fixed issues causing 'lost braces' (actually, superfluous braces) NOTEs from
+  checks in R-devel occuring with some accented LaTeX characters. These NOTEs
+  are not yet activated on CRAN but if/when they do, developers using Rd macros
+  `\insertRef` and `\insertCite` can eliminate them by building their packages
+  with Rdpack (> 2.5) and rbibutils (>= 2.2.16).  Thanks to Sebastian Meyer for
+  tracing down the issues.
+
+- fixed a `Sweave` expression in 'man/predefined.Rd' to not emit unnecessary
+  braces (see the note above).
+
+
 # Rdpack 2.5
 
 - Rd macros `insertCite` and friends were calling `insert_citeOnly` with

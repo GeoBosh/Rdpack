@@ -1052,49 +1052,50 @@ insert_all_ref <- function(refs, style = "", empty_cited = FALSE){
     paste0(res, collapse = "\\cr\\cr ")
 }
 
-deparseLatexToRd <- function(x, dropBraces = FALSE)
-{
-    result <- character()
-    lastTag <- "TEXT"
-    for (i in seq_along(x)) {
-        a <- x[[i]]
-        tag <- attr(a, "latex_tag")
-        if (is.null(tag)) tag <- "NULL"
-        switch(tag,
-        VERB = ,
-        TEXT = ,
-        COMMENT = result <- c(result, a),
-        MACRO = {
-            ## see issue #26
-            ## regex in r-devel/R/src/library/tools/R/RdConv2.R:
-            ##     pat <- "([^\\]|^)\\\\[#$&_^~]"
-            ## here we add grouping for substitution
-            pat <- "([^\\]|^)(\\\\)([#$&_^~])"  # with more grouping
-            if(grepl(pat, a)){
-                a <- gsub(pat, "\\1\\3", a)
-            }
-            result <- c(result, a)
-        },
-        BLOCK = result <- c(result, if (dropBraces && lastTag == "TEXT") Recall(a) else c("{", Recall(a), "}")),
-        ENVIRONMENT = result <- c(result,
-        	"\\begin{", a[[1L]], "}",
-        	Recall(a[[2L]]),
-        	"\\end{", a[[1L]], "}"),
-        ## MATH = result <- c(result, "$", Recall(a), "$"),
-        MATH = result <- c(result, "\\eqn{", Recall(a), "}"),
-        NULL = stop("Internal error, no tag", domain = NA)
-        )
-        lastTag <- tag
-    }
-    paste(result, collapse="")
-}
-
-
+## deparseLatexToRd <- function(x, dropBraces = FALSE)
+## {
+##     result <- character()
+##     lastTag <- "TEXT"
+##     for (i in seq_along(x)) {
+##         a <- x[[i]]
+##         tag <- attr(a, "latex_tag")
+##         if (is.null(tag)) tag <- "NULL"
+##         switch(tag,
+##         VERB = ,
+##         TEXT = ,
+##         COMMENT = result <- c(result, a),
+##         MACRO = {
+##             ## see issue #26
+##             ## regex in r-devel/R/src/library/tools/R/RdConv2.R:
+##             ##     pat <- "([^\\]|^)\\\\[#$&_^~]"
+##             ## here we add grouping for substitution
+##             pat <- "([^\\]|^)(\\\\)([#$&_^~])"  # with more grouping
+##             if(grepl(pat, a)){
+##                 a <- gsub(pat, "\\1\\3", a)
+##             }
+##             result <- c(result, a)
+##         },
+##         BLOCK = result <- c(result, if (dropBraces && lastTag == "TEXT") Recall(a) else c("{", Recall(a), "}")),
+##         ENVIRONMENT = result <- c(result,
+##         	"\\begin{", a[[1L]], "}",
+##         	Recall(a[[2L]]),
+##         	"\\end{", a[[1L]], "}"),
+##         ## MATH = result <- c(result, "$", Recall(a), "$"),
+##         MATH = result <- c(result, "\\eqn{", Recall(a), "}"),
+##         NULL = stop("Internal error, no tag", domain = NA)
+##         )
+##         lastTag <- tag
+##     }
+##     paste(result, collapse="")
+## }
 
 `%notin%` <-
 function(x, y)
     is.na(match(x, y))
 
+## tools::deparseLatex() is by Sebastian Meyer and Duncan Murdoc. Below is a
+## version suitable for Rdpack.
+##
 ## This converts a latex object into a single element character vector
 deparseLatexToRd <- function(x, dropBraces = FALSE)
 {

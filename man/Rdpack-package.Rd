@@ -280,7 +280,7 @@ R 3.6.0.
 
 \verb{\printExample} is typically placed in section Details of an
 object's documentation, see section Details of \code{\link{get_usage}}
-for anumber of examples produced mostly with \verb{\printExample}.
+for a number of examples produced mostly with \verb{\printExample}.
 
 The macro \verb{\runExamples} can be used as a replacement
 of section \verb{Examples}.

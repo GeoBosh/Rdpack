@@ -1,12 +1,16 @@
 \name{insert_citeOnly}
 \alias{insert_citeOnly}
+
 \title{Generate citations from bibtex keys}
+
 \description{Generate citations from bibtex keys.}
+
 \usage{
 insert_citeOnly(keys, package = NULL, before = NULL, after = NULL,
                 bibpunct = NULL, ..., cached_env = NULL,
                 cite_only = FALSE, dont_cite = FALSE)
 }
+
 \arguments{
   \item{keys}{
 
@@ -15,7 +19,8 @@ insert_citeOnly(keys, package = NULL, before = NULL, after = NULL,
     Rd macro \verb{\\insertCite}. Put \verb{;textual} at the end of the
     string to get a textual citation. Similarly, \verb{;nobrackets}
     requests parenthesised citation without the enclosing parentheses.
-
+    Alternatively, \code{keys} can contain one or more keys, separated
+    by commas.
   }
   \item{package}{name of an R package.}
   \item{before}{see \code{\link{citeNatbib}}.}
@@ -26,13 +31,15 @@ insert_citeOnly(keys, package = NULL, before = NULL, after = NULL,
   \item{cite_only}{for internal use.}
   \item{dont_cite}{for internal use.}
 }
+
 \details{
 
   This is the function behind \verb{\\insertCite} and related macros.
   Argument \code{"keys"} has the syntax of the first argument of
-  \verb{\\insertCite}.
+  \verb{\\insertCite}, see \code{\link{insertRef}} for full details.
 
 }
+
 \value{
   a character vector containing the references with Rd markup
 }
@@ -40,9 +47,11 @@ insert_citeOnly(keys, package = NULL, before = NULL, after = NULL,
 %%% ~put references to the literature/web site here ~
 %}
 \author{Georgi N. Boshnakov}
+
 \seealso{
   \code{\link{insert_ref}} for description of all available Rd macros
 }
+
 \examples{
 insert_citeOnly("@see also @Rpackage:rbibutils and @parseRd", package = "Rdpack")
 ## (see also Boshnakov and Putman 2020 and Murdoch 2010)
@@ -55,4 +64,6 @@ insert_citeOnly("@see also @Rpackage:rbibutils and @parseRd;textual",
   package = "Rdpack")
 ## see also Boshnakov and Putman (2020) and Murdoch (2010)
 }
+
 \keyword{documentation}
+

@@ -1,7 +1,7 @@
 Package: Rdpack
 Type: Package
 Title: Update and Manipulate Rd Documentation Objects
-Version: 2.5.9000
+Version: 2.6
 Authors@R: c( person(given = c("Georgi", "N."),
                      family = "Boshnakov", 
                      role = c("aut", "cre"), 

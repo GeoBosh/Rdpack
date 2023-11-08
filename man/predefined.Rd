@@ -2,6 +2,7 @@
 \alias{Rdo_predefined_sections}
 \alias{Rdo_piece_types}
 \alias{rdo_top_tags}
+
 \title{
   Tables of predefined sections and types of pieces of Rd objects
 }
@@ -21,8 +22,8 @@ rdo_top_tags
   \insertCite{parseRd}{Rdpack}. \pkg{Rdpack} stores them in the
   variables described here.
   
-  \code{Rdo_predefined_sections} is a named character vector of types of the
-  top level sections of an Rd object. 
+  \code{Rdo_predefined_sections} is a named character vector providing
+  the types of the top level sections in an Rd object.
 
   \code{Rdo_piece_types} is a named character vector giving the types of
   the core (all possible?)  Rd macros.
@@ -36,9 +37,8 @@ rdo_top_tags
 \value{
   
   for \code{Rdo_predefined_sections}, the name-value pairs are given in
-  the following table. For example,
-  \code{Rdo_predefined_sections["examples"]} is
-  \Sexpr[stage=build,results=rd]{Rdo_predefined_sections["examples"]}.
+  the following table. For example, \code{Rdo_predefined_sections["examples"]} results
+  in \Sexpr[stage=build,results=rd]{Rdo_predefined_sections["examples"]}.
   
   \Sexpr[stage=build,results=rd]{require(Rdpack);
     paste(
@@ -88,12 +88,12 @@ rdo_top_tags
 
   \Sexpr[stage=build,results=rd]{
     paste("\\\\tabular{lllll}{",
-    paste(sub("^[#]", "\\\\\\\\verb{#}", sub("^([\\\\])", "{\\\\\\\\\\\\1}", rdo_top_tags)),
+    paste(sub("^[#]", "\\\\\\\\verb{#}", sub("^([\\\\])", "\\\\\\\\\\\\1", rdo_top_tags)),
           c(rep("\\\\tab ",4),"\\\\cr"),
           sep="", collapse="\n"),
           "}")}
 
-  Note that most, but not all,  are prefixed with backaslash.
+  Note that most, but not all,  are prefixed with a backslash.
 }
 \references{
   \insertAllCited{}

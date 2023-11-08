@@ -1,25 +1,28 @@
 \name{Rdpack_bibstyles}
 \alias{Rdpack_bibstyles}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{Set up a custom style for references in help pages}
+
 \description{Set up a custom style for references in help pages.}
+
 \usage{
 Rdpack_bibstyles(package, authors)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{package}{the name of a package, a character string.}
   \item{authors}{if equal to "LongNames", use full names of authors in
     reference lists, see Details.}
 }
+
 \details{
 
   This is the initial implementation of support for styles for lists of
   bibliography references.
 
-  Currently setting "authors" to "LongNames" will cause the references
-  to appear with full names, eg John Smith rather than in the default
-  Smith J style. 
+  Currently setting \code{authors} to \code{"LongNames"} will cause the
+  references to appear with full names, eg John Smith rather than in the
+  default Smith J style.
 
   Package authors can request this feature by adding the following line
   to their \code{.onLoad} function (if their package has one):

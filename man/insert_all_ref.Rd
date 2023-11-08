@@ -37,16 +37,16 @@ insert_all_ref(refs, style = "", empty_cited = FALSE)
 
 }
 \value{
-  for \code{insert_all_ref}, a character string containing a textual
-  representation of the references, suitable for inclusion in an Rd
-  file 
+  a character string containing a textual representation of the
+  references, suitable for inclusion in an Rd file
 }
 \references{
-  Currently there are no citations. Nevethelese, I have put
-  \verb{\insertAllCited{}} just after this paragraph to show the message
-  that it prints when there are no citations. This seems better than
-  printing nothing but it may be argued also that there should be a
-  warning as well.
+  
+  Currently there are no citations on this help page. Nevetheless, I
+  have put \verb{\insertAllCited{}} just after this paragraph to show
+  the message that it prints when there are no citations. This seems
+  better than printing nothing but it may be argued also that there
+  should be a warning as well.
   
   \insertAllCited{}
 }
@@ -75,4 +75,3 @@ m <- matrix(c("*", "Rdpack",  "*", "rbibutils"), ncol = 2, byrow = TRUE)
 cat(insert_all_ref(m), "\n")
 }
 \keyword{documentation}
-% use one of  RShowDoc("KEYWORDS")

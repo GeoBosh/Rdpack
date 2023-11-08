@@ -1,7 +1,14 @@
 \name{insert_ref}
 \alias{insert_ref}
+
 \alias{insertRef}
+
+\concept{Rd macros}
+\concept{bibtex}
+
+
 \title{Insert bibtex references in Rd and roxygen2 documentation}
+
 \description{
 
   Package Rdpack provides Rd macros for inserting references and
@@ -11,9 +18,11 @@
   see the vignette.
 
 }
+
 \usage{
 insert_ref(key, package = NULL, \dots, cached_env = NULL)
 }
+
 \arguments{
   \item{key}{the bibtex key of the reference, a character string.}
   \item{package}{the package in which to look for the bibtex file.}
@@ -23,10 +32,11 @@ insert_ref(key, package = NULL, \dots, cached_env = NULL)
     "REFERENCES.bib", see \code{\link{get_bibentries}}.
   }
   \item{cached_env}{
-    environment, used to avoid repeatedly pasing the bib
-    file from scratch, mainly useful by the Rd macros.
+    environment, used to avoid repeatedly passing the bib
+    file from scratch, mainly used by the Rd macros.
   }
 }
+
 \details{
   
   \code{insert_ref} extracts a bibliograhic reference from a bibtex
