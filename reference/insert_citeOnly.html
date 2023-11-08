@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">Rdpack</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.5.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.6</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,8 +65,9 @@
     <code>@</code>, intermixed with free text. The format is the same as for
     Rd macro <code>\insertCite</code>. Put <code>;textual</code> at the end of the
     string to get a textual citation. Similarly, <code>;nobrackets</code>
-    requests parenthesised citation without the enclosing parentheses.</p>
-<p></p></dd>
+    requests parenthesised citation without the enclosing parentheses.
+    Alternatively, <code>keys</code> can contain one or more keys, separated
+    by commas.</p></dd>
 
   <dt>package</dt>
 <dd><p>name of an R package.</p></dd>
@@ -99,7 +100,7 @@
 
 <p>This is the function behind <code>\insertCite</code> and related macros.
   Argument <code>"keys"</code> has the syntax of the first argument of
-  <code>\insertCite</code>.</p>
+  <code>\insertCite</code>, see <code><a href="insert_ref.html">insertRef</a></code> for full details.</p>
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>

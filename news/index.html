@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">Rdpack</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.5.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.6</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +44,11 @@
       <small>Source: <a href="https://github.com/GeoBosh/Rdpack/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.6" id="rdpack-26">Rdpack 2.6<a class="anchor" aria-label="anchor" href="#rdpack-26"></a></h2><p class="text-muted">CRAN release: 2023-11-08</p>
+<ul><li><p>fixed issues causing ‘lost braces’ (actually, superfluous braces) NOTEs from checks in R-devel occuring with some accented LaTeX characters. These NOTEs are not yet activated on CRAN but if/when they do, developers using Rd macros <code>\insertRef</code> and <code>\insertCite</code> can eliminate them by building their packages with Rdpack (&gt; 2.5) and rbibutils (&gt;= 2.2.16). Thanks to Sebastian Meyer for tracing down the issues.</p></li>
+<li><p>fixed a <code>Sweave</code> expression in ‘man/predefined.Rd’ to not emit unnecessary braces (see the note above).</p></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.5" id="rdpack-25">Rdpack 2.5<a class="anchor" aria-label="anchor" href="#rdpack-25"></a></h2><p class="text-muted">CRAN release: 2023-08-21</p>
 <ul><li><p>Rd macros <code>insertCite</code> and friends were calling <code>insert_citeOnly</code> with argument <code>key</code> instead of <code>keys</code>. This was not an error since partial matching is ok here but not good practice. Fixes issue <a href="https://github.com/GeoBosh/Rdpack/issues/28" class="external-link">#28</a> reported by Marcel Ramos.</p></li>

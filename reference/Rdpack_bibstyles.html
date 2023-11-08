@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">Rdpack</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.5.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.6</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,9 +70,9 @@
 
 <p>This is the initial implementation of support for styles for lists of
   bibliography references.</p>
-<p>Currently setting "authors" to "LongNames" will cause the references
-  to appear with full names, eg John Smith rather than in the default
-  Smith J style.</p>
+<p>Currently setting <code>authors</code> to <code>"LongNames"</code> will cause the
+  references to appear with full names, eg John Smith rather than in the
+  default Smith J style.</p>
 <p>Package authors can request this feature by adding the following line
   to their <code>.onLoad</code> function (if their package has one):</p><div class="sourceCode"><pre><code><span></span>
 <span>    <span class="fu">Rdpack</span><span class="fu">::</span><span class="fu"><a href="../reference/Rdpack_bibstyles.html">Rdpack_bibstyles</a></span><span class="op">(</span>package <span class="op">=</span> <span class="va">pkg</span>, authors <span class="op">=</span> <span class="st">"LongNames"</span><span class="op">)</span></span></code></pre></div><p>of just copy the following definition in a package that does not have
