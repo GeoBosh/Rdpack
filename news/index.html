@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">Rdpack</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.6.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,20 +46,20 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.6" id="rdpack-26">Rdpack 2.6<a class="anchor" aria-label="anchor" href="#rdpack-26"></a></h2><p class="text-muted">CRAN release: 2023-11-08</p>
-<ul><li><p>fixed issues causing ‘lost braces’ (actually, superfluous braces) NOTEs from checks in R-devel occuring with some accented LaTeX characters. These NOTEs are not yet activated on CRAN but if/when they do, developers using Rd macros <code>\insertRef</code> and <code>\insertCite</code> can eliminate them by building their packages with Rdpack (&gt; 2.5) and rbibutils (&gt;= 2.2.16). Thanks to Sebastian Meyer for tracing down the issues.</p></li>
+<ul><li><p>fixed issues causing ‘lost braces’ (actually, superfluous braces) NOTEs from checks in R-devel occuring with some accented LaTeX characters. These NOTEs are not yet activated on CRAN but if/when they do, developers using Rd macros <code>\insertRef</code> and <code>\insertCite</code> can eliminate them by building their packages with Rdpack (&gt;= 2.6) and rbibutils (&gt;= 2.2.16). Thanks to Sebastian Meyer for tracing down the issues.</p></li>
 <li><p>fixed a <code>Sweave</code> expression in ‘man/predefined.Rd’ to not emit unnecessary braces (see the note above).</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.5" id="rdpack-25">Rdpack 2.5<a class="anchor" aria-label="anchor" href="#rdpack-25"></a></h2><p class="text-muted">CRAN release: 2023-08-21</p>
-<ul><li><p>Rd macros <code>insertCite</code> and friends were calling <code>insert_citeOnly</code> with argument <code>key</code> instead of <code>keys</code>. This was not an error since partial matching is ok here but not good practice. Fixes issue <a href="https://github.com/GeoBosh/Rdpack/issues/28" class="external-link">#28</a> reported by Marcel Ramos.</p></li>
+<ul><li><p>Rd macros <code>insertCite</code> and friends were calling <code>\insert_citeOnly()</code> with argument <code>key</code> instead of <code>keys</code>. This was not an error since partial matching is ok here but not good practice. Fixes issue <a href="https://github.com/GeoBosh/Rdpack/issues/28" class="external-link">#28</a> reported by Marcel Ramos.</p></li>
 <li><p>changed the saved value in “tests/testthat/dummyArticle.rds” used in ‘test-bib.R’ with a value obtained with R-devel r84896 n previu versins of R there wasasuperfluous final ’ .’).</p></li>
-<li><p>in some cases when square brackets were requested, rather than round ones, <code>insertCiteOnly</code> was using closing round parenthesis.</p></li>
-<li><p>in some cases <code>insertCiteOnly</code> was not handling well the last cite when it was followed by free text.</p></li>
+<li><p>in some cases when square brackets were requested, rather than round ones, <code>\insertCiteOnly</code> was using closing round parenthesis.</p></li>
+<li><p>in some cases <code>\insertCiteOnly</code> was not handling well the last cite when it was followed by free text.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.4" id="rdpack-24">Rdpack 2.4<a class="anchor" aria-label="anchor" href="#rdpack-24"></a></h2><p class="text-muted">CRAN release: 2022-07-20</p>
 <ul><li><p>new Rd macro <code>\insertCited{}</code> works like <code>\insertAllCited</code> but empties the references list after finishing its work. This means that the second and subsequent <code>\insertCited</code> in the same help page will list only citations done since the preceding <code>\insertCited</code>. Prompted by issue <a href="https://github.com/GeoBosh/Rdpack/issues/27" class="external-link">#27</a> to allow separate references lists for each method and the class in R6 documentation.</p></li>
-<li><p>It is no longer necessary to remove backslashes from <code>\&amp;</code> and similar in bibtex files (e.g. in “John Wiley &amp; Sons”). The backslash was appearing in the rendered pdf manual but R-devel’s checks started to warn about it recently with something like <code>checkRd: (-1) pcts-package.Rd:287: Escaped LaTeX   specials: \&amp;</code> (starting June 2022). This could be avoided by removing the superfluous backslash in the bib file but this is annoying since this is proper syntax for the latter. Concerned packages should rebuild the tarball with Rdpack (&gt; 2.3.1) or remove the offending backslashes from their bib files. (addresses issue <a href="https://github.com/GeoBosh/Rdpack/issues/26" class="external-link">#26</a>)</p></li>
+<li><p>It is no longer necessary to remove backslashes from <code>\&amp;</code> and similar in bibtex files (e.g. in “John Wiley &amp; Sons”). The backslash was appearing in the rendered pdf manual but R-devel’s checks started to warn about it recently with something like <code>checkRd: (-1) pcts-package.Rd:287: Escaped LaTeX   specials: \&amp;</code> (starting June 2022). This could be avoided by removing the superfluous backslash in the bib file but this is annoying since this is proper syntax for the latter. Concerned packages should rebuild the tarball with Rdpack (&gt;= 2.4) or remove the offending backslashes from their bib files. (addresses issue <a href="https://github.com/GeoBosh/Rdpack/issues/26" class="external-link">#26</a>)</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.3.1" id="rdpack-231-cran">Rdpack 2.3.1 (CRAN)<a class="anchor" aria-label="anchor" href="#rdpack-231-cran"></a></h2><p class="text-muted">CRAN release: 2022-06-07</p>
@@ -82,7 +82,7 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.1.3" id="rdpack-213-cran">Rdpack 2.1.3 (CRAN)<a class="anchor" aria-label="anchor" href="#rdpack-213-cran"></a></h2><p class="text-muted">CRAN release: 2021-12-08</p>
 <ul><li><p>fixed a test that was failing with versions of rbibutils before v2.1.1 (issue reported by Andreas Tille).</p></li>
-<li><p>if the version of rbibutils is greater than v2.2.5, parsing bib files with <code><a href="https://geobosh.github.io/rbibutils/reference/readBib.html" class="external-link">rbibutils::readBib</a></code> now uses <code>texChars = "Rdpack"</code>. This ensures proper rendering of <code>\'i' in references (by converting</code>'i<code>to</code>'` which base R renders correctly). For detailed discussion of this see issue GeoBosh/bibutils#7 and NEWS.md in rbibutils v2.2.4 and v2.2.5.</p></li>
+<li><p>if the version of rbibutils is greater than v2.2.5, parsing bib files with <code><a href="https://geobosh.github.io/rbibutils/reference/readBib.html" class="external-link">rbibutils::readBib</a></code> now uses <code>texChars = "Rdpack"</code>. This ensures proper rendering of <code>\'i</code> in references (by converting <code>\'i</code> to <code>\'\i</code> which base R renders correctly). For detailed discussion of this see issue GeoBosh/bibutils#7 and NEWS.md in rbibutils v2.2.4 and v2.2.5.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.1.2" id="rdpack-212-cran">Rdpack 2.1.2 (CRAN)<a class="anchor" aria-label="anchor" href="#rdpack-212-cran"></a></h2><p class="text-muted">CRAN release: 2021-06-01</p>
@@ -169,12 +169,12 @@
 <li><p>Now macros <code>\insertCite</code> and <code>\insertCiteOnly</code> use the correct <code>results=rd</code> instead of <code>results=Rd</code>. This was not catched by <code>R</code>s building tools but caused errors when processed with <code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code>. Fixes issue#8. Also fixes r-lib/pkgdown#784. Thanks to <a href="https://github.com/jayhesselberth" class="external-link">Jay Hesselberth</a> for uncovering this.</p></li>
 <li><p>now references produced by the citation macros for BibTeX entries of type <code>@book</code> and <code>@incollection</code> treat field ‘series’ similarly to other BibTeX styles, including JSS (issue#7 raised by Kisung You). Note that even though the underlying base R tools are based on JSS, they treat this field differently.</p></li>
 <li><p>Bugfix: now Rd macro <code>\printExample</code> evaluates the expressions in the correct environment.</p></li>
-<li><p>help page of <code>get_usage</code> gets a fairly complete Details section with numerous evaluated examples.</p></li>
+<li><p>help page of <code><a href="../reference/promptUsage.html">get_usage()</a></code> gets a fairly complete Details section with numerous evaluated examples.</p></li>
 <li><p>now <code>run_examples()</code> escapes <code>%</code> by default, before returning the text. This is needed for text that is to be included in an Rd file. It can be turned off by setting the new argument <code>escape</code> to <code>FALSE</code>.</p></li>
 <li><p>now <code><a href="../reference/reprompt.html">reprompt()</a></code> gives a more informative error message if an Rd file describes a non-existent S4 class. This is not captured by <code>R</code>s tools. It can happen during development if a class is removed.</p></li>
 <li><p>now reports printed by <code><a href="../reference/reprompt.html">reprompt()</a></code> about methods documented in Usage sections, but no longer existing, are more readable. This is due to a new print method for (the mostly internal) class “f_usage”.</p></li>
 <li><p>Many features of Rdpack are best demonstrated on a package. The new package RdpackTester under <code>./inst/examples</code> now makes this easier.</p></li>
-<li><p>now the help page “predefined.Rd” does not print some tables twice in the pdf manual. (This was due to using <code>\if{latex}{}{}' instead of</code>’ for those tables.)</p></li>
+<li><p>now the help page “predefined.Rd” does not print some tables twice in the pdf manual. (This was due to using <code>\if{latex}{}{}</code> instead of <code>\ifelse{latex}{}{}</code> for those tables.)</p></li>
 <li><p>also in “predefined.Rd”, removed illegal use of vertical bars (in column specifications of tabular environments) from the pure LaTeX code in the <code>\ifelse</code> clause(s) and wrapped them in <code>\out{}</code>.</p></li>
 <li><p>in “get_sig_text.Rd”, replace <code><a href="https://rdrr.io/r/utils/help.html" class="external-link">help()</a></code> with <code><a href="https://rdrr.io/r/utils/help.html" class="external-link">utils::help()</a></code> to avoid warnings from more stringent <code>R CMD check</code>. Similarly, in “Rdpack-package.Rd” replace <code><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">packageDescription()</a></code> with <code><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">utils::packageDescription()</a></code>. This may be needed in <code>\Sexpr</code>’s more generally (<strong>TODO:</strong> check if these would still be needed if the symbols are imported by the package.)</p></li>
 </ul></div>
@@ -257,19 +257,13 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.5-5" id="rdpack-05-5-cran">Rdpack 0.5-5 (CRAN)<a class="anchor" aria-label="anchor" href="#rdpack-05-5-cran"></a></h2><p class="text-muted">CRAN release: 2018-02-14</p>
 <ul><li><p>Streamlined the help page of <code><a href="../reference/reprompt.html">reprompt()</a></code> and <code>Rdpack-package</code>.</p></li>
-<li><p>new argument, <code>edit', in</code>reprompt()` opens the Rd file after updating it.</p></li>
+<li><p>new argument, <code>edit</code>, in <code><a href="../reference/reprompt.html">reprompt()</a></code> opens the Rd file after updating it.</p></li>
 <li><p>new function <code><a href="../reference/ereprompt.html">ereprompt()</a></code> (<code>e' for _edit_)* opens</code>reprompt()<code>with suitable   defaults to replace the original Rd file and open it in an editor, otherwise   equivalent to</code>reprompt()`.</p></li>
 <li><p>now if <code>infile</code> does not exist, <code><a href="../reference/reprompt.html">reprompt()</a></code>, and hence <code><a href="../reference/ereprompt.html">ereprompt()</a></code>, strips the directory part, finds the root of the package directory, and looks for the file under <code>man/</code> (this uses package <code>rprojroot</code>’). In particular, if the working directory is anywhere under the package root, <code>infile</code> can be simply the name of the Rd file, without path.</p></li>
 <li><p>now README.md is generated from README.org. I changed the layout and amended the information in it.</p></li>
 <li><p>README.* now get links to <a href="https://github.com/GeoBosh/georgisemacs" class="external-link">georgisemacs</a> for an emacs function to <code><a href="../reference/reprompt.html">reprompt()</a></code> the Rd file at point.</p></li>
 <li><p><code><a href="../reference/viewRd.html">viewRd()</a></code> now works also when the file is from a package under devtools’ development mode on any platform (e.g. RStudio, Emacs/ESS, Rgui).</p></li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.5-4.9000" id="rdpack-05-49000">Rdpack 0.5-4.9000<a class="anchor" aria-label="anchor" href="#rdpack-05-49000"></a></h2>
-<ul><li>
-<p>new RStudio add-in ’Reprompt`, contributed by Duncan Murdoch.</p>
-<p>If the file being edited in the code editor is an Rd file it calls <code><a href="../reference/reprompt.html">reprompt()</a></code>. If the file is as R source file, it looks for the help page of a selected object name and works on it if found, otherwise creates one.</p>
-</li>
+<li><p>new RStudio add-in <code>Reprompt</code>, contributed by Duncan Murdoch. If the file being edited in the RStudio’s code editor is an Rd file it calls <code><a href="../reference/reprompt.html">reprompt()</a></code>. If the file is as R source file, it looks for the help page of a selected object name and works on it if found, otherwise creates one.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.5-4" id="rdpack-05-4">Rdpack 0.5-4<a class="anchor" aria-label="anchor" href="#rdpack-05-4"></a></h2>
@@ -340,7 +334,7 @@ May be particularly helpful for devtools developers.</p></li>
 <h2 class="pkg-version" data-toc-text="0.4-16" id="rdpack-04-16">Rdpack 0.4-16<a class="anchor" aria-label="anchor" href="#rdpack-04-16"></a></h2>
 <ul><li><p>don’t export <code>parse_text</code></p></li>
 <li><p>corrected bug in reprompt for S4 classes - new slots were not handled correctly (see <code>slots.R</code> for details).</p></li>
-<li><p>reprompt for S4 methods* if the methods documentation describes methods that do not exist, print an informative message for the user. (Such methods are also printed for debugging purposes but in non-user friendly form.)</p></li>
+<li><p>in reprompt for S4 methods: if the methods documentation describes methods that do not exist, print an informative message for the user. (Such methods are also printed for debugging purposes but in non-user friendly form.)</p></li>
 <li><p>included <code>methods</code> in <code>Imports:</code> - around R-devel version 2015-07-01 r68620 not including it triggers warnings)</p></li>
 </ul></div>
     <div class="section level2">
@@ -377,7 +371,7 @@ May be particularly helpful for devtools developers.</p></li>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3-10" id="rdpack-03-10">Rdpack 0.3-10<a class="anchor" aria-label="anchor" href="#rdpack-03-10"></a></h2><p class="text-muted">CRAN release: 2012-11-03</p>
 <ul><li>
-<code>Depends</code> field in DESCRIPTION file updated to require R 2.15.0 or later. (because of a few uses of <code><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0()</a></code> in recent code.)</li>
+<code>Depends</code> field in DESCRIPTION file updated to require R 2.15.0 or later (because of a few uses of <code><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0()</a></code> in recent code.)</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3-8" id="rdpack-03-8-cran">Rdpack 0.3-8 (CRAN)<a class="anchor" aria-label="anchor" href="#rdpack-03-8-cran"></a></h2><p class="text-muted">CRAN release: 2012-10-25</p>
