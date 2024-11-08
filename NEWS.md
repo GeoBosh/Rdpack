@@ -1,3 +1,10 @@
+# Rdpack 2.6.1.9000
+
+- `RStudio_reprompt' now issues a more informative error message when not called on a
+  suitable file or function. Fixes issue #30 by @daattali.
+
+
+
 # Rdpack 2.6.1
 
 - R-devel c86938 turned to error the warning for a non-existing key in the bib
