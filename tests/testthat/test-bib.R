@@ -8,9 +8,9 @@ test_that("bib works fine", {
     fn_rb <- system.file("REFERENCES.bib", package = "rbibutils")
     bibs_rb <- if(packageVersion("rbibutils") >= '2.1.1')
                    readBib(fn_rb) else readBib(fn_rb, encoding = "UTF-8")
-    
+
     .toRd_styled(bibs_rb, "Rdpack")
-    .toRd_styled(bibs_rb[["Rpackage:Rdpack"]], "Rdpack")    
+    .toRd_styled(bibs_rb[["Rpackage:Rdpack"]], "Rdpack")
     .toRd_styled(bibs_rb[["Rpackage:Rdpack"]], "rbibutils", style = "JSSRd")
 
     set_Rdpack_bibstyle("JSSRd")
@@ -26,7 +26,7 @@ test_that("bib works fine", {
                  "(see also Boshnakov 2020)")
     expect_equal(insert_citeOnly("@see also @Rpackage:Rdpack;nobrackets", package = "rbibutils"),
                  "see also Boshnakov 2020")
-    
+
     expect_equal(insert_citeOnly("@see also @Rpackage:Rdpack among others;nobrackets", package = "rbibutils"),
                  "see also Boshnakov 2020 among others")
 
@@ -40,7 +40,7 @@ test_that("bib works fine", {
     expect_equal(insert_citeOnly(
         "@see also @Rpackage:rbibutils and @parseRd;textual", package = "Rdpack"),
         "see also Boshnakov and Putman (2020) and Murdoch (2010)")
-    
+
     expect_equal(insert_citeOnly(
         "@see also @Rpackage:rbibutils and @parseRd, among others;textual", package = "Rdpack"),
         "see also Boshnakov and Putman (2020) and Murdoch (2010), among others")
@@ -60,7 +60,7 @@ test_that("bib works fine", {
     expect_equal(insert_citeOnly(
         "@see also @Rpackage:rbibutils and @parseRd;nobrackets", package = "Rdpack"),
         "see also Boshnakov and Putman 2020 and Murdoch 2010")
-    
+
     expect_equal(insert_citeOnly(
         "@see also @Rpackage:rbibutils and @parseRd;nobrackets", package = "Rdpack"),
         "see also Boshnakov and Putman 2020 and Murdoch 2010")
@@ -80,21 +80,26 @@ test_that("bib works fine", {
 
     expect_error(insert_citeOnly("Rpackage:Rdpack;textual", bibpunct = c("[", "]")),
                  "argument 'package' must be provided")
-    
-    expect_error(insert_citeOnly(c("Rpackage:Rdpack;textual", "xxxxx"), 
+
+    expect_error(insert_citeOnly(c("Rpackage:Rdpack;textual", "xxxxx"),
                  "`keys' must be a character string"))
-    
+
     insert_ref("Rpackage:Rdpack", package = "rbibutils")
 
     ## missing keys
-    expect_warning(insert_ref("xxx", package = "rbibutils"))
+    if(getRversion() <= "4.4.1")
+        expect_warning(insert_ref("xxx", package = "rbibutils"))
+    else # since R-devel c86938 the warning was changed to error
+        expect_error(insert_ref("xxx", package = "rbibutils"))
+
+
     expect_warning(insert_citeOnly(
        "@see also @Rpackage:rbibutils and @parseRd;nobrackets @kikiriki", package = "Rdpack"))
         ## "possibly non-existing or duplicated key(s) in bib file from package ..."
 
-    ## TODO: this tries to load package "xxx" and gives error but finishes ok and returns a 
+    ## TODO: this tries to load package "xxx" and gives error but finishes ok and returns a
     ##       dummy reference, as expected.
-    ##  
+    ##
     ##     Why and which instruction tries to load package "yyy"? Maybe in .Rd_styled?
     ##    It is sufficient that the package is installed, it doesn't need to be loadable.
     ## expect_warning(insert_ref("xxx", package = "yyy")) # missing package
@@ -103,7 +108,7 @@ test_that("bib works fine", {
     insert_all_ref(matrix(c("parseRd,Rpack:bibtex", "Rdpack"), ncol = 2))
     insert_all_ref(matrix(c("parseRd,Rpack:bibtex", "Rdpack"), ncol = 2), empty_cited = TRUE)
 
-    
+
     class(bibs_rb) <- c("bibentryRd", class(bibs_rb))
     expect_output(print(bibs_rb))
 
@@ -122,7 +127,7 @@ test_that("bib works fine", {
     ##     resaved 'dummyArticle.rds' and conditioned on R-devel r84986.
     ##
     ##     Previously the rendered version of the 'note' field contained a superfluous ' .'.
-    ##     This was fixed in R-devel r84986 (or somewhat earlier). 
+    ##     This was fixed in R-devel r84986 (or somewhat earlier).
     ##     After the change in R-devel, we get with the old dummyArticle.rds:
     ##       > waldo::compare(readRDS("tests/testthat/dummyArticle.rds"),
     ##                        insert_all_ref(matrix(c("dummyArticle", "Rdpack"), ncol = 2)))
@@ -137,7 +142,7 @@ test_that("bib works fine", {
     if(is.numeric(svnrev <- R.Version()$'svn rev')  &&  svnrev >= 84986)
         expect_known_value(insert_all_ref(matrix(c("dummyArticle", "Rdpack"), ncol = 2)),
                            "dummyArticle.rds", update = FALSE)
-    
+
     ## makeVignetteReference("Rdpack", 1)
 
 })

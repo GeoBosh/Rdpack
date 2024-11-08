@@ -285,7 +285,7 @@ inspect_Rdbib <- function(rdo, force = FALSE, ...){               # 2013-03-29
                 # bibstxt <- capture.output(print(bibs, "latex"))
 	        # 
                 # bibstxt <- .patch_latex(bibstxt)  # TODO: krapka!
-        ## TODO: the bibstyles used beloww should probably be arguments
+        ## TODO: the bibstyles used below should probably be arguments
         bibs <- sort(bibs, .bibstyle = "JSSRd")
         bibstxt <- .toRd_styled(bibs, "Rdpack")
             # bibstxt <- paste0(bibstxt, collapse = "\\cr\\cr ")
@@ -399,110 +399,138 @@ Rdo_flatinsert <- function(rdo, val, pos, before = TRUE){                       
     list(.get_bibs0 = .get_bibs0, .get_all_bibs = .get_all_bibs)
 })
 
-## TODO: auto-deduce 'package'?
-## 2020-09-30: changing to cache bib as \insertCite does (new arg. cached_env, etc)
-insert_ref <- function(key, package = NULL, ..., cached_env = NULL) {
+  ## TODO: auto-deduce 'package'?
+  ## 2020-09-30: changing to cache bib as \insertCite does (new arg. cached_env, etc)
+  insert_ref <- function(key, package = NULL, ..., cached_env = NULL) {
 
-        # 2020-09-30: replaced by a single call
-        # if(is.null(package)) 
-        #     stop("argument 'package' must be provided")
-        # 
-        # bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
-        #
+	  # 2020-09-30: replaced by a single call
+	  # if(is.null(package)) 
+	  #     stop("argument 'package' must be provided")
+	  # 
+	  # bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
+	  #
 
-        #  TODO: this is for testing only!
-        #    message("\nkey is ", key)
+	  #  TODO: this is for testing only!
+	  #    message("\nkey is ", key)
         
-        # if(is.null(cached_env))
-        #     message("    cached_env is NULL")
-        # else
-        #     message("    cached_env is nonNULL")
+	  # if(is.null(cached_env))
+	  #     message("    cached_env is NULL")
+	  # else
+	  #     message("    cached_env is nonNULL")
 
-    bibs <- .bibs_cache$.get_bibs0(package, ..., cached_env = cached_env) 
+      bibs <- .bibs_cache$.get_bibs0(package, ..., cached_env = cached_env) 
 
-    if(length(bibs) == 0){
-        note <- paste0("\"Failed to insert reference with key = ", key, 
-                       " from package = '", package, "'.",
-                       " Possible cause --- missing REFERENCES.bib in package '",
-                       package, "' or '", package, "' not installed.\""
-                       )
-        note <- paste0("\\Sexpr[results=rd,stage=install]{{warning(", note, ");", note, "}} ")
-        item <- bibentry(
-            bibtype = "Misc",
-            title = "Not avalable",
-            author = person("A", "Adummy"),
-            year = format(Sys.time(), "%Y"),
-            note = note,
-            key = key
-        )
-        .toRd_styled(item, package)
-    }else if(length(key) == 1){
-        item <- tryCatch(bibs[[key]],
-                         warning = function(c) {
-                             if(grepl("subscript out of bounds", c$message)){
-                                 ## tell the user the offending key.
-                                 s <- paste0("possibly non-existing key '", key, "'")
-                                 c$message <- paste0(c$message, " (", s, ")")
-                             }
-                             warning(c)
-                                 # res <- paste0("\nWARNING: failed to insert reference '", key,
-                                 #               "' from package '", package, "' - ",
-                                 #               s, ".\n")
-                                 # return(res)
-                             ## setup a dummy entry
-                             bibentry(
-                                 bibtype = "Misc",
-                                 title = "Not avalable",
-                                 author = person("A", "Adummy"),
-                                 year = format(Sys.time(), "%Y"),
-                                 note = paste0("Failed to insert reference with key = ", key, 
-                                               " from package = '", package, "'.",
-                                               " Possible cause --- missing or misspelled key."
-                                               ),
-                                 key = key
-                             )
-                         })
+      if(length(bibs) == 0){
+	  note <- paste0("\"Failed to insert reference with key = ", key, 
+			 " from package = '", package, "'.",
+			 " Possible cause --- missing REFERENCES.bib in package '",
+			 package, "' or '", package, "' not installed.\""
+			 )
+	  note <- paste0("\\Sexpr[results=rd,stage=install]{{warning(", note, ");", note, "}} ")
+	  item <- bibentry(
+	      bibtype = "Misc",
+	      title = "Not avalable",
+	      author = person("A", "Adummy"),
+	      year = format(Sys.time(), "%Y"),
+	      note = note,
+	      key = key
+	  )
+	  .toRd_styled(item, package)
+      }else if(length(key) == 1){
+	  item <- tryCatch(bibs[[key]],
+			   warning = function(c) {
+			       if(grepl("subscript out of bounds", c$message)){
+				   ## tell the user the offending key.
+				   s <- paste0("possibly non-existing key '", key, "'")
+				   c$message <- paste0(c$message, " (", s, ")")
+			       }
+			       warning(c)
+				   # res <- paste0("\nWARNING: failed to insert reference '", key,
+				   #               "' from package '", package, "' - ",
+				   #               s, ".\n")
+				   # return(res)
+			       ## setup a dummy entry
+			       bibentry(
+				   bibtype = "Misc",
+				   title = "Not avalable",
+				   author = person("A", "Adummy"),
+				   year = format(Sys.time(), "%Y"),
+				   note = paste0("Failed to insert reference with key = ", key, 
+						 " from package = '", package, "'.",
+						 " Possible cause --- missing or misspelled key."
+						 ),
+				   key = key
+			       )
+			   },
+			   ## 2024-08-04
+			   ## R-devel c86938 recently changed the warning to error,
+			   ## for now, copying verbatim the function for handling the warning.
+			   error = function(c) {
+			       if(grepl("subscript out of bounds", c$message)){
+				   ## tell the user the offending key.
+				   s <- paste0("possibly non-existing key '", key, "'")
+				   c$message <- paste0(c$message, " (", s, ")")
+			       }
+			       warning(c)
+				   # res <- paste0("\nWARNING: failed to insert reference '", key,
+				   #               "' from package '", package, "' - ",
+				   #               s, ".\n")
+				   # return(res)
+			       ## setup a dummy entry
+			       bibentry(
+				   bibtype = "Misc",
+				   title = "Not avalable",
+				   author = person("A", "Adummy"),
+				   year = format(Sys.time(), "%Y"),
+				   note = paste0("Failed to insert reference with key = ", key,
+						 " from package = '", package, "'.",
+						 " Possible cause --- missing or misspelled key."
+						 ),
+				   key = key
+			       )
+			   }
+			   )
 
-            #     # 2018-03-01 Bug: Unexpected END_OF_INPUT error (URL parsing?) #3
-            #     #     I don't know why toRd() doesn't do this...
-            #     #
-            #     # escape percents that are not preceded by backslash
-            #     #  (`if' is because in case of error above, item will be simply a string)
-            #
-            # Commenting out since get_bibentries() does it.
-            #     if(inherits(item, "bibentry")  &&  !is.null(item$url))
-            #         item$url <- gsub("([^\\])%", "\\1\\\\%", item$url)
+	      #     # 2018-03-01 Bug: Unexpected END_OF_INPUT error (URL parsing?) #3
+	      #     #     I don't know why toRd() doesn't do this...
+	      #     #
+	      #     # escape percents that are not preceded by backslash
+	      #     #  (`if' is because in case of error above, item will be simply a string)
+	      #
+	      # Commenting out since get_bibentries() does it.
+	      #     if(inherits(item, "bibentry")  &&  !is.null(item$url))
+	      #         item$url <- gsub("([^\\])%", "\\1\\\\%", item$url)
 
-            # if(interactive()) browser()
+	      # if(interactive()) browser()
 
-            # wrk <- .toRd_styled(item, package) # TODO: add styles? (doesn't seem feasible here)
-            # fn <- tempfile()
-            # cat(wrk, file = fn)
-            # res <- permissive_parse_Rd(fn) ## tools::parse_Rd(fn)
-            # tools::toRd(res)
-            # 
-            # wrk <- .toRd_styled(item, package) 
-            # Encoding(wrk) <- "bytes"
-            # wrk
-            # 
-        .toRd_styled(item, package) 
-    }else{
-        ## key is documented to be of length one, nevertheless handle it too
-        kiki <- FALSE
-        items <- withCallingHandlers(bibs[[key]], warning = function(w) {kiki <<- TRUE})
-        ## TODO: deal with URL's as above
-        txt <- .toRd_styled(items, package)
+	      # wrk <- .toRd_styled(item, package) # TODO: add styles? (doesn't seem feasible here)
+	      # fn <- tempfile()
+	      # cat(wrk, file = fn)
+	      # res <- permissive_parse_Rd(fn) ## tools::parse_Rd(fn)
+	      # tools::toRd(res)
+	      # 
+	      # wrk <- .toRd_styled(item, package) 
+	      # Encoding(wrk) <- "bytes"
+	      # wrk
+	      # 
+	  .toRd_styled(item, package) 
+      }else{
+	  ## key is documented to be of length one, nevertheless handle it too
+	  kiki <- FALSE
+	  items <- withCallingHandlers(bibs[[key]], warning = function(w) {kiki <<- TRUE})
+	  ## TODO: deal with URL's as above
+	  txt <- .toRd_styled(items, package)
 
-        if(kiki){ # warning(s) in bibs[[key]]
-            s <- paste0("WARNING: failed to insert ",
-                        "one or more of the following keys in REFERENCES.bib:\n",
-                        paste(key, collapse = ", \n"), ".")
-            warning(s)
-            txt <- c(txt, s)
-        }
-        paste0(paste(txt, collapse = "\n\n"), "\n")
-    }
-}
+	  if(kiki){ # warning(s) in bibs[[key]]
+	      s <- paste0("WARNING: failed to insert ",
+			  "one or more of the following keys in REFERENCES.bib:\n",
+			  paste(key, collapse = ", \n"), ".")
+	      warning(s)
+	      txt <- c(txt, s)
+	  }
+	  paste0(paste(txt, collapse = "\n\n"), "\n")
+      }
+  }
 
 ## 2017-11-25 new
 ## see utils:::print.help_files_with_topic()
@@ -1229,16 +1257,11 @@ Rdpack_bibstyles <- local({
     ## TODO: check if these 'sapply()' preserves encodings, if set.
     res <- sapply(bibs, f)
 
-    ## 2018-10-08
+    if(any(slash_ind <- grepl("\\slash ", res, fixed = TRUE))) {
+        res[slash_ind] <- gsub("([^{])\\\\slash *", "\\1\\\\ifelse{latex}{\\\\out{\\\\slash }}{/}",
+                               res[slash_ind])
+    }
 
-    ## TODO: this is risky but read.bib, bibentry, toRd and similar seem to work
-    ##       internally with UTF-8
-    ##
-    ##     if(!all(Encoding(res) == "UTF-8")){
-    ##         # warning(paste("encoding is: ", paste0(Encoding(res), collapse = ", "), "\n"))
-    ##         Encoding(res) <- "UTF-8"
-    ##     }
-    
     res
 }
 
