@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Rdpack</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.6.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.6.2.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,8 +33,14 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="2.6.1.9000" id="rdpack-2619000">Rdpack 2.6.1.9000<a class="anchor" aria-label="anchor" href="#rdpack-2619000"></a></h2>
-<ul><li>`RStudio_reprompt’ now issues a more informative error message when not called on a suitable file or function. Fixes issue <a href="https://github.com/GeoBosh/Rdpack/issues/30" class="external-link">#30</a> by <a href="https://github.com/daattali" class="external-link">@daattali</a>.</li>
+<h2 class="pkg-version" data-toc-text="2.6.2" id="rdpack-262">Rdpack 2.6.2<a class="anchor" aria-label="anchor" href="#rdpack-262"></a></h2><p class="text-muted">CRAN release: 2024-11-15</p>
+<ul><li>changed the condition in the test fixing the issue in Rdpack v2.6.1 to <code>getRversion() &lt; "4.5.0"</code>, which is less likely to need further change for R-4.4.x releases.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.6.2" id="rdpack-262-1">Rdpack 2.6.2<a class="anchor" aria-label="anchor" href="#rdpack-262-1"></a></h2><p class="text-muted">CRAN release: 2024-11-15</p>
+<ul><li><p><code>RStudio_reprompt</code> now issues a more informative error message when not called on a suitable file or function. Fixes issue <a href="https://github.com/GeoBosh/Rdpack/issues/30" class="external-link">#30</a>, reported by <a href="https://github.com/daattali" class="external-link">@daattali</a>.</p></li>
+<li><p>now the LaTeX macro <code>\slash</code> is wrapped in a condition, so that it is passed on for LaTeX related output but converted to <code>/</code> for other formats (such as html). Fixes GeoBosh/rbibutils#9, reported by <a href="https://github.com/MLopez-Ibanez" class="external-link">@MLopez-Ibanez</a>.</p></li>
+<li><p>fixed the test for the fix in Rdpack v2.6.1 (see below) to work with R-4.4.2, since that R-devel change was not carried on to R-4.4.2. (Note: the error concerns the test only. The fix in the code of the package works for any R version.) Fixes issue <a href="https://github.com/GeoBosh/Rdpack/issues/37" class="external-link">#37</a>, reported by <a href="https://github.com/charles-plessy" class="external-link">@charles-plessy</a>.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.6.1" id="rdpack-261">Rdpack 2.6.1<a class="anchor" aria-label="anchor" href="#rdpack-261"></a></h2><p class="text-muted">CRAN release: 2024-08-06</p>
