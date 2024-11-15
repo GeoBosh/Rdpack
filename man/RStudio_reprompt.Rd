@@ -38,5 +38,5 @@ it will try to create one.
 Duncan Murdoch
 }
 \seealso{
-\code{\link{reprompt}}, \code{\link{prompt}}
+\code{\link{reprompt}}, \code{\link{ereprompt}}, \code{\link{prompt}}
 }

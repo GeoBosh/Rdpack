@@ -1,8 +1,24 @@
-# Rdpack 2.6.1.9000
+# Rdpack 2.6.2
 
-- `RStudio_reprompt' now issues a more informative error message when not called on a
-  suitable file or function. Fixes issue #30 by @daattali.
+- changed the condition in the test fixing the issue in Rdpack v2.6.1 to
+  `getRversion() < "4.5.0"`, which is less likely to need further change for
+  R-4.4.x releases.
 
+
+
+# Rdpack 2.6.2
+
+- `RStudio_reprompt` now issues a more informative error message when not called
+  on a suitable file or function. Fixes issue #30, reported by @daattali.
+
+- now the LaTeX macro `\slash` is wrapped in a condition, so that it is passed
+  on for LaTeX related output but converted to `/` for other formats (such as
+  html). Fixes GeoBosh/rbibutils#9, reported by @MLopez-Ibanez.
+
+- fixed the test for the fix in Rdpack v2.6.1 (see below) to work with R-4.4.2,
+  since that R-devel change was not carried on to R-4.4.2.  (Note: the error
+  concerns the test only. The fix in the code of the package works for any R
+  version.) Fixes issue #37, reported by @charles-plessy.
 
 
 # Rdpack 2.6.1

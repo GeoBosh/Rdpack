@@ -1,3 +1,8 @@
+* (2024-11-09) do something with 'RdpackTester' (under inst/examples).
+  I had forgotten about it but could add examples about issues and their fixing.
+  Also, indicate somewhere to users how to use it to report bugs.
+  Alternatively, make a repo where they can contribute.
+
 * vignette for reprompt/ereprompt/RStudio_reprompt
 
 * pcDst.Rd gives an error, it was produced by Roxygen.

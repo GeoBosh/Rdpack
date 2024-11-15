@@ -87,7 +87,7 @@ test_that("bib works fine", {
     insert_ref("Rpackage:Rdpack", package = "rbibutils")
 
     ## missing keys
-    if(getRversion() <= "4.4.1")
+    if(getRversion() < "4.5.0")
         expect_warning(insert_ref("xxx", package = "rbibutils"))
     else # since R-devel c86938 the warning was changed to error
         expect_error(insert_ref("xxx", package = "rbibutils"))
