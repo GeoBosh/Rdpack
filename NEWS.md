@@ -1,9 +1,11 @@
-# Rdpack 2.6.2
+# Rdpack 2.6.3
 
 - changed the condition in the test fixing the issue in Rdpack v2.6.1 to
   `getRversion() < "4.5.0"`, which is less likely to need further change for
   R-4.4.x releases.
 
+- removed 'RdpackTester' from `./inst/examples`. It was meant to provide a
+  convenient way to create bug examples but was left incompletee.
 
 
 # Rdpack 2.6.2
