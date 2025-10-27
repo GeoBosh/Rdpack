@@ -73,7 +73,18 @@
   <code>deparse_usage1</code>), <code>deparse_usage1</code> is internal function for
   programming. In the example below the first command creates an
   <code>"f_usage"</code> object, then the second converts it to character string.</p>
-<p>(a &lt;- pairlist2f_usage1(formals(cor), "cor"));cat(as.character(a))</p>
+<p></p><div class="sourceCode"><pre><code><span><span class="op">(</span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/parse_pairlist.html">pairlist2f_usage1</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/formals.html" class="external-link">formals</a></span><span class="op">(</span><span class="va">cor</span><span class="op">)</span>, <span class="st">"cor"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">##: name      = cor</span></span>
+<span><span class="co">##: S3class   =</span></span>
+<span><span class="co">##: S4sig     =</span></span>
+<span><span class="co">##: infix     = FALSE</span></span>
+<span><span class="co">##: fu        = TRUE</span></span>
+<span><span class="co">##: argnames  = x y use method</span></span>
+<span><span class="co">##: defaults  : y = NULL</span></span>
+<span><span class="co">##:             use = "everything"</span></span>
+<span><span class="co">##:             method = c("pearson", "kendall", "spearman") cat(as.character(a))</span></span>
+<span><span class="co">##: cor(x, y = NULL, use = "everything",</span></span>
+<span><span class="co">##:     method = c("pearson", "kendall", "spearman"))</span></span></code></pre></div>
 <p>Each usage entriy is formatted and, if necessary, split over several
   lines. The width (number of characters) on a line can be changed with
   argument <code>width</code>.</p>
@@ -187,7 +198,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer></div>

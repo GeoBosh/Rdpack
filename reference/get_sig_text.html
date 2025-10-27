@@ -63,7 +63,15 @@
 
 <p>Here we find all methods for <code>show()</code> defined in package
   <code>"methods"</code> and print the first few of them:
-  fn &lt;- utils::help("show-methods", package = "methods"); rdo &lt;- utils:::.getHelpFile(fn); head(get_sig_text(rdo))</p>
+  </p><div class="sourceCode"><pre><code><span><span class="va">fn</span> <span class="op">&lt;-</span> <span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/help.html" class="external-link">help</a></span><span class="op">(</span><span class="st">"show-methods"</span>, package <span class="op">=</span> <span class="st">"methods"</span><span class="op">)</span></span>
+<span><span class="va">rdo</span> <span class="op">&lt;-</span> <span class="fu">utils</span><span class="fu">:::</span><span class="fu">.getHelpFile</span><span class="op">(</span><span class="va">fn</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/get_sig_text.html">get_sig_text</a></span><span class="op">(</span><span class="va">rdo</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">##: [1] "signature(object = \"ANY\")"</span></span>
+<span><span class="co">##: [2] "signature(object = \"classGeneratorFunction\")"</span></span>
+<span><span class="co">##: [3] "signature(object = \"classRepresentation\")"</span></span>
+<span><span class="co">##: [4] "signature(object = \"envRefClass\")"</span></span>
+<span><span class="co">##: [5] "signature(object = \"externalRefMethod\")"</span></span>
+<span><span class="co">##: [6] "signature(object = \"genericFunction\")"</span></span></code></pre></div>
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -142,8 +150,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rd source not supplied and installed documentation not found.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Trying a 'prompt' function to generate documentation for the object.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	success: documentation generated using a 'prompt' function.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	The Rd content was written to file  /tmp/RtmpmJlpOH/file1c4e148a8694 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpmJlpOH/file1c4e148a8694"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	The Rd content was written to file  /tmp/RtmpChheQO/file1e8f2a06703c </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpChheQO/file1e8f2a06703c"</span>
 <span class="r-in"><span><span class="va">rdo</span> <span class="op">&lt;-</span> <span class="fu">tools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/tools/parse_Rd.html" class="external-link">parse_Rd</a></span><span class="op">(</span><span class="va">fn</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">get_sig_text</span><span class="op">(</span><span class="va">rdo</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "signature(x = \"ANY\")"</span>
@@ -164,8 +172,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rd source not supplied and installed documentation not found.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Trying a 'prompt' function to generate documentation for the object.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	success: documentation generated using a 'prompt' function.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	The Rd content was written to file  /tmp/RtmpmJlpOH/file1c4e148a8694 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpmJlpOH/file1c4e148a8694"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	The Rd content was written to file  /tmp/RtmpChheQO/file1e8f2a06703c </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpChheQO/file1e8f2a06703c"</span>
 <span class="r-in"><span><span class="va">rdo</span> <span class="op">&lt;-</span> <span class="fu">tools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/tools/parse_Rd.html" class="external-link">parse_Rd</a></span><span class="op">(</span><span class="va">fn</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">get_sig_text</span><span class="op">(</span><span class="va">rdo</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "signature(x = \"ANY\", y = \"ANY\")"        </span>
@@ -186,7 +194,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer></div>

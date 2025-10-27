@@ -108,20 +108,26 @@ Generates usage text for a function, S3 method or S4 method.  The text
   copying and pasting into Rd documentation or saving to a file
   (otherwise, if the usage text contains backslashes, they may appear
   duplicated).  Long text is wrapped on two or more lines. For example,
-  cat( get_usage(lm) )
+  </p><div class="sourceCode"><pre><code><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="va">lm</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">##: lm(formula, data, subset, weights, na.action, method = "qr",</span></span>
+<span><span class="co">##:    model = TRUE, x = FALSE, y = FALSE, qr = TRUE, singular.ok = TRUE,</span></span>
+<span><span class="co">##:    contrasts = NULL, offset, \dots)</span></span></code></pre></div>
   Argument <code>"name"</code> can be used to specify a print name for the function.
   This is most often needed for S3 methods. Compare
-  cat( get_usage(summary.lm) )
+  <div class="sourceCode"><pre><code><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="va">summary.lm</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">##: summary.lm(object, correlation = FALSE, symbolic.cor = FALSE, \dots)</span></span></code></pre></div>
   and
-  cat( get_usage(summary.lm, name = "summary") )
+  <div class="sourceCode"><pre><code><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="va">summary.lm</span>, name <span class="op">=</span> <span class="st">"summary"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">##: summary(object, correlation = FALSE, symbolic.cor = FALSE, \dots)</span></span></code></pre></div>
   The call is just <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> in the latter. This fairly reflects
   the fact that S3 methods are normally called via the generic, but
   adding some explanatory text around the command is usually a good
   idea. For programmatically generated usage sections in help pages,
   argument <code>S3class</code> can be used to get the standard Rd markup for
   S3 methods.
-  cat( get_usage(summary.lm, "summary", S3class = "lm") )
-  (Note that <code>\method</code> can only be used in Usage sections.)</p>
+  <div class="sourceCode"><pre><code><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="va">summary.lm</span>, <span class="st">"summary"</span>, S3class <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">##: \method{summary}{lm}(object, correlation = FALSE, symbolic.cor = FALSE, \dots)</span></span></code></pre></div>
+  (Note that <code>\method</code> can only be used in Usage sections.)
 <p>When <code>object</code> is an anonymous function, argument <code>name</code> is compulsory.
   For example,
   <!-- % this code  prints ugly: \printExample{cat( get_usage(function(x = 3, y="a"){}, "f") )}  -->
@@ -134,15 +140,25 @@ Generates usage text for a function, S3 method or S4 method.  The text
   of functions located in other objects, such as environments and lists,
   see the examples.</p>
 <p>If a function is used as an infix operator, set <code>infix = TRUE</code>.
-  get_usage("+", infix = TRUE); get_usage("\%in\%", infix = TRUE)
+  </p><div class="sourceCode"><pre><code><span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="st">"+"</span>, infix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">##: [1] "e1 + e2"</span></span>
+<span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="st">"%in%"</span>, infix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">##: [1] "x %in% table"</span></span></code></pre></div>
   The name of the operator may be in a variable:
-  op &lt;- "+"; get_usage(op, infix = TRUE)</p>
+  <div class="sourceCode"><pre><code><span><span class="va">op</span> <span class="op">&lt;-</span> <span class="st">"+"</span></span>
+<span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="va">op</span>, infix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">##: [1] "e1 + e2"</span></span></code></pre></div>
 <p>Backticks are ok, as well,
-  get_usage(`+`, infix = TRUE)
+  </p><div class="sourceCode"><pre><code><span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="va">`+`</span>, infix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">##: [1] "e1 + e2"</span></span></code></pre></div>
   But if a backticked operator is in a variable, surprise springs:
-  op &lt;- `+`; get_usage(op, infix = TRUE)
+  <div class="sourceCode"><pre><code><span><span class="va">op</span> <span class="op">&lt;-</span> <span class="va">`+`</span></span>
+<span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="va">op</span>, infix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">##: [1] "e1 op e2"</span></span></code></pre></div>
   In this case, don't use backticks  or, if you must, evaluate the argument:
-  op &lt;- `+`; get_usage(eval(op), name = "+", infix = TRUE)</p>
+  <div class="sourceCode"><pre><code><span><span class="va">op</span> <span class="op">&lt;-</span> <span class="va">`+`</span></span>
+<span><span class="fu"><a href="../reference/promptUsage.html">get_usage</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/eval.html" class="external-link">eval</a></span><span class="op">(</span><span class="va">op</span><span class="op">)</span>, name <span class="op">=</span> <span class="st">"+"</span>, infix <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">##: [1] "e1 + e2"</span></span></code></pre></div>
 
 <p><!-- % \Sexpr[stage=build,results=hide]{wrap_percent &lt;- function(x) paste0("\%", x, "\%")} -->
   <!-- % \printExample{op &lt;- wrap_percent("in"); get_usage(op,  infix = TRUE)} -->
@@ -235,7 +251,7 @@ Generates usage text for a function, S3 method or S4 method.  The text
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer></div>

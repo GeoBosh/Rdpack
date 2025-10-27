@@ -153,15 +153,18 @@ Package Rdpack provides Rd macros for inserting references and
 <p><code>\insertCite{key}{package}</code> cites the key and records it for use
     by <code>\insertAllCited</code>, see below. <code>key</code> can contain more
     keys separated by commas.</p>
-<p></p><table class="table table"><tr><td><code>\insertCite{parseRd,Rpackage:rbibutils}{Rdpack}</code></td><td>parseRd,Rpackage:rbibutilsRdpack</td><td><code>\insertCite{Rpackage:rbibutils}{Rdpack}</code></td></tr><tr><td>Rpackage:rbibutilsRdpack</td><td><code>\insertCite{bibutils6.10}{rbibutils}</code></td><td>bibutils6.10rbibutils</td></tr></table><p>By default the citations are parenthesised
-    parseRdRdpack.  To get textual citations, like
-    parseRd;textualRdpack, put the string <code>;textual</code>
+<p></p><table class="table table"><tr><td><code>\insertCite{parseRd,Rpackage:rbibutils}{Rdpack}</code></td><td>(Murdoch 2010; Boshnakov and Putman 2020)</td><td><code>\insertCite{Rpackage:rbibutils}{Rdpack}</code></td></tr><tr><td>(Boshnakov and Putman 2020)</td><td><code>\insertCite{bibutils6.10}{rbibutils}</code></td><td>(Putnam 2020)</td></tr></table><p>By default the citations are parenthesised
+    (Murdoch 2010)
+.  To get textual citations, like
+    Murdoch (2010)
+, put the string <code>;textual</code>
     at the end of the key. The references in the last two sentences were
     produced with <code>\insertCite{parseRd}{Rdpack}</code> and
     <code>\insertCite{parseRd;textual}{Rdpack}</code>, respectively.  This
     also works with several citations, e.g.
     <br><code>\insertCite{parseRd,Rpackage:rbibutils;textual}{Rdpack}</code>
-    produces: parseRd,Rpackage:rbibutils;textualRdpack.</p>
+    produces: Murdoch (2010); Boshnakov and Putman (2020)
+.</p>
 <p>To mix the citations with other text, such as ‘see also’ and
     ‘chapter 3’, write the list of keys as free text, starting it
     with the symbol <code>@</code> and prefixing each key with it.  The
@@ -173,14 +176,19 @@ Package Rdpack provides Rd macros for inserting references and
 
         \insertCite{@see also @parseRd and @Rpackage:rbibutils;textual}{Rdpack}.
     </code></pre></div><p>produces:</p>
-<p></p><table class="table table"><tr><td>@see also @parseRd and @Rpackage:rbibutilsRdpack,</td></tr><tr><td>@see also @parseRd; @Rpackage:rbibutilsRdpack,</td></tr><tr><td>@see also @parseRd and @Rpackage:rbibutils;textualRdpack.</td></tr></table><p>In the parenthesised form, adding <code>;nobrackets</code> at the end of the
+<p></p><table class="table table"><tr><td>(see also Murdoch 2010 and Boshnakov and Putman 2020)
+,</td></tr><tr><td>(see also Murdoch 2010; Boshnakov and Putman 2020)
+,</td></tr><tr><td>see also Murdoch (2010) and Boshnakov and Putman (2020)
+.</td></tr></table><p>In the parenthesised form, adding <code>;nobrackets</code> at the end of the
     list of keys causes the enclosing parentheses to be dropped. This is
     useful if you wish to use markup for the text surrounding the
     references. For example,</p><div class="sourceCode"><pre><code>
         (\emph{see also}  \insertCite{@@parseRd; @Rpackage:rbibutils;nobrackets}{Rdpack}).
-      </code></pre></div><p>gives: (<em>see also</em>  @@parseRd; @Rpackage:rbibutils;nobracketsRdpack).
+      </code></pre></div><p>gives: (<em>see also</em>  Murdoch 2010; Boshnakov and Putman 2020
+).
     Without ‘<code>;nobrackets</code>’ the result would be
-      (<em>see also</em>  @@parseRd; @Rpackage:rbibutilsRdpack).</p>
+      (<em>see also</em>  (Murdoch 2010; Boshnakov and Putman 2020)
+).</p>
 <p></p>
 </div>
 
@@ -237,13 +245,27 @@ Package Rdpack provides Rd macros for inserting references and
     <p>For illustrative purposes there are two sets of citations below
   The first set of references is obtained with <code>\insertRef</code> for
   each reference:</p>
-<p>parseRdRdpack</p>
-<p>Rpackage:rbibutilsRdpack</p>
-<p>bibutils6.10rbibutils</p>
+<p>Duncan Murdoch (2010).
+“Parsing Rd files.”
+<a href="https://developer.r-project.org/parseRd.pdf" class="external-link">https://developer.r-project.org/parseRd.pdf</a>.</p>
+<p>Georgi
+N. Boshnakov, Chris Putman (2020).
+<em>rbibutils: Convert Between Bibliography Formats</em>.
+<a href="https://CRAN.R-project.org/package=rbibutils" class="external-link">https://CRAN.R-project.org/package=rbibutils</a>.</p>
+<p>Putnam C (2020).
+“Library bibutils, version 6.10.”
+<a href="https://sourceforge.net/projects/bibutils/" class="external-link">https://sourceforge.net/projects/bibutils/</a>.</p>
 <p>—-</p>
 <p>The following references are obtained with a single <code>\insertAllCited{}</code>.
   The references are sorted automatically by the surnames of the authors:</p>
-<p></p>
+<p>Georgi
+N. Boshnakov, Chris Putman (2020).
+<em>rbibutils: Convert Between Bibliography Formats</em>.
+<a href="https://CRAN.R-project.org/package=rbibutils" class="external-link">https://CRAN.R-project.org/package=rbibutils</a>.<br><br> Duncan Murdoch (2010).
+“Parsing Rd files.”
+<a href="https://developer.r-project.org/parseRd.pdf" class="external-link">https://developer.r-project.org/parseRd.pdf</a>.<br><br> Chris Putnam (2020).
+“Library bibutils, version 6.10.”
+<a href="https://sourceforge.net/projects/bibutils/" class="external-link">https://sourceforge.net/projects/bibutils/</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
@@ -275,7 +297,7 @@ Package Rdpack provides Rd macros for inserting references and
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer></div>

@@ -86,7 +86,11 @@
   values have entries in the second component (so, it may be of length
   zero).  If <code>x</code> is empty or <code>NULL</code>, both components have
   length zero. An example:
-  parse_pairlist(formals(system.file))</p>
+  </p><div class="sourceCode"><pre><code><span><span class="fu"><a href="../reference/parse_pairlist.html">parse_pairlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/formals.html" class="external-link">formals</a></span><span class="op">(</span><span class="va">system.file</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">##: $argnames</span></span>
+<span><span class="co">##: [1] "..."      "package"  "lib.loc"  "mustWork"##: $defaults</span></span>
+<span><span class="co">##:    package    lib.loc   mustWork</span></span>
+<span><span class="co">##: "\"base\""     "NULL"    "FALSE" </span></span></code></pre></div>
 <p><code>pairlist2f_usage1()</code> creates an object of S3 class
   <code>"f_usage"</code>. The object contains the result of parsing <code>x</code>
   with <code>parse_pairlist(x)</code> and a number of additional components
@@ -98,7 +102,15 @@
   when the function is primarily used in infix form.</p>
 <p>Class <code>"f_usage"</code> has a method for <code><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character()</a></code> which
   generates a text suitable for inclusion in Rd documentation.
-  pairlist2f_usage1(formals(summary.lm), "summary", S3class = "lm")</p>
+  </p><div class="sourceCode"><pre><code><span><span class="fu"><a href="../reference/parse_pairlist.html">pairlist2f_usage1</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/formals.html" class="external-link">formals</a></span><span class="op">(</span><span class="va">summary.lm</span><span class="op">)</span>, <span class="st">"summary"</span>, S3class <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span></span>
+<span><span class="co">##: name      = summary</span></span>
+<span><span class="co">##: S3class   = lm</span></span>
+<span><span class="co">##: S4sig     =</span></span>
+<span><span class="co">##: infix     = FALSE</span></span>
+<span><span class="co">##: fu        = TRUE</span></span>
+<span><span class="co">##: argnames  = object correlation symbolic.cor ...</span></span>
+<span><span class="co">##: defaults  : correlation = FALSE</span></span>
+<span><span class="co">##:             symbolic.cor = FALSE </span></span></code></pre></div>
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -191,7 +203,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer></div>
