@@ -43,7 +43,7 @@ as.character.f_usage(x, ...)
 \examples{
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+##--	or standard data sets, see data().
 
 ## The function is currently defined as
 function (x, ...) 

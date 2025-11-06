@@ -114,7 +114,7 @@ insert_ref(key, package = NULL, \dots, cached_env = NULL)
     by \code{\\insertAllCited}, see below. \code{key} can contain more
     keys separated by commas.
     
-    \tabular{lll}{
+    \tabular{ll}{
        \code{\\insertCite{parseRd,Rpackage:rbibutils}{Rdpack}} \tab \insertCite{parseRd,Rpackage:rbibutils}{Rdpack} \cr
        \code{\\insertCite{Rpackage:rbibutils}{Rdpack}}   \tab \insertCite{Rpackage:rbibutils}{Rdpack} \cr
        \code{\\insertCite{bibutils6.10}{rbibutils}} \tab \insertCite{bibutils6.10}{rbibutils}
@@ -193,7 +193,7 @@ insert_ref(key, package = NULL, \dots, cached_env = NULL)
 
   }
 
-  \subsection{Rd macro insertNoCite}{
+  \subsection{Rd macro insertCiteOnly}{
 
     \code{\\insertCiteOnly{key}{package}} is as \code{\\insertCite} but
     does not include the key in the list of references for

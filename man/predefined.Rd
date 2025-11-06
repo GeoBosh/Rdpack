@@ -66,7 +66,7 @@ rdo_top_tags
   \Sexpr[stage=build,results=rd]{
     paste(
     "\\\\ifelse{latex}{\\\\out{",
-    "\\\\begin{tabular}{ll|ll|ll|ll|ll|ll}",
+    "\\\\begin{tabular}{ll|ll|ll}",
      paste(names(Rdo_piece_types), " & ", Rdo_piece_types, c(rep(" & ",2),"\\\\\\\\\\\\\\\\"),
            sep="", collapse="\n"),
            "\\\\end{tabular}",
@@ -87,8 +87,12 @@ rdo_top_tags
   for \code{rdo_top_tags}, the values are:
 
   \Sexpr[stage=build,results=rd]{
+    tmp_rdo_top_tags <- rdo_top_tags
+    tmp_incomplete <- length(tmp_rdo_top_tags) \%\% 5
+    if(tmp_incomplete != 0)
+    tmp_rdo_top_tags <- c(tmp_rdo_top_tags, rep("''", 5 - tmp_incomplete))
     paste("\\\\tabular{lllll}{",
-    paste(sub("^[#]", "\\\\\\\\verb{#}", sub("^([\\\\])", "\\\\\\\\\\\\1", rdo_top_tags)),
+    paste(sub("^[#]", "\\\\\\\\verb{#}", sub("^([\\\\])", "\\\\\\\\\\\\1", tmp_rdo_top_tags)),
           c(rep("\\\\tab ",4),"\\\\cr"),
           sep="", collapse="\n"),
           "}")}
