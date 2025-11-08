@@ -6,10 +6,10 @@ Authors@R: c( person(given = c("Georgi", "N."),
                      family = "Boshnakov", 
                      role = c("aut", "cre"), 
                      email = "georgi.boshnakov@manchester.ac.uk",
-		     comment = c(ORCID = "0000-0003-2839-346X")),
-	      person(given = "Duncan", 
-	             family = "Murdoch", 
-	             role = "ctb", email = "murdoch.duncan@gmail.com") )
+                     comment = c(ORCID = "0000-0003-2839-346X")),
+              person(given = "Duncan", 
+                     family = "Murdoch", 
+                     role = "ctb", email = "murdoch.duncan@gmail.com") )
 Description: Functions for manipulation of R documentation objects,
     including functions reprompt() and ereprompt() for updating 'Rd'
     documentation for functions, methods and classes; 'Rd' macros for
@@ -36,4 +36,3 @@ Suggests:
 License: GPL (>= 2)
 LazyLoad: yes
 RoxygenNote: 7.1.1
-
