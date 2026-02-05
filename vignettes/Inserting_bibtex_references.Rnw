@@ -14,7 +14,7 @@ Georgi N. Boshnakov\\
 School of Mathematics\\
 The University of Manchester\\
 Oxford Road, Manchester M13 9PL, UK\\
-URL: \url{http://www.maths.manchester.ac.uk/~gb/}
+URL: \url{https://personalpages.manchester.ac.uk/staff/georgi.boshnakov/}
 }
 <<echo=FALSE>>=
 library(Rdpack)

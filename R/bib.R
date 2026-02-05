@@ -286,7 +286,9 @@ inspect_Rdbib <- function(rdo, force = FALSE, ...){               # 2013-03-29
 	        # 
                 # bibstxt <- .patch_latex(bibstxt)  # TODO: krapka!
         ## TODO: the bibstyles used below should probably be arguments
-        bibs <- sort(bibs, .bibstyle = "JSSRd")
+                    # 2025-11-11 was: sort(bibs, .bibstyle = "JSSRd")
+        bibs <- sort(bibs, .bibstyle = Rdpack_bibstyles(""))
+
         bibstxt <- .toRd_styled(bibs, "Rdpack")
             # bibstxt <- paste0(bibstxt, collapse = "\\cr\\cr ")
         bibstxt <- paste0(bibstxt, collapse = "\n\n ")
@@ -725,6 +727,7 @@ makeVignetteReference <- function(package, vig = 1, verbose = TRUE,
 insert_citeOnly <- function(keys, package = NULL, before = NULL, after = NULL,
                             bibpunct = NULL, ..., 
                             cached_env = NULL, cite_only = FALSE, dont_cite = FALSE) {
+##print("kiki")
     if(!is.null(cached_env)){
         if(is.null(cached_env$refsmat))
             cached_env$refsmat <- matrix(character(0), nrow = 0, ncol = 2)
@@ -1038,7 +1041,9 @@ insert_all_ref <- function(refs, style = "", empty_cited = FALSE){
             bibs <- c(bibs, be) # TODO: duplicate keys in different packages?
     }
 
-    bibs <- sort(bibs, .bibstyle = "JSSRd") # 2021-04-24 was: sort(bibs)
+           # 2025-11-11 was: sort(bibs, .bibstyle = "Rdpack")
+    bibs <- sort(bibs, .bibstyle = Rdpack_bibstyles("")) # 2021-04-24 was: sort(bibs)
+                                                         
 
     pkgs <- names(all.keys)
         # \Sexpr[stage=build,results=hide]{requireNamespace("cvar")}
@@ -1080,53 +1085,22 @@ insert_all_ref <- function(refs, style = "", empty_cited = FALSE){
     paste0(res, collapse = "\\cr\\cr ")
 }
 
-## deparseLatexToRd <- function(x, dropBraces = FALSE)
-## {
-##     result <- character()
-##     lastTag <- "TEXT"
-##     for (i in seq_along(x)) {
-##         a <- x[[i]]
-##         tag <- attr(a, "latex_tag")
-##         if (is.null(tag)) tag <- "NULL"
-##         switch(tag,
-##         VERB = ,
-##         TEXT = ,
-##         COMMENT = result <- c(result, a),
-##         MACRO = {
-##             ## see issue #26
-##             ## regex in r-devel/R/src/library/tools/R/RdConv2.R:
-##             ##     pat <- "([^\\]|^)\\\\[#$&_^~]"
-##             ## here we add grouping for substitution
-##             pat <- "([^\\]|^)(\\\\)([#$&_^~])"  # with more grouping
-##             if(grepl(pat, a)){
-##                 a <- gsub(pat, "\\1\\3", a)
-##             }
-##             result <- c(result, a)
-##         },
-##         BLOCK = result <- c(result, if (dropBraces && lastTag == "TEXT") Recall(a) else c("{", Recall(a), "}")),
-##         ENVIRONMENT = result <- c(result,
-##         	"\\begin{", a[[1L]], "}",
-##         	Recall(a[[2L]]),
-##         	"\\end{", a[[1L]], "}"),
-##         ## MATH = result <- c(result, "$", Recall(a), "$"),
-##         MATH = result <- c(result, "\\eqn{", Recall(a), "}"),
-##         NULL = stop("Internal error, no tag", domain = NA)
-##         )
-##         lastTag <- tag
-##     }
-##     paste(result, collapse="")
-## }
+`%notin%` <- function(x, y)
+                 is.na(match(x, y))
 
-`%notin%` <-
-function(x, y)
-    is.na(match(x, y))
-
-## tools::deparseLatex() is by Sebastian Meyer and Duncan Murdoc. Below is a
-## version suitable for Rdpack.
+## based on 
+## tools::deparseLatex() in /home/georgi/svn/r-devel/R/src/library/tools/R/parseLatex.R
+## original by Sebastian Meyer and Duncan Murdoc.
 ##
-## This converts a latex object into a single element character vector
+## Below is a version suitable for Rdpack.
+
+## for now drop the new argument 'math' since deparseLatexToRd is specifically for conversion to Rd,
+## while deparseLatex is more general
+##                          was: deparseLatex <- function(x, dropBraces = FALSE, math = c("$", "$"))
+## eventually my modification should become unnecessary.
 deparseLatexToRd <- function(x, dropBraces = FALSE)
 {
+                 # stopifnot(length(math) == 2, is.character(math))
     specials <- c("\\", "#", "$", "%", "&", "~", "_", "^", "{", "}")
     result <- character()
     lastTag <- "TEXT"
@@ -1137,17 +1111,25 @@ deparseLatexToRd <- function(x, dropBraces = FALSE)
         if (is.null(tag)) tag <- "NULL"
         result <- c(result,
         switch(tag,
-        VERB = ,
-        COMMENT = a,
         TEXT = c(if (lastTag == "MACRO" && expectArg && grepl("^[[:alpha:]]", a))
                      ## restore space that the parser has eaten ('\item text')
                      " ",
                  a),
+
         MACRO = {
+
+            ## TODO: R-4.5.2 \& and similar are now taken care of, no need to do it here.
+            ##   Check from which version on of R this is true. Maybe will need to have here
+            ## conditional versions for of the function for 'before' and 'after'
+            ##
+            ## NOTE: No, it is only \& that R-4.5.2 takes care of, the rest still raise warnings.
+            ##       So, can't omit the check here.
+            ## 
             ## see issue #26
             ## regex in r-devel/R/src/library/tools/R/RdConv2.R:
             ##     pat <- "([^\\]|^)\\\\[#$&_^~]"
             ## here we add grouping for substitution
+            ##
             pat <- "([^\\]|^)(\\\\)([#$&_^~])"  # with more grouping
             if(grepl(pat, a)){
                 a <- gsub(pat, "\\1\\3", a)
@@ -1156,17 +1138,25 @@ deparseLatexToRd <- function(x, dropBraces = FALSE)
                 ## restore space that the parser has eaten ('\item text')
                 " ",            
               a)
+
         },
         BLOCK = if (dropBraces && !expectArg)
                     Recall(a)
                 else
                     c("{", Recall(a), "}"),
+        VERB = ,
+
+        COMMENT = a,
         ENVIRONMENT = c(
         	"\\begin{", a[[1L]], "}",
         	Recall(a[[2L]]),
         	"\\end{", a[[1L]], "}"),
-        ## enclose maths in \eqn{...}, not $ ... $; # \( and \) parse as MACRO
+                        # enclose maths in \eqn{...}, not $ ... $; # \( and \) parse as MACRO
+                      # was: MATH = c(math[1L], Recall(a), math[2L]),
         MATH = c("\\eqn{", Recall(a), "}"),
+                                       # #DISPLAYMATH and DEFINITION:  new in R-4.5.2? or earlier?
+        DISPLAYMATH = c("\\deqn{", Recall(a), "}"), # was: DISPLAYMATH = c("$$", Recall(a), "$$"),
+        DEFINITION = Recall(a),
         NULL = stop("Internal error, no tag", domain = NA)
         ))
         lastTag <- tag
@@ -1183,205 +1173,111 @@ deparseLatexToRd <- function(x, dropBraces = FALSE)
 
 Rdpack_bibstyles <- local({
     styles <- list()
+    exists_JSSRd        <- FALSE
+    exists_JSSLongNames <- FALSE
+
     function(package, authors){
         if((n <- nargs()) > 1){
             styles[[package]] <<- authors
-            
-        }else if(n == 1)
-            styles[[package]]
+        }else if(n == 1){
+            if(length(package) == 0 || is.null(styles[[package]]) ||
+                     package == "" ||   # 2025-11-11 new TODO: document
+                     (!isNamespaceLoaded(package) && !requireNamespace(package))) {
+                if(!exists_JSSRd) {
+                    bibstyle_JSSRd()
+                    exists_JSSRd <<- TRUE
+                }
+                "JSSRd"
+            }else{
+                if(!exists_JSSLongNames) {
+                    bibstyle_JSSLongNames()
+                    exists_JSSLongNames <<- TRUE
+                }
+                "JSSLongNames"
+            }
+        }
         else
             styles
     }
 })
 
-.toRd_styled <- function(bibs, package, style = ""){
-    sty <- if(length(package) == 0)
-               NULL
-           else if(!isNamespaceLoaded(package) && !requireNamespace(package) )
-               NULL
-           else
-               Rdpack_bibstyles(package)
-    
-        # if(!is.null(sty))
-        #     res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSLongNames"))
-        # else { # check style
-        #     if(style == ""){
-        #         if(!("JSSRd" %in% tools::getBibstyle(all = TRUE)))
-        #             ## bibstyle_JSSRd()
-        #             set_Rdpack_bibstyle("JSSRd")
-        #         res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSRd"))
-        #     }else{
-        #         res <- sapply(bibs, function(x) tools::toRd(x, style = "JSSLongNames"))
-        #     }
-        # }
+                             # was: function(bibs, package, style = "")
+.toRd_styled <- function(bibs, package){
+    sty <- Rdpack_bibstyles(package)
 
-    sty <- if(is.null(sty) && style == ""){
-               if(!("JSSRd" %in% tools::getBibstyle(all = TRUE)))
-                   set_Rdpack_bibstyle("JSSRd")
-               "JSSRd"
-           }else
-               "JSSLongNames"
-
-    ## 2022-03-20 This removes a url for a doi when there is also a doi field with the same
-    ##     doi. However, the url's of doi's ending in -X (dash followed by X or digit) lose
-    ##     the dash in the url and the below function will not remove them (see for example
-    ##     the rendered 'pcts-package.Rd').
-    ##
-    ##     This explains the mistery that sometimes the doi gets duplicated by an url.
-    ##
-    ## 2022-03-20 TODO: 
-    ##        given that 'R CMD check' is not happy, just remove a URL if it has
-    ##       "https?://doi.org/"? (i.e., don't check that the doi is the same?
-    ## DONE:  2022-03-21 was: grepl(paste0("https?://doi.org/", x$doi), x$url)
     f <- function(x){
         if(!is.null(x$doi) && !is.null(x$url) && grepl("https?://doi.org/", x$url))
             x$url <- NULL
-        
-        ## (2021-10-13) TODO: regarding issue #7 in rbibutils
-        ##     to fix temporarilly, add here processing of author and editor fields
-        ##     to change  \'i to \'\i, if any, see
-        ##     https://github.com/GeoBosh/rbibutils/issues/7#issuecomment-939852743
-        ##
-        ## But 'author' fields are of class "person", so the following will not work:
-        ##
-        ##   if(!is.null(x$author) && grepl("\\\\'i", x$author))
-        ##       x$author <- gsub("\\\\'i", "\\\\'\\\\i", x$author),
-        ##
-        ## Processing the person field in each reference is not appealing.
-        ##     Maybe rbibutils should get texChars = "Rdpack" option and do whatever specific
-        ##     for Rdpack is needed.
-
         tools::toRd(x, style = sty)
     }
 
-    ## TODO: check if these 'sapply()' preserves encodings, if set.
     res <- sapply(bibs, f)
-
-    if(any(slash_ind <- grepl("\\slash ", res, fixed = TRUE))) {
-        res[slash_ind] <- gsub("([^{])\\\\slash *", "\\1\\\\ifelse{latex}{\\\\out{\\\\slash }}{/}",
-                               res[slash_ind])
-    }
 
     res
 }
 
-set_Rdpack_bibstyle <- local({
-    ## from /tools/R/bibstyle.R makeJSS()
-    collapse <- function(strings)
-        paste(strings, collapse="\n")
-    emph <- function(s)
-        if (length(s)) paste0("\\emph{", collapse(s), "}")
-    authorList <- function (paper) {
-        names <- sapply(paper$author, shortName)
-        if (length(names) > 1L) 
-            result <- paste(names, collapse = ", ")
-        else result <- names
-        result
-    }
-    editorList <- function (paper) {
-        names <- sapply(paper$editor, shortName)
-        if (length(names) > 1L) 
-            result <- paste(paste(names, collapse = ", "), "(eds.)")
-        else if (length(names)) 
-            result <- paste(names, "(ed.)")
-        else result <- NULL
-        result
-    }
-    shortName <- function (person) {
-        if (length(person$family)) {
-            result <- cleanupLatex(person$family)
-            if (length(person$given)) 
-                paste(result, paste(substr(sapply(person$given, cleanupLatex), 
-                                           1, 1), collapse = ""))
-            else result
-        }
-        else paste(cleanupLatex(person$given), collapse = " ")
-    }
-    ## Clean up LaTeX accents and braces
-    ## this is a copy of unexported  tools:::cleanupLatex by Duncan Murdoch.
-    cleanupLatex <- function(x) {
-        if (!length(x))
-            return(x)
-        latex <- tryCatch(tools::parseLatex(x), error = function(e)e)
-        if (inherits(latex, "error")) {
-            x
-        } else {
-            deparseLatexToRd(latexToUtf8(latex), dropBraces=TRUE)
-        }
-    }
+bibstyle_JSSRd <- function(style = "JSSRd", reset = FALSE, make_default = FALSE){
+        ## check if 'style' is registered; if so, return it unless reset is TRUE
+        env_style <- tools::bibstyle(style, .default = make_default)
+        if(!is.null(env_style) && !reset)
+            return(env_style)
 
-    ## modified from tools::makeJSS()
-    ## TODO: report on R-devel?.
-    bookVolume <- function(book) {
-        result <- ""
-        if (length(book$volume)){
-            result <- paste("volume", collapse(book$volume))
-            if (length(book$number))
-                result <- paste0(result, "(", collapse(book$number), ")")
-            if (length(book$series))
-                result <- paste(result, "of", emph(collapse(book$series)))
-        }else if (length(book$number)){
-            ## todo: in JSS style and others the title end with '.' and 
-            ##       'number' is 'Number', but don't want to fiddle with this now. 
-            result <- paste(result, "number", collapse(book$number))
-            if (length(book$series))
-                result <- paste(result, "in", collapse(book$series))
-        }else if (length(book$series))
-            result <- paste(result, collapse(book$series))
-        if (nzchar(result)) result
-    }
-   
-    ## new 2021-04-23
-    sortKeys <- function (bib) {
-        result <- character(length(bib))
-        for (i in seq_along(bib)) {
-            authors <- authorList(bib[[i]])
-            if (!length(authors)) 
-                authors <- editorList(bib[[i]])
-            if (!length(authors)) 
-                authors <- ""
-            year <- collapse(bib[[i]]$year)
-            authyear <- if(authors != "" )
-                            paste0(authors, ", ", year)
-                        else
-                            year
-            result[i] <- authyear
-        }
-        result
-    }
-    
-    function(bibstyle = "JSSRd"){
-        switch(bibstyle,
-               "JSSRd" =
-                   tools::bibstyle("JSSRd", .init = TRUE, .default = FALSE,
-                                   cleanupLatex = cleanupLatex,
-                                   bookVolume = bookVolume,
-                                   sortKeys = sortKeys
-                                   ),
+        ## we need a separate clone of env_style here, so reset = TRUE
+        env_style <- bibstyle_JSSextra(style, reset = TRUE)
 
-               "JSSLongNames" =
-                   tools::bibstyle("JSSLongNames", .init = TRUE, .default = FALSE,
-                                   cleanupLatex = cleanupLatex,
-                                   bookVolume = bookVolume,
-                                   sortKeys = sortKeys,
+        ## deparseLatexToRd lives in the namespace of Rdpack, so use assign
+        assign("deparseLatexToRd", deparseLatexToRd, envir = env_style)
 
-                                   shortName = function(person) {
-                                       paste(paste(cleanupLatex(person$given), collapse=" "),
-                                             cleanupLatex(person$family), sep = " ")
-                                   }
-                                   ),
-               ## default
-               stop("Unknown bibstyle ", bibstyle)
-               )
-    }
-})
+        ## for functions that need to see objects in the environment of the bibstyle
+        ## 'with' is convenient (though not the only was or even the preferred one.
+        with(env_style, {
+          ## Clean up LaTeX accents and braces
+          ## this is a copy of unexported  tools:::cleanupLatex by Duncan Murdoch.
+          ## but it calls deparseLatexToRd in place of deparseLatex
+          cleanupLatex <- function(x) {
+              if (!length(x))
+                  return(x)
+              latex <- tryCatch(tools::parseLatex(x), error = function(e)e)
+              if (inherits(latex, "error")) {
+                  x
+              } else {
+                  deparseLatexToRd(tools::latexToUtf8(latex), dropBraces=TRUE)
+              }
+          }
+
+        })
+
+        env_style
+}
+
+## This adds to and/or modifies some functions in the environment created by 
+## tools::bibstyle (R Core Team [cph])
+bibstyle_JSSLongNames <- function(style = "JSSLongNames", reset = FALSE, make_default = FALSE){
+        ## check if 'style' is registered; if so, return it unless reset is TRUE
+        env_style <- tools::bibstyle(style, .default = make_default)
+        if(!is.null(env_style) && !reset)
+            return(env_style)
+
+        ## we need a separate clone of JSSRd here, so reset = TRUE
+        env_style <- bibstyle_JSSRd(style, reset = TRUE)
+
+        with(env_style, {
+          shortName = function(person) {
+                          paste(paste(cleanupLatex(person$given), collapse=" "),
+                                      cleanupLatex(person$family), sep = " ")
+                      }
+        })
+
+        env_style
+}
 
 .onLoad <- function(lib, pkg){
     ## define the styles but not set any of them as default
-    set_Rdpack_bibstyle("JSSRd")
-    set_Rdpack_bibstyle("JSSLongNames")
-
+    ## bibstyle_JSSRd()
+    ## bibstyle_JSSLongNames()
+  
     ## set "LongNames" style for this package (Rdpack)
     Rdpack_bibstyles(package = pkg, authors = "LongNames")
+
     invisible(NULL)
 }

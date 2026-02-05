@@ -11,7 +11,7 @@ importFrom(tools, parse_Rd, toRd, checkRd, Rd2txt,
 #importFrom(gbRd, Rd_help2txt) # commented out 2020-11-25
 
 #importFrom(bibtex, read.bib)
-importFrom(rbibutils, readBib)
+importFrom(rbibutils, readBib, bibstyle_JSSextra)
 
 S3method(as.character, f_usage)
 S3method(print, f_usage)
@@ -123,8 +123,9 @@ export(
 , insert_citeOnly
 , insert_all_ref
 , Rdpack_bibstyles
-, set_Rdpack_bibstyle
+##, set_Rdpack_bibstyle  # 2025-11=09 rremoved
 # , run_examples - commenting out until completed
 # , insert_fig - commenting out until completed
 , Rdo_fetch
+##, deparseLatexToRd
 )

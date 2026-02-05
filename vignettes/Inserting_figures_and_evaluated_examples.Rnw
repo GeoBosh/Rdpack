@@ -1,4 +1,4 @@
-% Created 2019-04-14 Sun 17:28
+% Created 2026-01-22 Thu 16:34
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper,twoside,11pt,nojss,article]{jss}
 	       \usepackage[T1]{fontenc}
@@ -14,7 +14,7 @@ Georgi N. Boshnakov\\
 School of Mathematics\\
 The University of Manchester\\
 Oxford Road, Manchester M13 9PL, UK\\
-URL: \url{http://www.maths.manchester.ac.uk/~gb/}
+URL: \url{https://personalpages.manchester.ac.uk/staff/georgi.boshnakov/}
 }
 <<echo=FALSE>>=
 library(Rdpack)
@@ -28,6 +28,7 @@ by the Rd parser. The macros work in Rd files and roxygen2 comments.
 \par
 This vignette is part of package Rdpack, version~\Sexpr{pd$Version}.
 }
+
 \Keywords{examples, graphics, figures, Rd, R}
 \Plainkeywords{examples, graphics, figures, Rd, R}
 \author{Georgi N. Boshnakov}
@@ -38,7 +39,7 @@ This vignette is part of package Rdpack, version~\Sexpr{pd$Version}.
  pdftitle={Inserting figures and evaluated examples},
  pdfkeywords={examples, graphics, figures, Rd, R},
  pdfsubject={},
- pdfcreator={Emacs 25.3.1 (Org mode 9.1.6)}, 
+ pdfcreator={Emacs 30.2 (Org mode 9.7.11)}, 
  pdflang={English}}
 \begin{document}
 
@@ -49,10 +50,8 @@ This vignette is part of package Rdpack, version~\Sexpr{pd$Version}.
 %\VignetteDepends{Rdpack}
 %\VignetteKeywords{examples, graphics, figures, Rd, R}
 %\VignettePackage{Rdpack}
-
-
 \section{Evaluated examples}
-\label{sec:orgf215fe2}
+\label{sec:orgc1085d5}
 
 Sometimes the documentation of an object becomes more clear if accompanied by snippets of R
 code and their results. 
@@ -83,9 +82,8 @@ prefixed with anything.
 The help page of \texttt{?Rdpack::promptUsage} contains a number of examples created with
 \texttt{\textbackslash{}printExample}. The corresponding Rd file can be obtained from the package tarball or from
 \url{https://github.com/GeoBosh/Rdpack/blob/master/man/promptUsage.Rd}. 
-
 \section{Section examples with results}
-\label{sec:org80695a1}
+\label{sec:org26259f1}
 
 
 The macro \texttt{\textbackslash{}printExample} can be used as many times as needed and is typically placed in
@@ -115,10 +113,8 @@ and tangled along with examples in other documentation files\footnote{In version
 \texttt{\textbackslash{}Sexpr} section at top level. See also the note about multiline argument for
 \texttt{\textbackslash{}printExample}.}. A small example package
 using this feature is at \href{https://github.com/GeoBosh/reprexes/tree/master/runExamplesCheck}{runExamplesCheck}.
-
-
 \section{Creating and including graphs}
-\label{sec:orgb3e0ae9}
+\label{sec:orgebef252}
 
 Figures can be inserted with the help of the standard Rd markup command \texttt{\textbackslash{}figure}. 
 The Rd macro \texttt{\textbackslash{}insertFig} provided by package \pkg{Rdpack} takes a snipped of R code,
@@ -140,9 +136,8 @@ The sister macro \texttt{\textbackslash{}makeFig} creates the graph in exactly t
 does not insert it. This can be done with a separate \texttt{\textbackslash{}figure} command. This can be used if
 additional options are desired for different output formats, see the description of \texttt{\textbackslash{}figure} in
 "Writing R extensions". 
-
 \subsection{A technical note}
-\label{sec:org00b2a6c}
+\label{sec:org8441c26}
 
 The above description should just work.  This note is for users who wonder about
 technicalities.

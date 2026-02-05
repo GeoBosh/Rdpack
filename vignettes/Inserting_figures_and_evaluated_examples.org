@@ -15,7 +15,7 @@
 #+LATEX_HEADER:   School of Mathematics\\
 #+LATEX_HEADER:   The University of Manchester\\
 #+LATEX_HEADER:   Oxford Road, Manchester M13 9PL, UK\\
-#+LATEX_HEADER:   URL: \url{http://www.maths.manchester.ac.uk/~gb/}
+#+LATEX_HEADER:   URL: \url{https://personalpages.manchester.ac.uk/staff/georgi.boshnakov/}
 #+LATEX_HEADER: }
 #+LATEX_HEADER: <<echo=FALSE>>=
 #+LATEX_HEADER: library(Rdpack)

@@ -1,7 +1,11 @@
 url: https://geobosh.github.io/Rdpack
 
+deploy:
+  install_metadata: true
+
 template:
   bootstrap: 5
+  math-rendering: mathjax
   
 search:
   exclude: ['news/index.html']

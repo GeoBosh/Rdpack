@@ -12,15 +12,17 @@
   \Sexpr[stage=build]{pd$Description}
 }
 \details{
-  \tabular{ll}{
-    Package:  \tab \Sexpr[stage=build]{pd$Package}\cr
-    Type:     \tab \Sexpr[stage=build]{pd$Type}\cr
-    Version:  \tab \Sexpr[stage=build]{pd$Version} \cr
-    Date:     \tab \Sexpr[stage=build]{pd$Date}\cr
-    License:  \tab \Sexpr[stage=build]{pd$License}\cr
-    LazyLoad: \tab \Sexpr[stage=build]{pd$LazyLoad}\cr
-    Built:    \tab \Sexpr[stage=build]{pd$Built}
-  }
+% 2025-11-15 commented out
+%
+%   \tabular{ll}{
+%     Package:  \tab \Sexpr[stage=build]{pd$Package}\cr
+%     Type:     \tab \Sexpr[stage=build]{pd$Type}\cr
+%     Version:  \tab \Sexpr[stage=build]{pd$Version} \cr
+%     Date:     \tab \Sexpr[stage=build]{pd$Date}\cr
+%     License:  \tab \Sexpr[stage=build]{pd$License}\cr
+%     LazyLoad: \tab \Sexpr[stage=build]{pd$LazyLoad}\cr
+%     Built:    \tab \Sexpr[stage=build]{pd$Built}
+%   }
 %
 % 2018-05-24 commenting out   
 %    Index:
@@ -38,7 +40,7 @@
   changes untouched. For example, usage sections for functions are
   updated and if there are undescribed arguments, additional items are
   put in the `arguments' section. 
-  
+
   A set of functions and macros support inclusion of references and
   citations from BibTeX files in \R documentation (Rd and
   roxygen2). These tools use only facilities provided by base \R and
@@ -192,16 +194,15 @@
       \insertAllCited{}
     }
 }
-    in an Rd file. Don't align the backslash with the second 'e' of
-    \code{@references}, since roxygen2 may interpret it as verbatim text, 
-    not macro.
-
-
+    in an Rd file.
     The analogous documentation chunk in roxygen2 might look like this:
 \preformatted{  
     #' @references
-    #'     \insertAllCited{}
-}  
+    #'   \insertAllCited{}
+}
+
+  Don't align the backslash with the second 'e' of \code{@references},
+  since roxygen2 may interpret it as verbatim text, not macro.
 
   Bibliography styles for lists of references are supported as
   well. Currently the only alternative offered is to use long names
@@ -402,8 +403,12 @@ Maintainer: \Sexpr[stage=build]{pd$Maintainer}
 }
 \references{
 
-  \strong{Note:} Reference \insertCite{dummyArticle;textual}{Rdpack}
-  does not exist. It is a test that simple math in BibTeX entries works.
+  \strong{Note 1:} Reference \insertCite{dummyArticle;textual}{Rdpack}
+  (see below) does not exist. It is a test that simple math in BibTeX
+  entries works.
+
+  \strong{Note 2:} Reference \insertCite{unpublished-full;textual}{rbibutils}
+  is included to show that some more and less usual accents are handled. 
 
   ---
   

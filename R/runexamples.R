@@ -197,21 +197,65 @@ run_examples <- function(excontent,     # package = NULL, lib.loc = NULL, charac
 
 
 insert_fig <- function(file, package, code, insert = TRUE){
-  dirs <- c("./man/", file.path(".", package, "man"))
-  w <- sapply(dirs, dir.exists)
-  dcur <- dirs[w]
-  figpath <- file.path(dcur, "figures")
-  if(!dir.exists(figpath))
-      dir.create(figpath)
-  grDevices::png(file.path(figpath, file))
-  ## plot(cars)
-  force(code)
-  grDevices::dev.off()
+    res <- if(insert)
+               paste0("\\figure{", file, "}")
+           else
+               file
 
-  if(insert)
-      paste0("\\figure{", file, "}")
-  else
-      file
+    dirs <- c("./man/", file.path(".", package, "man"))
+    w <- sapply(dirs, dir.exists)
+    dcur <- dirs[w]
+    if(length(dcur) == 2) { # both, ./man and ./package/man exist
+        warning(paste0("Ambiguity: both, './man' and './", package, "/man' exist,",
+                       "choosing the latter."))
+        dcur <- dcur[2]
+    } else if(length(dcur) == 0) {
+        ## try harder
+        pat <- paste0("^", package, ".+") # dir name is pkg followed by something else
+        wrk <- intersect(dir(pattern = pat), list.dirs(full.names = FALSE, recursive = FALSE))
+
+        if(length(wrk) == 0) {
+            warning("Unable to locate 'man/figure/' to write the graphics,\n",
+                    "please contact the maintainer of 'Rdpack';\n\n",
+                    "using previously created figure, if available.")
+
+            return(res)
+        }
+
+        man_dir <- character(0)
+        for(wdir in wrk) {
+            dirs <- c(file.path(".", wdir, "man"), file.path(".", wdir, package, "man"))
+            w <- sapply(dirs, dir.exists)
+            man_dir <- c(man_dir, dirs[w])
+        }
+
+        if(length(man_dir) == 0) {
+            warning("Unable to locate 'man/figure/' to write the graphics,\n",
+                    "please contact the maintainer of 'Rdpack';\n\n",
+                    "using previously created figure, if available.")
+
+            return(res)
+        } else if(length(man_dir) > 1) {
+            warning("Ambiguity: more than one package directories found:\n",
+                    "    ", paste(man_dir, collapse = ", "), "\n",
+                    "please contact the maintainer of 'Rdpack';\n\n",
+                    "writing to the last directory found.")
+
+            dcur <- man_dir[length(man_dir)]
+        } else
+            dcur <- man_dir
+    }
+  
+    figpath <- file.path(dcur, "figures")
+    if(!dir.exists(figpath))
+        dir.create(figpath)
+
+    grDevices::png(file.path(figpath, file))
+    on.exit(grDevices::dev.off())
+  
+    force(code)
+
+    res
 }
 
 

@@ -1,7 +1,7 @@
 Package: Rdpack
 Type: Package
 Title: Update and Manipulate Rd Documentation Objects
-Version: 2.6.4.9000
+Version: 2.6.5.9000
 Authors@R: c( person(given = c("Georgi", "N."),
                      family = "Boshnakov", 
                      role = c("aut", "cre"), 
@@ -18,7 +18,8 @@ Description: Functions for manipulation of R documentation objects,
     inserting snippets of 'R' code and the results of its evaluation or
     creating graphics on the fly; and many functions for manipulation of
     references and Rd files.
-URL: https://geobosh.github.io/Rdpack/ (doc), https://github.com/GeoBosh/Rdpack (devel) 
+URL: https://geobosh.github.io/Rdpack/ (doc),
+     https://CRAN.R-project.org/package=Rdpack
 BugReports: https://github.com/GeoBosh/Rdpack/issues
 Depends:
     R (>= 2.15.0),
@@ -26,7 +27,7 @@ Depends:
 Imports:
     tools,
     utils,
-    rbibutils (>= 1.3)
+    rbibutils (> 2.4)
 Suggests:
     grDevices,
     testthat,
@@ -35,4 +36,5 @@ Suggests:
     gbRd
 License: GPL (>= 2)
 LazyLoad: yes
+Encoding: UTF-8
 RoxygenNote: 7.1.1

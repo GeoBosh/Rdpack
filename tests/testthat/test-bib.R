@@ -11,10 +11,13 @@ test_that("bib works fine", {
 
     .toRd_styled(bibs_rb, "Rdpack")
     .toRd_styled(bibs_rb[["Rpackage:Rdpack"]], "Rdpack")
-    .toRd_styled(bibs_rb[["Rpackage:Rdpack"]], "rbibutils", style = "JSSRd")
 
-    set_Rdpack_bibstyle("JSSRd")
-    set_Rdpack_bibstyle("JSSLongNames")
+    ## 2025-11-11: argument 'style' removed from .toRd_styled()
+    .toRd_styled(bibs_rb[["Rpackage:Rdpack"]], "rbibutils")
+              # .toRd_styled(bibs_rb[["Rpackage:Rdpack"]], "rbibutils", style = "JSSRd")
+    
+    bibstyle_JSSRd()
+    bibstyle_JSSLongNames("JSSLongNames")
 
     ## parenthesised
     expect_equal(insert_citeOnly("Rpackage:Rdpack", package = "rbibutils"),

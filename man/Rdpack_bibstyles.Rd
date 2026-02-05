@@ -38,18 +38,22 @@ Rdpack_bibstyles(package, authors)
     }
 }
   After building and installing the package the references should be
-  using long names. 
+  using long names.
+
+  
 }
 \value{
-  in .onLoad(), the function is used purely to set up a bibstyle as
-  discussed in Details.
+  if called with no arguments, a list of the names of all styles.
 
-  Internally, \pkg{Rdpack} uses it to extract styles set up by packages: 
+  if called with one argument (\code{package}) only, the name of the
+  bib style, a character string, requested by that package. The style
+  is created if hadn't been set up before. As a special case
+  \code{package = ""} will return the default Rdpack style.
 
-  - if called with argument \code{package} only, the style requested
-    by that package;
+  if called with two arguments, the function set up a bibstyle as
+  discussed in section \sQuote{Details}. It returns the name of that
+  style.
 
-  - if called with no arguments, a list of all styles.
 }
 %\references{
 %}

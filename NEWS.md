@@ -1,8 +1,18 @@
-# Rdpack 2.6.4.9000
+# Rdpack 2.6.5.9000
+
+- rewrite the function beside Rd macro `\insertFig` defensively (see issue #39).
+
+
+# Rdpack 2.6.5
+
+- Rdpack's bibstyles are no longer created at load time.
+
+- refactored the bibstyles. Needs `rbibutils > 2.4`, due to a missing
+  export in rbibutils v2.4.
 
 - fixed the name of a subsection in `insert_ref.Rd`. It was wrongly mentioning
- 'insertNoCite`, while actually describing 'insertCiteOnly' (and causing a
- duplicated html anchor, now caught by recent R checks).
+  'insertNoCite`, while actually describing 'insertCiteOnly' (and causing a
+  duplicated html anchor, now caught by recent R checks).
 
 - padded the last table in 'predefined.Rd' so that the last row now has the same
   number of entries as the rest (pkgdown was omitting it and the R checks started
