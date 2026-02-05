@@ -1,6 +1,18 @@
 # Changelog
 
-## Rdpack 2.6.4.9000
+## Rdpack 2.6.5.9000
+
+- rewrite the function beside Rd macro `\insertFig` defensively (see
+  issue [\#39](https://github.com/GeoBosh/Rdpack/issues/39)).
+
+## Rdpack 2.6.5
+
+CRAN release: 2026-01-23
+
+- Rdpack’s bibstyles are no longer created at load time.
+
+- refactored the bibstyles. Needs `rbibutils > 2.4`, due to a missing
+  export in rbibutils v2.4.
 
 - fixed the name of a subsection in `insert_ref.Rd`. It was wrongly
   mentioning ‘insertNoCite\`, while actually describing ’insertCiteOnly’

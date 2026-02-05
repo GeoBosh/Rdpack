@@ -102,12 +102,14 @@ r
 #> Developing R Packages Easier_. R package version 1.13.5,
 #> <https://CRAN.R-project.org/package=devtools>.
 #> 
-#> ZZZ A (2018). “A relation between several fundamental constants:
-#> $e^i\pi=-1$; Also, a test that slash is fine: Something\slash
-#> Something.” _A non-existent journal with the formula $L_2$ in its name
-#> & an ampersand which is preceded by a backslash in the bib file._. This
-#> reference does not exist. It is a test/demo that simple formulas in
-#> BibTeX files are OK. A formula in field 'note': $c^2 = a^2 + b^2$.
+#> ZZZ A (2018). “A non-existent paper with a relation between several
+#> fundamental constants: $e^i\pi=-1$ in the title and showing that
+#> a\slash b converts to a\slash b.” _A non-existent journal with the
+#> formula $L_2$ in its name and \# \$ & \_ \^ \~ an ampersand and other
+#> special characters preceded by a backslash in the bib file_. This
+#> reference demonstrates that formulas in BibTeX files are OK. A formula
+#> in field 'note': $c^2 = a^2 + b^2$. If you need to, even display math
+#> is possible: $$ E = mc^2 ,$$ a famous formula.
 #> 
 #> Diaz JE, López-Ibáñez M (2021). “Incorporating Decision-Maker's
 #> Preferences into the Automatic Configuration of Bi-Objective
@@ -137,9 +139,9 @@ print(r, style = "html")
 #> </p>
 #> 
 #> <p>ZZZ A (2018).
-#> &ldquo;A relation between several fundamental constants: $e^i\pi=-1$; Also, a test that slash is fine: Something\slash Something.&rdquo;
-#> <em>A non-existent journal with the formula $L_2$ in its name &amp; an ampersand which is preceded by a backslash in the bib file.</em>.
-#> This reference does not exist. It is a test/demo that simple formulas in BibTeX files are OK. A formula in field 'note': $c^2 = a^2 + b^2$. 
+#> &ldquo;A non-existent paper with a relation between several fundamental constants: $e^i\pi=-1$ in the title and showing that <code style="white-space: pre;">&#8288;a\slash b&#8288;</code> converts to  a\slash b.&rdquo;
+#> <em>A non-existent journal with the formula $L_2$ in its name and \# \$ &amp; \_ \^ \~ an ampersand and other special characters preceded by a backslash in the bib file</em>.
+#> This reference demonstrates that formulas in BibTeX files are OK. A formula in field 'note': $c^2 = a^2 + b^2$. If you need to, even display math is possible: $$ E = mc^2 ,$$ a famous formula. 
 #> </p>
 #> 
 #> <p>Diaz JE, López-Ibáñez M (2021).

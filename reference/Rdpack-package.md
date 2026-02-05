@@ -10,16 +10,6 @@ many functions for manipulation of references and Rd files.
 
 ## Details
 
-|           |                                          |
-|-----------|------------------------------------------|
-| Package:  | Rdpack                                   |
-| Type:     | Package                                  |
-| Version:  | 2.6.4.9000                               |
-| Date:     |                                          |
-| License:  | GPL (\>= 2)                              |
-| LazyLoad: | yes                                      |
-| Built:    | R 4.5.2; ; 2025-11-08 06:47:50 UTC; unix |
-
 Package `Rdpack` provides a number of functions for maintenance of
 documentation in R packages. Although base R and package `methods` have
 functions for creation of skeleton documentation, if a function gets a
@@ -175,14 +165,14 @@ section “References”, something like:
           \insertAllCited{}
         }
 
-in an Rd file. Don't align the backslash with the second 'e' of
-`@references`, since roxygen2 may interpret it as verbatim text, not
-macro.
-
-The analogous documentation chunk in roxygen2 might look like this:
+in an Rd file. The analogous documentation chunk in roxygen2 might look
+like this:
 
         #' @references
-        #'     \insertAllCited{}
+        #'   \insertAllCited{}
+
+Don't align the backslash with the second 'e' of `@references`, since
+roxygen2 may interpret it as verbatim text, not macro.
 
 Bibliography styles for lists of references are supported as well.
 Currently the only alternative offered is to use long names (Georgi N.
@@ -383,8 +373,11 @@ the Rd files.
 
 ## References
 
-**Note:** Reference ZZZ (2018) does not exist. It is a test that simple
-math in BibTeX entries works.
+**Note 1:** Reference ZZZ (2018) (see below) does not exist. It is a
+test that simple math in BibTeX entries works.
+
+**Note 2:** Reference Ünderwood et al. (1988) is included to show that
+some more and less usual accents are handled.
 
 —
 
@@ -394,16 +387,22 @@ Bibliography Formats*. <https://CRAN.R-project.org/package=rbibutils>.
 Duncan Murdoch (2010). “Parsing Rd files.”
 <https://developer.r-project.org/parseRd.pdf>.  
   
+Ulrich Ünderwood, Ned Ñet, Paul P̄ot (1988). “Lower Bounds for Wishful
+Research Results.” Talk at Fanstord University (this is a full
+UNPUBLISHED entry).  
+  
 Hadley Wickham, Jim Hester, Winston Chang (2018). *devtools: Tools to
 Make Developing R Packages Easier*. R package version 1.13.5,
 <https://CRAN.R-project.org/package=devtools>.  
   
-A. ZZZ (2018). “A relation between several fundamental constants:
-\\e^{i\pi}=-1\\; Also, a test that slash is fine: Something/Something.”
-*A non-existent journal with the formula \\L_2\\ in its name & an
-ampersand which is preceded by a backslash in the bib file.*. This
-reference does not exist. It is a test/demo that simple formulas in
-BibTeX files are OK. A formula in field 'note': \\c^2 = a^2 + b^2\\.
+A. ZZZ (2018). “A non-existent paper with a relation between several
+fundamental constants: \\e^{i\pi}=-1\\ in the title and showing that
+`a\slash b` converts to a/b.” *A non-existent journal with the formula
+\\L_2\\ in its name and \# \$ & \_ ^ ~ an ampersand and other special
+characters preceded by a backslash in the bib file*. This reference
+demonstrates that formulas in BibTeX files are OK. A formula in field
+'note': \\c^2 = a^2 + b^2\\. If you need to, even display math is
+possible: \$\$ E = mc^2 ,\$\$ a famous formula.
 
 ## Examples
 

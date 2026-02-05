@@ -95,9 +95,9 @@ cat(insert_all_ref(matrix(c("*", "Rdpack"), ncol = 2)), "\n")
 #> \url{https://developer.r-project.org/parseRd.pdf}.\cr\cr Hadley Wickham, Jim Hester, Winston Chang (2018).
 #> \emph{devtools: Tools to Make Developing R Packages Easier}.
 #> R package version 1.13.5, \url{https://CRAN.R-project.org/package=devtools}.\cr\cr A. ZZZ (2018).
-#> \dQuote{A relation between several fundamental constants: \eqn{e^{i\pi}=-1}; Also, a test that slash is fine: Something\ifelse{latex}{\out{\slash }}{/}Something.}
-#> \emph{A non-existent journal with the formula \eqn{L_2} in its name & an ampersand which is preceded by a backslash in the bib file.}.
-#> This reference does not exist. It is a test/demo that simple formulas in BibTeX files are OK. A formula in field 'note': \eqn{c^2 = a^2 + b^2}. 
+#> \dQuote{A non-existent paper with a relation between several fundamental constants: \eqn{e^{i\pi}=-1} in the title and showing that \verb{a\\slash b} converts to  a\ifelse{latex}{\out{\slash }}{/}b.}
+#> \emph{A non-existent journal with the formula \eqn{L_2} in its name and # $ & _ ^ ~ an ampersand and other special characters preceded by a backslash in the bib file}.
+#> This reference demonstrates that formulas in BibTeX files are OK. A formula in field 'note': \eqn{c^2 = a^2 + b^2}. If you need to, even display math is possible: \deqn{ E = mc^2 ,} a famous formula. 
 
 ## all references from package Rdpack and rbibutils
 m <- matrix(c("*", "Rdpack",  "*", "rbibutils"), ncol = 2, byrow = TRUE)
@@ -129,7 +129,9 @@ cat(insert_all_ref(m), "\n")
 #> \url{https://sourceforge.net/projects/bibutils/}.\cr\cr Hadley Wickham, Jim Hester, Winston Chang (2018).
 #> \emph{devtools: Tools to Make Developing R Packages Easier}.
 #> R package version 1.13.5, \url{https://CRAN.R-project.org/package=devtools}.\cr\cr A. ZZZ (2018).
-#> \dQuote{A relation between several fundamental constants: \eqn{e^{i\pi}=-1}; Also, a test that slash is fine: Something\ifelse{latex}{\out{\slash }}{/}Something.}
-#> \emph{A non-existent journal with the formula \eqn{L_2} in its name & an ampersand which is preceded by a backslash in the bib file.}.
-#> This reference does not exist. It is a test/demo that simple formulas in BibTeX files are OK. A formula in field 'note': \eqn{c^2 = a^2 + b^2}. 
+#> \dQuote{A non-existent paper with a relation between several fundamental constants: \eqn{e^{i\pi}=-1} in the title and showing that \verb{a\\slash b} converts to  a\ifelse{latex}{\out{\slash }}{/}b.}
+#> \emph{A non-existent journal with the formula \eqn{L_2} in its name and # $ & _ ^ ~ an ampersand and other special characters preceded by a backslash in the bib file}.
+#> This reference demonstrates that formulas in BibTeX files are OK. A formula in field 'note': \eqn{c^2 = a^2 + b^2}. If you need to, even display math is possible: \deqn{ E = mc^2 ,} a famous formula.\cr\cr Ulrich Ünderwood, Ned Ñet, Paul \ifelse{latex}{\out{\=P}}{P̄}ot (1988).
+#> \dQuote{Lower Bounds for Wishful Research Results.}
+#> Talk at Fanstord University (this is a full UNPUBLISHED entry). 
 ```
