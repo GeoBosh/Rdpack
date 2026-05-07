@@ -211,7 +211,7 @@ insert_fig <- function(file, package, code, insert = TRUE){
         dcur <- dcur[2]
     } else if(length(dcur) == 0) {
         ## try harder
-        pat <- paste0("^", package, ".+") # dir name is pkg followed by something else
+        pat <- paste0("^", package, ".+") # dir name is pkg followed by something else (e.g. version)
         wrk <- intersect(dir(pattern = pat), list.dirs(full.names = FALSE, recursive = FALSE))
 
         if(length(wrk) == 0) {
@@ -229,26 +229,35 @@ insert_fig <- function(file, package, code, insert = TRUE){
             man_dir <- c(man_dir, dirs[w])
         }
 
-        if(length(man_dir) == 0) {
-            warning("Unable to locate 'man/figure/' to write the graphics,\n",
-                    "please contact the maintainer of 'Rdpack';\n\n",
-                    "using previously created figure, if available.")
-
-            return(res)
+        if(length(man_dir) == 1) {
+            dcur <- man_dir
         } else if(length(man_dir) > 1) {
             warning("Ambiguity: more than one package directories found:\n",
                     "    ", paste(man_dir, collapse = ", "), "\n",
                     "please contact the maintainer of 'Rdpack';\n\n",
                     "writing to the last directory found.")
 
+            ## TODO: probably should not write to a potentially unexpected directory;
+            ##       should just return(res), as above.
             dcur <- man_dir[length(man_dir)]
-        } else
-            dcur <- man_dir
+        } else { # length(man_dir) == 0
+            warning("Unable to locate 'man/figure/' to write the graphics,\n",
+                    "please contact the maintainer of 'Rdpack';\n\n",
+                    "using previously created figure, if available.")
+
+            return(res)
+        }
     }
   
     figpath <- file.path(dcur, "figures")
-    if(!dir.exists(figpath))
-        dir.create(figpath)
+    if(!dir.exists(figpath)) {
+        flag <- dir.create(figpath)
+        if(!flag) {
+            warning("Unable to create 'man/figure/' to write the graphics,\n",
+                    "using previously created figure, if available.")
+            return(res)
+        }
+    }
 
     grDevices::png(file.path(figpath, file))
     on.exit(grDevices::dev.off())
@@ -257,11 +266,3 @@ insert_fig <- function(file, package, code, insert = TRUE){
 
     res
 }
-
-
-
-
-
-
-
-

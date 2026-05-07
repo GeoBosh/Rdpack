@@ -1,6 +1,7 @@
-# Rdpack 2.6.5.9000
+# Rdpack 2.6.6
 
-- rewrite the function beside Rd macro `\insertFig` defensively (see issue #39).
+- rewrote the function beside Rd macro `\insertFig` defensively and to work harder to locate
+  and/or create the directory for the figures (see issue #39).
 
 
 # Rdpack 2.6.5
