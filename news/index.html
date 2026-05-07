@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Rdpack</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.6.5.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.6.6.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,8 +39,8 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="2.6.5.9000" id="rdpack-2659000">Rdpack 2.6.5.9000<a class="anchor" aria-label="anchor" href="#rdpack-2659000"></a></h2>
-<ul><li>rewrite the function beside Rd macro <code>\insertFig</code> defensively (see issue <a href="https://github.com/GeoBosh/Rdpack/issues/39" class="external-link">#39</a>).</li>
+<h2 class="pkg-version" data-toc-text="2.6.6" id="rdpack-266">Rdpack 2.6.6<a class="anchor" aria-label="anchor" href="#rdpack-266"></a></h2><p class="text-muted">CRAN release: 2026-02-08</p>
+<ul><li>rewrote the function beside Rd macro <code>\insertFig</code> defensively and to work harder to locate and/or create the directory for the figures (see issue <a href="https://github.com/GeoBosh/Rdpack/issues/39" class="external-link">#39</a>).</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.6.5" id="rdpack-265">Rdpack 2.6.5<a class="anchor" aria-label="anchor" href="#rdpack-265"></a></h2><p class="text-muted">CRAN release: 2026-01-23</p>
@@ -84,7 +84,7 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.4" id="rdpack-24">Rdpack 2.4<a class="anchor" aria-label="anchor" href="#rdpack-24"></a></h2><p class="text-muted">CRAN release: 2022-07-20</p>
 <ul><li><p>new Rd macro <code>\insertCited{}</code> works like <code>\insertAllCited</code> but empties the references list after finishing its work. This means that the second and subsequent <code>\insertCited</code> in the same help page will list only citations done since the preceding <code>\insertCited</code>. Prompted by issue <a href="https://github.com/GeoBosh/Rdpack/issues/27" class="external-link">#27</a> to allow separate references lists for each method and the class in R6 documentation.</p></li>
-<li><p>It is no longer necessary to remove backslashes from <code>\&amp;</code> and similar in bibtex files (e.g. in “John Wiley &amp; Sons”). The backslash was appearing in the rendered pdf manual but R-devel’s checks started to warn about it recently with something like <code>checkRd: (-1) pcts-package.Rd:287: Escaped LaTeX   specials: \&amp;</code> (starting June 2022). This could be avoided by removing the superfluous backslash in the bib file but this is annoying since this is proper syntax for the latter. Concerned packages should rebuild the tarball with Rdpack (&gt;= 2.4) or remove the offending backslashes from their bib files. (addresses issue <a href="https://github.com/GeoBosh/Rdpack/issues/26" class="external-link">#26</a>)</p></li>
+<li><p>It is no longer necessary to remove backslashes from <code>\&amp;</code> and similar in bibtex files (e.g. in “John Wiley &amp; Sons”). The backslash was appearing in the rendered pdf manual but R-devel’s checks started to warn about it recently with something like <code>checkRd: (-1) pcts-package.Rd:287: Escaped LaTeX specials: \&amp;</code> (starting June 2022). This could be avoided by removing the superfluous backslash in the bib file but this is annoying since this is proper syntax for the latter. Concerned packages should rebuild the tarball with Rdpack (&gt;= 2.4) or remove the offending backslashes from their bib files. (addresses issue <a href="https://github.com/GeoBosh/Rdpack/issues/26" class="external-link">#26</a>)</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.3.1" id="rdpack-231">Rdpack 2.3.1<a class="anchor" aria-label="anchor" href="#rdpack-231"></a></h2><p class="text-muted">CRAN release: 2022-06-07</p>
@@ -92,7 +92,7 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.3" id="rdpack-23">Rdpack 2.3<a class="anchor" aria-label="anchor" href="#rdpack-23"></a></h2><p class="text-muted">CRAN release: 2022-03-23</p>
-<ul><li>reverted the change in v2.2, since a further fix in R-devel, <a href="https://stat.ethz.ch/pipermail/r-devel/2022-March/081570.html" class="external-link uri">https://stat.ethz.ch/pipermail/r-devel/2022-March/081570.html</a>, made it unnecessary and dependent on the versions of R used to build and install a package. This concerns developers who use the Bibtex related macros - they should not build their package with v2.2 of <code>Rdpack</code> and could require <code>Rdpack   &gt;= 2.3</code> to ensure that users installing their package don’t do that accidentally with <code>Rdpack 2.2</code>.</li>
+<ul><li>reverted the change in v2.2, since a further fix in R-devel, <a href="https://stat.ethz.ch/pipermail/r-devel/2022-March/081570.html" class="external-link uri">https://stat.ethz.ch/pipermail/r-devel/2022-March/081570.html</a>, made it unnecessary and dependent on the versions of R used to build and install a package. This concerns developers who use the Bibtex related macros - they should not build their package with v2.2 of <code>Rdpack</code> and could require <code>Rdpack &gt;= 2.3</code> to ensure that users installing their package don’t do that accidentally with <code>Rdpack 2.2</code>.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.2" id="rdpack-22">Rdpack 2.2<a class="anchor" aria-label="anchor" href="#rdpack-22"></a></h2><p class="text-muted">CRAN release: 2022-03-19</p>
@@ -283,7 +283,7 @@
 <h2 class="pkg-version" data-toc-text="0.5-5" id="rdpack-05-5">Rdpack 0.5-5<a class="anchor" aria-label="anchor" href="#rdpack-05-5"></a></h2><p class="text-muted">CRAN release: 2018-02-14</p>
 <ul><li><p>Streamlined the help page of <code><a href="../reference/reprompt.html">reprompt()</a></code> and <code>Rdpack-package</code>.</p></li>
 <li><p>new argument, <code>edit</code>, in <code><a href="../reference/reprompt.html">reprompt()</a></code> opens the Rd file after updating it.</p></li>
-<li><p>new function <code><a href="../reference/ereprompt.html">ereprompt()</a></code> (<code>e' for _edit_)* opens</code>reprompt()<code>with suitable   defaults to replace the original Rd file and open it in an editor, otherwise   equivalent to</code>reprompt()`.</p></li>
+<li><p>new function <code><a href="../reference/ereprompt.html">ereprompt()</a></code> (<code>e' for _edit_)* opens</code>reprompt()<code>with suitable defaults to replace the original Rd file and open it in an editor, otherwise equivalent to</code>reprompt()`.</p></li>
 <li><p>now if <code>infile</code> does not exist, <code><a href="../reference/reprompt.html">reprompt()</a></code>, and hence <code><a href="../reference/ereprompt.html">ereprompt()</a></code>, strips the directory part, finds the root of the package directory, and looks for the file under <code>man/</code> (this uses package <code>rprojroot</code>’). In particular, if the working directory is anywhere under the package root, <code>infile</code> can be simply the name of the Rd file, without path.</p></li>
 <li><p>now README.md is generated from README.org. I changed the layout and amended the information in it.</p></li>
 <li><p>README.* now get links to <a href="https://github.com/GeoBosh/georgisemacs" class="external-link">georgisemacs</a> for an emacs function to <code><a href="../reference/reprompt.html">reprompt()</a></code> the Rd file at point.</p></li>

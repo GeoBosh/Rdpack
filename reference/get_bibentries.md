@@ -103,19 +103,19 @@ r
 #> <https://CRAN.R-project.org/package=devtools>.
 #> 
 #> ZZZ A (2018). “A non-existent paper with a relation between several
-#> fundamental constants: $e^i\pi=-1$ in the title and showing that
-#> a\slash b converts to a\slash b.” _A non-existent journal with the
-#> formula $L_2$ in its name and \# \$ & \_ \^ \~ an ampersand and other
-#> special characters preceded by a backslash in the bib file_. This
-#> reference demonstrates that formulas in BibTeX files are OK. A formula
-#> in field 'note': $c^2 = a^2 + b^2$. If you need to, even display math
-#> is possible: $$ E = mc^2 ,$$ a famous formula.
+#> fundamental constants: e^{ipi}=-1 in the title and showing that a\slash
+#> b converts to a\slash b.” _A non-existent journal with the formula L_2
+#> in its name and \# \$ & \_ \^ \~ an ampersand and other special
+#> characters preceded by a backslash in the bib file_. This reference
+#> demonstrates that formulas in BibTeX files are OK. A formula in field
+#> 'note': c^2 = a^2 + b^2. If you need to, even display math is possible:
+#> $$ E = mc^2 ,$$ a famous formula.
 #> 
 #> Diaz JE, López-Ibáñez M (2021). “Incorporating Decision-Maker's
 #> Preferences into the Automatic Configuration of Bi-Objective
 #> Optimisation Algorithms.” _European Journal of Operational Research_,
 #> *289*(3), 1209-1222. doi:10.1016/j.ejor.2020.07.059
-#> <https://doi.org/10.1016/j.ejor.2020.07.059>,
+#> <https://doi.org/10.1016/j.ejor.2020.07.059>.
 #> <https://doi.org/10.1016/j.ejor.2020.07.059>.
 print(r, style = "html")
 #> <p>Francois R (2014).
@@ -139,15 +139,16 @@ print(r, style = "html")
 #> </p>
 #> 
 #> <p>ZZZ A (2018).
-#> &ldquo;A non-existent paper with a relation between several fundamental constants: $e^i\pi=-1$ in the title and showing that <code style="white-space: pre;">&#8288;a\slash b&#8288;</code> converts to  a\slash b.&rdquo;
-#> <em>A non-existent journal with the formula $L_2$ in its name and \# \$ &amp; \_ \^ \~ an ampersand and other special characters preceded by a backslash in the bib file</em>.
-#> This reference demonstrates that formulas in BibTeX files are OK. A formula in field 'note': $c^2 = a^2 + b^2$. If you need to, even display math is possible: $$ E = mc^2 ,$$ a famous formula. 
+#> &ldquo;A non-existent paper with a relation between several fundamental constants: <code class="reqn">e^{i\pi}=-1</code> in the title and showing that <code style="white-space: pre;">&#8288;a\slash b&#8288;</code> converts to  a\slash b.&rdquo;
+#> <em>A non-existent journal with the formula <code class="reqn">L_2</code> in its name and \# \$ &amp; \_ \^ \~ an ampersand and other special characters preceded by a backslash in the bib file</em>.
+#> This reference demonstrates that formulas in BibTeX files are OK. A formula in field 'note': <code class="reqn">c^2 = a^2 + b^2</code>. If you need to, even display math is possible: $$ E = mc^2 ,$$ a famous formula. 
 #> </p>
 #> 
 #> <p>Diaz JE, López-Ibáñez M (2021).
 #> &ldquo;Incorporating Decision-Maker's Preferences into the Automatic Configuration of Bi-Objective Optimisation Algorithms.&rdquo;
 #> <em>European Journal of Operational Research</em>, <b>289</b>(3), 1209&ndash;1222.
-#> <a href="https://doi.org/10.1016/j.ejor.2020.07.059">doi:10.1016/j.ejor.2020.07.059</a>, <a href="https://doi.org/10.1016/j.ejor.2020.07.059">https://doi.org/10.1016/j.ejor.2020.07.059</a>. 
+#> <a href="https://doi.org/10.1016/j.ejor.2020.07.059">doi:10.1016/j.ejor.2020.07.059</a>.
+#> <a href="https://doi.org/10.1016/j.ejor.2020.07.059">https://doi.org/10.1016/j.ejor.2020.07.059</a>. 
 #> </p>
 
 ## Bib from base R packages are disabled in Rdpack v2 (notify the

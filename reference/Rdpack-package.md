@@ -55,6 +55,7 @@ untouched.
 
 The typical use of `reprompt` is with one argument, as in
 
+
         reprompt(infile = "./Rdpack/man/reprompt.Rd")
         reprompt(reprompt)
         reprompt("reprompt")
@@ -101,6 +102,7 @@ recent versions of R it also uses macros.).
 For example, the source of this help page is file \`Rdpack-package.Rd'.
 It was initially produced using
 
+
         promptPackageSexpr("Rdpack")
 
 The factual information at the beginning of this help topic (the index
@@ -137,10 +139,12 @@ enumerated below:
 
 3.  Add the following line to file \`NAMESPACE':
 
+
             importFrom(Rdpack,reprompt)
 
     Alternatively, if devtools is managing your NAMESPACE file, the
     equivalent roxygen2 line is:
+
 
             #' @importFrom Rdpack reprompt
 
@@ -161,12 +165,14 @@ keys. `\insertNoCite` records the keys but does not produce citations.
 recorded by `\insertCite` and `\insertNoCite`. It is usually put in
 section “References”, something like:
 
+
         \references{
           \insertAllCited{}
         }
 
 in an Rd file. The analogous documentation chunk in roxygen2 might look
 like this:
+
 
         #' @references
         #'   \insertAllCited{}
@@ -207,6 +213,7 @@ In the alternative approach, the function
 the bibliographic references in an Rd file. Rdpack uses a simple scheme
 for inclusion of bibliographic references. The key for each reference is
 in a TeX comment line, as in:
+
 
         \references{
           ...
@@ -260,9 +267,11 @@ The macro `\runExamples` can be used as a replacement of section
 `Examples`. For example, if the following code is put at the top level
 in an Rd file (i.e. not in a section):
 
+
         \runExamples{2+2; a <- 2*3; a}
 
 then it will be evaluated and replaced by a normal section examples:
+
 
         \examples{
         2 + 2
@@ -288,6 +297,7 @@ snipped of R code, evaluates it and inserts the plot produced by it
 (using `\figure`). `\insertFig` takes three arguments: a filename, the
 package name and the code to evaluate to produce the figure. For
 example,
+
 
         \insertFig{cars.png}{mypackage}{x <- cars$speed; y <- cars$dist; plot(x,y)}
 

@@ -56,13 +56,13 @@ results in RCODE .
 
 for `Rdo_piece_types`, the name-value pairs are:
 
-|          |       |             |       |              |       |              |       |                 |       |                |      |
-|----------|-------|-------------|-------|--------------|-------|--------------|-------|-----------------|-------|----------------|------|
-| name     | VERB  | \| alias    | VERB  | \| concept   | TEXT  | docType      | TEXT  | \| title        | TEXT  | \| description | TEXT |
-| examples | RCODE | \| usage    | RCODE | \| Rdversion | VERB  | synopsis     | VERB  | \| Sexpr        | RCODE | \| RdOpts      | VERB |
-| code     | RCODE | \| dontshow | RCODE | \| donttest  | RCODE | testonly     | RCODE | \| dontrun      | VERB  | \| env         | VERB |
-| kbd      | VERB  | \| option   | VERB  | \| out       | VERB  | preformatted | VERB  | \| samp         | VERB  | \| special     | VERB |
-| url      | VERB  | \| verb     | VERB  | \| deqn      | VERB  | eqn          | VERB  | \| renewcommand | VERB  | \| newcommand  | VERB |
+|  |  |  |  |  |  |  |  |  |  |  |  |
+|----|----|----|----|----|----|----|----|----|----|----|----|
+| name | VERB | \| alias | VERB | \| concept | TEXT | docType | TEXT | \| title | TEXT | \| description | TEXT |
+| examples | RCODE | \| usage | RCODE | \| Rdversion | VERB | synopsis | VERB | \| Sexpr | RCODE | \| RdOpts | VERB |
+| code | RCODE | \| dontshow | RCODE | \| donttest | RCODE | testonly | RCODE | \| dontrun | VERB | \| env | VERB |
+| kbd | VERB | \| option | VERB | \| out | VERB | preformatted | VERB | \| samp | VERB | \| special | VERB |
+| url | VERB | \| verb | VERB | \| deqn | VERB | eqn | VERB | \| renewcommand | VERB | \| newcommand | VERB |
 
 for `rdo_top_tags`, the values are:
 

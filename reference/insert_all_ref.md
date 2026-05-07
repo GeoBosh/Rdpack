@@ -105,7 +105,8 @@ cat(insert_all_ref(m), "\n")
 #> Georgi
 #> N. Boshnakov (2020).
 #> \dQuote{Rdpack: Update and Manipulate Rd Documentation Objects.}
-#> \doi{10.5281/zenodo.3925612}, R package version 2.0.0.\cr\cr Georgi
+#> \doi{10.5281/zenodo.3925612}.
+#> R package version 2.0.0.\cr\cr Georgi
 #> N. Boshnakov, Chris Putman (2020).
 #> \emph{rbibutils: Convert Between Bibliography Formats}.
 #> \url{https://CRAN.R-project.org/package=rbibutils}.\cr\cr Juan

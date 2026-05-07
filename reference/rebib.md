@@ -64,6 +64,7 @@ and the vignette(s).
 The Bibtex key for each reference is put in a comment line in the
 references section, as in
 
+
         \references{
             % bibentry: key1
 
@@ -96,6 +97,7 @@ means.
 
 To include all references from the bib file, the following line can be
 used:
+
 
         % bibentry:all
 

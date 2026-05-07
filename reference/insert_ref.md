@@ -76,6 +76,7 @@ For example, section ‘References’ of this help page shows (among other
 things)) the rendered results of the following lines in the Rd source
 file:
 
+
             \insertRef{Rpackage:rbibutils}{Rdpack}
 
             \insertRef{parseRd}{Rdpack}
@@ -84,6 +85,7 @@ file:
         
 
 A roxygen2 documentation chunk might look like this:
+
 
             #' @references
             #' \insertRef{Rpackage:rbibutils}{Rdpack}
@@ -105,11 +107,11 @@ For more details see vignette `"Inserting_bibtex_references"`.
 `\insertAllCited`, see below. `key` can contain more keys separated by
 commas.
 
-|                                                   |                                           |
-|---------------------------------------------------|-------------------------------------------|
+|  |  |
+|----|----|
 | `\insertCite{parseRd,Rpackage:rbibutils}{Rdpack}` | (Murdoch 2010; Boshnakov and Putman 2020) |
-| `\insertCite{Rpackage:rbibutils}{Rdpack}`         | (Boshnakov and Putman 2020)               |
-| `\insertCite{bibutils6.10}{rbibutils}`            | (Putnam 2020)                             |
+| `\insertCite{Rpackage:rbibutils}{Rdpack}` | (Boshnakov and Putman 2020) |
+| `\insertCite{bibutils6.10}{rbibutils}` | (Putnam 2020) |
 
 By default the citations are parenthesised (Murdoch 2010) . To get
 textual citations, like Murdoch (2010) , put the string `;textual` at
@@ -124,6 +126,7 @@ To mix the citations with other text, such as ‘see also’ and ‘chapter
 3’, write the list of keys as free text, starting it with the symbol `@`
 and prefixing each key with it. The `@` symbol will not appear in the
 output. For example, the following code
+
 
             \insertCite{@see also @parseRd and @Rpackage:rbibutils}{Rdpack},
 
@@ -144,6 +147,7 @@ In the parenthesised form, adding `;nobrackets` at the end of the list
 of keys causes the enclosing parentheses to be dropped. This is useful
 if you wish to use markup for the text surrounding the references. For
 example,
+
 
             (\emph{see also}  \insertCite{@@parseRd; @Rpackage:rbibutils;nobrackets}{Rdpack}).
           
@@ -167,12 +171,14 @@ record the specified references for inclusion by `\insertAllCited`.
 the references up to date automatically. The Rd section may look
 something like:
 
+
            \references{
              \insertAllCited{}
            }
         
 
 or in roxygen2, the references chunk might look like this:
+
 
            #' @references
            #'   \insertAllCited{}

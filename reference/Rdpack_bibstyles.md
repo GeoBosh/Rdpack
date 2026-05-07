@@ -31,10 +31,12 @@ Smith J style.
 Package authors can request this feature by adding the following line to
 their `.onLoad` function (if their package has one):
 
+
         Rdpack::Rdpack_bibstyles(package = pkg, authors = "LongNames")
 
 of just copy the following definition in a package that does not have
 `.onLoad` :
+
 
         .onLoad <- function(lib, pkg){
             Rdpack::Rdpack_bibstyles(package = pkg, authors = "LongNames")
