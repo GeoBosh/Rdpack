@@ -218,6 +218,7 @@ The =@= symbol will not appear in the output. For example, the following code:
   \insertCite{@see also @parseRd and @Rpack:bibtex}{Rdpack}
   \insertCite{@see also @parseRd; @Rpack:bibtex}{Rdpack}
   \insertCite{@see also @parseRd and @Rpack:bibtex;textual}{Rdpack}
+  \insertCite{@parseRd, chapter 3}{Rdpack}
 #+END_EXAMPLE
 produces:
 
@@ -228,6 +229,7 @@ produces:
 | \Sexpr{insert_citeOnly("@see also @parseRd and @Rpack:bibtex", "Rdpack")}         |
 | \Sexpr{insert_citeOnly("@see also @parseRd; @Rpack:bibtex", "Rdpack")}            |
 | \Sexpr{insert_citeOnly("@see also @parseRd and @Rpack:bibtex;textual", "Rdpack")} |
+| \Sexpr{insert_citeOnly("@parseRd, chapter 3", "Rdpack")} |
 
 The text of the arguments of the macro in this free form should have no markup. For example,
 if you want to put the phrase =see also= in italic, enclosing it with =\emph{...}= (in Rd) or

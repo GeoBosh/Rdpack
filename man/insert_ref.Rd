@@ -139,15 +139,18 @@ insert_ref(key, package = NULL, \dots, cached_env = NULL)
         \insertCite{@see also @parseRd and @Rpackage:rbibutils}{Rdpack},
     
         \insertCite{@see also @parseRd; @Rpackage:rbibutils}{Rdpack},
-    
-        \insertCite{@see also @parseRd and @Rpackage:rbibutils;textual}{Rdpack}.
+
+        \insertCite{@see also @parseRd and @Rpackage:rbibutils;textual}{Rdpack},
+
+        \insertCite{@parseRd, chapter 3}.
     }
     produces:
 
     \tabular{l}{
       \insertCite{@see also @parseRd and @Rpackage:rbibutils}{Rdpack}, \cr
       \insertCite{@see also @parseRd; @Rpackage:rbibutils}{Rdpack}, \cr
-      \insertCite{@see also @parseRd and @Rpackage:rbibutils;textual}{Rdpack}.
+      \insertCite{@see also @parseRd and @Rpackage:rbibutils;textual}{Rdpack}, \cr
+      \insertCite{@parseRd, chapter 3}{Rdpack}.
     }
     
     In the parenthesised form, adding \verb{;nobrackets} at the end of the

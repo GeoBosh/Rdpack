@@ -209,6 +209,7 @@ example, the following code
     \insertCite{@see also @parseRd and @Rpackage:rbibutils}{Rdpack}
     \insertCite{@see also @parseRd; @Rpackage:rbibutils}{Rdpack}
     \insertCite{@see also @parseRd and @Rpackage:rbibutils;textual}{Rdpack}
+    \insertCite{@parseRd, chapter 3}{Rdpack}
 
 produces:
 
@@ -217,6 +218,8 @@ produces:
 (see also Murdoch 2010; Boshnakov and Putman 2020) 
 
 see also Murdoch (2010) and Boshnakov and Putman (2020)
+
+(Murdoch 2010, chapter 3)
 
 With the parenthesised citations, if you need markup for the text before or after the
 citations, say `see also` in italic, put `;nobrackets`<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> at the end of the first argument of

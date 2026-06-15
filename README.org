@@ -215,6 +215,7 @@ example, the following code
   \insertCite{@see also @parseRd and @Rpackage:rbibutils}{Rdpack}
   \insertCite{@see also @parseRd; @Rpackage:rbibutils}{Rdpack}
   \insertCite{@see also @parseRd and @Rpackage:rbibutils;textual}{Rdpack}
+  \insertCite{@parseRd, chapter 3}{Rdpack}
 #+END_EXAMPLE
 produces:
 
@@ -223,6 +224,8 @@ produces:
   src_R[:exports results :results value raw]{insert_citeOnly("@see also @parseRd; @Rpackage:rbibutils", "Rdpack")} 
 
   src_R[:exports results :results value raw]{insert_citeOnly("@see also @parseRd and @Rpackage:rbibutils;textual", "Rdpack")}
+
+  src_R[:exports results :results value raw]{insert_citeOnly("@parseRd, chapter 3", "Rdpack")}
 
 
 With the parenthesised citations, if you need markup for the text before or after the
