@@ -174,7 +174,7 @@ The \texttt{@} symbol will not appear in the output. For example, the following 
   \insertCite{@see also @parseRd and @Rpack:bibtex}{Rdpack}
   \insertCite{@see also @parseRd; @Rpack:bibtex}{Rdpack}
   \insertCite{@see also @parseRd and @Rpack:bibtex;textual}{Rdpack}
-  \insertCite{@parseRd, chapter 3}{Rdpack}
+  \insertCite{@@parseRd, chapter 3}{Rdpack}
 \end{verbatim}
 produces:
 
@@ -185,8 +185,17 @@ Rendered\\
 \Sexpr{insert_citeOnly("@see also @parseRd and @Rpack:bibtex", "Rdpack")}\\
 \Sexpr{insert_citeOnly("@see also @parseRd; @Rpack:bibtex", "Rdpack")}\\
 \Sexpr{insert_citeOnly("@see also @parseRd and @Rpack:bibtex;textual", "Rdpack")}\\
-\Sexpr{insert_citeOnly("@parseRd, chapter 3", "Rdpack")}\\
+\Sexpr{insert_citeOnly("@@parseRd, chapter 3", "Rdpack")}\\
 \end{tabular}
+
+Note the doubled \texttt{@} in the last example: the first \texttt{@} switches the argument
+to free-text mode, the second is the prefix that marks \texttt{parseRd} as a key
+(\texttt{chapter 3} has no \texttt{@}, so it stays as text).
+
+If using \pkg{roxygen2}, note that \verb|@@| in an \texttt{.R} source file is replaced with a
+single \texttt{@} in the corresponding \texttt{.Rd} documentation file. Hence the
+key-plus-free-text form must be written as \verb|@@@@parseRd, chapter 3|, such that
+\pkg{roxygen2} writes \verb|@@parseRd, chapter 3|.
 
 The text of the arguments of the macro in this free form should have no markup. For example,
 if you want to put the phrase \texttt{see also} in italic, enclosing it with \texttt{\textbackslash{}emph\{...\}} (in Rd) or

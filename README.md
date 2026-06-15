@@ -209,7 +209,7 @@ example, the following code
     \insertCite{@see also @parseRd and @Rpackage:rbibutils}{Rdpack}
     \insertCite{@see also @parseRd; @Rpackage:rbibutils}{Rdpack}
     \insertCite{@see also @parseRd and @Rpackage:rbibutils;textual}{Rdpack}
-    \insertCite{@parseRd, chapter 3}{Rdpack}
+    \insertCite{@@parseRd, chapter 3}{Rdpack}
 
 produces:
 
@@ -220,6 +220,15 @@ produces:
 see also Murdoch (2010) and Boshnakov and Putman (2020)
 
 (Murdoch 2010, chapter 3)
+
+Note the doubled `@` in the last example: the first `@` switches the argument to
+free-text mode, the second is the prefix that marks `parseRd` as a key. (`chapter 3`
+has no `@`, so it is left as text.)
+
+If using roxygen2, note that `@@` in an `.R` source file is replaced with a
+single `@` in the corresponding `.Rd` documentation file.  Hence 
+the key-plus-free-text form must be written as `@@@@parseRd, chapter 3`, such
+that roxygen2 writes `@@parseRd, chapter 3`.
 
 With the parenthesised citations, if you need markup for the text before or after the
 citations, say `see also` in italic, put `;nobrackets`<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> at the end of the first argument of
