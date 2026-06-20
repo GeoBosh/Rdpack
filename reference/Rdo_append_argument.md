@@ -63,7 +63,7 @@ reprompt(dummyfun, filename = fn)
 #> Trying a 'prompt' function to generate documentation for the object.
 #> Error in reprompt(dummyfun, filename = fn): unsuccessful attempt to create Rd doc. using a 'prompt' function.
 rdo <- tools::parse_Rd(fn)
-#> Warning: cannot open file '/tmp/Rtmp5e6O0X/dummyfun1a0a121011dd.Rd': No such file or directory
+#> Warning: cannot open file '/tmp/RtmpsioddO/dummyfun1a2145d2a4de.Rd': No such file or directory
 #> Error in file(con, "r"): cannot open the connection
 
 ## add documentation for arguments
