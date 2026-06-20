@@ -139,17 +139,31 @@ insert_ref(key, package = NULL, \dots, cached_env = NULL)
         \insertCite{@see also @parseRd and @Rpackage:rbibutils}{Rdpack},
     
         \insertCite{@see also @parseRd; @Rpackage:rbibutils}{Rdpack},
-    
-        \insertCite{@see also @parseRd and @Rpackage:rbibutils;textual}{Rdpack}.
+
+        \insertCite{@see also @parseRd and @Rpackage:rbibutils;textual}{Rdpack},
+
+        \insertCite{@@parseRd, chapter 3}{Rdpack}.
     }
     produces:
 
     \tabular{l}{
       \insertCite{@see also @parseRd and @Rpackage:rbibutils}{Rdpack}, \cr
       \insertCite{@see also @parseRd; @Rpackage:rbibutils}{Rdpack}, \cr
-      \insertCite{@see also @parseRd and @Rpackage:rbibutils;textual}{Rdpack}.
+      \insertCite{@see also @parseRd and @Rpackage:rbibutils;textual}{Rdpack}, \cr
+      \insertCite{@@parseRd, chapter 3}{Rdpack}.
     }
-    
+
+    The doubled \code{@} in the last example is deliberate: the first \code{@}
+    switches the argument to free-text mode, the second is the prefix that marks
+    \code{parseRd} as a key (\sQuote{chapter 3} has no \code{@}, so it stays as
+    text).
+
+    If using \pkg{roxygen2}, note that \verb{@@} in an \file{.R} source file is
+    replaced with a single \code{@} in the corresponding \file{.Rd} documentation
+    file.  Hence the key-plus-free-text form must be written as
+    \verb{@@@@parseRd, chapter 3}, such that \pkg{roxygen2} writes
+    \verb{@@parseRd, chapter 3}.
+
     In the parenthesised form, adding \verb{;nobrackets} at the end of the
     list of keys causes the enclosing parentheses to be dropped. This is
     useful if you wish to use markup for the text surrounding the
