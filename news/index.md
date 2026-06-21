@@ -1,5 +1,13 @@
 # Changelog
 
+## Rdpack 2.6.6.9000
+
+- added examples for usage of free text citations (mixed bib keys and
+  explanatory text, like ‘Chapter 3’ and clarified for roxygen2 users
+  that if this results in two successive ‘at’ signs, `@@`, at least one
+  of them should be duplicated in the roxygen comments (since roxygen2
+  exports `@@` as a single `@`).
+
 ## Rdpack 2.6.6
 
 CRAN release: 2026-02-08

@@ -70,23 +70,23 @@ reprompt(dummyfun, filename = fnA)
 #> Trying a 'prompt' function to generate documentation for the object.
 #> Error in reprompt(dummyfun, filename = fnA): unsuccessful attempt to create Rd doc. using a 'prompt' function.
 Rdo_show(tools::parse_Rd(fnA))
-#> Warning: cannot open file '/tmp/Rtmp17GFHW/dummyfun19f92361340fRd': No such file or directory
+#> Warning: cannot open file '/tmp/RtmpBbYvk8/dummyfun18f670a058a7Rd': No such file or directory
 #> Error in file(con, "r"): cannot open the connection
 
 ## set the author section, create it if necessary.
 Rdo_set_section("A.A. Author", "author", fnA, create = TRUE)
-#> Warning: cannot open file '/tmp/Rtmp17GFHW/dummyfun19f92361340fRd': No such file or directory
+#> Warning: cannot open file '/tmp/RtmpBbYvk8/dummyfun18f670a058a7Rd': No such file or directory
 #> Error in file(con, "r"): cannot open the connection
 Rdo_show(tools::parse_Rd(fnA))
-#> Warning: cannot open file '/tmp/Rtmp17GFHW/dummyfun19f92361340fRd': No such file or directory
+#> Warning: cannot open file '/tmp/RtmpBbYvk8/dummyfun18f670a058a7Rd': No such file or directory
 #> Error in file(con, "r"): cannot open the connection
 
 ## replace the author section
 Rdo_set_section("Georgi N. Boshnakov", "author", fnA)
-#> Warning: cannot open file '/tmp/Rtmp17GFHW/dummyfun19f92361340fRd': No such file or directory
+#> Warning: cannot open file '/tmp/RtmpBbYvk8/dummyfun18f670a058a7Rd': No such file or directory
 #> Error in file(con, "r"): cannot open the connection
 Rdo_show(tools::parse_Rd(fnA))
-#> Warning: cannot open file '/tmp/Rtmp17GFHW/dummyfun19f92361340fRd': No such file or directory
+#> Warning: cannot open file '/tmp/RtmpBbYvk8/dummyfun18f670a058a7Rd': No such file or directory
 #> Error in file(con, "r"): cannot open the connection
 
 unlink(fnA)

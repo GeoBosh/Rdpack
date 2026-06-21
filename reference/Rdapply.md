@@ -130,7 +130,7 @@ Rdo_show(rdo)
 
 fn <- tempfile("u1", fileext="Rd")
 Rdo2Rdf(u1, file = fn)
-#>  The Rd content was written to file  /tmp/Rtmp17GFHW/u119f92bd37650Rd 
+#>  The Rd content was written to file  /tmp/RtmpBbYvk8/u118f623053a39Rd 
 
 # the saved file contains escaped percents but they disappear in parsing:
 file.show(fn)
@@ -141,7 +141,7 @@ Rdo_show(tools::parse_Rd(fn))
 #   (by inserting new lines).
 u2 <- Rdpack:::.Rd_tidy(u1)
 Rdo2Rdf(u2, file = fn)
-#>  The Rd content was written to file  /tmp/Rtmp17GFHW/u119f92bd37650Rd 
+#>  The Rd content was written to file  /tmp/RtmpBbYvk8/u118f623053a39Rd 
 file.show(fn)
 
 unlink(fn)
