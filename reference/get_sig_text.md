@@ -115,8 +115,8 @@ reprompt("f1", filename = fn)
 #> Rd source not supplied and installed documentation not found.
 #> Trying a 'prompt' function to generate documentation for the object.
 #>  success: documentation generated using a 'prompt' function.
-#>  The Rd content was written to file  /tmp/RtmpsioddO/file1a21588d29a2 
-#> [1] "/tmp/RtmpsioddO/file1a21588d29a2"
+#>  The Rd content was written to file  /tmp/RtmpAEXtOC/file195977c886e8 
+#> [1] "/tmp/RtmpAEXtOC/file195977c886e8"
 rdo <- tools::parse_Rd(fn)
 get_sig_text(rdo)
 #> [1] "signature(x = \"ANY\")"
@@ -137,8 +137,8 @@ reprompt("f4", filename = fn)
 #> Rd source not supplied and installed documentation not found.
 #> Trying a 'prompt' function to generate documentation for the object.
 #>  success: documentation generated using a 'prompt' function.
-#>  The Rd content was written to file  /tmp/RtmpsioddO/file1a21588d29a2 
-#> [1] "/tmp/RtmpsioddO/file1a21588d29a2"
+#>  The Rd content was written to file  /tmp/RtmpAEXtOC/file195977c886e8 
+#> [1] "/tmp/RtmpAEXtOC/file195977c886e8"
 rdo <- tools::parse_Rd(fn)
 get_sig_text(rdo)
 #> [1] "signature(x = \"ANY\", y = \"ANY\")"        
