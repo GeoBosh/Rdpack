@@ -946,7 +946,7 @@ insert_all_ref <- function(refs, style = "", empty_cited = FALSE){
         ## that the references are empty in this case (although the help system see this and
         ## drops the section "references". To avoid confusing the user, print some
         ## informative text.
-        return("There are no references for Rd macro \\verb{\\insertAllCites} on this help page.")
+        return("There are no references for Rd macro \\verb{\\insertAllCited} on this help page.")
 
     all.keys <- list()
     for(i in 1:nrow(refsmat)){
