@@ -133,7 +133,7 @@ vigbib("utils")
 #> @Article{vigutils:Sweave,
 #>   title = {Sweave User Manual},
 #>   author = {R Core Team and contributors worldwide},
-#>   journal = {URL https://CRAN.R-Project.org. Vignette included in R package utils (Part of R 4.6.0)},
+#>   journal = {URL https://CRAN.R-Project.org. Vignette included in R package utils (Part of R 4.6.1)},
 #>   year = {2026},
 #>   publisher = {CRAN},
 #>   url = {https://CRAN.R-Project.org},
@@ -142,7 +142,7 @@ makeVignetteReference("utils", vig = 1)
 #> @Article{vigutils:Sweave,
 #>   title = {Sweave User Manual},
 #>   author = {R Core Team and contributors worldwide},
-#>   journal = {URL https://CRAN.R-Project.org. Vignette included in R package utils (Part of R 4.6.0)},
+#>   journal = {URL https://CRAN.R-Project.org. Vignette included in R package utils (Part of R 4.6.1)},
 #>   year = {2026},
 #>   publisher = {CRAN},
 #>   url = {https://CRAN.R-Project.org},
@@ -150,7 +150,7 @@ makeVignetteReference("utils", vig = 1)
 #> 
 #> Team RC, worldwide c (2026). “Sweave User Manual.” _URL
 #> https://CRAN.R-Project.org. Vignette included in R package utils (Part
-#> of R 4.6.0)_. <https://CRAN.R-Project.org>.
+#> of R 4.6.1)_. <https://CRAN.R-Project.org>.
 ## commented out since can be slow:
 ## high <- installed.packages(priority = "high")
 ## highbib <- lapply(rownames(high), function(x) try(Rdpack:::vigbib(x, verbose = FALSE)))

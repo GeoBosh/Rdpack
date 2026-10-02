@@ -78,7 +78,7 @@ a bibentryRd object inheriting from bibentry
 
 ## References
 
-There are no references for Rd macro `\insertAllCites` on this help
+There are no references for Rd macro `\insertAllCited` on this help
 page.
 
 ## Author

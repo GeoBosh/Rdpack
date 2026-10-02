@@ -55,7 +55,7 @@ that it prints when there are no citations. This seems better than
 printing nothing but it may be argued also that there should be a
 warning as well.
 
-There are no references for Rd macro `\insertAllCites` on this help
+There are no references for Rd macro `\insertAllCited` on this help
 page.
 
 ## Author
