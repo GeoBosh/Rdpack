@@ -376,7 +376,7 @@ Rdo_flatinsert <- function(rdo, val, pos, before = TRUE){                       
     ## initialise the cache
     ##     TODO: remove refsmat, it is not needed here, maybe
     refsmat <- matrix(character(0), nrow = 0, ncol = 2)
-    allbibs <- list()
+    allbibs <- new.env()
     ## TODO: time stamp for auto clearing
     
     .get_bibs0 <- function(package, ..., cached_env) {
@@ -388,7 +388,7 @@ Rdo_flatinsert <- function(rdo, val, pos, before = TRUE){                       
             ## message("    bibs is NULL")
             
             bibs <- get_bibentries(package = package, ..., stop_on_error = FALSE)
-            allbibs[[package]] <<- bibs
+            allbibs[[package]] <- bibs
         }   ## else
             ##    message("    bibs is nonNULL")
         
@@ -396,9 +396,13 @@ Rdo_flatinsert <- function(rdo, val, pos, before = TRUE){                       
     }
 
     .get_all_bibs <- function()
-        allbibs
+        as.list(allbibs)
 
-    list(.get_bibs0 = .get_bibs0, .get_all_bibs = .get_all_bibs)
+    .set_bibs0 <- function(package, bibs)
+        allbibs[[package]] <- bibs
+
+    list(.get_bibs0 = .get_bibs0, .get_all_bibs = .get_all_bibs,
+         .set_bibs0 = .set_bibs0)
 })
 
   ## TODO: auto-deduce 'package'?

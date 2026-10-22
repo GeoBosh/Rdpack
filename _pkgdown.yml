@@ -35,6 +35,7 @@ reference:
       - insert_all_ref
       - insert_ref
       - insert_citeOnly
+      - rdpack_roclet
   - title: "Replacing parts of Rd objects"
     desc: >
       Functions to change Rd contents programmatically

@@ -1,5 +1,10 @@
 # Rdpack 2.6.6.9000
 
+- new roxygen2 roclet `rdpack_roclet()` pre-expands citation macros in Rd files, so that
+  `R CMD build` need not install the package.
+
+- now requires R >= 3.6.0.
+
 - added examples for usage of free text citations (mixed bib keys and explanatory text, like
   'Chapter 3' and clarified for roxygen2 users that if this results in two successive 'at'
   signs, `@@`, at least one of them should be duplicated in the roxygen comments (since

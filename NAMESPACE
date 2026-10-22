@@ -16,6 +16,7 @@ importFrom(rbibutils, readBib, bibstyle_JSSextra)
 S3method(as.character, f_usage)
 S3method(print, f_usage)
 S3method(print, bibentryRd)
+S3method(roxygen2::roclet_process, roclet_rdpack)
 
 export(
   append_to_Rd_list
@@ -106,6 +107,7 @@ export(
 , Rdo2Rdf
 , Rdreplace_section
 , Rdtagapply
+, rdpack_roclet
 , rebib
 , reprompt
 , RStudio_reprompt
