@@ -2,7 +2,7 @@ inspect_usage <- function(rdo){
     ut <- get_usage_text(rdo)
     if(grepl("=[ ]*[,)]", ut)){        # TODO: this is a patch; should be sorted out properly!
         cat("Encountered formal arguments in the form 'arg ='\n")
-        cat("\twithout righ-hand side, dropping the equal sign to proceed.\n")
+        cat("\twithout right-hand side, dropping the equal sign to proceed.\n")
         ut <- gsub("=[ ]*([,)])", "\\1", ut)
     }
 

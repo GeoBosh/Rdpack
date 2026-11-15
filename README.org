@@ -60,10 +60,10 @@ one or more =\insertCite{key}{package}= commands to cite works from
 =REFERENCES.bib=, then issue a single =\insertAllCited{}= directive to produce a
 list of all cited references. For this to work
 the =DESCRIPTION= file of the package needs to be amended, see below the full
-details. 
+details.
 
 
-** Preparation 
+** Preparation
 
 To prepare a package for importing BibTeX references it is necessary to tell the
 package management tools that package Rdpack and its Rd macros are needed. The
@@ -88,7 +88,7 @@ enumerated below in somewhat more detail, see also the vignette
 
    #+RESULTS:
 
-   The equivalent line for =roxygen2= is 
+   The equivalent line for =roxygen2= is
    #+BEGIN_EXAMPLE
    #' @importFrom Rdpack reprompt
    #+END_EXAMPLE
@@ -130,15 +130,15 @@ The equivalent =roxygen2= documentation chunk would be:
 
 The first line above inserts the reference with key =Rpackage:rbibutils= in Rdpack's
 REFERENCES.bib. The second line inserts the reference labeled =R= in file
-REFERENCES.bib from package =bibtex=. 
+REFERENCES.bib from package =bibtex=.
 
 The example above demonstrates that references from other packages can be
 inserted (in this case =bibtex=), as well. This is strongly discouraged for
 released versions but is convenient during development. One relatively safe use
 is when the other package is also yours - this allows authors of multiple
-packages to not copy the same refences to each of their own packages.
- 
-For further details see the vignette 
+packages to not copy the same references to each of their own packages.
+
+For further details see the vignette
 [[https://cran.r-project.org/package=Rdpack][=Inserting_bibtex_references=]]
 or open it from =R=:
 #+BEGIN_EXAMPLE
@@ -159,18 +159,18 @@ roxygen2 documentation.
 =\insertCite{key}{package}= cites =key= and records it for use by
 =\insertAllCited= and =\insertCited=, see below. =key= can contain more keys separated by
 commas.
-  
-=\insertCite{parseRd,Rpackage:rbibutils}{Rdpack}= produces 
+
+=\insertCite{parseRd,Rpackage:rbibutils}{Rdpack}= produces
 src_R[:exports results :results value raw]{insert_citeOnly("parseRd,Rpackage:rbibutils", "Rdpack")}
-and 
+and
 =\insertCite{Rpackage:rbibutils}{Rdpack}=         gives
 src_R[:exports results :results value raw]{insert_citeOnly("Rpackage:rbibutils", "Rdpack")}.
 
 
 By default the citations are parenthesised: =\insertCite{parseRd}{Rdpack}= produces
 src_R[:exports results :results value raw]{insert_citeOnly("parseRd", "Rdpack")}.  To get
-textual citations, like 
-src_R[:exports results :results value raw]{insert_citeOnly("parseRd;textual", "Rdpack")}, 
+textual citations, like
+src_R[:exports results :results value raw]{insert_citeOnly("parseRd;textual", "Rdpack")},
 put the string =;textual= at the end of the key. The references in the last two sentences
 would be produced with =\insertCite{parseRd}{Rdpack}= and
 =\insertCite{parseRd;textual}{Rdpack}=, respectively.  This also works with several
@@ -182,13 +182,13 @@ src_R[:exports results :results value raw]{insert_citeOnly("parseRd,Rpackage:rbi
 The macro =\insertNoCite{key}{package}= records one or more
 references for =\insertAllCited= but does not cite it. Setting
 =key= to =*= will include all references from the
-specified package. For example, 
+specified package. For example,
 =\insertNoCite{R}{bibtex}=  and  =\insertNoCite{*}{utils}=
-record the specified references for inclusion by =\insertAllCited=. 
+record the specified references for inclusion by =\insertAllCited=.
 
 =\insertAllCited= inserts all references cited with
 =\insertCite= or =\insertNoCite=. Putting this macro
-in the references section will keep it up to date automatically. 
+in the references section will keep it up to date automatically.
 The Rd section may look something like:
 #+BEGIN_EXAMPLE
     \insertAllCited{}
@@ -219,9 +219,9 @@ example, the following code
 #+END_EXAMPLE
 produces:
 
-  src_R[:exports results :results value raw]{insert_citeOnly("@see also @parseRd and @Rpackage:rbibutils", "Rdpack")} 
+  src_R[:exports results :results value raw]{insert_citeOnly("@see also @parseRd and @Rpackage:rbibutils", "Rdpack")}
 
-  src_R[:exports results :results value raw]{insert_citeOnly("@see also @parseRd; @Rpackage:rbibutils", "Rdpack")} 
+  src_R[:exports results :results value raw]{insert_citeOnly("@see also @parseRd; @Rpackage:rbibutils", "Rdpack")}
 
   src_R[:exports results :results value raw]{insert_citeOnly("@see also @parseRd and @Rpackage:rbibutils;textual", "Rdpack")}
 
@@ -246,7 +246,7 @@ example,
 #+END_EXAMPLE
 (in markdown, use =_see also_= in place of =\emph{see also})=. This gives:
 
-(/see also/ src_R[:exports results :results value raw]{insert_citeOnly("@@parseRd and @Rpackage:rbibutils;nobrackets", "Rdpack")}) 
+(/see also/ src_R[:exports results :results value raw]{insert_citeOnly("@@parseRd and @Rpackage:rbibutils;nobrackets", "Rdpack")})
 
 
 ---
@@ -267,7 +267,7 @@ alternatives can be included if needed or requested.
 
 To cause all lists of references produced by ~\insertAllCited~ in a package to appear with
 full names, add ~.onLoad()~ function to your package. If you don't have ~.onLoad()~, just
-copy the following definition: 
+copy the following definition:
 #+BEGIN_SRC R
     .onLoad <- function(lib, pkg){
         Rdpack::Rdpack_bibstyles(package = pkg, authors = "LongNames")
@@ -291,7 +291,7 @@ Wickham's package =devtools=.  Packages are built and installed properly with
 the =devtools= commands and the references are processed as expected.
 
 Currently (2017-08-04) if you run help commands =?xxx= for functions from the
-package you are working on /in developement mode/ and their help pages contain
+package you are working on /in development mode/ and their help pages contain
 references, you may encounter some puzzling warning messages, something like:
 #+BEGIN_EXAMPLE
     1: In tools::parse_Rd(path) :
@@ -322,7 +322,7 @@ documentation, as well. If you encounter a situation contradicting this
 description, it is probably a bug --- please report it (but check first for the
 typical errors listed below).
 
-A non-decipherable error message is probably caused by one of the following 
+A non-decipherable error message is probably caused by one of the following
 typical errors:
 
 - misspelled =RdMacros:= field in file DESCRIPTION. The safest way to avoid this
@@ -332,7 +332,7 @@ typical errors:
   have the package name as a second argument.
 
 These errors occur during parsing of the Rd files, before the control is passed
-to the =Rdpack='s macros. 
+to the =Rdpack='s macros.
 
 
 
@@ -345,12 +345,12 @@ cause errors, since most of the time this should not be necessary.
 
 If mathematics doesn't render properly replace the Latex dollar syntax with Rd's ~\eqn~,
 e.g. ~$x^2$~ with ~\eqn{x^2}~. This should not be needed for versions of Rdpack
-0.8-4 or later. 
+0.8-4 or later.
 
 Some Latex macros may have to be removed or replaced with suitable Rd markup. Again,
 do this only if they cause problems, since some are supported, e.g. ~\doi~.
 
-See also the overview help page, ~help("Rdpack-package")~, of package ="Rdpack"=. 
+See also the overview help page, ~help("Rdpack-package")~, of package ="Rdpack"=.
 Among other things, it contains some dummy references which illustrate the above.
 
 
@@ -419,7 +419,7 @@ platform (e.g. RStudio, Emacs/ESS, Rgui)[fn:viewRdRstudio].
 # =devtools::document()= transfers the roxygen2 documentation chunks to Rd files,
 # and a few others, which are then rendered by =R='s tools.)
 
- 
+
 [fn:viewRd] From ~Rdpack (>= 0.4-23)~.
 
 [fn:viewRdRstudio] In recent versions of Rstudio this function is no longer needed, since
@@ -455,9 +455,9 @@ ending in =<-=) ~reprompt()~ will insert the proper usage statement. For example
 signature of =xxx<-= is =(x, ..., value)=, then both, ="xxx<-"()= and =xxx() <- value= will
 be replaced by =xxx(x, ...) <- value=.
 
-=Rdpack::reprompt()= *does not remove* anything that has become obsolete 
+=Rdpack::reprompt()= *does not remove* anything that has become obsolete
 but it alerts the user to remove aliases, methods, and descriptions of arguments
-that have been removed. 
+that have been removed.
 
 ** Reprompt and open in an editor
 
@@ -491,7 +491,7 @@ the code is not prefixed with anything and the output is prefixed with comment s
 For example,
 #+BEGIN_EXAMPLE
     \printExample{2+2; a <- 2*3; a}
-#+END_EXAMPLE 
+#+END_EXAMPLE
 gives
 #+BEGIN_EXAMPLE
     2 + 2
@@ -502,7 +502,7 @@ gives
 #+END_EXAMPLE
 The help page of ~?Rdpack::promptUsage~ contains a number of examples created with
 ~\printExample~. The corresponding Rd file can be obtained from the package tarball or from
-https://github.com/GeoBosh/Rdpack/blob/master/man/promptUsage.Rd. 
+https://github.com/GeoBosh/Rdpack/blob/master/man/promptUsage.Rd.
 
 Vignette [[https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf][=Inserting_figures_and_evaluated_examples=]] gives further details.
 
@@ -512,7 +512,7 @@ The macro ~\runExamples~ can be used as a replacement of section ~examples~.  Fo
 the following code is put at the top level in an Rd file (i.e. not in a section):
 #+BEGIN_EXAMPLE
     \runExamples{2+2; a <- 2*3; a}
-#+END_EXAMPLE 
+#+END_EXAMPLE
 then it will be evaluated and replaced by a normal section examples:
 #+BEGIN_EXAMPLE
     \examples{
@@ -527,7 +527,7 @@ This generated examples section is processed by the standard R tools (almost) as
 there from the outset. In particular, the examples are run by the R's quality control tools
 and tangled along with examples in other documentation files[fn:runExamples]. A small example package
 using this feature is at [[https://github.com/GeoBosh/reprexes/tree/master/runExamplesCheck][runExamplesCheck]].
- 
+
 [fn:runExamples] In versions of ~R~ before =3.6.0=  the macro ~\runExamples~ may cause
 ~R CMD check~ to give a warning warning about unknown ~\Sexpr~ section at top level.
 # This warning is not issued at least since R-devel 2018-10-02 r75388.
@@ -544,6 +544,6 @@ evaluate to produce the figure.  For example,
     \insertFig{cars.png}{mypackage}{x <- cars$speed; y <- cars$dist; plot(x,y)}
 #+END_EXAMPLE
 will evaluate the code, save the graph in file ~"man/figures/cars.png"~ subdirectory of
-package ~"mypackage"~, and include the figure using ~\figure~. 
+package ~"mypackage"~, and include the figure using ~\figure~.
 
 See vignette [[https://github.com/GeoBosh/Rdpack/blob/master/vignettes/Inserting_figures_and_evaluated_examples.pdf][=Inserting_figures_and_evaluated_examples=]] for more details.
